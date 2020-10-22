@@ -1,10 +1,10 @@
 
 <html>
-<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="../css/theme.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
 
 <head>
-<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="../css/theme.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +19,7 @@
 <body>
 <h1>Employee Details Page<h1>
 <div class="container">
-<a style="float:right" href="EmployeeModal.php" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i></a>
+<a style="float:right" href="../modals/EmployeeModal.php" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i></a>
  <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
@@ -35,7 +35,7 @@
 </div>
 
 <?php
-include 'db_connection.php';
+include '../db_connection.php';
 
 $conn = OpenCon();
 $sql = 'SELECT cengineer_name, caddress,ccity,cstate,ccountry,cmobile_number,cemail_id,ckey_ac_manager FROM tbl_employeeMaster';

@@ -1,5 +1,5 @@
 <?php
-require_once "db_connection.php";
+require_once "../db_connection.php";
 $conn=OpenCon();
 $user_id = $_POST["user_id"];
 if ($user_id < 4){

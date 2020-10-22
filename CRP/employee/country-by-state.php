@@ -1,5 +1,5 @@
 <?php
-require_once "db_connection.php";
+require_once "../db_connection.php";
 $conn=OpenCon();
 $city_name = $_POST["city_name"];
 $result = mysqli_query($conn,"SELECT ccountry FROM tbl_city_state_country where ccity = '$city_name'");

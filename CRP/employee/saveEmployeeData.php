@@ -1,6 +1,6 @@
 
 <?php
- include('db_connection.php');
+ include('../db_connection.php');
 
 	$conn = OpenCon();
  	if(isset($_POST['saveData']))
@@ -22,7 +22,7 @@
 			'$address','$mobilenumber','$altmobileNumber',$userType,'$emailId',1,1,now())";
 	
 	$result = mysqli_query($conn,$sql);
-		 header("Location: employeeDetails.php");
+		 header("Location: ../controllers/employeeDetails.php");
 
 	}
 CloseCon($conn);

@@ -6,8 +6,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
-    <form action="saveEmployeeData.php" method="post">
-      <link rel="stylesheet" href="theme.css" />
+    <form action="../employee/saveEmployeeData.php" method="post">
+      <link rel="stylesheet" href="../css/theme.css" />
       <div class="modal-header" id="themodal">
         <button type="button" class="close" data-dismiss="modal">X</button>
         <h1>Add new Employee</h1>
@@ -29,7 +29,7 @@
                   <select class="form-control" name="city" id="city-dropdown" required>
                         <option value="">Select City</option>
                         <?php
-                           require_once "db_connection.php";
+                           require_once "../db_connection.php";
 						   $conn=OpenCon();
                            $result = mysqli_query($conn,"SELECT * FROM tbl_city_state_country");
                            while($row = mysqli_fetch_array($result)) {
@@ -137,7 +137,7 @@
         var city_name = this.value;
         $.ajax({
 			async: true,
-            url: "states-by-cities.php",
+            url: "../employee/states-by-cities.php",
             type: "POST",
             data: {
                 city_name: city_name
@@ -154,7 +154,7 @@
         var city_name = this.value;
         $.ajax({
 			async: true,
-			url: "country-by-state.php",
+			url: "../employee/country-by-state.php",
             type: "POST",
             data: {
                 city_name: city_name
@@ -170,7 +170,7 @@
         var user_id = this.value;
 		$.ajax({
 			async: true,
-			url: "keyacmanager-by-userType.php",
+			url: "../employee/keyacmanager-by-userType.php",
             type: "POST",
             data: {
                 user_id: user_id

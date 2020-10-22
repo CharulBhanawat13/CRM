@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="sidebar.css">
+<link rel="stylesheet" href="css/sidebar.css">
 
 </head>
 <body>
@@ -9,8 +9,8 @@
 
 <div class="sidebar">
   <a class="active" href="home">Home</a>
-  <a href="employeeDetails.php">Employee Details</a>
-  <a href="deadStock.php">Dead Stock</a>
+  <a href="controllers/employeeDetails.php">Employee Details</a>
+  <a href="controllers/deadStock.php">Dead Stock</a>
   <a href="tender">Tender</a>
   <a href="invoice">Invoice</a>
   <a href="dues">Dues</a>
