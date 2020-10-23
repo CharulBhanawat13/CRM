@@ -1,26 +1,55 @@
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" href="css/sidebar.css">
-
-</head>
-<body>
-
-
-<div class="sidebar">
-  <a class="active" href="home">Home</a>
-  <a href="controllers/employeeDetails.php">Employee Details</a>
-  <a href="controllers/deadStock.php">Dead Stock</a>
-  <a href="tender">Tender</a>
-  <a href="invoice">Invoice</a>
-  <a href="dues">Dues</a>
-  <a href="productionPlanning">Production Planning</a>
-
-</div>
-<h1>PEPL Dashboard</h1>
-<marquee hspace="15%">Customer Relationship Management</marquee>
-
-
-
-</body>
-</html>
+<?php  
+session_start();//session starts here   
+?>  
+  
+<html>  
+<head>  
+	<link rel="stylesheet" href="css/theme.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Login</title>  
+	      
+</head>  
+	<body>  
+	<div class="container-small">
+       <form method="post" action="">  
+	   <h1>Sign Up</h1>
+			<img src="assets/img_avatar2.png" alt="Avatar" >
+			<br>
+		   <label>Username</label>
+			<input type="text" id="loginuser" class="form-control" placeholder="Username" name="username" autofocus>  
+	  
+			<label>Password</label>
+			<input type="password" id="loginpass"class="form-control" placeholder="Password" name="pass" value="">  
+	  
+			<input type="submit" class="btn btn-success" value="login" name="login">  
+		
+	</form>  
+	</div>
+	</body>  
+</html>  
+  
+<?php  
+  
+include("db_connection.php");  
+  if(isset($_POST['login']))  
+{  
+    $username=$_POST['username'];  
+    $password=$_POST['pass'];  
+  
+    $check_user="select * from tbl_employeemaster WHERE cuser_name='$username'AND cpassword='$password'";  
+	$conn = OpenCon();
+    $run=mysqli_query($conn,$check_user);  
+  
+    if(mysqli_num_rows($run))  
+    {  
+		$_SESSION['username']=$username;
+        echo "<script>window.open('dashboard.php','_self')</script>";  
+		;//here session is used and value of $user_email store in $_SESSION.  
+  
+    }  
+    else  
+    {  
+      echo "<script>alert('Email or password is incorrect!')</script>";  
+    }  
+}  
+?>  

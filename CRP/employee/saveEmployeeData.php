@@ -14,12 +14,14 @@
 		$altmobileNumber=$POST["altmobilenumber"];
 		$userType=$_POST["userType"];
 		$emailId=$_POST["emailId"];
-		$keyAcManager=$_POST["keyAcManager"];	
+		$keyAcManager=$_POST["keyAcManager"];
+		$username=$_POST["username"];
+		$password=$_POST["password"];
 	
 	$sql = "INSERT INTO tbl_employeemaster (cengineer_name,ccity,cstate,ccountry,ckey_ac_manager,
-			caddress,cmobile_number,calt_mobile_number,cuser_type,cemail_id,isAvailable,isActive,dcreated_date) 
+			caddress,cmobile_number,calt_mobile_number,cuser_type,cemail_id,isAvailable,isActive,cuser_name,cpassword,dcreated_date) 
 			VALUES ('$name','$city','$state','$country','$keyAcManager',
-			'$address','$mobilenumber','$altmobileNumber',$userType,'$emailId',1,1,now())";
+			'$address','$mobilenumber','$altmobileNumber',$userType,'$emailId',1,1,'$username','$password',now())";
 	
 	$result = mysqli_query($conn,$sql);
 		 header("Location: ../controllers/employeeDetails.php");

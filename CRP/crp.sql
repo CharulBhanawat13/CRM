@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2020 at 09:17 AM
+-- Generation Time: Oct 23, 2020 at 09:23 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -64,6 +64,8 @@ CREATE TABLE `tbl_employeemaster` (
   `cemail_id` varchar(50) NOT NULL,
   `isAvailable` bit(1) NOT NULL,
   `isActive` bit(1) NOT NULL,
+  `cuser_name` varchar(50) NOT NULL,
+  `cpassword` varchar(50) NOT NULL,
   `dcreated_date` datetime NOT NULL,
   `dupdated_date` datetime NOT NULL,
   `nengineer_id` int(11) NOT NULL
@@ -73,26 +75,9 @@ CREATE TABLE `tbl_employeemaster` (
 -- Dumping data for table `tbl_employeemaster`
 --
 
-INSERT INTO `tbl_employeemaster` (`cengineer_name`, `ccity`, `cstate`, `ccountry`, `ckey_ac_manager`, `caddress`, `cmobile_number`, `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `dcreated_date`, `dupdated_date`, `nengineer_id`) VALUES
-('Modi', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 'RAM NATH KOVIND', 'Delhi fort', '212121', 323232, '3', 'modi@123', b'1', b'1', '2020-10-22 12:44:50', '2020-10-22 12:44:50', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `test`
---
-
-CREATE TABLE `test` (
-  `id` int(10) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `test`
---
-
-INSERT INTO `test` (`id`, `name`) VALUES
-(1, 'C');
+INSERT INTO `tbl_employeemaster` (`cengineer_name`, `ccity`, `cstate`, `ccountry`, `ckey_ac_manager`, `caddress`, `cmobile_number`, `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`, `nengineer_id`) VALUES
+('Modi', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 'RAM NATH KOVIND', 'Delhi fort', '212121', 323232, '3', 'modi@123', b'1', b'1', 'modi@123', 'modi@123', '2020-10-22 12:44:50', '2020-10-22 12:44:50', 1),
+('RAM NATH KOVIND', 'AHEMDABAD', 'GUJRAT', 'INDIA', 'Modi', 'Japur area', '99998888', 0, '2', 'kovind@123', b'1', b'1', 'ram@123', 'ram@123', '2020-10-22 14:11:24', '0000-00-00 00:00:00', 22);
 
 --
 -- Indexes for dumped tables
@@ -124,7 +109,7 @@ ALTER TABLE `tbl_city_state_country`
 -- AUTO_INCREMENT for table `tbl_employeemaster`
 --
 ALTER TABLE `tbl_employeemaster`
-  MODIFY `nengineer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `nengineer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

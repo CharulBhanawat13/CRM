@@ -3,10 +3,9 @@
     <meta name="generator"
     content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
     <title></title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
-    <form action="../employee/saveEmployeeData.php" method="post">
+    <form action="../employee/saveEmployeeData.php" id="employeeForm" method="post">
       <link rel="stylesheet" href="../css/theme.css" />
       <div class="modal-header" id="themodal">
         <button type="button" class="close" data-dismiss="modal">X</button>
@@ -126,12 +125,18 @@
       </div>
       <div class="modal-footer">
         <div class="panel-footer">
+		<i class="fa fa-refresh fa-spin"  id="reset" onclick="reset()" style="font-size:24px"></i>
+
         <button type="submit" class="btn btn-success" name="saveData">Save</button> 
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>
       </div>
 	  
     </form>
 	<script>
+	
+	
+	
+	
       $(document).ready(function() {
     $('#city-dropdown').on('change', function() {
         var city_name = this.value;
@@ -181,6 +186,12 @@
             }
         });
   });
+  
+  
+  
+  function reset() {
+  document.getElementById("employeeForm").reset();
+}
       </script>
 	
 	

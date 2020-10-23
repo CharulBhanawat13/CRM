@@ -17,3 +17,9 @@ INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`
   `nengineer_id`) VALUES 
  ('Swati','UDAIPUR','RAJASTHAN','INDIA','BL Gyani','unit 1','65656565','343434345',2,'charul@mail.com',
  1,1,'4')
+ 
+ INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`, `ckey_ac_manager`, 
+ `caddress`, `cmobile_number`, `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, 
+ `isActive`, `dcreated_date`, `dupdated_date`, `nengineer_id`) VALUES ('Modi','UDAIPUR',
+ 'RAJASTHAN','INDIA','RAM NATH KOVIND','Delhi fort','212121','323232',3,'modi@123',1,
+ 1,NOW(),NOW(),'1')
