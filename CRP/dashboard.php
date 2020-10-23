@@ -10,6 +10,7 @@ if($_SESSION['username']==''){
 <html>
 <head>
 <link rel="stylesheet" href="css/sidebar.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
@@ -26,7 +27,7 @@ if($_SESSION['username']==''){
 
 </div>
 <h1>PEPL Dashboard</h1>
-<h1><a href="logout.php" class="btn btn-danger">Logout</a><h1>
+<h1><a href="logout.php" ><i class="fa fa-sign-out"  style='float:right'></i></a><h1>
 <marquee hspace="15%">Customer Relationship Management</marquee>
 
 
