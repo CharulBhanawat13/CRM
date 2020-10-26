@@ -28,6 +28,7 @@ if($_SESSION['username']==''){
 </div>
 <h1>PEPL Dashboard</h1>
 <h1><a href="logout.php" ><i class="fa fa-sign-out"  style='float:right'></i></a><h1>
+<h2 style='float:right'><?php echo "Welcome " . $_SESSION["username"] . " ";?></h2>
 <marquee hspace="15%">Customer Relationship Management</marquee>
 
 

@@ -5,7 +5,7 @@
     <title></title>
   </head>
   <body>
-    <form action="../employee/saveEmployeeData.php" id="employeeForm" method="post">
+    <form  id="employeeForm" action="../employee/saveEmployeeData.php" method="post">
       <link rel="stylesheet" href="../css/theme.css" />
       <div class="modal-header" id="themodal">
         <button type="button" class="close" data-dismiss="modal">X</button>
@@ -110,7 +110,12 @@
               <tr>
                 <td>Username</td>
                 <td>
+				  	<div <?php if (isset($name_error)): ?> class="form_error" <?php endif ?> >
                   <input type="text" name="username" class="form-control" maxlength="50" required/>
+				   <?php if (isset($name_error)): ?>
+					<span><?php echo $name_error; ?></span>
+				<?php endif ?>
+				</div>
                 </td>
               </tr>
               <tr>
@@ -127,17 +132,14 @@
         <div class="panel-footer">
 		<i class="fa fa-refresh fa-spin"  id="reset" onclick="reset()" style="font-size:24px"></i>
 
-        <button type="submit" class="btn btn-success" name="saveData">Save</button> 
+        <button type="submit" class="btn btn-success" id="saveData" name="saveData">Save</button> 
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>
       </div>
 	  
     </form>
 	<script>
 	
-	
-	
-	
-      $(document).ready(function() {
+	$(document).ready(function() {
     $('#city-dropdown').on('change', function() {
         var city_name = this.value;
         $.ajax({
@@ -170,8 +172,7 @@
             }
         });
     });
-});
-	$('#userType-dropdown').on('change', function() {
+		$('#userType-dropdown').on('change', function() {
         var user_id = this.value;
 		$.ajax({
 			async: true,
@@ -187,11 +188,13 @@
         });
   });
   
-  
-  
-  function reset() {
-  document.getElementById("employeeForm").reset();
+ function reset() {
+	document.getElementById("employeeForm").reset();
 }
+	});
+
+
+
       </script>
 	
 	

@@ -38,15 +38,17 @@ include("db_connection.php");
   
     $check_user="select * from tbl_employeemaster WHERE cuser_name='$username'AND cpassword='$password'";  
 	$conn = OpenCon();
-    $run=mysqli_query($conn,$check_user);  
-  
+    $run=mysqli_query($conn,$check_user);
+	
+	$result = mysqli_fetch_assoc($run);
+	$userType = $result['cuser_type'];
+	echo "<script>alert('$userType')</script>";
     if(mysqli_num_rows($run))  
     {  
 		$_SESSION['username']=$username;
-        echo "<script>window.open('dashboard.php','_self')</script>";  
-		;//here session is used and value of $user_email store in $_SESSION.  
-  
-    }  
+		$_SESSION['userType']=$userType;
+		echo "<script>window.open('dashboard.php','_self')</script>";  
+	}  
     else  
     {  
       echo "<script>alert('Email or password is incorrect!')</script>";  

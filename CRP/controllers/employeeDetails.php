@@ -46,7 +46,13 @@
 
 <?php
 include '../db_connection.php';
+session_start();
+ 	if(isset($_SESSION['name_error'])){
 
+	$name_error=$_SESSION['name_error'];
+	echo "<script>alert('$name_error');</script>";
+	unset($_SESSION['name_error']);
+}
 $conn = OpenCon();
 $sql = 'SELECT cengineer_name, caddress,ccity,cstate,ccountry,cmobile_number,cemail_id,ckey_ac_manager FROM tbl_employeeMaster';
 $retval = mysqli_query( $conn, $sql );
