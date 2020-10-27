@@ -13,6 +13,7 @@ session_start();//session starts here
 	<div class="container-small">
        <form method="post" action="">  
 	   <h1>Sign Up</h1>
+	   
 			<img src="assets/img_avatar2.png" alt="Avatar" >
 			<br>
 		   <label>Username</label>
@@ -32,7 +33,7 @@ session_start();//session starts here
   
 include("db_connection.php");  
   if(isset($_POST['login']))  
-{  
+{  echo	"phpinfo()";
     $username=$_POST['username'];  
     $password=$_POST['pass'];  
   
