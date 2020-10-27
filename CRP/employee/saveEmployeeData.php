@@ -3,6 +3,14 @@
  include('../db_connection.php');
 session_start();
 	$conn = OpenCon();
+	if(isset($_POST['ID'])){
+		$employeeId=$_POST['ID'];
+		$sql="UPDATE tbl_employeemaster SET isActive =0 WHERE nengineer_id = $employeeId";
+		$result = mysqli_query($conn,$sql);
+		
+  
+	}
+	
  	if(isset($_POST['saveData']))
 	{
 		$name=$_POST["name"];
@@ -23,7 +31,6 @@ session_start();
 
 		if (mysqli_num_rows($res_u) > 0) {
 				$name_error = "Sorry... username already taken"; 
-				echo "<script>alert('$=');</script>";
 				$_SESSION['name_error']=$name_error;
 				header("Location: ../controllers/employeeDetails.php");
 

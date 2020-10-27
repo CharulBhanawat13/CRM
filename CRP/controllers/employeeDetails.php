@@ -3,10 +3,12 @@
 
 
 <head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="../css/theme.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -58,13 +60,13 @@ if(isset($_SESSION['userType']) && ($_SESSION['username'])){
 	unset($_SESSION['name_error']);
 }
 $conn = OpenCon();
-$sql = 'SELECT cengineer_name, caddress,ccity,cstate,ccountry,cmobile_number,cemail_id,ckey_ac_manager,cuser_type,cuser_name FROM tbl_employeeMaster 
+$sql = 'SELECT cengineer_name, caddress,ccity,cstate,ccountry,cmobile_number,cemail_id,ckey_ac_manager,cuser_type,nengineer_id FROM tbl_employeeMaster 
 where isActive=1 and (cuser_name = "'.$username.'" OR cuser_type<'.$userType.') ';
 $retval = mysqli_query( $conn, $sql );
 echo "<table id='employeeTable'  name='employeeTable' >
 <thead> 
 <tr>
-
+<th style='display:none;'>ID</th>
 <th>Engineer's Name</th>
 	
 <th>Adress</th>
@@ -87,7 +89,7 @@ echo "<table id='employeeTable'  name='employeeTable' >
 
    while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
 	echo "<tr>";  
-
+	echo "<td style='display:none;'>" . $row['nengineer_id'] . "</td>";
     echo "<td><a href='../modals/EmployeeModal.php' data-toggle='modal' data-target='#myModal'>" . $row['cengineer_name'] . "</a></td>";
     echo "<td>" . $row['caddress'] . "</td>";
     echo "<td>" . $row['ccity'] . "</td>";
@@ -96,8 +98,8 @@ echo "<table id='employeeTable'  name='employeeTable' >
     echo "<td>" . $row['cmobile_number'] . "</td>";
     echo "<td>" . $row['cemail_id'] . "</td>";
     echo "<td>" . $row['ckey_ac_manager'] . "</td>";
-	echo "<td><i class='fa fa-trash fa-2x' style='color:#4CAF50;'</i></td>";
-	
+	echo "<td class='action-view'><i class='fa fa-trash fa-2x' style='color:#4CAF50;'</i></td>";
+
     echo "</tr>";
 }
 echo "</tbody></table>";
@@ -105,12 +107,14 @@ echo "</tbody></table>";
 CloseCon($conn);
 ?>
 <script>
+
+
 $(document).ready(function() {
 	 // Setup - add a text input to each footer cell
     $('#employeeTable thead tr').clone(true).appendTo( '#employeeTable thead' );
     $('#employeeTable thead tr:eq(1) th').each( function (i) {
         var title = $(this).text();
-		if(i != 8){
+		if(i != 9){
         $(this).html( '<input class="form-control" type="text" placeholder="Search '+title+'" />' );
 		}
 		 $( 'input', this ).on( 'keyup change', function () {
@@ -127,7 +131,23 @@ $(document).ready(function() {
 		 "dom": 'lrtip',
      }
     );  
-
+$('#employeeTable').on('click','.action-view',function() {
+    var ID = table.row($(this).parents('tr').first()).data()[0];
+	alert(ID);
+	 $.ajax({
+			async: true,
+            url:"../employee/saveEmployeeData.php",   
+            type: "POST",    
+           
+            data:  {
+			ID: ID
+			},
+			cache: false,
+            success:function(result){
+             window.location.reload();
+            }
+        });
+});
 } );
 </script>
 

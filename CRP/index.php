@@ -33,7 +33,7 @@ session_start();//session starts here
   
 include("db_connection.php");  
   if(isset($_POST['login']))  
-{  echo	"phpinfo()";
+{ 
     $username=$_POST['username'];  
     $password=$_POST['pass'];  
   
