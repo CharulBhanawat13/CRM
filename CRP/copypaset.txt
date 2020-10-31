@@ -1,1 +1,84 @@
-	echo "<td class='action-view'><i class='fa fa-trash fa-2x' style='color:#4CAF50;'</i></td>";
+CREATE TABLE user_selection (
+    nid int,
+    name varchar(255),
+    user_type int,
+    manager_id varchar(255)
+);
+
+
+INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(1,'A',1,'1');
+INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(2,'B1',2,'1');
+INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(3,'B2',2,'1');
+INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(4,'C1',3,'2');
+INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(5,'C2',3,'2');
+INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(6,'C3',3,'3');
+INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(7,'C4',3,'3');
+INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(8,'D1',4,'4');
+INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(9,'D2',4,'4');
+INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(10,'D3',4,'5');
+INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(11,'D4',4,'5');
+INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(12,'D5',4,'6');
+INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(13,'D6',4,'6');
+INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(14,'D7',4,'7');
+INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(15,'D8',4,'7');
+
+
+
+INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
+ `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`) 
+VALUES ('D1','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,'C1' ,'Pyrotech Unit 2' , '787654321', '65798989' ,1   , 'd1@gmail' , 1 , 1 ,'d1@123'  ,'d1@123' ,  now(),now());
+
+
+INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
+ `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`) 
+VALUES ('D2','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,'C1' ,'Pyrotech Unit 2' , '787654321', '65798989' ,1   , 'd2@gmail' , 1 , 1 ,'d2@123'  ,'d2@123' ,  now(),now());
+
+INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
+ `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`) 
+VALUES ('D3','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,'C2' ,'Pyrotech Unit 2' , '787654321', '65798989' ,1   , 'd3@gmail' , 1 , 1 ,'d3@123'  ,'d3@123' ,  now(),now());
+
+INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
+ `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`) 
+VALUES ('D4','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,'C2' ,'Pyrotech Unit 2' , '787654321', '65798989' ,1   , 'd4@gmail' , 1 , 1 ,'d4@123'  ,'d4@123' ,  now(),now());
+
+INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
+ `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`) 
+VALUES ('D5','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,'C3' ,'Pyrotech Unit 2' , '787654321', '65798989' ,1   , 'd5@gmail' , 1 , 1 ,'d5@123'  ,'d5@123' ,  now(),now());
+
+
+INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
+ `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`) 
+VALUES ('D6','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,'C3' ,'Pyrotech Unit 2' , '787654321', '65798989' ,1   , 'd6@gmail' , 1 , 1 ,'d6@123'  ,'d6@123' ,  now(),now());
+
+INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
+ `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`) 
+VALUES ('D7','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,'C4' ,'Pyrotech Unit 2' , '787654321', '65798989' ,1   , 'd7@gmail' , 1 , 1 ,'d7@123'  ,'d7@123' ,  now(),now());
+
+INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
+ `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`) 
+VALUES ('D8','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,'C4' ,'Pyrotech Unit 2' , '787654321', '65798989' ,1   , 'd8@gmail' , 1 , 1 ,'d8@123'  ,'d8@123' ,  now(),now());
+
+
+
+<a href='../modals/EmployeeModal.php' data-toggle='modal' data-target='#myModal'>
+
+
+
+
+SELECT e.cengineer_name FROM tbl_employeemaster AS e
+WHERE e.ckey_ac_manager_id=36
+UNION
+select e1.cengineer_name from tbl_employeemaster As e1
+JOIN tbl_employeemaster e2
+ON e2.ckey_ac_manager_id=e1.nid
+WHERE e1.ckey_ac_manager_id=36
+
+UNION
+SELECT e3.cengineer_name FROM tbl_employeemaster AS e1
+JOIN tbl_employeemaster AS e2
+ON e2.ckey_ac_manager_id=e1.nid
+JOIN tbl_employeemaster AS e3
+ON e3.ckey_ac_manager_id=e2.nid
+
+WHERE e1.ckey_ac_manager_id=36
+======================

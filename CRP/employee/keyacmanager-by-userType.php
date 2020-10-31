@@ -8,14 +8,15 @@ if ($user_id < 4){
 }
 
 
-$result = mysqli_query($conn,"SELECT DISTINCT cengineer_name FROM tbl_employeemaster where cuser_type=$user_id");
+$result = mysqli_query($conn,"SELECT  nid,cengineer_name FROM tbl_employeemaster where cuser_type=$user_id");
 ?>
 <option value="">Select Key A/C Manager</option>
 <?php
 while($row = mysqli_fetch_array($result)) {
 ?>
-<option value="<?php echo $row["cengineer_name"];?>"><?php echo $row["cengineer_name"];?></option>
+<option value="<?php echo $row["nid"];?>"><?php echo $row["cengineer_name"];?></option>
 <?php
-CloseCon($conn);
 }
+CloseCon($conn);
+
 ?>

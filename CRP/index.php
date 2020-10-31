@@ -32,27 +32,31 @@ session_start();//session starts here
 <?php  
   
 include("db_connection.php");  
+
   if(isset($_POST['login']))  
 { 
     $username=$_POST['username'];  
     $password=$_POST['pass'];  
   
-    $check_user="select * from tbl_employeemaster WHERE cuser_name='$username'AND cpassword='$password'";  
+    $check_user="select * from tbl_employeemaster WHERE cuser_name='$username'AND cpassword='$password'";
 	$conn = OpenCon();
     $run=mysqli_query($conn,$check_user);
 	
 	$result = mysqli_fetch_assoc($run);
 	$userType = $result['cuser_type'];
+	$user_id=$result['nid'];
 	echo "<script>alert('$userType')</script>";
     if(mysqli_num_rows($run))  
     {  
 		$_SESSION['username']=$username;
 		$_SESSION['userType']=$userType;
+		$_SESSION['user_id']=$user_id;
 		echo "<script>window.open('dashboard.php','_self')</script>";  
 	}  
     else  
     {  
       echo "<script>alert('Email or password is incorrect!')</script>";  
-    }  
+    }
+    CloseCon($conn);
 }  
 ?>  

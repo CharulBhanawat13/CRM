@@ -9,17 +9,16 @@
       <link rel="stylesheet" href="../css/theme.css" />
       <div class="modal-header" id="themodal">
         <button type="button" class="close" data-dismiss="modal">X</button>
-        <h1>Add new Employee</h1>
+        <h1>Employee Information</h1>
       </div>
       <div class="modal-body">
         <div class="panel panel-default">
-          <div class="panel-heading text-center">Employee Information</div>
           <div class="panel-body">
             <table>
               <tr>
                 <td>Engineer&#39;s Name</td>
                 <td>
-                  <input type="text" name="name" class="form-control" maxlength="50" required/>
+                  <input type="text" name="name"  class="form-control" maxlength="50"  required/>
                 </td>
               </tr>
 			  <tr>
@@ -35,8 +34,9 @@
                            ?>
                         <option value="<?php echo $row['ccity'];?>"><?php echo $row["ccity"];?></option>
                         <?php
-                         CloseCon($conn);
+
 						 }
+                        CloseCon($conn);
                            ?>
                      </select>
 
@@ -102,7 +102,7 @@
               <tr>
                 <td>Key A/C Manager</td>
                 <td>
-				 <select class="form-control" name="keyAcManager" id="keyAcManager-dropdown" required>
+				 <select class="form-control" name="keyAcManagerId" id="keyAcManager-dropdown" required>
                       
                      </select>
                 </td>
@@ -192,11 +192,9 @@
 	document.getElementById("employeeForm").reset();
 }
 	});
+   </script>
 
 
-
-      </script>
-	
 	
   </body>
 </html>

@@ -10,6 +10,7 @@ while($row = mysqli_fetch_array($result)) {
 ?>
 <option value="<?php echo $row["cstate"];?>" selected><?php echo $row["cstate"];?></option>
 <?php
-CloseCon($conn);
 }
+CloseCon($conn);
+
 ?>
