@@ -1,30 +1,43 @@
-CREATE TABLE user_selection (
-    nid int,
-    name varchar(255),
-    user_type int,
-    manager_id varchar(255)
-);
+
+INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
+ `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
+VALUES ('A','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,null,'C1' ,'Pyrotech Unit 2' , '787654321', '65798989' ,1, 'a@gmail' , 1 , 1 ,'a@123'  ,'a@123' ,  now(),now());
 
 
-INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(1,'A',1,'1');
-INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(2,'B1',2,'1');
-INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(3,'B2',2,'1');
-INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(4,'C1',3,'2');
-INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(5,'C2',3,'2');
-INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(6,'C3',3,'3');
-INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(7,'C4',3,'3');
-INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(8,'D1',4,'4');
-INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(9,'D2',4,'4');
-INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(10,'D3',4,'5');
-INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(11,'D4',4,'5');
-INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(12,'D5',4,'6');
-INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(13,'D6',4,'6');
-INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(14,'D7',4,'7');
-INSERT INTO `user_selection`(`nid`,`name`,`user_type`,`manager_id`)VALUES(15,'D8',4,'7');
+INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
+ `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
+VALUES ('B1','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,86,'A' ,'Pyrotech Unit 2' , '787654321', '65798989' ,2, 'b1@gmail' , 1 , 1 ,'b1@123'  ,'b1@123' ,  now(),now());
+
+INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
+ `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
+VALUES ('B2','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,null,'A' ,'Pyrotech Unit 2' , '787654321', '65798989' ,2, 'a@gmail' , 1 , 1 ,'b2@123'  ,'b2@123' ,  now(),now());
+
+INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
+ `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
+VALUES ('C1','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,87,'B1' ,'Pyrotech Unit 2' , '787654321', '65798989' ,3, 'c1@gmail' , 1 , 1 ,'c1@123'  ,'c1@123' ,  now(),now());
+
+
+INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
+ `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
+VALUES ('C2','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,87,'B1' ,'Pyrotech Unit 2' , '787654321', '65798989' ,3, 'c1@gmail' , 1 , 1 ,'c1@123'  ,'c1@123' ,  now(),now());
+
+
+INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
+ `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
+VALUES ('C3','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,88,'B2' ,'Pyrotech Unit 2' , '787654321', '65798989' ,3, 'c3@gmail' , 1 , 1 ,'c3@123'  ,'c3@123' ,  now(),now());
+
+
+INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
+ `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
+VALUES ('C4','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,88,'B2' ,'Pyrotech Unit 2' , '787654321', '65798989' ,3, 'c4@gmail' , 1 , 1 ,'c4@123'  ,'c4@123' ,  now(),now());
 
 
 
-INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
+
+
+
+
+INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
  `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`) 
 VALUES ('D1','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,'C1' ,'Pyrotech Unit 2' , '787654321', '65798989' ,1   , 'd1@gmail' , 1 , 1 ,'d1@123'  ,'d1@123' ,  now(),now());
 
@@ -65,20 +78,65 @@ VALUES ('D8','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,'C4' ,'Pyrotech Unit 2' , '78765432
 
 
 
-SELECT e.cengineer_name FROM tbl_employeemaster AS e
-WHERE e.ckey_ac_manager_id=36
-UNION
-select e1.cengineer_name from tbl_employeemaster As e1
-JOIN tbl_employeemaster e2
-ON e2.ckey_ac_manager_id=e1.nid
-WHERE e1.ckey_ac_manager_id=36
 
-UNION
-SELECT e3.cengineer_name FROM tbl_employeemaster AS e1
-JOIN tbl_employeemaster AS e2
-ON e2.ckey_ac_manager_id=e1.nid
-JOIN tbl_employeemaster AS e3
-ON e3.ckey_ac_manager_id=e2.nid
-
-WHERE e1.ckey_ac_manager_id=36
 ======================
+
+// 200510276698
+
+
+
+ $sql="(select e.nid
+
+from tbl_employeemaster AS e
+
+where e.nid=$user_id )
+
+union
+
+(select e.nid
+
+from tbl_employeemaster AS e
+
+where e.nkey_ac_manager_id=$user_id)
+
+union
+
+(select e.nid
+
+from tbl_employeemaster AS e1
+
+join tbl_employeemaster AS e2
+
+on e2.nkey_ac_manager_id=e1.nid
+
+where e1.nkey_ac_manager_id=$user_id)
+
+union
+
+(select e.nid
+
+from tbl_employeemaster AS e1
+
+join tbl_employeemaster AS e2
+
+on e2.nkey_ac_manager_id=e1.nid
+
+join tbl_employeemaster AS e3
+
+on e3.nkey_ac_manager_id=e2.nid
+
+where e1.nkey_ac_manager_id=$user_id)";
+-------------------------------------------------------------
+ union
+ (select * from tbl_employeemaster AS e1
+ join tbl_employeemaster AS e2
+ on e2.nkey_ac_manager_id=e1.nid
+ where e1.nkey_ac_manager_id=$user_id)
+
+  union
+ (select * from tbl_employeemaster AS e1
+ join tbl_employeemaster AS e2
+ on e2.nkey_ac_manager_id=e1.nid
+ join tbl_employeemaster AS e3
+ on e3.nkey_ac_manager_id=e2.nid
+ where e1.nkey_ac_manager_id=$user_id)

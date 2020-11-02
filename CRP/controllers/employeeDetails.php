@@ -39,7 +39,7 @@ session_start();
 if(isset($_SESSION['userType']) && ($_SESSION['username'])){
 	$userType=$_SESSION['userType'];
 	$username=$_SESSION['username'];
-	$user_id=$_SESSION['user_id'];
+	$user_id=(int)$_SESSION['user_id'];
 }
  	if(isset($_SESSION['name_error'])){
 
@@ -48,29 +48,25 @@ if(isset($_SESSION['userType']) && ($_SESSION['username'])){
 	unset($_SESSION['name_error']);
 }
 $conn = OpenCon();
-$sql = 'SELECT cengineer_name, caddress,ccity,cstate,ccountry,cmobile_number,cemail_id,ckey_ac_manager,cuser_type,nid FROM tbl_employeeMaster
-where isActive=1 and (cuser_name = "'.$username.'" OR cuser_type<'.$userType.') ';
-
-//$sql="
-//
-//SELECT e.cengineer_name FROM tbl_employeemaster AS e
-//WHERE e.ckey_ac_manager_id='$user_id'
-//UNION
-//select e1.cengineer_name from tbl_employeemaster As e1
-//JOIN tbl_employeemaster e2
-//ON e2.ckey_ac_manager_id=e1.nid
-//WHERE e1.ckey_ac_manager_id='$user_id'
-//
-//UNION
-//SELECT e3.cengineer_name FROM tbl_employeemaster AS e1
-//JOIN tbl_employeemaster AS e2
-//ON e2.ckey_ac_manager_id=e1.nid
-//JOIN tbl_employeemaster AS e3
-//ON e3.ckey_ac_manager_id=e2.nid
-//
-//WHERE e1.ckey_ac_manager_id='$user_id'
-//";
-
+$sql="(select e.nid,e.cengineer_name,e.caddress,e.ccity,e.cstate,e.ccountry,e.cmobile_number,e.cemail_id,e.ckey_ac_manager
+from tbl_employeemaster AS e where e.nid=$user_id ) 
+union (select e.nid,e.cengineer_name,e.caddress,ccity,e.cstate,e.ccountry,e.cmobile_number,e.cemail_id,e.ckey_ac_manager 
+from tbl_employeemaster AS e where e.nkey_ac_manager_id=$user_id ) 
+union 
+(select e2.nid,e2.cengineer_name,e2.caddress,e2.ccity,e2.cstate,e2.ccountry,e2.cmobile_number,e2.cemail_id,e2.ckey_ac_manager 
+from tbl_employeemaster AS e1 
+JOIN tbl_employeemaster AS e2 
+ON e2.nkey_ac_manager_id=e1.nid 
+where e1.nkey_ac_manager_id=$user_id ) 
+union 
+(select e3.nid,e3.cengineer_name,e3.caddress,e3.ccity,e3.cstate,e3.ccountry,e3.cmobile_number,e3.cemail_id,e3.ckey_ac_manager
+from tbl_employeemaster AS e1 
+JOIN tbl_employeemaster AS e2 
+ON e2.nkey_ac_manager_id=e1.nid 
+JOIN tbl_employeemaster AS e3 
+ON e3.nkey_ac_manager_id=e2.nid 
+where e1.nkey_ac_manager_id=$user_id)
+";
 
 $retval = mysqli_query( $conn, $sql );
 echo "<table id='employeeTable'  name='employeeTable' >
@@ -174,6 +170,19 @@ $(document).ready(function() {
     $(function () {
         $(".identifyingClass").click(function () {
             var ID = table.row($(this).parents('tr').first()).data()[0];
+            $.ajax({
+                async: true,
+                url: "../employee/country-by-state.php",
+                type: "POST",
+                data: {
+                    city_name: city_name
+                },
+                cache: false,
+                success: function(result) {
+                    $("#country-dropdown").html(result);
+                }
+            });
+
             var name = table.row($(this).parents('tr').first()).data()[2];
             var address = table.row($(this).parents('tr').first()).data()[3];
             var city = table.row($(this).parents('tr').first()).data()[4];
