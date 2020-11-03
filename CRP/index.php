@@ -45,8 +45,7 @@ include("db_connection.php");
 	$result = mysqli_fetch_assoc($run);
 	$userType = $result['cuser_type'];
 	$user_id=$result['nid'];
-	echo "<script>alert('$userType')</script>";
-    if(mysqli_num_rows($run))  
+    if(mysqli_num_rows($run))
     {  
 		$_SESSION['username']=$username;
 		$_SESSION['userType']=$userType;

@@ -1,7 +1,4 @@
-
 <html>
-
-
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
@@ -23,10 +20,10 @@
          <a style="float:right" href="../modals/EmployeeModal.php" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i></a>
          <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
-      <div class="modal-content">   
-        
+      <div class="modal-content">
+
       </div>
       
     </div>
@@ -48,24 +45,25 @@ if(isset($_SESSION['userType']) && ($_SESSION['username'])){
 	unset($_SESSION['name_error']);
 }
 $conn = OpenCon();
-$sql="(select e.nid,e.cengineer_name,e.caddress,e.ccity,e.cstate,e.ccountry,e.cmobile_number,e.cemail_id,e.ckey_ac_manager
-from tbl_employeemaster AS e where e.nid=$user_id ) 
-union (select e.nid,e.cengineer_name,e.caddress,ccity,e.cstate,e.ccountry,e.cmobile_number,e.cemail_id,e.ckey_ac_manager 
-from tbl_employeemaster AS e where e.nkey_ac_manager_id=$user_id ) 
+ 	$isAvailable=1;
+$sql="(select e.nid,e.cengineer_name,e.caddress,e.ccity,e.cstate,e.ccountry,e.cmobile_number,e.cemail_id,e.ckey_ac_manager,e.isAvailable
+from tbl_employeemaster AS e where e.nid=$user_id AND e.isAvailable=$isAvailable) 
+union (select e.nid,e.cengineer_name,e.caddress,ccity,e.cstate,e.ccountry,e.cmobile_number,e.cemail_id,e.ckey_ac_manager,e.isAvailable
+from tbl_employeemaster AS e where e.nkey_ac_manager_id=$user_id AND e.isAvailable=$isAvailable) 
 union 
-(select e2.nid,e2.cengineer_name,e2.caddress,e2.ccity,e2.cstate,e2.ccountry,e2.cmobile_number,e2.cemail_id,e2.ckey_ac_manager 
+(select e2.nid,e2.cengineer_name,e2.caddress,e2.ccity,e2.cstate,e2.ccountry,e2.cmobile_number,e2.cemail_id,e2.ckey_ac_manager,e2.isAvailable
 from tbl_employeemaster AS e1 
 JOIN tbl_employeemaster AS e2 
 ON e2.nkey_ac_manager_id=e1.nid 
-where e1.nkey_ac_manager_id=$user_id ) 
+where e1.nkey_ac_manager_id=$user_id AND e2.isAvailable=$isAvailable) 
 union 
-(select e3.nid,e3.cengineer_name,e3.caddress,e3.ccity,e3.cstate,e3.ccountry,e3.cmobile_number,e3.cemail_id,e3.ckey_ac_manager
+(select e3.nid,e3.cengineer_name,e3.caddress,e3.ccity,e3.cstate,e3.ccountry,e3.cmobile_number,e3.cemail_id,e3.ckey_ac_manager,e3.isAvailable
 from tbl_employeemaster AS e1 
 JOIN tbl_employeemaster AS e2 
 ON e2.nkey_ac_manager_id=e1.nid 
 JOIN tbl_employeemaster AS e3 
 ON e3.nkey_ac_manager_id=e2.nid 
-where e1.nkey_ac_manager_id=$user_id)
+where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
 ";
 
 $retval = mysqli_query( $conn, $sql );
@@ -74,26 +72,19 @@ echo "<table id='employeeTable'  name='employeeTable' >
 <tr>
 <th style='display:none;'>ID</th>
 <th>Engineer's Name</th>
-<th>Engineer's Name</th>
-	
+<th>Engineer's Name</th>	
 <th>Address</th>
-
 <th>City</th>
-
 <th>State</th>
 <th>Country</th>
 <th>Mobile Number</th>
 <th>Email Id</th>
 <th>Key A/C Manager</th>
 <th>Delete</th>
-
 </tr>
 </thead>
-
 	   <tbody>
-
 ";
-
    while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
 	echo "<tr>";  
 	echo "<td style='display:none;'>" . $row['nid'] . "</td>";
@@ -110,13 +101,11 @@ echo "<table id='employeeTable'  name='employeeTable' >
     echo "</tr>";
 }
 echo "</tbody></table>";
-
 CloseCon($conn);
 ?>
 <script>
 
 $(document).ready(function() {
-
 	 // Setup - add a text input to each footer cell
     $('#employeeTable thead tr').clone(true).appendTo( '#employeeTable thead' );
     $('#employeeTable thead tr:eq(1) th').each( function (i) {
@@ -167,46 +156,54 @@ $(document).ready(function() {
         });
     });
 
-    $(function () {
-        $(".identifyingClass").click(function () {
-            var ID = table.row($(this).parents('tr').first()).data()[0];
+    $('#userType-dropdown').on('change', function() {
+        var user_id = this.value;
+        $.ajax({
+            async: true,
+            url: "../employee/keyacmanager-by-userType.php",
+            type: "POST",
+            data: {
+                user_id: user_id
+            },
+            cache: false,
+            success: function(result) {
+                $("#keyAcManager-dropdown").html(result);
+            }
+        });
+    });
+
+
+        $('#employeeTable tbody').on('click','.identifyingClass',function () {
+            var id_toUpdate = table.row($(this).parents('tr').first()).data()[0];
             $.ajax({
-                async: true,
-                url: "../employee/country-by-state.php",
+                url: "../employee/saveEmployeeData.php",
                 type: "POST",
                 data: {
-                    city_name: city_name
+                    id_toUpdate: id_toUpdate
                 },
                 cache: false,
-                success: function(result) {
-                    $("#country-dropdown").html(result);
+                success: function(row_datas) {
+                    $.each(JSON.parse(row_datas), function(idx, row_data){
+                        $(".modal-body #employeeId").val(row_data.nid);
+                        $(".modal-body #name").val(row_data.cengineer_name);
+                        $(".modal-body #address").val(row_data.caddress);
+                        $(".modal-body #city-dropdown").val(row_data.ccity);
+                        $(".modal-body #state-dropdown").val(row_data.cstate);
+                        $(".modal-body #country-dropdown").val(row_data.ccountry);
+                        $(".modal-body #mobileNumber").val(row_data.cmobile_number);
+                        $(".modal-body #altMobileNumber").val(row_data.calt_mobile_number);
+                        $(".modal-body #email").val(row_data.cemail_id);
+                        $(".modal-body #userType-dropdown").val(row_data.cuser_type);
+                        $(".modal-body #keyAcManager-dropdown").val(row_data.ckeyAcManager);
+                        $(".modal-body #username").val(row_data.cuser_name);
+                        $(".modal-body #password").val(row_data.cpassword);
+
+                    });
                 }
             });
 
-            var name = table.row($(this).parents('tr').first()).data()[2];
-            var address = table.row($(this).parents('tr').first()).data()[3];
-            var city = table.row($(this).parents('tr').first()).data()[4];
-            var state = table.row($(this).parents('tr').first()).data()[5];
-            var country = table.row($(this).parents('tr').first()).data()[6];
-            var mobileNumber = table.row($(this).parents('tr').first()).data()[7];
-            //var altMobileNumber = table.row($(this).parents('tr').first()).data()[8];
-            var email = table.row($(this).parents('tr').first()).data()[8];
-            var keyAcManager = table.row($(this).parents('tr').first()).data()[9];
+        });
 
-
-
-            $(".modal-body #name").val(name);
-            $(".modal-body #address").val(address);
-            $(".modal-body #city-dropdown").val(city);
-            $(".modal-body #state-dropdown").val(state);
-            $(".modal-body #country-dropdown").val(country);
-            $(".modal-body #mobileNumber").val(mobileNumber);
-            $(".modal-body #altMobileNumber").val(altMobileNumber);
-            $(".modal-body #email").val(email);
-            $(".modal-body #keyAcManager-dropdown").val(keyAcManager);
-
-        })
-    });
 	var table =$('#employeeTable').DataTable({
 		 orderCellsTop: true,
 		 "dom": 'lrtip',
@@ -214,15 +211,15 @@ $(document).ready(function() {
     );  
 
 $('#employeeTable').on('click','.action-view',function() {
-    var ID = table.row($(this).parents('tr').first()).data()[0];
-	alert(ID);
+    var id_toDelete = table.row($(this).parents('tr').first()).data()[0];
+	alert(id_toDelete);
 	 $.ajax({
 			async: true,
             url:"../employee/saveEmployeeData.php",   
             type: "POST",    
            
             data:  {
-			ID: ID
+			    id_toDelete: id_toDelete
 			},
 			cache: false,
             success:function(result){
@@ -231,18 +228,24 @@ $('#employeeTable').on('click','.action-view',function() {
         });
 });
 
-
 } );
 </script>
+        <form id="employeeForm" method="post" action="../employee/saveEmployeeData.php">
         <div class="modal fade" id="my_modal" tabindex="-1" role="dialog" aria-labelledby="my_modalLabel">
             <div class="modal-dialog" role="dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">UPDATE EMPLOYEE INFORMATION</h4>
+                        <h4 class="modal-title" id="myModalLabel">EMPLOYEE INFORMATION</h4>
                     </div>
                     <div class="modal-body">
                         <table>
+                            <tr>
+                                <td>Engineer&#39;s ID</td>
+                                <td>
+                                    <input type="hidden" name="employeeId" id="employeeId" class="form-control" maxlength="50"  required/>
+                                </td>
+                            </tr>
                             <tr>
                                 <td>Engineer&#39;s Name</td>
                                 <td>
@@ -330,7 +333,6 @@ $('#employeeTable').on('click','.action-view',function() {
                                 <td>Key A/C Manager</td>
                                 <td>
                                     <select class="form-control" name="keyAcManagerId" id="keyAcManager-dropdown" required>
-
                                     </select>
                                 </td>
                             </tr>
@@ -338,7 +340,7 @@ $('#employeeTable').on('click','.action-view',function() {
                                 <td>Username</td>
                                 <td>
                                     <div <?php if (isset($name_error)): ?> class="form_error" <?php endif ?> >
-                                        <input type="text" name="username" class="form-control" maxlength="50" required/>
+                                        <input type="text" name="username" id="username" class="form-control" maxlength="50" required/>
                                         <?php if (isset($name_error)): ?>
                                             <span><?php echo $name_error; ?></span>
                                         <?php endif ?>
@@ -348,17 +350,18 @@ $('#employeeTable').on('click','.action-view',function() {
                             <tr>
                                 <td>Password</td>
                                 <td>
-                                    <input type="password" name="password" class="form-control" maxlength="50" required/>
+                                    <input type="password" name="password" id="password" class="form-control" maxlength="50" required/>
                                 </td>
                             </tr>
                         </table>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                        <button type="button" class="btn btn-primary">Yes</button>
+                        <button type="submit" id="updateData" name="updateData" class="btn btn-primary">Yes</button>
                     </div>
                 </div>
             </div>
+        </div>
 
 </body>
 </html>

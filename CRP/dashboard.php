@@ -5,16 +5,13 @@ if($_SESSION['username']==''){
 }
 ?>
 
-
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="css/sidebar.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 <body>
-
 
 <div class="sidebar">
   <a class="active" href="home">Home</a>
@@ -30,8 +27,6 @@ if($_SESSION['username']==''){
 <h1>PEPL Dashboard</h1>
 <h1><a href="logout.php" ><i class="fa fa-sign-out"  style='float:right'></i></a><h1>
 <h2 style='float:right'><?php echo "Welcome " . $_SESSION["username"] . " ";?></h2>
-
-
 
 </body>
 </html>
