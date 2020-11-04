@@ -1,6 +1,6 @@
 <html>
 <head>
-<link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="theme.css">
 </head>
 <body>
 <h1>Dead Stock Page<h1>

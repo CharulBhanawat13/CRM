@@ -13,8 +13,8 @@
 include '../db_connection.php';
 
 $conn = OpenCon();
-$sql="SELECT * FROM tbl_segment where isAvailable=1";
-$retval = mysqli_query( $conn, $sql );
+$sql = "SELECT * FROM tbl_segment where isAvailable=1";
+$retval = mysqli_query($conn, $sql);
 echo "<table id='segmentTable'  name='segmentTable' >
 <thead> 
 <tr>

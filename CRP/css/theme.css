@@ -1,79 +1,91 @@
 
-h1 {text-align: center;}
-img {
-  border-radius: 50%;
-  display: block;
-   margin: 0 auto;
-  width: 100px;
+h1 {
+    text-align: center;
 }
-.container-small{
-	margin:auto;
-	width:350px;
-}	
-	
-table {	
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  border: 1px solid #ddd;
+
+img {
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+}
+
+.container-small {
+    margin: auto;
+    width: 350px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
 }
 
 th {
-  text-align: left;
-  padding: 10px !important;
+    text-align: left;
+    padding: 10px !important;
 }
 
 td {
-  text-align: left;
-  padding: 10px !important;
+    text-align: left;
+    padding: 10px !important;
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2;
+    background-color: #f2f2f2;
 }
- tfoot {
+
+tfoot {
     display: table-header-group;
 }
-#loginuser{
-	padding-bottom:10px;
-	margin-bottom:20px;
+
+#loginuser {
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 
-#loginpass{
-	padding-bottom:10px;
-	margin-bottom:20px;
+#loginpass {
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
+
 .modal-dialog {
-          width: 60%;
-		  height:60%;
-        }
+    width: 60%;
+    height: 60%;
+}
+
 .modal-header {
     background-color: #337AB7;
-    padding:16px 16px;
-    color:#FFF;
-    border-bottom:2px dashed #337AB7;
- }
- .modal-body{
-	 font-size: 20px;
- }
- .a {
-	 float:right;
-	 color: #4CAF50;
- }
+    padding: 16px 16px;
+    color: #FFF;
+    border-bottom: 2px dashed #337AB7;
+}
 
- 
+.modal-body {
+    font-size: 20px;
+}
+
+.a {
+    float: right;
+    color: #4CAF50;
+}
+
+
 .dataTables_wrapper {
     font-family: tahoma;
     font-size: 20px;
 }
+
 .form_error span {
-  width: 80%;
-  height: 35px;
-  margin: 3px 10%;
-  font-size: 1.1em;
-  color: #D83D5A;
+    width: 80%;
+    height: 35px;
+    margin: 3px 10%;
+    font-size: 1.1em;
+    color: #D83D5A;
 }
+
 .form_error input {
-  border: 1px solid #D83D5A;
+    border: 1px solid #D83D5A;
 }
