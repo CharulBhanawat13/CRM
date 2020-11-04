@@ -97,6 +97,13 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
         CloseCon($conn);
         ?>
         <script>
+            function reset() {
+                document.getElementById("employeeForm").reset();
+                $("#state-dropdown option:selected").remove();
+                $("#country-dropdown option:selected").remove();
+                $("#keyAcManager-dropdown option:selected").remove();
+            }
+
 
             $(document).ready(function () {
 
@@ -104,7 +111,7 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                     document.getElementById("employeeForm").reset();
                     $("#state-dropdown option:selected").remove();
                     $("#country-dropdown option:selected").remove();
-                    $("#keyAcManager-dropdown-dropdown option:selected").remove();
+                    $("#keyAcManager-dropdown option:selected").remove();
 
                     var saveOrUpdate = $(this).data('id');
                     $(".modal-body #saveOrUpdate").val(saveOrUpdate);
@@ -202,6 +209,7 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                                 $(".modal-body #altMobileNumber").val(row_data.calt_mobile_number);
                                 $(".modal-body #email").val(row_data.cemail_id);
                                 $(".modal-body #userType-dropdown").val(row_data.cuser_type);
+                                $(".modal-body #keyAcManagerId").val(row_data.nkey_ac_manager_id);
                                 $(".modal-body #username").val(row_data.cuser_name);
                                 $(".modal-body #password").val(row_data.cpassword);
                                 $(".modal-body #saveOrUpdate").val(row_data.saveOrUpdate);
@@ -354,7 +362,7 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                                 <tr>
                                     <td>Key A/C Manager</td>
                                     <td>
-                                        <select class="form-control" name="keyAcManager" id="keyAcManager-dropdown"
+                                        <select class="form-control"  name="keyAcManagerId" id="keyAcManager-dropdown"
                                                 required>
                                         </select>
                                     </td>
