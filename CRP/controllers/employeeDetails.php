@@ -14,11 +14,10 @@
 
 </head>
 <body>
-<h1>Employee Details Page
-    <h1>
+<h1>Employee Details</h1>
         <div class="container">
-            <a style="float:right;margin-left: 15px;" href="../dashboard.php"><i class="fa fa-home"></i></a>
-            <a style="float:right" href="#my_modal" data-toggle="modal" id='add' data-id="1"><i class="fa fa-plus"
+            <a style="float:right;margin-left: 15px;" href="../dashboard.php"><i class="fa fa-home fa-2x"></i></a>
+            <a style="float:right" href="#my_modal" data-toggle="modal" id='add' data-id="1"><i class="fa fa-plus fa-2x"
                                                                                                 aria-hidden="true"></i></a>
 
         </div>
@@ -81,7 +80,7 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
         while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
             echo "<tr>";
             echo "<td style='display:none;'>" . $row['nid'] . "</td>";
-            echo "<td ><a  href='#my_modal' data-toggle='modal' class='identifyingClass' data-id='2'><i class='fa fa-edit'></i></a></td>";
+            echo "<td ><a  href='#my_modal' data-toggle='modal' class='identifyingClass' data-id='2'><i class='fa fa-edit fa-2x'></i></a></td>";
             echo "<td>" . $row['cengineer_name'] . "</td>";
             echo "<td>" . $row['caddress'] . "</td>";
             echo "<td>" . $row['ccity'] . "</td>";
@@ -115,7 +114,7 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
 
                     var saveOrUpdate = $(this).data('id');
                     $(".modal-body #saveOrUpdate").val(saveOrUpdate);
-                })
+                });
 
                 // Setup - add a text input to each footer cell
                 $('#employeeTable thead tr').clone(true).appendTo('#employeeTable thead');
@@ -188,10 +187,6 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                     $(".modal-body #keyAcManagerIdHidden").val(user_id);
 
                 });
-
-
-
-
                 $('#employeeTable tbody').on('click', '.identifyingClass', function () {
                     var saveOrUpdate = $(this).data('id');
                     var id_toUpdate = table.row($(this).parents('tr').first()).data()[0];

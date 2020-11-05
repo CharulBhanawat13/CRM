@@ -73,68 +73,24 @@ INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`
 VALUES ('D8','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,100,'C4' ,'Pyrotech Unit 2' , '787654321', '65798989' ,4, 'd8@gmail' , 1 , 1 ,'d8@123'  ,'d8@123' ,  now(),now());
 
 
-
-
-
-
 ======================
 
 // 200510276698
 
+INSERT INTO `tbl_organisation`
+(`nid`, `norg_id`, `corg_name`, `corg_address`, `corg_city`, `corg_state`, `corg_country`, `corg_mobileNumber`,
+ `corg_emailId`, `norg_segment_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`)
+  VALUES (1,1,'Organisation A','Pyrotech Unit 1','UDAIPUR','RAJASTHAN','INDIA','987654321','orgA@123',
+  1,1,1,now(),now)
 
+  INSERT INTO `tbl_organisation`
+  (`nid`, `norg_id`, `corg_name`, `corg_address`, `corg_city`, `corg_state`, `corg_country`, `corg_mobileNumber`,
+   `corg_emailId`, `norg_segment_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`)
+    VALUES (2,2,'Organisation B','Pyrotech Unit 1','UDAIPUR','RAJASTHAN','INDIA','987654321','orgB@123',
+    2,1,1,now(),now())
 
- $sql="(select e.nid
-
-from tbl_employeemaster AS e
-
-where e.nid=$user_id )
-
-union
-
-(select e.nid
-
-from tbl_employeemaster AS e
-
-where e.nkey_ac_manager_id=$user_id)
-
-union
-
-(select e.nid
-
-from tbl_employeemaster AS e1
-
-join tbl_employeemaster AS e2
-
-on e2.nkey_ac_manager_id=e1.nid
-
-where e1.nkey_ac_manager_id=$user_id)
-
-union
-
-(select e.nid
-
-from tbl_employeemaster AS e1
-
-join tbl_employeemaster AS e2
-
-on e2.nkey_ac_manager_id=e1.nid
-
-join tbl_employeemaster AS e3
-
-on e3.nkey_ac_manager_id=e2.nid
-
-where e1.nkey_ac_manager_id=$user_id)";
--------------------------------------------------------------
- union
- (select * from tbl_employeemaster AS e1
- join tbl_employeemaster AS e2
- on e2.nkey_ac_manager_id=e1.nid
- where e1.nkey_ac_manager_id=$user_id)
-
-  union
- (select * from tbl_employeemaster AS e1
- join tbl_employeemaster AS e2
- on e2.nkey_ac_manager_id=e1.nid
- join tbl_employeemaster AS e3
- on e3.nkey_ac_manager_id=e2.nid
- where e1.nkey_ac_manager_id=$user_id)
+    INSERT INTO `tbl_organisation`
+(`nid`, `norg_id`, `corg_name`, `corg_address`, `corg_city`, `corg_state`, `corg_country`, `corg_mobileNumber`,
+ `corg_emailId`, `norg_segment_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`)
+  VALUES (2,2,'Organisation C','Pyrotech Unit 1','UDAIPUR','RAJASTHAN','INDIA','987654321','orgC@123',
+  1,1,1,now(),now)
