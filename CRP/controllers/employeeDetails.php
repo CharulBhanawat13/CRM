@@ -179,9 +179,17 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                         cache: false,
                         success: function (result) {
                             $("#keyAcManager-dropdown").html(result);
+
                         }
                     });
                 });
+                $('#keyAcManager-dropdown').on('change', function () {
+                    var user_id = this.value;
+                    $(".modal-body #keyAcManagerIdHidden").val(user_id);
+
+                });
+
+
 
 
                 $('#employeeTable tbody').on('click', '.identifyingClass', function () {
@@ -212,10 +220,11 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                                 $(".modal-body #username").val(row_data.cuser_name);
                                 $(".modal-body #password").val(row_data.cpassword);
                                 $(".modal-body #saveOrUpdate").val(row_data.saveOrUpdate);
+                                $(".modal-body #keyAcManagerIdHidden").val(row_data.nkey_ac_manager_id);
+
                                 $('#state-dropdown').append(`<option value="${row_data.cstate}" selected>${row_data.cstate}</option>`);
                                 $('#country-dropdown').append(`<option value="${row_data.ccountry}" selected>${row_data.ccountry}</option>`);
                                 $('#keyAcManager-dropdown').append(`<option value="${row_data.ckey_ac_manager}" selected>${row_data.ckey_ac_manager}</option>`);
-
 
 
                             });
@@ -267,7 +276,7 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                                        maxlength="50" required/>
                                 <input type="hidden" name="employeeId" id="employeeId" class="form-control"
                                        maxlength="50" required/>
-                                <input type="hidden" name="keyAcManagerId" id="keyAcManagerId" class="form-control"
+                                <input type="hidden" name="keyAcManagerIdHidden" id="keyAcManagerIdHidden" class="form-control"
                                        maxlength="50" />
                                 <tr>
                                     <td>Engineer&#39;s Name</td>
@@ -361,7 +370,7 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                                 <tr>
                                     <td>Key A/C Manager</td>
                                     <td>
-                                        <select class="form-control"  name="keyAcManagerId" id="keyAcManager-dropdown"
+                                        <select class="form-control" name="keyAcManagerId" id="keyAcManager-dropdown"
                                                 required>
                                         </select>
                                     </td>

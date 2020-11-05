@@ -59,7 +59,7 @@ if (isset($_POST['submitData'])) {
         $altmobileNumber = $_POST["altmobilenumber"];
         $userType = $_POST["userType"];
         $emailId = $_POST["emailId"];
-        $keyAcManagerID = (int)$_POST["keyAcManagerId"];
+        $keyAcManagerID = (int)$_POST["keyAcManagerIdHidden"];
         $password = $_POST["password"];
 
         if ($saveOrUpdate == 2) {
