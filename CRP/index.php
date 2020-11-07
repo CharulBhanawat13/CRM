@@ -44,7 +44,7 @@ include("db_connection.php");
 	
 	$result = mysqli_fetch_assoc($run);
 	$userType = $result['cuser_type'];
-	$user_id=$result['nid'];
+	$user_id=$result['nemployee_unique_id'];
     if(mysqli_num_rows($run))
     {  
 		$_SESSION['username']=$username;

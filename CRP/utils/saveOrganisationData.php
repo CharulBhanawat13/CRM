@@ -1,11 +1,20 @@
 <?php
 
 include('../db_connection.php');
+
+if (isset($_POST['id_toDelete'])) {
+    $conn = OpenCon();
+    $organisationId = $_POST['id_toDelete'];
+    $sql = "UPDATE tbl_organisation SET isAvailable =0 WHERE norg_id = $organisationId";
+    $result = mysqli_query($conn, $sql);
+    CloseCon($conn);
+}
+
 //Call for fetching details of organisation to update
 if (isset($_POST['id_toUpdate'])) {
     $conn = OpenCon();
     $organisationId = $_POST['id_toUpdate'];
-    $sql = "Select * from tbl_organisation WHERE nid = $organisationId";
+    $sql = "Select * from tbl_organisation WHERE norg_id = $organisationId";
     $result = mysqli_query($conn, $sql);
     $row_data = array();
     while ($row = mysqli_fetch_array($result)) {
@@ -62,10 +71,9 @@ if (isset($_POST['submitData'])) {
     } else {
         $conn = OpenCon();
         // Save Data in tbl_employeemaster
-        $sql = "INSERT INTO tbl_organisation (corg_name,corg_city,corg_state,corg_country,corg_address,
-			corg_mobileNumber,corg_emailId,norg_segment_id,isActive,isAvailable,dcreated_date,dupdated_date) 
-			VALUES ('$name','$city','$state','$country',$keyAcManagerID,
-			'$address','$mobilenumber','$altmobileNumber',$userType,'$emailId',1,1,'$username','$password',now())";
+        $sql = "INSERT INTO tbl_organisation (corg_name,corg_city,corg_state,corg_country,corg_address,corg_mobileNumber,corg_emailId,norg_segment_id,
+isActive,isAvailable,dcreated_date,dupdated_date) 
+			VALUES ('$name','$city','$state','$country','$address','$mobileNumber','$emailId',$segment_id,1,1,now(),now())";
 
         $result = mysqli_query($conn, $sql);
 

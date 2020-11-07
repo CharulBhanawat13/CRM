@@ -5,7 +5,7 @@ include('../db_connection.php');
 if (isset($_POST['id_toDelete'])) {
     $conn = OpenCon();
     $employeeId = $_POST['id_toDelete'];
-    $sql = "UPDATE tbl_employeemaster SET isAvailable =0 WHERE nid = $employeeId";
+    $sql = "UPDATE tbl_employeemaster SET isAvailable =0 WHERE nemployee_unique_id= $employeeId";
     $result = mysqli_query($conn, $sql);
     CloseCon($conn);
 }
@@ -14,12 +14,12 @@ if (isset($_POST['id_toDelete'])) {
 if (isset($_POST['id_toUpdate'])) {
     $conn = OpenCon();
     $employeeId = $_POST['id_toUpdate'];
-    $sql = "Select * from tbl_employeemaster WHERE nid = $employeeId";
+    $sql = "Select * from tbl_employeemaster WHERE nemployee_unique_id= $employeeId";
     $result = mysqli_query($conn, $sql);
     $row_data = array();
     while ($row = mysqli_fetch_array($result)) {
         $row_data = array(
-            "nid" => $row['nid'],
+            "nemployee_unique_id" => $row['nemployee_unique_id'],
             "cengineer_name" => $row['cengineer_name'],
             "ccity" => $row['ccity'],
             "cstate" => $row['cstate'],
@@ -49,7 +49,6 @@ if (isset($_POST['submitData'])) {
     if ($isUsernameAlreadyExists) {
         header("Location: ../controllers/employeeDetails.php");
     } else {
-
         $name = $_POST["name"];
         $address = $_POST["address"];
         $city = $_POST["city"];
@@ -79,7 +78,7 @@ if (isset($_POST['submitData'])) {
                 cuser_name='$username',
                 cpassword='$password',
                 dupdated_date=now()
-                where nid=$employeeId ";
+                where nemployee_unique_id=$employeeId ";
 
             $result = mysqli_query($conn, $sql_update);
             CloseCon($conn);
@@ -88,15 +87,15 @@ if (isset($_POST['submitData'])) {
         } else {
             $conn = OpenCon();
             // Save Data in tbl_employeemaster
-            $sql = "INSERT INTO tbl_employeemaster (cengineer_name,ccity,cstate,ccountry,nkey_ac_manager_id,
+            $sql = "INSERT INTO tbl_employeemaster (nemployee_unique_id,cengineer_name,ccity,cstate,ccountry,nkey_ac_manager_id,
 			caddress,cmobile_number,calt_mobile_number,cuser_type,cemail_id,isAvailable,isActive,cuser_name,cpassword,dcreated_date) 
-			VALUES ('$name','$city','$state','$country',$keyAcManagerID,
+			VALUES ($employeeId,'$name','$city','$state','$country',$keyAcManagerID,
 			'$address','$mobilenumber','$altmobileNumber',$userType,'$emailId',1,1,'$username','$password',now())";
 
             $result = mysqli_query($conn, $sql);
 
-            $sql_select = 'SELECT cengineer_name FROM tbl_employeemaster WHERE nid = $keyAcManagerID';
-            $res_sql_select = mysqli_query($conn, "SELECT cengineer_name FROM tbl_employeemaster WHERE nid =$keyAcManagerID");
+            $sql_select = 'SELECT cengineer_name FROM tbl_employeemaster WHERE nemployee_unique_id= $keyAcManagerID';
+            $res_sql_select = mysqli_query($conn, "SELECT cengineer_name FROM tbl_employeemaster WHERE nemployee_unique_id=$keyAcManagerID");
             $result = mysqli_fetch_assoc($res_sql_select);
             $cengineer_name = $result['cengineer_name'];
 

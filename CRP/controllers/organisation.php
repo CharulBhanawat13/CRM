@@ -45,7 +45,7 @@
             ";
         while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
             echo "<tr>";
-            echo "<td style='display:none;'>" . $row['nid'] . "</td>";
+            echo "<td style='display:none;'>" . $row['norg_id'] . "</td>";
             echo "<td ><a  href='#organisation_modal' data-toggle='modal' class='updateClass' data-id='2'><i class='fa fa-edit fa-2x'></i></a></td>";
 
             echo "<td>" . $row['corg_name'] . "</td>";
@@ -58,7 +58,7 @@
             echo "<td>" . $row['corg_emailId'] . "</td>";
             echo "<td>" . $row['norg_segment_id'] . "</td>";
 
-            echo "<td class='action-view'><i class='fa fa-trash fa-2x' style='color:#4caf50;'</i></td>";
+            echo "<td class='action-delete'><i class='fa fa-trash fa-2x' style='color:#4caf50;'</i></td>";
             echo "</tr>";
         }
         echo "</tbody></table>";
@@ -160,6 +160,25 @@
                     });
 
                 });
+
+                $('#organisationTable').on('click', '.action-delete', function () {
+                    var id_toDelete = table.row($(this).parents('tr').first()).data()[0];
+                    alert(id_toDelete);
+                    $.ajax({
+                        async: true,
+                        url: "../utils/saveOrganisationData.php",
+                        type: "POST",
+
+                        data: {
+                            id_toDelete: id_toDelete
+                        },
+                        cache: false,
+                        success: function (result) {
+                            window.location.reload();
+                        }
+                    });
+                });
+
                 $('.modal').on('hidden.bs.modal', function(e)
                 {
                     $('#state-dropdown option').remove();
@@ -181,10 +200,11 @@
                         </div>
                         <div class="modal-body">
                             <table>
-                                <input type="hidden" name="saveOrUpdate" id="saveOrUpdate" class="form-control"
-                                       maxlength="50" required/>
                                 <input type="hidden" name="organisationId" id="organisationId" class="form-control"
                                        maxlength="50" required/>
+                                <input type="hidden" name="saveOrUpdate" id="saveOrUpdate" class="form-control"
+                                       maxlength="50" required/>
+
 
                                 <tr>
                                     <td>Organisation Name</td>

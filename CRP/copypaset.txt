@@ -94,3 +94,11 @@ INSERT INTO `tbl_organisation`
  `corg_emailId`, `norg_segment_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`)
   VALUES (2,2,'Organisation C','Pyrotech Unit 1','UDAIPUR','RAJASTHAN','INDIA','987654321','orgC@123',
   1,1,1,now(),now)
+  -----------------------------------------------------------------------------
+CREATE PROCEDURE `test1`(IN @tab_name VARCHAR(40),IN @col_name VARCHAR(40))
+BEGIN
+SET @t1 =CONCAT("SELECT MAX("+@col_name+") FROM ",@tab_name);
+ PREPARE stmt3 FROM @t1;
+ EXECUTE stmt3;
+ DEALLOCATE PREPARE stmt3;
+END

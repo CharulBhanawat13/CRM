@@ -38,23 +38,29 @@
         }
         $conn = OpenCon();
         $isAvailable = 1;
-        $sql = "(select e.nid,e.cengineer_name,e.caddress,e.ccity,e.cstate,e.ccountry,e.cmobile_number,e.cemail_id,e.ckey_ac_manager,e.isAvailable
-from tbl_employeemaster AS e where e.nid=$user_id AND e.isAvailable=$isAvailable) 
-union (select e.nid,e.cengineer_name,e.caddress,ccity,e.cstate,e.ccountry,e.cmobile_number,e.cemail_id,e.ckey_ac_manager,e.isAvailable
+        $sql = "(select e.nemployee_unique_id
+,e.cengineer_name,e.caddress,e.ccity,e.cstate,e.ccountry,e.cmobile_number,e.cemail_id,e.ckey_ac_manager,e.isAvailable
+from tbl_employeemaster AS e where e.nemployee_unique_id=$user_id AND e.isAvailable=$isAvailable) 
+union (select e.nemployee_unique_id
+,e.cengineer_name,e.caddress,ccity,e.cstate,e.ccountry,e.cmobile_number,e.cemail_id,e.ckey_ac_manager,e.isAvailable
 from tbl_employeemaster AS e where e.nkey_ac_manager_id=$user_id AND e.isAvailable=$isAvailable) 
 union 
-(select e2.nid,e2.cengineer_name,e2.caddress,e2.ccity,e2.cstate,e2.ccountry,e2.cmobile_number,e2.cemail_id,e2.ckey_ac_manager,e2.isAvailable
+(select e2.nemployee_unique_id
+,e2.cengineer_name,e2.caddress,e2.ccity,e2.cstate,e2.ccountry,e2.cmobile_number,e2.cemail_id,e2.ckey_ac_manager,e2.isAvailable
 from tbl_employeemaster AS e1 
 JOIN tbl_employeemaster AS e2 
-ON e2.nkey_ac_manager_id=e1.nid 
+ON e2.nkey_ac_manager_id=e1.nemployee_unique_id
+ 
 where e1.nkey_ac_manager_id=$user_id AND e2.isAvailable=$isAvailable) 
 union 
-(select e3.nid,e3.cengineer_name,e3.caddress,e3.ccity,e3.cstate,e3.ccountry,e3.cmobile_number,e3.cemail_id,e3.ckey_ac_manager,e3.isAvailable
+(select e3.nemployee_unique_id
+,e3.cengineer_name,e3.caddress,e3.ccity,e3.cstate,e3.ccountry,e3.cmobile_number,e3.cemail_id,e3.ckey_ac_manager,e3.isAvailable
 from tbl_employeemaster AS e1 
 JOIN tbl_employeemaster AS e2 
-ON e2.nkey_ac_manager_id=e1.nid 
+ON e2.nkey_ac_manager_id=e1.nemployee_unique_id
+ 
 JOIN tbl_employeemaster AS e3 
-ON e3.nkey_ac_manager_id=e2.nid 
+ON e3.nkey_ac_manager_id=e2.nemployee_unique_id
 where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
 ";
 
@@ -63,7 +69,7 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
 <thead> 
 <tr>
 <th style='display:none;'>ID</th>
-<th>Engineer's Name</th>
+<th>Update</th>
 <th>Engineer's Name</th>	
 <th>Address</th>
 <th>City</th>
@@ -79,7 +85,7 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
 ";
         while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
             echo "<tr>";
-            echo "<td style='display:none;'>" . $row['nid'] . "</td>";
+            echo "<td style='display:none;'>" . $row['nemployee_unique_id'] . "</td>";
             echo "<td ><a  href='#my_modal' data-toggle='modal' class='identifyingClass' data-id='2'><i class='fa fa-edit fa-2x'></i></a></td>";
             echo "<td>" . $row['cengineer_name'] . "</td>";
             echo "<td>" . $row['caddress'] . "</td>";
@@ -202,7 +208,7 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                         cache: false,
                         success: function (row_datas) {
                             $.each(JSON.parse(row_datas), function (idx, row_data) {
-                                $(".modal-body #employeeId").val(row_data.nid);
+                                $(".modal-body #employeeId").val(row_data.nemployee_unique_id);
                                 $(".modal-body #keyAcManagerId").val(row_data.nkey_ac_manager_id);
 
                                 $(".modal-body #name").val(row_data.cengineer_name);
@@ -269,8 +275,11 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                             <table>
                                 <input type="hidden" name="saveOrUpdate" id="saveOrUpdate" class="form-control"
                                        maxlength="50" required/>
-                                <input type="hidden" name="employeeId" id="employeeId" class="form-control"
+                                <tr>
+                                    <td>Employee Code</td>
+                                    <td><input type="text" name="employeeId" id="employeeId" class="form-control"
                                        maxlength="50" required/>
+                                    </td>
                                 <input type="hidden" name="keyAcManagerIdHidden" id="keyAcManagerIdHidden" class="form-control"
                                        maxlength="50" />
                                 <tr>

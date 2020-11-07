@@ -14,12 +14,11 @@ if ($_SESSION['username'] == '') {
 <body>
 
 <div class="sidebar">
-    <a class="active" href="home">Home</a>
+    <a class="active" href="dashboard.php">Dashboard</a>
     <a href="controllers/employeeDetails.php">Employee Details</a>
     <a href="controllers/organisation.php">Organisation</a>
+    <a href="controllers/contactPerson.php">Contact Person</a>
     <a href="controllers/deadStock.php">Dead Stock</a>
-    <a href="controllers/organisation.php">Organisation</a>
-    <a href="invoice">Invoice</a>
     <a href="dues">Dues</a>
     <a href="productionPlanning">Production Planning</a>
 
