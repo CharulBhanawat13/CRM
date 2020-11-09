@@ -23,7 +23,11 @@
         include '../db_connection.php';
 
         $conn = OpenCon();
-        $sql = "SELECT * FROM tbl_organisation where isAvailable=1";
+        $sql = "SELECT o.norg_id,o.corg_name,o.corg_address,o.corg_city,o.corg_state,o.corg_country,o.corg_mobileNumber,o.corg_emailId,o.norg_segment_id,o.isActive,o.isAvailable,s.csegment_name 
+                    FROM tbl_organisation AS o 
+                    INNER JOIN tbl_segment AS s 
+                    ON o.norg_segment_id = s.nsegment_id 
+                    WHERE o.isAvailable=1;";
         $retval = mysqli_query($conn, $sql);
         echo "<table id='organisationTable'  name='organisationTable' >
             <thead> 
@@ -47,16 +51,14 @@
             echo "<tr>";
             echo "<td style='display:none;'>" . $row['norg_id'] . "</td>";
             echo "<td ><a  href='#organisation_modal' data-toggle='modal' class='updateClass' data-id='2'><i class='fa fa-edit fa-2x'></i></a></td>";
-
             echo "<td>" . $row['corg_name'] . "</td>";
             echo "<td>" . $row['corg_address'] . "</td>";
             echo "<td>" . $row['corg_city'] . "</td>";
             echo "<td>" . $row['corg_state'] . "</td>";
-
             echo "<td>" . $row['corg_country'] . "</td>";
             echo "<td>" . $row['corg_mobileNumber'] . "</td>";
             echo "<td>" . $row['corg_emailId'] . "</td>";
-            echo "<td>" . $row['norg_segment_id'] . "</td>";
+            echo "<td>" . $row['csegment_name'] . "</td>";
 
             echo "<td class='action-delete'><i class='fa fa-trash fa-2x' style='color:#4caf50;'</i></td>";
             echo "</tr>";
@@ -200,12 +202,17 @@
                         </div>
                         <div class="modal-body">
                             <table>
-                                <input type="hidden" name="organisationId" id="organisationId" class="form-control"
-                                       maxlength="50" required/>
+
                                 <input type="hidden" name="saveOrUpdate" id="saveOrUpdate" class="form-control"
                                        maxlength="50" required/>
 
-
+                                <tr>
+                                    <td>Organisation Code</td>
+                                    <td>
+                                        <input type="text" name="organisationId" id="organisationId" class="form-control"
+                                               maxlength="50" required/>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>Organisation Name</td>
                                     <td>
@@ -280,7 +287,7 @@
                                             $result = mysqli_query($conn, "SELECT * FROM tbl_segment");
                                             while ($row = mysqli_fetch_array($result)) {
                                                 ?>
-                                                <option value="<?php echo $row['nsegment_id']; ?>"><?php echo $row["nsegment_id"]; ?></option>
+                                                <option value="<?php echo $row['nsegment_id']; ?>"><?php echo $row["csegment_name"]; ?></option>
                                                 <?php
                                             }
                                             CloseCon($conn);

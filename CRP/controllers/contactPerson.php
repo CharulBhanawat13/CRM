@@ -24,7 +24,11 @@
 include '../db_connection.php';
 
 $conn = OpenCon();
-$sql = "SELECT * FROM tbl_contactperson where isAvailable=1";
+$sql = $sql = "SELECT c.ncontact_person_id,c.cperson_name,c.cdepartment,c.cmobile_number,c.cphone_number,c.cemail_id,c.isAvailable, o.corg_name
+                    FROM tbl_contactperson AS c 
+                    INNER JOIN tbl_organisation AS o 
+                    ON c.norg_id = o.norg_id 
+                    WHERE c.isAvailable=1";
 $retval = mysqli_query($conn, $sql);
 echo "<table id='contactPersonTable'  name='contactPersonTable' >
             <thead> 
@@ -44,13 +48,13 @@ echo "<table id='contactPersonTable'  name='contactPersonTable' >
             ";
 while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
     echo "<tr>";
-    echo "<td style='display:none;'>" . $row['norg_id'] . "</td>";
+    echo "<td style='display:none;'>" . $row['ncontact_person_id'] . "</td>";
     echo "<td ><a  href='#contactPerson_modal' data-toggle='modal' class='updateClass' data-id='2'><i class='fa fa-edit fa-2x'></i></a></td>";
     echo "<td>" . $row['cperson_name'] . "</td>";
     echo "<td>" . $row['cdepartment'] . "</td>";
-    echo "<td>" . $row['cmobileNumber'] . "</td>";
-    echo "<td>" . $row['cphoneNumber'] . "</td>";
-    echo "<td>" . $row['cemailId'] . "</td>";
+    echo "<td>" . $row['cmobile_number'] . "</td>";
+    echo "<td>" . $row['cphone_number'] . "</td>";
+    echo "<td>" . $row['cemail_id'] . "</td>";
     echo "<td>" . $row['corg_name'] . "</td>";
        echo "<td class='action-delete'><i class='fa fa-trash fa-2x' style='color:#4caf50;'</i></td>";
     echo "</tr>";
@@ -107,16 +111,16 @@ CloseCon($conn);
                 cache: false,
                 success: function (row_datas) {
                     $.each(JSON.parse(row_datas), function (idx, row_data) {
-                        $(".modal-body #organisationId").val(row_data.nid);
-                        $(".modal-body #name").val(row_data.corg_name);
-                        $(".modal-body #address").val(row_data.corg_address);
-                        $(".modal-body #city-dropdown").val(row_data.corg_city);
-                        $(".modal-body #segment-dropdown").val(row_data.norg_segment_id);
-                        $(".modal-body #mobileNumber").val(row_data.corg_mobileNumber);
-                        $(".modal-body #emailId").val(row_data.corg_emailId);
+                        $(".modal-body #contactPersonId").val(row_data.ncontact_person_id);
                         $(".modal-body #saveOrUpdate").val(row_data.saveOrUpdate);
-                        $('#state-dropdown').append(`<option value="${row_data.corg_state}" selected>${row_data.corg_state}</option>`);
-                        $('#country-dropdown').append(`<option value="${row_data.corg_country}" selected>${row_data.corg_country}</option>`);
+                        $(".modal-body #name").val(row_data.cperson_name);
+                        $(".modal-body #dept").val(row_data.cdepartment);
+                        $(".modal-body #mobileNumber").val(row_data.cmobile_number);
+                        $(".modal-body #phoneNumber").val(row_data.cphone_number);
+                        $(".modal-body #emailId").val(row_data.cemail_id);
+                        $(".modal-body #organisation-dropdown").val(row_data.norg_id);
+
+
                     });
                 }
             });
@@ -143,7 +147,7 @@ CloseCon($conn);
 
         $('.modal').on('hidden.bs.modal', function(e)
         {
-            $(this).find('organisationForm').trigger('reset');
+            $(this).find('contactPersonForm').trigger('reset');
         }) ;
 
     });
@@ -160,12 +164,17 @@ CloseCon($conn);
                 </div>
                 <div class="modal-body">
                     <table>
-                        <input type="hidden" name="contactPersonId" id="contactPersonId" class="form-control"
-                               maxlength="50" required/>
+
                         <input type="hidden" name="saveOrUpdate" id="saveOrUpdate" class="form-control"
                                maxlength="50" required/>
 
-
+                        <tr>
+                            <td>Person Code</td>
+                            <td>
+                                <input type="text" name="contactPersonId" id="contactPersonId" class="form-control"
+                                       maxlength="50" required/>
+                            </td>
+                        </tr>
                         <tr>
                             <td>Person Name</td>
                             <td>
@@ -177,16 +186,25 @@ CloseCon($conn);
                         <tr>
                             <td>Department</td>
                             <td>
-                                <input type="text" name="address" id="address" class="form-control" maxlength="50"
+                                <input type="text" name="dept" id="dept" class="form-control" maxlength="50"
                                        required/>
                             </td>
-                        </tr> <tr>
+                        </tr>
+                        <tr>
                             <td>Mobile Number</td>
                             <td>
                                 <input type="text" name="mobileNumber" id="mobileNumber" class="form-control" maxlength="50"
                                        required/>
                             </td>
-                        </tr> <tr>
+                        </tr>
+                        <tr>
+                            <td>Mobile Number</td>
+                            <td>
+                                <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" maxlength="50"
+                                       required/>
+                            </td>
+                        </tr>
+                        <tr>
                             <td>Email Id</td>
                             <td>
                                 <input type="text" name="emailId" id="emailId" class="form-control" maxlength="50"
@@ -196,7 +214,7 @@ CloseCon($conn);
                         </tr> <tr>
                             <td>Organisation</td>
                             <td>
-                                <select class="form-control" name="segment" id="segment-dropdown" required>
+                                <select class="form-control" name="organisation" id="organisation-dropdown" required>
                                     <option value="">Select Organisation</option>
                                     <?php
                                     require_once "../db_connection.php";
@@ -205,7 +223,7 @@ CloseCon($conn);
                                     $result = mysqli_query($conn, "SELECT * FROM tbl_organisation");
                                     while ($row = mysqli_fetch_array($result)) {
                                         ?>
-                                        <option value="<?php echo $row['norg_id']; ?>"><?php echo $row["norg_id"]; ?></option>
+                                        <option value="<?php echo $row['norg_id']; ?>"><?php echo $row["corg_name"]; ?></option>
                                         <?php
                                     }
                                     CloseCon($conn);

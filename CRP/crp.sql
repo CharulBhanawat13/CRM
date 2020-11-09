@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2020 at 11:52 AM
+-- Generation Time: Nov 09, 2020 at 12:43 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -26,18 +26,11 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GetDEtails` ()  BEGIN
-	
-    
-    SELECT *
-  
-    FROM tbl_segment;
-    
-   
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GETMAXID` ()  BEGIN
-SELECT * FROM tbl_segment;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GETMAXIMUMID` (IN `tab_name` VARCHAR(64), IN `col_name` VARCHAR(64))  BEGIN
+ SET @t1 =CONCAT('SELECT max(',col_name,') FROM ',tab_name );
+ PREPARE stmt3 FROM @t1;
+ EXECUTE stmt3;
+ DEALLOCATE PREPARE stmt3;
 END$$
 
 DELIMITER ;
@@ -79,12 +72,20 @@ CREATE TABLE `tbl_contactperson` (
   `cmobile_number` varchar(50) NOT NULL,
   `cphone_number` varchar(50) NOT NULL,
   `cemail_id` varchar(50) NOT NULL,
-  `corg_name` varchar(50) NOT NULL,
+  `norg_id` int(10) NOT NULL,
   `isActive` bit(1) NOT NULL,
   `isAvailable` bit(1) NOT NULL,
   `dcreated_date` datetime NOT NULL,
   `dupdated_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_contactperson`
+--
+
+INSERT INTO `tbl_contactperson` (`nid`, `ncontact_person_id`, `cperson_name`, `cdepartment`, `cmobile_number`, `cphone_number`, `cemail_id`, `norg_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`) VALUES
+(1, 1, 'A', 'TILES', '2323232', '029423456', 'a@123', 3, b'1', b'1', '2020-11-09 12:39:59', '2020-11-09 16:48:28'),
+(2, 2, 'B', 'CEMENT', '234', '432', 'b@123', 2, b'1', b'1', '2020-11-09 17:11:07', '2020-11-09 17:11:07');
 
 -- --------------------------------------------------------
 
@@ -163,7 +164,8 @@ CREATE TABLE `tbl_organisation` (
 
 INSERT INTO `tbl_organisation` (`nid`, `norg_id`, `corg_name`, `corg_address`, `corg_city`, `corg_state`, `corg_country`, `corg_mobileNumber`, `corg_emailId`, `norg_segment_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`) VALUES
 (1, 1, 'Organisation A', 'Pyrotech 12', 'UDAIPUR', 'RAJASTHAN', 'INDIA', '987654321', 'orgA@123', 1, b'1', b'1', '2020-11-05 11:40:01', '2020-11-05 16:05:35'),
-(2, 2, 'Organisation B', 'Pyrotech Unit 3', 'UDAIPUR', 'RAJASTHAN', 'INDIA', '987654321', 'orgB@123', 2, b'1', b'1', '2020-11-05 11:40:01', '2020-11-05 17:46:00');
+(2, 2, 'Organisation B', 'Pyrotech Unit 3', 'UDAIPUR', 'RAJASTHAN', 'INDIA', '987654321', 'orgB@123', 2, b'1', b'1', '2020-11-05 11:40:01', '2020-11-05 17:46:00'),
+(3, 3, 'Organisation c', 'Pyrotech Unit 3', 'UDAIPUR', 'RAJASTHAN', 'INDIA', '987654321', 'orgc@123', 2, b'1', b'1', '2020-11-05 11:40:01', '2020-11-05 17:46:00');
 
 -- --------------------------------------------------------
 
@@ -237,7 +239,7 @@ ALTER TABLE `tbl_city_state_country`
 -- AUTO_INCREMENT for table `tbl_contactperson`
 --
 ALTER TABLE `tbl_contactperson`
-  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_employeemaster`
@@ -249,7 +251,7 @@ ALTER TABLE `tbl_employeemaster`
 -- AUTO_INCREMENT for table `tbl_organisation`
 --
 ALTER TABLE `tbl_organisation`
-  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_segment`
