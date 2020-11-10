@@ -18,7 +18,7 @@ if ($_SESSION['username'] == '') {
     <a href="controllers/employeeDetails.php">Employee Details</a>
     <a href="controllers/organisation.php">Organisation</a>
     <a href="controllers/contactPerson.php">Contact Person</a>
-    <a href="controllers/deadStock.php">Dead Stock</a>
+    <a href="controllers/callList.php">Call List</a>
     <a href="dues">Dues</a>
     <a href="productionPlanning">Production Planning</a>
 

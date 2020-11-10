@@ -24,10 +24,12 @@
 include '../db_connection.php';
 
 $conn = OpenCon();
-$sql = $sql = "SELECT c.ncontact_person_id,c.cperson_name,c.cdepartment,c.cmobile_number,c.cphone_number,c.cemail_id,c.isAvailable, o.corg_name
+$sql = $sql = "SELECT c.ncontact_person_id,c.cperson_name,c.ndept_id,c.cmobile_number,c.cphone_number,c.cemail_id,c.isAvailable, o.corg_name,d.cdept_name
                     FROM tbl_contactperson AS c 
                     INNER JOIN tbl_organisation AS o 
                     ON c.norg_id = o.norg_id 
+                    INNER JOIN tbl_department AS d
+                    ON c.ndept_id= d.ndept_id
                     WHERE c.isAvailable=1";
 $retval = mysqli_query($conn, $sql);
 echo "<table id='contactPersonTable'  name='contactPersonTable' >
@@ -51,7 +53,7 @@ while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
     echo "<td style='display:none;'>" . $row['ncontact_person_id'] . "</td>";
     echo "<td ><a  href='#contactPerson_modal' data-toggle='modal' class='updateClass' data-id='2'><i class='fa fa-edit fa-2x'></i></a></td>";
     echo "<td>" . $row['cperson_name'] . "</td>";
-    echo "<td>" . $row['cdepartment'] . "</td>";
+    echo "<td>" . $row['cdept_name'] . "</td>";
     echo "<td>" . $row['cmobile_number'] . "</td>";
     echo "<td>" . $row['cphone_number'] . "</td>";
     echo "<td>" . $row['cemail_id'] . "</td>";
@@ -119,8 +121,6 @@ CloseCon($conn);
                         $(".modal-body #phoneNumber").val(row_data.cphone_number);
                         $(".modal-body #emailId").val(row_data.cemail_id);
                         $(".modal-body #organisation-dropdown").val(row_data.norg_id);
-
-
                     });
                 }
             });
@@ -184,10 +184,23 @@ CloseCon($conn);
                         </tr>
 
                         <tr>
-                            <td>Department</td>
+                            <td>Organisation</td>
                             <td>
-                                <input type="text" name="dept" id="dept" class="form-control" maxlength="50"
-                                       required/>
+                                <select class="form-control" name="department" id="department-dropdown" required>
+                                    <option value="">Select Department</option>
+                                    <?php
+                                    require_once "../db_connection.php";
+                                    $conn = OpenCon();
+
+                                    $result = mysqli_query($conn, "SELECT * FROM tbl_department");
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        ?>
+                                        <option value="<?php echo $row['ndept_id']; ?>"><?php echo $row["cdept_name"]; ?></option>
+                                        <?php
+                                    }
+                                    CloseCon($conn);
+                                    ?>
+                                </select>
                             </td>
                         </tr>
                         <tr>
@@ -211,7 +224,8 @@ CloseCon($conn);
                                        required/>
                             </td>
                         </tr>
-                        </tr> <tr>
+                        </tr>
+                        <tr>
                             <td>Organisation</td>
                             <td>
                                 <select class="form-control" name="organisation" id="organisation-dropdown" required>

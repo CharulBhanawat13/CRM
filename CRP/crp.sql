@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2020 at 12:43 PM
+-- Generation Time: Nov 10, 2020 at 07:51 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -38,6 +38,35 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_calllist`
+--
+
+CREATE TABLE `tbl_calllist` (
+  `nid` int(10) NOT NULL,
+  `ncall_list_id` int(10) NOT NULL,
+  `ddate` datetime NOT NULL,
+  `cphone_number` varchar(10) NOT NULL,
+  `cperson_name` varchar(50) NOT NULL,
+  `corg_name` varchar(50) NOT NULL,
+  `cpurpose` varchar(50) NOT NULL,
+  `cbriefTalk` varchar(256) NOT NULL,
+  `dnext_date` datetime NOT NULL,
+  `isActive` bit(1) NOT NULL,
+  `isAvailable` bit(1) NOT NULL,
+  `dcreated_date` datetime NOT NULL,
+  `dupdated_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_calllist`
+--
+
+INSERT INTO `tbl_calllist` (`nid`, `ncall_list_id`, `ddate`, `cphone_number`, `cperson_name`, `corg_name`, `cpurpose`, `cbriefTalk`, `dnext_date`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`) VALUES
+(1, 1, '2020-11-10 12:12:17', '1234', 'Peter', 'A', 'Purpose', 'BriefTalk', '2020-11-10 12:12:17', b'1', b'1', '2020-11-10 12:12:17', '2020-11-10 12:12:17');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_city_state_country`
 --
 
@@ -68,7 +97,7 @@ CREATE TABLE `tbl_contactperson` (
   `nid` int(10) NOT NULL,
   `ncontact_person_id` int(10) NOT NULL,
   `cperson_name` varchar(50) NOT NULL,
-  `cdepartment` varchar(50) NOT NULL,
+  `ndept_id` int(10) NOT NULL,
   `cmobile_number` varchar(50) NOT NULL,
   `cphone_number` varchar(50) NOT NULL,
   `cemail_id` varchar(50) NOT NULL,
@@ -83,9 +112,33 @@ CREATE TABLE `tbl_contactperson` (
 -- Dumping data for table `tbl_contactperson`
 --
 
-INSERT INTO `tbl_contactperson` (`nid`, `ncontact_person_id`, `cperson_name`, `cdepartment`, `cmobile_number`, `cphone_number`, `cemail_id`, `norg_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`) VALUES
-(1, 1, 'A', 'TILES', '2323232', '029423456', 'a@123', 3, b'1', b'1', '2020-11-09 12:39:59', '2020-11-09 16:48:28'),
-(2, 2, 'B', 'CEMENT', '234', '432', 'b@123', 2, b'1', b'1', '2020-11-09 17:11:07', '2020-11-09 17:11:07');
+INSERT INTO `tbl_contactperson` (`nid`, `ncontact_person_id`, `cperson_name`, `ndept_id`, `cmobile_number`, `cphone_number`, `cemail_id`, `norg_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`) VALUES
+(1, 1, 'C', 1, '2323232', '029423456', 'a@123', 3, b'1', b'1', '2020-11-09 12:39:59', '2020-11-09 17:51:13'),
+(2, 2, 'B', 1, '234', '432', 'b@123', 2, b'1', b'1', '2020-11-09 17:11:07', '2020-11-09 17:11:07'),
+(3, 3, 'A', 1, '345678', '234567', 'a@123', 2, b'1', b'1', '2020-11-09 17:52:18', '2020-11-09 17:52:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_department`
+--
+
+CREATE TABLE `tbl_department` (
+  `nid` int(10) NOT NULL,
+  `ndept_id` int(10) NOT NULL,
+  `cdept_name` varchar(50) NOT NULL,
+  `isActive` bit(1) NOT NULL,
+  `isAvailable` bit(1) NOT NULL,
+  `dcreated_date` datetime NOT NULL,
+  `dupdated_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_department`
+--
+
+INSERT INTO `tbl_department` (`nid`, `ndept_id`, `cdept_name`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`) VALUES
+(1, 1, 'CEMENT', b'1', b'1', '2020-11-10 11:05:07', '2020-11-10 11:05:07');
 
 -- --------------------------------------------------------
 
@@ -239,7 +292,7 @@ ALTER TABLE `tbl_city_state_country`
 -- AUTO_INCREMENT for table `tbl_contactperson`
 --
 ALTER TABLE `tbl_contactperson`
-  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_employeemaster`

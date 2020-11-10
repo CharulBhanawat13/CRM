@@ -39,7 +39,7 @@ if (isset($_POST['submitData'])) {
     $saveOrUpdate = $_POST["saveOrUpdate"];
 
     $name = $_POST["name"];
-    $department = $_POST["dept"];
+    $department_id = (int)ST["dept"];
     $mobileNumber = $_POST["mobileNumber"];
     $phoneNumber=$_POST["phoneNumber"];
     $emailId = $_POST["emailId"];
@@ -51,7 +51,7 @@ if (isset($_POST['submitData'])) {
         $sql_update = "UPDATE tbl_contactperson SET 
                 ncontact_person_id=$contactPersonId,
                 cperson_name='$name',
-                cdepartment='$department',
+                ndept_id=$department_id,
                 cmobile_number='$mobileNumber',
                 cphone_number='$phoneNumber',
                 cemail_id='$emailId',
@@ -66,9 +66,9 @@ if (isset($_POST['submitData'])) {
     } else {
         $conn = OpenCon();
         // Save Data in tbl_employeemaster
-        $sql = "INSERT INTO tbl_contactperson (ncontact_person_id,cperson_name,cdepartment,cmobile_number,cphone_number,cemail_id,norg_id,
+        $sql = "INSERT INTO tbl_contactperson (ncontact_person_id,cperson_name,ndept_id,cmobile_number,cphone_number,cemail_id,norg_id,
             isActive,isAvailable,dcreated_date,dupdated_date) 
-			VALUES ($contactPersonId,'$name','$department','$mobileNumber','$phoneNumber','$emailId',$organisationId,1,1,now(),now())";
+			VALUES ($contactPersonId,'$name',$department_id,'$mobileNumber','$phoneNumber','$emailId',$organisationId,1,1,now(),now())";
 
         $result = mysqli_query($conn, $sql);
 
