@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2020 at 07:51 AM
+-- Generation Time: Nov 12, 2020 at 12:12 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -44,13 +44,13 @@ DELIMITER ;
 CREATE TABLE `tbl_calllist` (
   `nid` int(10) NOT NULL,
   `ncall_list_id` int(10) NOT NULL,
-  `ddate` datetime NOT NULL,
-  `cphone_number` varchar(10) NOT NULL,
-  `cperson_name` varchar(50) NOT NULL,
-  `corg_name` varchar(50) NOT NULL,
-  `cpurpose` varchar(50) NOT NULL,
-  `cbriefTalk` varchar(256) NOT NULL,
-  `dnext_date` datetime NOT NULL,
+  `ddate` date NOT NULL,
+  `cphoneNumber` varchar(50) NOT NULL,
+  `nperson_id` int(10) NOT NULL,
+  `norg_id` int(10) NOT NULL,
+  `npurpose_id` int(10) NOT NULL,
+  `tbriefTalk` text NOT NULL,
+  `dnext_date` date NOT NULL,
   `isActive` bit(1) NOT NULL,
   `isAvailable` bit(1) NOT NULL,
   `dcreated_date` datetime NOT NULL,
@@ -61,8 +61,12 @@ CREATE TABLE `tbl_calllist` (
 -- Dumping data for table `tbl_calllist`
 --
 
-INSERT INTO `tbl_calllist` (`nid`, `ncall_list_id`, `ddate`, `cphone_number`, `cperson_name`, `corg_name`, `cpurpose`, `cbriefTalk`, `dnext_date`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`) VALUES
-(1, 1, '2020-11-10 12:12:17', '1234', 'Peter', 'A', 'Purpose', 'BriefTalk', '2020-11-10 12:12:17', b'1', b'1', '2020-11-10 12:12:17', '2020-11-10 12:12:17');
+INSERT INTO `tbl_calllist` (`nid`, `ncall_list_id`, `ddate`, `cphoneNumber`, `nperson_id`, `norg_id`, `npurpose_id`, `tbriefTalk`, `dnext_date`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`) VALUES
+(1, 1, '2020-11-12', '987654', 1, 1, 1, 'BriefTalk', '2020-11-12', b'1', b'1', '2020-11-12 12:22:02', '2020-11-12 12:22:02'),
+(2, 2, '2020-11-12', '232451', 1, 3, 2, 'hello how are you', '2020-11-12', b'1', b'1', '2020-11-12 14:19:45', '2020-11-12 16:06:59'),
+(3, 3, '0000-00-00', '325', 2, 1, 1, '4t', '0000-00-00', b'1', b'1', '2020-11-12 14:22:00', '2020-11-12 14:22:00'),
+(4, 4, '2020-11-13', '54745', 3, 1, 2, 'dhb', '2020-12-11', b'1', b'1', '2020-11-12 14:27:03', '2020-11-12 14:27:03'),
+(5, 6, '2020-11-24', '6', 2, 1, 1, '6', '2020-11-30', b'1', b'0', '2020-11-12 16:08:24', '2020-11-12 16:08:24');
 
 -- --------------------------------------------------------
 
@@ -216,9 +220,33 @@ CREATE TABLE `tbl_organisation` (
 --
 
 INSERT INTO `tbl_organisation` (`nid`, `norg_id`, `corg_name`, `corg_address`, `corg_city`, `corg_state`, `corg_country`, `corg_mobileNumber`, `corg_emailId`, `norg_segment_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`) VALUES
-(1, 1, 'Organisation A', 'Pyrotech 12', 'UDAIPUR', 'RAJASTHAN', 'INDIA', '987654321', 'orgA@123', 1, b'1', b'1', '2020-11-05 11:40:01', '2020-11-05 16:05:35'),
+(1, 1, 'Organisation A', 'Pyrotech 12', 'UDAIPUR', 'RAJASTHAN', 'INDIA', '987654321', 'orgA@123', 1, b'1', b'0', '2020-11-05 11:40:01', '2020-11-05 16:05:35'),
 (2, 2, 'Organisation B', 'Pyrotech Unit 3', 'UDAIPUR', 'RAJASTHAN', 'INDIA', '987654321', 'orgB@123', 2, b'1', b'1', '2020-11-05 11:40:01', '2020-11-05 17:46:00'),
 (3, 3, 'Organisation c', 'Pyrotech Unit 3', 'UDAIPUR', 'RAJASTHAN', 'INDIA', '987654321', 'orgc@123', 2, b'1', b'1', '2020-11-05 11:40:01', '2020-11-05 17:46:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_purpose`
+--
+
+CREATE TABLE `tbl_purpose` (
+  `nid` int(10) NOT NULL,
+  `npurpose_id` int(10) NOT NULL,
+  `cpurpose_name` varchar(50) NOT NULL,
+  `isActive` bit(1) NOT NULL,
+  `isAvailable` bit(1) NOT NULL,
+  `dcreated_date` datetime NOT NULL,
+  `dupdated_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_purpose`
+--
+
+INSERT INTO `tbl_purpose` (`nid`, `npurpose_id`, `cpurpose_name`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`) VALUES
+(1, 1, 'Offer', b'1', b'1', '2020-11-12 04:12:09', '0000-00-00 00:00:00'),
+(2, 2, 'TEnder', b'1', b'1', '2020-11-12 04:12:09', '2020-11-12 11:54:42');
 
 -- --------------------------------------------------------
 
@@ -249,6 +277,12 @@ INSERT INTO `tbl_segment` (`nid`, `nsegment_id`, `csegment_name`, `isActive`, `i
 --
 
 --
+-- Indexes for table `tbl_calllist`
+--
+ALTER TABLE `tbl_calllist`
+  ADD PRIMARY KEY (`nid`);
+
+--
 -- Indexes for table `tbl_city_state_country`
 --
 ALTER TABLE `tbl_city_state_country`
@@ -273,6 +307,12 @@ ALTER TABLE `tbl_organisation`
   ADD PRIMARY KEY (`nid`,`norg_id`);
 
 --
+-- Indexes for table `tbl_purpose`
+--
+ALTER TABLE `tbl_purpose`
+  ADD PRIMARY KEY (`nid`);
+
+--
 -- Indexes for table `tbl_segment`
 --
 ALTER TABLE `tbl_segment`
@@ -281,6 +321,12 @@ ALTER TABLE `tbl_segment`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `tbl_calllist`
+--
+ALTER TABLE `tbl_calllist`
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_city_state_country`
@@ -305,6 +351,12 @@ ALTER TABLE `tbl_employeemaster`
 --
 ALTER TABLE `tbl_organisation`
   MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tbl_purpose`
+--
+ALTER TABLE `tbl_purpose`
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_segment`

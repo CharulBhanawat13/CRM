@@ -275,7 +275,8 @@
                                                required/>
                                     </td>
                                 </tr>
-                                </tr> <tr>
+                                </tr>
+                                <tr>
                                     <td>Segment</td>
                                     <td>
                                         <select class="form-control" name="segment" id="segment-dropdown" required>

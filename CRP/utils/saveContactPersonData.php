@@ -39,7 +39,7 @@ if (isset($_POST['submitData'])) {
     $saveOrUpdate = $_POST["saveOrUpdate"];
 
     $name = $_POST["name"];
-    $department_id = (int)ST["dept"];
+    $department_id = (int)["dept"];
     $mobileNumber = $_POST["mobileNumber"];
     $phoneNumber=$_POST["phoneNumber"];
     $emailId = $_POST["emailId"];
