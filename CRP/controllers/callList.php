@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <h1>Call List</h1>
@@ -23,17 +25,43 @@
 include '../db_connection.php';
 
 $conn = OpenCon();
+
 $sql = "SELECT c.ncall_list_id,c.ddate,c.cphoneNumber,c.norg_id,c.npurpose_id,c.tbriefTalk,c.dnext_date,c.isAvailable,o.corg_name,p.cpurpose_name
  from tbl_callList As c
 JOIN tbl_organisation AS o
 ON c.norg_id=o.norg_id
 JOIN tbl_purpose AS p
 ON c.npurpose_id=p.npurpose_id 
-where c.isAvailable=1;";
+where c.isAvailable=1";
+if (isset($_POST['search'])){
+    require_once('../utils/DateFilter.php');
+    $sql=DateFilter::prepareQuery('c.ddate',$sql);
+
+}
+
+
 $retval = mysqli_query($conn, $sql);
 
-echo "<table id='callListTable'  name='callListTable' >
 
+echo "
+<form method='post'>
+<div class='row'>
+        <div class='input-daterange'>
+            <div class='col-md-4'>
+                Start Date<input type='text' name='start_date' id='start_date' class='form-control' />
+            </div>
+            <div class='col-md-4'>
+                End Date<input type='text' name='end_date' id='end_date' class='form-control' />
+            </div>
+        </div>
+        <div class='col-md-4'>
+            <input type='submit' name='search' id='search' value='Search' class='btn btn-info' />
+        </div>
+    </div>
+    </form>";
+
+echo "<table id='callListTable'  name='callListTable' >
+      
             <thead> 
             <tr>
             <th style='display:none;'>ID</th>
@@ -99,7 +127,11 @@ CloseCon($conn);
                 "dom": 'lrtip',
             }
         );
-
+        $('.input-daterange').datepicker({
+            todayBtn:'linked',
+            format: "yyyy-mm-dd",
+            autoclose: true
+        });
         $('#callListTable tbody').on('click', '.updateClass', function () {
             var saveOrUpdate = $(this).data('id');
             var id_toUpdate = table.row($(this).parents('tr').first()).data()[0];
@@ -154,10 +186,28 @@ CloseCon($conn);
               $(this).find('organisationForm').trigger('reset');
         }) ;
 
+
+        function fetch_data(is_date_search, start_date='', end_date='')
+        {
+            var dataTable = $('#callListTable').DataTable({
+                "processing" : true,
+                "serverSide" : true,
+                "order" : [],
+                "ajax" : {
+                    url:"fetch.php",
+                    type:"POST",
+                    data:{
+                        is_date_search:is_date_search, start_date:start_date, end_date:end_date
+                    }
+                }
+            });
+        }
     });
 
 </script>
+
 <form id="callListForm" method="post" action="../utils/saveCallListData.php" >
+
     <div class="modal fade" id="call_list_modal" tabindex="-1" role="dialog" aria-labelledby="my_modalLabel">
         <div class="modal-dialog" role="dialog">
             <div class="modal-content">

@@ -2,12 +2,32 @@
 
 include('../db_connection.php');
 
+if (isset($_POST['search'])){
+    $conn = OpenCon();
+
+    $fromDate = $_POST['start_date'];
+    $endDate = $_POST['end_date'];
+    $query = "SELECT * FROM tbl_callList WHERE 1 ";
+    if(!empty($fromDate) && !empty($endDate)){
+        $query .= " and ddate 
+                          between '".$fromDate."' and '".$endDate."' ";
+    }
+    $query .= " ORDER BY ddate DESC";
+
+    $callListRecords = mysqli_query($conn,$query);
+    CloseCon($conn);
+    header("Location: ../controllers/callList.php");
+
+
+}
+
 if (isset($_POST['id_toDelete'])) {
     $conn = OpenCon();
     $callListId = $_POST['id_toDelete'];
     $sql = "UPDATE tbl_callList SET isAvailable =0 WHERE ncall_list_id = $callListId";
     $result = mysqli_query($conn, $sql);
     CloseCon($conn);
+
 }
 
 //Call for fetching details of organisation to update
