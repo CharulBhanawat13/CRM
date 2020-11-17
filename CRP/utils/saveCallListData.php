@@ -2,24 +2,7 @@
 
 include('../db_connection.php');
 
-if (isset($_POST['search'])){
-    $conn = OpenCon();
 
-    $fromDate = $_POST['start_date'];
-    $endDate = $_POST['end_date'];
-    $query = "SELECT * FROM tbl_callList WHERE 1 ";
-    if(!empty($fromDate) && !empty($endDate)){
-        $query .= " and ddate 
-                          between '".$fromDate."' and '".$endDate."' ";
-    }
-    $query .= " ORDER BY ddate DESC";
-
-    $callListRecords = mysqli_query($conn,$query);
-    CloseCon($conn);
-    header("Location: ../controllers/callList.php");
-
-
-}
 
 if (isset($_POST['id_toDelete'])) {
     $conn = OpenCon();

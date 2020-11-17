@@ -36,28 +36,31 @@ where c.isAvailable=1";
 if (isset($_POST['search'])){
     require_once('../utils/DateFilter.php');
     $sql=DateFilter::prepareQuery('c.ddate',$sql);
-
 }
-
 
 $retval = mysqli_query($conn, $sql);
 
 
 echo "
-<form method='post'>
-<div class='row'>
-        <div class='input-daterange'>
+<form id='dateForm' method='post'>
+<table>
+<tr>
+        <td><div class='input-daterange'>
             <div class='col-md-4'>
                 Start Date<input type='text' name='start_date' id='start_date' class='form-control' />
             </div>
             <div class='col-md-4'>
                 End Date<input type='text' name='end_date' id='end_date' class='form-control' />
             </div>
-        </div>
-        <div class='col-md-4'>
+        </div></td>
+     <td>   <div class='col-md-4'>
             <input type='submit' name='search' id='search' value='Search' class='btn btn-info' />
-        </div>
-    </div>
+        </div></td>
+       <td> <div class='col-md-4'>
+            <input type='reset' name='reset' onclick='resetDateForm()' value='Reset' class='btn btn-info' />
+        </div></td>
+        </tr>
+   </table>
     </form>";
 
 echo "<table id='callListTable'  name='callListTable' >
@@ -96,8 +99,13 @@ echo "</tbody></table>";
 CloseCon($conn);
 ?>
 <script>
+    function resetDateForm(){
+        location.reload();
 
+    }
     $(document).ready(function () {
+        window.history.replaceState('','',window.location.href)
+
 
         $(document).on('click', '#add', function () {
             document.getElementById("callListForm").reset();
@@ -187,21 +195,7 @@ CloseCon($conn);
         }) ;
 
 
-        function fetch_data(is_date_search, start_date='', end_date='')
-        {
-            var dataTable = $('#callListTable').DataTable({
-                "processing" : true,
-                "serverSide" : true,
-                "order" : [],
-                "ajax" : {
-                    url:"fetch.php",
-                    type:"POST",
-                    data:{
-                        is_date_search:is_date_search, start_date:start_date, end_date:end_date
-                    }
-                }
-            });
-        }
+
     });
 
 </script>
