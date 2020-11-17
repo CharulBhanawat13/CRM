@@ -133,7 +133,7 @@
       <workItem from="1604983321785" duration="12367000" />
       <workItem from="1605154371050" duration="17325000" />
       <workItem from="1605240569034" duration="14967000" />
-      <workItem from="1605585709125" duration="8636000" />
+      <workItem from="1605585709125" duration="10389000" />
     </task>
     <servers />
   </component>
@@ -310,11 +310,6 @@
           <url>file://$PROJECT_DIR$/controllers/organisation.php</url>
           <line>30</line>
           <option name="timeStamp" value="135" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/utils/DateFilter.php</url>
-          <line>10</line>
-          <option name="timeStamp" value="150" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/controllers/callList.php</url>

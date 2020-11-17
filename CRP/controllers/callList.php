@@ -156,16 +156,15 @@ CloseCon($conn);
                 success: function (row_datas) {
                     $.each(JSON.parse(row_datas), function (idx, row_data) {
                         $(".modal-body #callListId").val(row_data.ncall_list_id);
-                        var thedate = new Date(Date.parse(row_data.ddate));
 
-                        $(".modal-body #date").val(thedate);
+
+                        $(".modal-body #date").val(row_data.ddate);
                         $(".modal-body #phoneNumber").val(row_data.cphoneNumber);
                         $(".modal-body #person-dropdown").val(row_data.nperson_id);
                         $(".modal-body #organisation-dropdown").val(row_data.norg_id);
                         $(".modal-body #purpose-dropdown").val(row_data.npurpose_id);
                         $(".modal-body #briefTalk").val(row_data.tbriefTalk);
                         $(".modal-body #nextDate").val(row_data.dnext_date);
-                        document.getElementById("date").defaultValue = row_data.ddate;
 
                     });
                 }

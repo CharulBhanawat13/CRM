@@ -1,12 +1,6 @@
 <?php
-
-
 class DateFilter
 {
-    public $startDate;
-    public $endDate;
-
-    // Methods
     function prepareQuery($column,$query) {
         $fromDate = $_POST['start_date'];
         $endDate = $_POST['end_date'];
@@ -16,8 +10,5 @@ class DateFilter
         $query .= " ORDER BY ".$column." DESC";
         return $query;
     }
-    function get_name() {
-        return $this->name;
-    }
-}
+   }
 ?>
