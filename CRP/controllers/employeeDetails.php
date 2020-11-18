@@ -86,6 +86,9 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
         while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
             echo "<tr>";
             echo "<td style='display:none;'>" . $row['nemployee_unique_id'] . "</td>";
+         //   echo "<td style='display:none;'>" . $row['ninternal_id'] . "</td>";
+        //    echo "<td style='display:none;'>" . $row['nid'] . "</td>";
+
             echo "<td ><a  href='#my_modal' data-toggle='modal' class='identifyingClass' data-id='2'><i class='fa fa-edit fa-2x'></i></a></td>";
             echo "<td>" . $row['cengineer_name'] . "</td>";
             echo "<td>" . $row['caddress'] . "</td>";
@@ -210,7 +213,6 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                             $.each(JSON.parse(row_datas), function (idx, row_data) {
                                 $(".modal-body #employeeId").val(row_data.nemployee_unique_id);
                                 $(".modal-body #keyAcManagerId").val(row_data.nkey_ac_manager_id);
-
                                 $(".modal-body #name").val(row_data.cengineer_name);
                                 $(".modal-body #address").val(row_data.caddress);
                                 $(".modal-body #city-dropdown").val(row_data.ccity);
@@ -274,6 +276,10 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                         <div class="modal-body">
                             <table>
                                 <input type="hidden" name="saveOrUpdate" id="saveOrUpdate" class="form-control"
+                                       maxlength="50" required/>
+                                <input type="hidden" name="internalId" id="internalId" class="form-control"
+                                       maxlength="50" required/>
+                                <input type="hidden" name="nid" id="nid" class="form-control"
                                        maxlength="50" required/>
                                 <tr>
                                     <td>Employee Code</td>

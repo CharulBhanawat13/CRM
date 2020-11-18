@@ -14,11 +14,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<h1>Call List</h1>
+<h1>Visit Plan</h1>
 <div class="container">
     <a style="float:right;margin-left: 15px;" href="../dashboard.php"><i class="fa fa-home fa-2x"></i></a>
-    <a style="float:right" href="#call_list_modal" data-toggle="modal" id='add' data-id="1"><i class="fa fa-plus fa-2x"
-                                                                                                  aria-hidden="true"></i></a>
+    <a style="float:right" href="#visit_plan_modal" data-toggle="modal" id='add' data-id="1"><i class="fa fa-plus fa-2x"
+                                                                                               aria-hidden="true"></i></a>
 </div>
 
 <?php
@@ -35,7 +35,7 @@ ON c.npurpose_id=p.npurpose_id
 where c.isAvailable=1";
 if (isset($_POST['search'])){
     require_once('../utils/DateFilter.php');
-   if(isset($_POST['nextDateCheckbox'])){
+    if(isset($_POST['nextDateCheckbox'])){
         $sql=DateFilter::prepareQuery('c.dnext_date',$sql);
 
     }else{
@@ -69,7 +69,7 @@ echo "
    </table>
     </form>";
 
-echo "<table id='callListTable'  name='callListTable' >
+echo "<table id='visitPlanTable'  name='visitPlanTable' >
       
             <thead> 
             <tr>
@@ -91,7 +91,7 @@ while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
     echo "<tr>";
 
     echo "<td style='display:none;'>" . $row['ncall_list_id'] . "</td>";
-    echo "<td ><a  href='#call_list_modal' data-toggle='modal' class='updateClass' data-id='2'><i class='fa fa-edit fa-2x'></i></a></td>";
+    echo "<td ><a  href='#visit_plan_modal' data-toggle='modal' class='updateClass' data-id='2'><i class='fa fa-edit fa-2x'></i></a></td>";
     echo "<td>" . $row['ddate'] . "</td>";
     echo "<td>" . $row['cphoneNumber'] . "</td>";
     echo "<td>" . $row['corg_name'] . "</td>";
@@ -114,14 +114,14 @@ CloseCon($conn);
 
 
         $(document).on('click', '#add', function () {
-            document.getElementById("callListForm").reset();
+            document.getElementById("visitPlanForm").reset();
 
             var saveOrUpdate = $(this).data('id');
             $(".modal-body #saveOrUpdate").val(saveOrUpdate);
         });
         // Setup - add a text input to each footer cell
-        $('#callListTable thead tr').clone(true).appendTo('#callListTable thead');
-        $('#callListTable thead tr:eq(1) th').each(function (i) {
+        $('#visitPlanTable thead tr').clone(true).appendTo('#visitPlanTable thead');
+        $('#visitPlanTable thead tr:eq(1) th').each(function (i) {
             var title = $(this).text();
             if (i != 8 && i != 1) {
                 $(this).html('<input class="form-control" type="text" placeholder="Search ' + title + '" />');
@@ -136,7 +136,7 @@ CloseCon($conn);
             });
         });
 
-        var table = $('#callListTable').DataTable({
+        var table = $('#visitPlanTable').DataTable({
                 orderCellsTop: true,
                 "dom": 'lrtip',
             }
@@ -146,13 +146,13 @@ CloseCon($conn);
             format: "yyyy-mm-dd",
             autoclose: true
         });
-        $('#callListTable tbody').on('click', '.updateClass', function () {
+        $('#visitPlanTable tbody').on('click', '.updateClass', function () {
             var saveOrUpdate = $(this).data('id');
             var id_toUpdate = table.row($(this).parents('tr').first()).data()[0];
             $(".modal-body #saveOrUpdate").val(saveOrUpdate);
 
             $.ajax({
-                url: "../utils/saveCallListData.php",
+                url: "../utils/saveVisitPlanData.php",
                 type: "POST",
                 data: {
                     id_toUpdate: id_toUpdate,
@@ -196,7 +196,7 @@ CloseCon($conn);
 
         $('.modal').on('hidden.bs.modal', function(e)
         {
-              $(this).find('organisationForm').trigger('reset');
+            $(this).find('visitPlanForm').trigger('reset');
         }) ;
 
 
@@ -205,15 +205,15 @@ CloseCon($conn);
 
 </script>
 
-<form id="callListForm" method="post" action="../utils/saveCallListData.php" >
+<form id="visitPlanForm" method="post" action="../utils/saveVisitPlanData.php.php" >
 
-    <div class="modal fade" id="call_list_modal" tabindex="-1" role="dialog" aria-labelledby="my_modalLabel">
+    <div class="modal fade" id="visit_plan_modal" tabindex="-1" role="dialog" aria-labelledby="my_modalLabel">
         <div class="modal-dialog" role="dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Call List Information</h4>
+                    <h4 class="modal-title" id="myModalLabel">Visit Plan Information</h4>
                 </div>
                 <div class="modal-body">
                     <table>
@@ -222,9 +222,9 @@ CloseCon($conn);
                                maxlength="50" required/>
 
                         <tr>
-                            <td>Call List Code</td>
+                            <td>Visit Plan Code</td>
                             <td>
-                                <input type="text" name="callListId" id="callListId" class="form-control"
+                                <input type="text" name="visitPanId" id="visitPanId" class="form-control"
                                        maxlength="50" required/>
                             </td>
                         </tr>
@@ -235,78 +235,14 @@ CloseCon($conn);
                                        required/>
                             </td>
                         </tr>
-                        <tr>
-                            <td>Phone Number</td>
-                            <td>
-                                <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" maxlength="50"
-                                       required/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Person Name</td>
-                            <td>
-                                <select class="form-control" name="personId" id="person-dropdown" required>
-                                    <option value="">Select Person</option>
-                                    <?php
-                                    require_once "../db_connection.php";
-                                    $conn = OpenCon();
 
-                                    $result = mysqli_query($conn, "SELECT * FROM tbl_contactperson");
-                                    while ($row = mysqli_fetch_array($result)) {
-                                        ?>
-                                        <option value="<?php echo $row['ncontact_person_id']; ?>"><?php echo $row["cperson_name"]; ?></option>
-                                        <?php
-                                    }
-                                    CloseCon($conn);
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Organisation Name</td>
-                            <td>
-                                <select class="form-control" name="organisation" id="organisation-dropdown" required>
-                                    <option value="">Select Organisation</option>
-                                    <?php
-                                    require_once "../db_connection.php";
-                                    $conn = OpenCon();
 
-                                    $result = mysqli_query($conn, "SELECT * FROM tbl_organisation");
-                                    while ($row = mysqli_fetch_array($result)) {
-                                        ?>
-                                        <option value="<?php echo $row['norg_id']; ?>"><?php echo $row["corg_name"]; ?></option>
-                                        <?php
-                                    }
-                                    CloseCon($conn);
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Purpose Name</td>
-                            <td>
-                                <select class="form-control" name="purpose" id="purpose-dropdown" required>
-                                    <option value="">Select Purpose</option>
-                                    <?php
-                                    require_once "../db_connection.php";
-                                    $conn = OpenCon();
 
-                                    $result = mysqli_query($conn, "SELECT * FROM tbl_purpose");
-                                    while ($row = mysqli_fetch_array($result)) {
-                                        ?>
-                                        <option value="<?php echo $row['npurpose_id']; ?>"><?php echo $row["cpurpose_name"]; ?></option>
-                                        <?php
-                                    }
-                                    CloseCon($conn);
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
+
                             <td>Brief Talk</td>
                             <td>
                                 <textarea name="briefTalk" id="briefTalk" class="form-control" maxlength="50"
-                                       required></textarea>
+                                          required></textarea>
                             </td>
                         </tr>
                         <tr>

@@ -45,10 +45,23 @@ if (isset($_POST['submitData'])) {
     $username = $_POST["username"];
     $employeeId = (int)$_POST["employeeId"];
     $saveOrUpdate = $_POST["saveOrUpdate"];
-    $isUsernameAlreadyExists = checkIfUsernameAlreadyExists($username, $saveOrUpdate);
+    $isEmployeeCodeAlreadyExists= checkIfEmployeeCodeAlreadyExists($employeeId,$saveOrUpdate);
+
+    $isUsernameAlreadyExists = checkIfUsernameAlreadyExists($username, $saveOrUpdate,$employeeId);
     if ($isUsernameAlreadyExists) {
-        header("Location: ../controllers/employeeDetails.php");
-    } else {
+        echo "<SCRIPT> //not showing me this
+        alert('Username already taken');
+        window.location.replace('../controllers/employeeDetails.php');
+    </SCRIPT>";
+    }
+    if ($isEmployeeCodeAlreadyExists){
+        echo "<SCRIPT> //not showing me this
+        alert('EmployeeCode already taken');
+        window.location.replace('../controllers/employeeDetails.php');
+    </SCRIPT>";
+    }
+else {
+
         $name = $_POST["name"];
         $address = $_POST["address"];
         $city = $_POST["city"];
@@ -63,7 +76,6 @@ if (isset($_POST['submitData'])) {
 
         if ($saveOrUpdate == 2) {
             $conn = OpenCon();
-            // 2 stands for Update Data in tbl_employeemaster
             $sql_update = "UPDATE tbl_employeemaster SET 
                 cengineer_name='$name',
                 ccity='$city',
@@ -112,9 +124,29 @@ if (isset($_POST['submitData'])) {
     }
 
 }
+function checkIfEmployeeCodeAlreadyExists($employeeId,$saveOrUpdate){
+    $conn = OpenCon();
+    $sql_u = "SELECT * FROM tbl_employeemaster WHERE nemployee_unique_id=$employeeId";
+    $res_u = mysqli_query($conn, $sql_u);
+    if (mysqli_num_rows($res_u) > 0) {
+        if ($saveOrUpdate == 2) {
+           $result = mysqli_fetch_assoc($res_u);
+            $id_in_DB = $result['nemployee_unique_id'];
+            if ($saveOrUpdate==2 && mysqli_num_rows($res_u)==1 && $employeeId==$id_in_DB) {
+                $isEmployeeCodeAlreadyExists = false;
+                CloseCon($conn);
+                return $isEmployeeCodeAlreadyExists;
+            }
+        }
+        $isEmployeeCodeAlreadyExists = true;
+    } else {
+        $isEmployeeCodeAlreadyExists = false;
+    }
+    CloseCon($conn);
+    return $isEmployeeCodeAlreadyExists;
+}
 
-
-function checkIfUsernameAlreadyExists($username, $saveOrUpdate)
+function checkIfUsernameAlreadyExists($username, $saveOrUpdate,$employeeId)
 {
     $conn = OpenCon();
     $sql_u = "SELECT * FROM tbl_employeemaster WHERE cuser_name='$username'";
@@ -122,19 +154,17 @@ function checkIfUsernameAlreadyExists($username, $saveOrUpdate)
 
     if (mysqli_num_rows($res_u) > 0) {
         if ($saveOrUpdate == 2) {
+            $sql_u = "SELECT * FROM tbl_employeemaster WHERE nemployee_unique_id=$employeeId";
+            $res_u = mysqli_query($conn, $sql_u);
             $result = mysqli_fetch_assoc($res_u);
             $user_in_DB = $result['cuser_name'];
-            if ($user_in_DB == $username) {
+            if ($saveOrUpdate==2 && mysqli_num_rows($res_u)==1 && $user_in_DB==$username) {
                 $isUsernameAlreadyExists = false;
                 CloseCon($conn);
                 return $isUsernameAlreadyExists;
             }
         }
-        $name_error = "Sorry... username already taken";
-        $_SESSION['name_error'] = $name_error;
-
         $isUsernameAlreadyExists = true;
-
     } else {
         $isUsernameAlreadyExists = false;
     }

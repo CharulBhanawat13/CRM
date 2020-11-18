@@ -19,8 +19,8 @@ if ($_SESSION['username'] == '') {
     <a href="controllers/organisation.php">Organisation</a>
     <a href="controllers/contactPerson.php">Contact Person</a>
     <a href="controllers/callList.php">Call List</a>
-    <a href="dues">Dues</a>
-    <a href="productionPlanning">Production Planning</a>
+    <a href="controllers/visitPlan.php">Visit Plan</a>
+    <a href="controllers/test.php">Test</a>
 
 </div>
 <h1>PEPL Dashboard</h1>
