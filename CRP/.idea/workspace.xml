@@ -49,7 +49,10 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -57,7 +60,7 @@
       <recent name="C:\xampp\htdocs\CRP" />
     </key>
   </component>
-  <component name="RunManager" selected="PHP Web Page.Debug CRP App">
+  <component name="RunManager" selected="JavaScript Debug.dashboard.php">
     <configuration name="dashboard.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/CRP/dashboard.php" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -77,21 +80,9 @@
     <configuration name="Debug CRP App" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" browser="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" server_name="localhost" start_url="/CRP/index.php">
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="JavaScript Debug.dashboard.php" />
-      <item itemvalue="JavaScript Debug.employeeDetails.php" />
-      <item itemvalue="PHP Script.index.php" />
-      <item itemvalue="PHP Script.saveEmployeeData.php" />
-      <item itemvalue="PHP Web Page.Debug CRP App" />
-      <item itemvalue="PHPUnit.CRP" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="PHP Script.index.php" />
-        <item itemvalue="PHP Script.saveEmployeeData.php" />
         <item itemvalue="JavaScript Debug.dashboard.php" />
-        <item itemvalue="JavaScript Debug.employeeDetails.php" />
-        <item itemvalue="PHPUnit.CRP" />
       </list>
     </recent_temporary>
   </component>
@@ -145,7 +136,10 @@
       <workItem from="1606550884678" duration="1114000" />
       <workItem from="1606466511639" duration="7406000" />
       <workItem from="1606474303797" duration="3314000" />
-      <workItem from="1606451460488" duration="7149000" />
+      <workItem from="1606451460488" duration="7797000" />
+      <workItem from="1606797731599" duration="64000" />
+      <workItem from="1606799086365" duration="4000" />
+      <workItem from="1606367140740" duration="5276000" />
     </task>
     <servers />
   </component>
@@ -174,12 +168,12 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="263" y="18" key="#Test_Frameworks/0.0.1366.728@0.0.1366.728" timestamp="1603973948817" />
-    <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604057946169">
-      <screen x="0" y="0" width="1364" height="728" />
+    <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606798083681">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="136" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1360.728@0.0.1360.728" timestamp="1604054907646" />
     <state x="137" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1364.728@0.0.1364.728" timestamp="1604057946169" />
-    <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1604055060339" />
+    <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1606798083681" />
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1604487514529">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -206,66 +200,66 @@
     </state>
     <state x="484" y="236" key="FileChooserDialogImpl/0.0.1360.728@0.0.1360.728" timestamp="1604054308491" />
     <state x="486" y="377" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1603968731511" />
-    <state width="1366" height="335" key="GridCell.Tab.0.bottom" timestamp="1606458645054">
+    <state width="1366" height="63" key="GridCell.Tab.0.bottom" timestamp="1606368383067">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1360" height="168" key="GridCell.Tab.0.bottom/0.0.1360.728@0.0.1360.728" timestamp="1604054918003" />
-    <state width="1366" height="335" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606458645054" />
-    <state width="1366" height="335" key="GridCell.Tab.0.center" timestamp="1606458645053">
+    <state width="1366" height="63" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606368383067" />
+    <state width="1366" height="63" key="GridCell.Tab.0.center" timestamp="1606368383067">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1360" height="168" key="GridCell.Tab.0.center/0.0.1360.728@0.0.1360.728" timestamp="1604054918003" />
-    <state width="1366" height="335" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606458645053" />
-    <state width="1366" height="335" key="GridCell.Tab.0.left" timestamp="1606458645053">
+    <state width="1366" height="63" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606368383067" />
+    <state width="1366" height="63" key="GridCell.Tab.0.left" timestamp="1606368383067">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1360" height="168" key="GridCell.Tab.0.left/0.0.1360.728@0.0.1360.728" timestamp="1604054918002" />
-    <state width="1366" height="335" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606458645053" />
-    <state width="1366" height="335" key="GridCell.Tab.0.right" timestamp="1606458645054">
+    <state width="1366" height="63" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606368383067" />
+    <state width="1366" height="63" key="GridCell.Tab.0.right" timestamp="1606368383067">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1360" height="168" key="GridCell.Tab.0.right/0.0.1360.728@0.0.1360.728" timestamp="1604054918003" />
-    <state width="1366" height="335" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606458645054" />
-    <state width="1366" height="335" key="GridCell.Tab.1.bottom" timestamp="1606458653948">
+    <state width="1366" height="63" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606368383067" />
+    <state width="1366" height="63" key="GridCell.Tab.1.bottom" timestamp="1606368383067">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1360" height="168" key="GridCell.Tab.1.bottom/0.0.1360.728@0.0.1360.728" timestamp="1604054918600" />
-    <state width="1366" height="335" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606458653948" />
-    <state width="1366" height="335" key="GridCell.Tab.1.center" timestamp="1606458653948">
+    <state width="1366" height="63" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606368383067" />
+    <state width="1366" height="63" key="GridCell.Tab.1.center" timestamp="1606368383067">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1360" height="168" key="GridCell.Tab.1.center/0.0.1360.728@0.0.1360.728" timestamp="1604054918599" />
-    <state width="1366" height="335" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1606458653948" />
-    <state width="1366" height="335" key="GridCell.Tab.1.left" timestamp="1606458653948">
+    <state width="1366" height="63" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1606368383067" />
+    <state width="1366" height="63" key="GridCell.Tab.1.left" timestamp="1606368383067">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1360" height="168" key="GridCell.Tab.1.left/0.0.1360.728@0.0.1360.728" timestamp="1604054918599" />
-    <state width="1366" height="335" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1606458653948" />
-    <state width="1366" height="335" key="GridCell.Tab.1.right" timestamp="1606458653948">
+    <state width="1366" height="63" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1606368383067" />
+    <state width="1366" height="63" key="GridCell.Tab.1.right" timestamp="1606368383067">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1360" height="168" key="GridCell.Tab.1.right/0.0.1360.728@0.0.1360.728" timestamp="1604054918600" />
-    <state width="1366" height="335" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1606458653948" />
-    <state width="1366" height="335" key="GridCell.Tab.2.bottom" timestamp="1606458644632">
+    <state width="1366" height="63" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1606368383067" />
+    <state width="1366" height="63" key="GridCell.Tab.2.bottom" timestamp="1606368383067">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1360" height="168" key="GridCell.Tab.2.bottom/0.0.1360.728@0.0.1360.728" timestamp="1604054917654" />
-    <state width="1366" height="335" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606458644632" />
-    <state width="1366" height="335" key="GridCell.Tab.2.center" timestamp="1606458644632">
+    <state width="1366" height="63" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606368383067" />
+    <state width="1366" height="63" key="GridCell.Tab.2.center" timestamp="1606368383067">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1360" height="168" key="GridCell.Tab.2.center/0.0.1360.728@0.0.1360.728" timestamp="1604054917654" />
-    <state width="1366" height="335" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1606458644632" />
-    <state width="1366" height="335" key="GridCell.Tab.2.left" timestamp="1606458644632">
+    <state width="1366" height="63" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1606368383067" />
+    <state width="1366" height="63" key="GridCell.Tab.2.left" timestamp="1606368383067">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1360" height="168" key="GridCell.Tab.2.left/0.0.1360.728@0.0.1360.728" timestamp="1604054917654" />
-    <state width="1366" height="335" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1606458644632" />
-    <state width="1366" height="335" key="GridCell.Tab.2.right" timestamp="1606458644632">
+    <state width="1366" height="63" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1606368383067" />
+    <state width="1366" height="63" key="GridCell.Tab.2.right" timestamp="1606368383067">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1360" height="168" key="GridCell.Tab.2.right/0.0.1360.728@0.0.1360.728" timestamp="1604054917654" />
-    <state width="1366" height="335" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1606458644632" />
+    <state width="1366" height="63" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1606368383067" />
     <state x="514" y="86" key="NewPhpClassDialog" timestamp="1605693960213">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -274,12 +268,12 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="700" y="187" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1606453659084" />
-    <state x="235" y="0" key="SettingsEditor" timestamp="1604058958352">
+    <state x="235" y="0" key="SettingsEditor" timestamp="1606798810541">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="219" y="0" key="SettingsEditor/0.0.1360.728@0.0.1360.728" timestamp="1604053702425" />
     <state x="220" y="0" key="SettingsEditor/0.0.1364.728@0.0.1364.728" timestamp="1604057925081" />
-    <state x="235" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1604058958352" />
+    <state x="235" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1606798810541" />
     <state x="783" y="368" width="412" height="204" key="WebDeployment.AddServerDialog.v.1" timestamp="1603973492008">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -312,150 +306,5 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1606453863804" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/employee/saveEmployeeData.php</url>
-          <line>110</line>
-          <option name="timeStamp" value="120" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/employee/saveEmployeeData.php</url>
-          <line>175</line>
-          <option name="timeStamp" value="155" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/employee/saveEmployeeData.php</url>
-          <line>163</line>
-          <option name="timeStamp" value="158" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/employee/saveEmployeeData.php</url>
-          <line>137</line>
-          <option name="timeStamp" value="161" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/controllers/callList.php</url>
-          <line>36</line>
-          <option name="timeStamp" value="163" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/utils/savetest.php</url>
-          <line>10</line>
-          <option name="timeStamp" value="165" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/utils/savetest.php</url>
-          <line>4</line>
-          <option name="timeStamp" value="166" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/utils/saveOrganisationData.php</url>
-          <line>15</line>
-          <option name="timeStamp" value="170" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/utils/saveOrganisationData.php</url>
-          <line>77</line>
-          <option name="timeStamp" value="172" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/controllers/contactPerson.php</url>
-          <line>33</line>
-          <option name="timeStamp" value="175" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/utils/saveContactPersonData.php</url>
-          <line>33</line>
-          <option name="timeStamp" value="176" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/utils/saveContactPersonData.php</url>
-          <line>35</line>
-          <option name="timeStamp" value="177" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/utils/saveVisitPlanData.php</url>
-          <line>62</line>
-          <option name="timeStamp" value="203" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/utils/saveVisitPlanData.php</url>
-          <line>74</line>
-          <option name="timeStamp" value="204" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/utils/saveVisitPlanData.php</url>
-          <line>76</line>
-          <option name="timeStamp" value="205" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/utils/saveVisitPlanData.php</url>
-          <line>87</line>
-          <option name="timeStamp" value="206" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/utils/saveVisitPlanData.php</url>
-          <line>89</line>
-          <option name="timeStamp" value="207" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/utils/saveVisitPlanData.php</url>
-          <line>88</line>
-          <option name="timeStamp" value="208" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/../../phpMyAdmin/sql.php</url>
-          <line>9</line>
-          <option name="timeStamp" value="209" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/utils/saveVisitPlanData.php</url>
-          <line>53</line>
-          <option name="timeStamp" value="210" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/utils/saveVisitPlanData.php</url>
-          <line>68</line>
-          <option name="timeStamp" value="215" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/utils/saveVisitPlanData.php</url>
-          <line>69</line>
-          <option name="timeStamp" value="216" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/employee/saveEmployeeData.php</url>
-          <line>47</line>
-          <option name="timeStamp" value="217" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/employee/saveEmployeeData.php</url>
-          <line>105</line>
-          <option name="timeStamp" value="218" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/employee/saveEmployeeData.php</url>
-          <line>67</line>
-          <option name="timeStamp" value="219" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/employee/saveEmployeeData.php</url>
-          <line>117</line>
-          <option name="timeStamp" value="220" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/employee/saveEmployeeData.php</url>
-          <line>118</line>
-          <option name="timeStamp" value="221" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/CRP$dashboard_php.dat" NAME="dashboard.php Coverage Results" MODIFIED="1603969151246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="WipCoverageRunner" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/CRP@CRP.xml" NAME="CRP Coverage Results" MODIFIED="1603970723568" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

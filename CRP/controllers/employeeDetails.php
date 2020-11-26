@@ -89,8 +89,6 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
             echo "<tr>";
             echo "<td style='display:none;'>" . $row['ninternal_id'] . "</td>";
             echo "<td style='display:none;'>" . $row['nemployee_unique_id'] . "</td>";
-        //    echo "<td style='display:none;'>" . $row['nid'] . "</td>";
-
             echo "<td ><a  href='#my_modal' data-toggle='modal' class='identifyingClass' data-id='2'><i class='fa fa-edit fa-2x'></i></a></td>";
             echo "<td>" . $row['cengineer_name'] . "</td>";
             echo "<td>" . $row['caddress'] . "</td>";
@@ -109,9 +107,10 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
         <script>
             function reset() {
                 document.getElementById("employeeForm").reset();
-                $("#state-dropdown option:selected").remove();
-                $("#country-dropdown option:selected").remove();
-                $("#keyAcManager-dropdown option:selected").remove();
+                 $("#state-dropdown option:selected").remove();
+                 $("#country-dropdown option:selected").remove();
+                document.getElementById('keyAcManager-dropdown').options.length = 0;
+
             }
 
 
@@ -119,19 +118,20 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
 
                 $(document).on('click', '#add', function () {
                     document.getElementById("employeeForm").reset();
-                    $("#state-dropdown option:selected").remove();
-                    $("#country-dropdown option:selected").remove();
-                    $("#keyAcManager-dropdown option:selected").remove();
+                     $("#state-dropdown option:selected").remove();
+                     $("#country-dropdown option:selected").remove();
+                     $("#keyAcManager-dropdown option:selected").remove();
+
+
 
                     var saveOrUpdate = $(this).data('id');
                     $(".modal-body #saveOrUpdate").val(saveOrUpdate);
                 });
 
-                // Setup - add a text input to each footer cell
                 $('#employeeTable thead tr').clone(true).appendTo('#employeeTable thead');
                 $('#employeeTable thead tr:eq(1) th').each(function (i) {
                     var title = $(this).text();
-                    if (i != 10 && i != 1) {
+                    if (i != 2 && i != 11) {
                         $(this).html('<input class="form-control" type="text" placeholder="Search ' + title + '" />');
                     }
                     $('input', this).on('keyup change', function () {
@@ -231,12 +231,9 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                                 $('#state-dropdown').append(`<option value="${row_data.cstate}" selected>${row_data.cstate}</option>`);
                                 $('#country-dropdown').append(`<option value="${row_data.ccountry}" selected>${row_data.ccountry}</option>`);
                                 $('#keyAcManager-dropdown').append(`<option value="${row_data.ckey_ac_manager}" selected>${row_data.ckey_ac_manager}</option>`);
-
-
                             });
                         }
                     });
-
                 });
 
                 var table = $('#employeeTable').DataTable({
@@ -264,8 +261,6 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                 });
 
             });
-
-
         </script>
         <form id="employeeForm" method="post" action="../employee/saveEmployeeData.php">
             <div class="modal fade" id="my_modal" tabindex="-1" role="dialog" aria-labelledby="my_modalLabel">
@@ -372,7 +367,6 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                                     </td>
                                 </tr>
                                 <tr>
-
                                     <td>Email id</td>
                                     <td>
                                         <input type="text" name="emailId" id="email" class="form-control" maxlength="50"
@@ -417,6 +411,5 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                 </div>
             </div>
         </form>
-
 </body>
 </html>

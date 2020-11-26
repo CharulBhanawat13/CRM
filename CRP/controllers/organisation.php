@@ -69,7 +69,12 @@
         CloseCon($conn);
         ?>
         <script>
+            function reset() {
+                document.getElementById("organisationForm").reset();
+                $("#state-dropdown option:selected").remove();
+                $("#country-dropdown option:selected").remove();
 
+            }
             $(document).ready(function () {
 
                 $(document).on('click', '#add', function () {
@@ -84,7 +89,7 @@
                 $('#organisationTable thead tr').clone(true).appendTo('#organisationTable thead');
                 $('#organisationTable thead tr:eq(1) th').each(function (i) {
                     var title = $(this).text();
-                    if (i != 10 && i != 1) {
+                    if (i != 11 && i != 2) {
                         $(this).html('<input class="form-control" type="text" placeholder="Search ' + title + '" />');
                     }
                     $('input', this).on('keyup change', function () {

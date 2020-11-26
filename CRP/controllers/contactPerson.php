@@ -68,7 +68,9 @@ echo "</tbody></table>";
 CloseCon($conn);
 ?>
 <script>
-
+    function reset() {
+        document.getElementById("contactPersonForm").reset();
+    }
     $(document).ready(function () {
 
         $(document).on('click', '#add', function () {
@@ -81,7 +83,7 @@ CloseCon($conn);
         $('#contactPersonTable thead tr').clone(true).appendTo('#contactPersonTable thead');
         $('#contactPersonTable thead tr:eq(1) th').each(function (i) {
             var title = $(this).text();
-            if (i != 10 && i != 1) {
+            if (i != 9 && i != 2) {
                 $(this).html('<input class="form-control" type="text" placeholder="Search ' + title + '" />');
             }
             $('input', this).on('keyup change', function () {

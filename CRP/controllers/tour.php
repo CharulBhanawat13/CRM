@@ -118,6 +118,11 @@ CloseCon($conn);
         location.reload();
 
     }
+    function reset() {
+        document.getElementById("tourForm").reset();
+        document.getElementById('personToMeet-dropdown').options.length = 0;
+
+    }
     $(document).ready(function () {
         window.history.replaceState('','',window.location.href)
 
@@ -132,7 +137,7 @@ CloseCon($conn);
         $('#tourTable thead tr').clone(true).appendTo('#tourTable thead');
         $('#tourTable thead tr:eq(1) th').each(function (i) {
             var title = $(this).text();
-            if (i != 8 && i != 1) {
+            if (i != 9 && i != 2) {
                 $(this).html('<input class="form-control" type="text" placeholder="Search ' + title + '" />');
             }
             $('input', this).on('keyup change', function () {

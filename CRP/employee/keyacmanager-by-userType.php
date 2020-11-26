@@ -4,10 +4,7 @@ $conn=OpenCon();
 $user_id = $_POST["user_id"];
 if ($user_id < 4){
 	$user_id=$user_id+1;
-	
 }
-
-
 $result = mysqli_query($conn,"SELECT  nid,cengineer_name FROM tbl_employeemaster where cuser_type=$user_id");
 ?>
 <option value="">Select Key A/C Manager</option>
