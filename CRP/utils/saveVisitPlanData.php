@@ -31,7 +31,9 @@ if (isset($_POST['norg_id'])){
 if (isset($_POST['id_toUpdate'])) {
     $conn = OpenCon();
     $internal_id = $_POST['id_toUpdate'];
-    $sql = "Select * from tbl_visitplan AS v 
+    $sql = "Select v.ninternal_id,v.nvisit_plan_id,v.ddate,v.norg_id,v.ccity,v.nperson_to_meet_id,c.cperson_name,v.npurpose_id,
+        v.tbriefTalk,v.dnext_date,c.ncontact_person_id
+        from tbl_visitplan AS v 
         JOIN tbl_contactperson AS c 
         ON v.nperson_to_meet_id=c.ncontact_person_id
         WHERE v.ninternal_id = $internal_id";
@@ -58,14 +60,14 @@ if (isset($_POST['id_toUpdate'])) {
 }
 
 if (isset($_POST['submitData'])) {
-    $internal_id=$_POST["internal_id"];
+    $internal_id=(int)$_POST["internal_id"];
     $saveOrUpdate=$_POST["saveOrUpdate"];
     $visitplan_id = (int)$_POST["visitPanId"];
     $date = $_POST["date"];
     $organisationId=(int)$_POST["organisationId"];
     $city=$_POST["city"];
     $person_to_meet_id=(int)$_POST["personToMeet"];
-    $purposeId = $_POST["purpose"];
+    $purposeId =(int)$_POST["purpose"];
     $briefTalk = $_POST["briefTalk"];
     $nextDate=$_POST["nextDate"];
 

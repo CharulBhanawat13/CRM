@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2020 at 12:54 PM
+-- Generation Time: Nov 27, 2020 at 12:21 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -72,11 +72,12 @@ CREATE TABLE `tbl_calllist` (
 --
 
 INSERT INTO `tbl_calllist` (`nid`, `ncall_list_id`, `ddate`, `cphoneNumber`, `nperson_id`, `norg_id`, `npurpose_id`, `tbriefTalk`, `dnext_date`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`, `ninternal_id`) VALUES
-(2, 2, '2020-11-12', '232451', 1, 3, 2, 'hello how are you', '2020-11-12', b'1', b'1', '2020-11-12 14:19:45', '2020-11-12 16:06:59', NULL),
-(3, 3, '2020-11-17', '325', 2, 1, 1, 'hey', '2020-11-17', b'1', b'1', '2020-11-12 14:22:00', '2020-11-17 18:06:40', NULL),
-(4, 4, '2020-11-13', '54745', 3, 1, 2, 'dhb', '2020-12-11', b'1', b'1', '2020-11-12 14:27:03', '2020-11-12 14:27:03', NULL),
-(5, 6, '2020-11-24', '6', 2, 1, 1, '6', '2020-11-30', b'1', b'1', '2020-11-12 16:08:24', '2020-11-12 16:08:24', NULL),
-(6, 45, '2020-11-17', '1234', 3, 1, 1, 'code number 45', '2020-11-17', b'1', b'1', '2020-11-17 12:17:41', '2020-11-17 12:17:41', NULL);
+(2, 2, '2020-11-12', '232451', 1, 3, 2, 'hello how are you', '2020-11-12', b'1', b'1', '2020-11-12 14:19:45', '2020-11-12 16:06:59', 1),
+(3, 3, '2020-11-17', '325', 2, 1, 1, 'hey', '2020-11-17', b'1', b'1', '2020-11-12 14:22:00', '2020-11-17 18:06:40', 2),
+(4, 4, '2020-11-13', '54745', 3, 1, 2, 'dhb', '2020-12-11', b'1', b'1', '2020-11-12 14:27:03', '2020-11-12 14:27:03', 3),
+(6, 45, '2020-11-17', '1234', 3, 1, 1, 'code number 45', '2020-11-17', b'1', b'1', '2020-11-17 12:17:41', '2020-11-17 12:17:41', 5),
+(7, 44, '2020-11-27', '3245', 2, 2, 2, 'heya!!', '2020-11-27', b'1', b'1', '2020-11-27 14:22:51', '2020-11-27 14:22:51', 6),
+(8, 973217, '2028-11-20', '9427665395', 973217, 2, 1, 'BUSY', '2020-11-20', b'1', b'1', '2020-11-27 15:26:01', '2020-11-27 16:04:32', 7);
 
 -- --------------------------------------------------------
 
@@ -129,9 +130,9 @@ CREATE TABLE `tbl_contactperson` (
 --
 
 INSERT INTO `tbl_contactperson` (`nid`, `ncontact_person_id`, `cperson_name`, `ndept_id`, `cmobile_number`, `cphone_number`, `cemail_id`, `norg_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`, `ninternal_id`) VALUES
-(1, 1, 'C', 1, '2323232', '029423456', 'a@123', 3, b'1', b'1', '2020-11-09 12:39:59', '2020-11-09 17:51:13', NULL),
-(2, 2, 'B', 1, '234', '432', 'b@123', 2, b'1', b'1', '2020-11-09 17:11:07', '2020-11-09 17:11:07', NULL),
-(3, 3, 'A', 1, '345678', '234567', 'a@123', 2, b'1', b'1', '2020-11-09 17:52:18', '2020-11-09 17:52:18', NULL);
+(2, 2, 'B', 1, '234', '432', 'b@123', 2, b'1', b'1', '2020-11-09 17:11:07', '2020-11-09 17:11:07', 2),
+(3, 3, 'A', 1, '345678', '234567', 'a@123', 2, b'1', b'1', '2020-11-09 17:52:18', '2020-11-09 17:52:18', 3),
+(4, 973217, 'MR. CHIRAG SALOT', 1, '9427665395', '9427665395', 'chhayaelectric@gmail.com', 2, b'1', b'1', '2020-11-27 15:24:17', '2020-11-27 16:03:34', 4);
 
 -- --------------------------------------------------------
 
@@ -191,22 +192,20 @@ CREATE TABLE `tbl_employeemaster` (
 --
 
 INSERT INTO `tbl_employeemaster` (`nemployee_unique_id`, `cengineer_name`, `ccity`, `cstate`, `ccountry`, `nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`, `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`, `nid`, `ninternal_id`) VALUES
-(86, 'A', 'JAIPUR', 'RAJASTHAN', 'INDIA', 0, 'null', 'Pyrotech Unit 2', '787654321', '65798989', '4', 'a@gmail', b'1', b'1', 'a@123', 'a@123', '2020-11-02 10:31:41', '2020-11-02 10:31:41', 86, 0),
-(87, 'B1', 'AHEMDABAD', 'GUJRAT', 'INDIA', 86, 'A', 'Pyrotech Unit 2', '787654321', '65798989', '3', 'b2@gmail', b'1', b'1', 'b1@123', 'b2@123', '2020-11-02 10:35:56', '2020-11-17 16:38:44', 87, 0),
-(88, 'B2', 'AHEMDABAD', 'GUJRAT', 'INDIA', 86, 'A', 'Pyrotech Unit 2', '787654321', '65798989', '3', 'b2@gmail', b'1', b'1', 'b2@123', 'b2@123', '2020-11-02 10:35:56', '2020-11-03 12:54:32', 88, 0),
-(98, 'C2', 'BANG KHEN', 'BANGKOK', 'THAILAND', 87, 'B1', 'Pyrotech Unit 2', '787654321', '65798989', '2', 'c2@gmail', b'1', b'1', 'c2@123', 'c2@123', '2020-11-02 17:35:55', '2020-11-07 12:35:41', 98, 0),
-(99, 'C3', 'JAIPUR', 'RAJASTHAN', 'INDIA', 88, 'B2', 'Pyrotech Unit 2', '787654321', '65798989', '2', 'c3@gmail', b'1', b'1', 'c3@123', 'c3@123', '2020-11-02 17:35:55', '2020-11-02 17:35:55', 99, 0),
-(100, 'C4', 'JAIPUR', 'RAJASTHAN', 'INDIA', 88, 'B2', 'Pyrotech Unit 2', '787654321', '65798989', '2', 'c4@gmail', b'1', b'1', 'c4@123', 'c4@123', '2020-11-02 17:35:55', '2020-11-02 17:35:55', 100, 0),
-(103, 'D3_1', 'JAIPUR', 'RAJASTHAN', 'INDIA', 98, 'C2', 'Pyrotech Unit 2', '787654321', '65798989', '4', 'd3@gmail', b'1', b'1', 'd3@123', 'd3@123', '2020-11-02 17:41:34', '2020-11-05 10:17:04', 103, 0),
-(104, 'D4_1', 'JAIPUR', 'RAJASTHAN', 'INDIA', 0, 'C2', 'Pyrotech Unit 2', '787654321', '65798989', '4', 'd4@gmail', b'1', b'1', 'd4@123', 'd4@123', '2020-11-02 17:41:34', '2020-11-05 10:08:18', 104, 0),
-(105, 'D5_1', 'JAIPUR', 'RAJASTHAN', 'INDIA', 0, 'C3', 'Pyrotech Unit 2', '787654321', '65798989', '4', 'd5@gmail', b'1', b'1', 'd5@123', 'd5@123', '2020-11-02 17:41:34', '2020-11-05 09:59:49', 105, 0),
-(106, 'D6', 'AHEMDABAD', 'GUJRAT', 'INDIA', 114, 'C3', 'Pyrotech Unit 2', '787654321', '65798989', '1', 'd6@gmail', b'1', b'1', 'd6@123', 'd6@123', '2020-11-02 17:41:34', '2020-11-04 09:58:06', 106, 0),
-(126, 'D1', 'AHEMDABAD', 'GUJRAT', 'INDIA', 114, 'C1', 'D1', 'D1', 'D1', '1', 'D1', b'1', b'1', 'D1', 'D1', '2020-11-04 15:03:19', '0000-00-00 00:00:00', 126, 0),
-(127, 'E', 'JAIPUR', 'RAJASTHAN', 'INDIA', 0, '', 'E', 'E', 'E', '1', 'E', b'1', b'1', 'e@123', 'e@123', '2020-11-05 10:19:04', '0000-00-00 00:00:00', 127, 0),
-(128, 'F', 'JAIPUR', 'RAJASTHAN', 'INDIA', 100, 'C4', 'F', 'F', 'F', '1', 'F', b'1', b'1', 'Aa', 'Fe', '2020-11-05 10:40:41', '2020-11-17 16:16:24', 128, 0),
-(102, 'Dolar', 'JAIPUR', 'RAJASTHAN', 'INDIA', 103, 'D3_1', 'Dolar', 'Dolar', 'Dolar', '3', 'Dolar', b'1', b'1', 'Dolar', 'Dolar', '2020-11-07 12:43:38', '0000-00-00 00:00:00', 130, 0),
-(22, 'sand', 'JAIPUR', 'RAJASTHAN', 'INDIA', 104, 'D4_1', 'sand', 'sand', 'sand', '3', 'sand', b'1', b'1', 'sand', 'sand', '2020-11-17 16:26:49', '0000-00-00 00:00:00', 132, 0),
-(32, 'q', 'AHEMDABAD', 'GUJRAT', 'INDIA', 104, 'D4_1', 'q', 'q', 'q', '3', 'q', b'1', b'1', 'q', 'q', '2020-11-18 12:20:46', '0000-00-00 00:00:00', 133, 0);
+(86, 'A', 'JAIPUR', 'RAJASTHAN', 'INDIA', 0, 'null', 'Pyrotech Unit 2', '787654321', '65798989', '4', 'a@gmail', b'1', b'1', 'a@123', 'a@123', '2020-11-02 10:31:41', '2020-11-02 10:31:41', 86, 16),
+(87, 'B1', 'AHEMDABAD', 'GUJRAT', 'INDIA', 86, 'A', 'Pyrotech Unit 2', '787654321', '65798989', '3', 'b2@gmail', b'1', b'1', 'b1@123', 'b2@123', '2020-11-02 10:35:56', '2020-11-17 16:38:44', 87, 15),
+(88, 'B2', 'AHEMDABAD', 'GUJRAT', 'INDIA', 86, 'A', 'Pyrotech Unit 2', '787654321', '65798989', '3', 'b2@gmail', b'1', b'1', 'b2@123', 'b2@123', '2020-11-02 10:35:56', '2020-11-03 12:54:32', 88, 14),
+(98, 'C2', 'BANG KHEN', 'BANGKOK', 'THAILAND', 87, 'B1', 'Pyrotech Unit 2', '787654321', '65798989', '2', 'c2@gmail', b'1', b'1', 'c2@123', 'c2@123', '2020-11-02 17:35:55', '2020-11-07 12:35:41', 98, 13),
+(99, 'C3', 'JAIPUR', 'RAJASTHAN', 'INDIA', 88, 'B2', 'Pyrotech Unit 2', '787654321', '65798989', '2', 'c3@gmail', b'1', b'1', 'c3@123', 'c3@123', '2020-11-02 17:35:55', '2020-11-02 17:35:55', 99, 12),
+(100, 'C4', 'JAIPUR', 'RAJASTHAN', 'INDIA', 88, 'B2', 'Pyrotech Unit 2', '787654321', '65798989', '2', 'c4@gmail', b'1', b'1', 'c4@123', 'c4@123', '2020-11-02 17:35:55', '2020-11-02 17:35:55', 100, 11),
+(103, 'D3', 'JAIPUR', 'RAJASTHAN', 'INDIA', 98, 'C2', 'Pyrotech Unit 2', '787654321', '65798989', '4', 'd3@gmail', b'1', b'1', 'd3@123', 'd3@123', '2020-11-02 17:41:34', '2020-11-27 17:41:58', 103, 10),
+(106, 'D6', 'AHEMDABAD', 'GUJRAT', 'INDIA', 114, 'C3', 'Pyrotech Unit 2', '787654321', '65798989', '1', 'd6@gmail', b'1', b'1', 'd6@123', 'd6@123', '2020-11-02 17:41:34', '2020-11-04 09:58:06', 106, 7),
+(126, 'D1', 'AHEMDABAD', 'GUJRAT', 'INDIA', 114, 'C1', 'D1', 'D1', 'D1', '1', 'D1', b'1', b'1', 'D1', 'D1', '2020-11-04 15:03:19', '0000-00-00 00:00:00', 126, 6),
+(102, 'Dolar', 'JAIPUR', 'RAJASTHAN', 'INDIA', 103, 'D3_1', 'Dolar', 'Dolar', 'Dolar', '3', 'Dolar', b'1', b'1', 'Dolar', 'Dolar', '2020-11-07 12:43:38', '0000-00-00 00:00:00', 130, 3),
+(22, 'sand', 'JAIPUR', 'RAJASTHAN', 'INDIA', 104, 'D4_1', 'sand', 'sand', 'sand', '3', 'sand', b'1', b'1', 'sand', 'sand', '2020-11-17 16:26:49', '0000-00-00 00:00:00', 132, 2),
+(32, 'q', 'AHEMDABAD', 'GUJRAT', 'INDIA', 104, 'D4_1', 'q', 'q', 'q', '3', 'q', b'1', b'1', 'q', 'q', '2020-11-18 12:20:46', '0000-00-00 00:00:00', 133, 1),
+(108, 'Donald', 'AHEMDABAD', 'GUJRAT', 'INDIA', 86, 'A', '167,sec-2', '890890890', '890890', '3', 'donald@123', b'1', b'1', 'donald@123', 'donald@123', '2020-11-27 16:38:32', '0000-00-00 00:00:00', 134, 17),
+(0, 'TRump', 'JAIPUR', 'RAJASTHAN', 'INDIA', 98, 'C2', 'America', '456456', '3463456', '1', 'usertype@123', b'1', b'1', 'usertype@123', 'usertype@123', '2020-11-27 16:39:49', '0000-00-00 00:00:00', 135, 18);
 
 -- --------------------------------------------------------
 
@@ -229,17 +228,19 @@ CREATE TABLE `tbl_organisation` (
   `isAvailable` bit(1) NOT NULL,
   `dcreated_date` datetime NOT NULL,
   `dupdated_date` datetime NOT NULL,
-  `internal_id` int(11) DEFAULT NULL
+  `ninternal_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_organisation`
 --
 
-INSERT INTO `tbl_organisation` (`nid`, `norg_id`, `corg_name`, `corg_address`, `corg_city`, `corg_state`, `corg_country`, `corg_mobileNumber`, `corg_emailId`, `norg_segment_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`, `internal_id`) VALUES
-(1, 1, 'Organisation A', 'Pyrotech 12', 'UDAIPUR', 'RAJASTHAN', 'INDIA', '987654321', 'orgA@123', 1, b'1', b'0', '2020-11-05 11:40:01', '2020-11-05 16:05:35', NULL),
-(2, 2, 'Organisation B', 'Pyrotech Unit 3', 'UDAIPUR', 'RAJASTHAN', 'INDIA', '987654321', 'orgB@123', 2, b'1', b'1', '2020-11-05 11:40:01', '2020-11-05 17:46:00', NULL),
-(3, 3, 'Organisation c', 'Pyrotech Unit 3', 'UDAIPUR', 'RAJASTHAN', 'INDIA', '987654321', 'orgc@123', 2, b'1', b'1', '2020-11-05 11:40:01', '2020-11-05 17:46:00', NULL);
+INSERT INTO `tbl_organisation` (`nid`, `norg_id`, `corg_name`, `corg_address`, `corg_city`, `corg_state`, `corg_country`, `corg_mobileNumber`, `corg_emailId`, `norg_segment_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`, `ninternal_id`) VALUES
+(1, 1, 'Organisation A', 'Pyrotech 123', 'UDAIPUR', 'RAJASTHAN', 'INDIA', '987654321', 'orgA@1234', 2, b'1', b'1', '2020-11-05 11:40:01', '2020-11-27 15:39:42', 1),
+(2, 2, 'Organisation B', 'Pyrotech Unit 3', 'UDAIPUR', 'RAJASTHAN', 'INDIA', '987654321', 'orgB@123', 2, b'1', b'1', '2020-11-05 11:40:01', '2020-11-27 11:48:49', 2),
+(3, 3, 'Organisation c', 'Pyrotech Unit 3', 'UDAIPUR', 'RAJASTHAN', 'INDIA', '987654321', 'orgc@123', 2, b'1', b'0', '2020-11-05 11:40:01', '2020-11-05 17:46:00', 3),
+(6, 81, 'Organisation D', 'Pyrotech unit 4', 'BANG KHEN', 'BANGKOK', 'THAILAND', '123454321', 'orgD@123', 1, b'1', b'0', '2020-11-27 12:14:07', '2020-11-27 12:16:07', 4),
+(7, 973217, 'CHHAYA ELECTRIC STORES', 'Opp. Gitamandir Tower, Nr. Gita Manddir S.T. Stand', 'AHEMDABAD', 'GUJRAT', 'INDIA', '9427665395', 'chhayaelectric@gmail.com', 1, b'1', b'1', '2020-11-27 15:23:05', '2020-11-27 15:23:05', 5);
 
 -- --------------------------------------------------------
 
@@ -308,8 +309,41 @@ CREATE TABLE `tbl_test` (
 --
 
 INSERT INTO `tbl_test` (`nid`, `ninternal_id`, `test_id`) VALUES
-(3, 3, 3),
-(8, 8, 8);
+(15, 0, 12),
+(16, 1, 66),
+(17, 2, 99);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_visitplan`
+--
+
+CREATE TABLE `tbl_visitplan` (
+  `nid` int(10) NOT NULL,
+  `ninternal_id` int(10) NOT NULL,
+  `nvisit_plan_id` int(10) NOT NULL,
+  `ddate` date NOT NULL,
+  `norg_id` int(10) NOT NULL,
+  `ccity` varchar(50) NOT NULL,
+  `nperson_to_meet_id` int(10) NOT NULL,
+  `npurpose_id` int(10) NOT NULL,
+  `tbriefTalk` text NOT NULL,
+  `dnext_date` date NOT NULL,
+  `isAvailable` bit(1) NOT NULL,
+  `isActive` bit(1) NOT NULL,
+  `dcreated_date` datetime NOT NULL,
+  `dupdated_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_visitplan`
+--
+
+INSERT INTO `tbl_visitplan` (`nid`, `ninternal_id`, `nvisit_plan_id`, `ddate`, `norg_id`, `ccity`, `nperson_to_meet_id`, `npurpose_id`, `tbriefTalk`, `dnext_date`, `isAvailable`, `isActive`, `dcreated_date`, `dupdated_date`) VALUES
+(5, 3, 21, '2020-11-14', 2, 'BHILWARA', 2, 2, 'addition', '2020-11-30', b'1', b'1', '2020-11-28 13:46:27', '2020-11-27 15:53:46'),
+(7, 4, 33, '2020-11-24', 2, 'JODHPUR', 3, 1, 'done', '2020-12-05', b'1', b'1', '2020-11-27 15:54:36', '2020-11-27 15:54:36'),
+(8, 5, 973217, '2020-11-28', 2, 'AHMEDABAD', 973217, 1, 'LIGHT SAMPLE ', '2020-12-07', b'1', b'1', '2020-11-27 16:06:49', '2020-11-27 16:06:49');
 
 --
 -- Indexes for dumped tables
@@ -364,6 +398,12 @@ ALTER TABLE `tbl_test`
   ADD PRIMARY KEY (`nid`);
 
 --
+-- Indexes for table `tbl_visitplan`
+--
+ALTER TABLE `tbl_visitplan`
+  ADD PRIMARY KEY (`nid`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -371,7 +411,7 @@ ALTER TABLE `tbl_test`
 -- AUTO_INCREMENT for table `tbl_calllist`
 --
 ALTER TABLE `tbl_calllist`
-  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_city_state_country`
@@ -383,19 +423,19 @@ ALTER TABLE `tbl_city_state_country`
 -- AUTO_INCREMENT for table `tbl_contactperson`
 --
 ALTER TABLE `tbl_contactperson`
-  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_employeemaster`
 --
 ALTER TABLE `tbl_employeemaster`
-  MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
+  MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 
 --
 -- AUTO_INCREMENT for table `tbl_organisation`
 --
 ALTER TABLE `tbl_organisation`
-  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_purpose`
@@ -413,7 +453,13 @@ ALTER TABLE `tbl_segment`
 -- AUTO_INCREMENT for table `tbl_test`
 --
 ALTER TABLE `tbl_test`
-  MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `tbl_visitplan`
+--
+ALTER TABLE `tbl_visitplan`
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

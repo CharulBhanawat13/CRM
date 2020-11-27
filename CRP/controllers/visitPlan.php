@@ -27,18 +27,25 @@ include '../db_connection.php';
 $conn = OpenCon();
 
 $sql = "SELECT v.ninternal_id,v.nvisit_plan_id,v.ddate,v.norg_id,v.ccity,v.nperson_to_meet_id,v.npurpose_id,v.tbriefTalk,
-v.dnext_date,v.isAvailable
+v.dnext_date,v.isAvailable,
+c.cperson_name,c.ncontact_person_id,
+p.cpurpose_name,p.npurpose_id ,
+o.corg_name,o.norg_id
 from tbl_visitplan As v
 JOIN tbl_purpose AS p
 ON v.npurpose_id=p.npurpose_id 
+JOIN tbl_contactperson AS c
+ON v.nperson_to_meet_id=c.ncontact_person_id
+JOIN tbl_organisation AS o 
+ON o.norg_id=v.norg_id
 where v.isAvailable=1";
 if (isset($_POST['search'])){
     require_once('../utils/DateFilter.php');
     if(isset($_POST['nextDateCheckbox'])){
-        $sql=DateFilter::prepareQuery('c.dnext_date',$sql);
+        $sql=DateFilter::prepareQuery('v.dnext_date',$sql);
 
     }else{
-        $sql=DateFilter::prepareQuery('c.ddate',$sql);
+        $sql=DateFilter::prepareQuery('v.ddate',$sql);
     }
 }
 
@@ -76,7 +83,7 @@ echo "<table id='visitPlanTable'  name='visitPlanTable' >
             <th style='display:none;'>VISIT PLAN ID</th>
             <th>Update</th>
             <th>Date</th>
-            <th>Customer Name</th>
+            <th>Organisation Name</th>
             <th>City</th>
             <th>Person to meet</th>
             <th>Purpose</th>
@@ -96,10 +103,10 @@ while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
 
     echo "<td ><a  href='#visit_plan_modal' data-toggle='modal' class='updateClass' data-id='2'><i class='fa fa-edit fa-2x'></i></a></td>";
     echo "<td>" . $row['ddate'] . "</td>";
-    echo "<td>" . $row['norg_id'] . "</td>";
+    echo "<td>" . $row['corg_name'] . "</td>";
     echo "<td>" . $row['ccity'] . "</td>";
-    echo "<td>" . $row['nperson_to_meet_id'] . "</td>";
-    echo "<td>" . $row['npurpose_id'] . "</td>";
+    echo "<td>" . $row['cperson_name'] . "</td>";
+    echo "<td>" . $row['cpurpose_name'] . "</td>";
     echo "<td>" . $row['tbriefTalk'] . "</td>";
     echo "<td>" . $row['dnext_date'] . "</td>";
     echo "<td class='action-delete'><i class='fa fa-trash fa-2x' style='color:#4caf50;'</i></td>";
@@ -190,7 +197,7 @@ CloseCon($conn);
                         $(".modal-body #purpose-dropdown").val(row_data.npurpose_id);
                         $(".modal-body #briefTalk").val(row_data.tbriefTalk);
                         $(".modal-body #nextDate").val(row_data.dnext_date);
-                        $('#personToMeet-dropdown').append(`<option value="${row_data.cperson_name}" selected>${row_data.cperson_name}</option>`);
+                        $('#personToMeet-dropdown').append(`<option value="${row_data.nperson_to_meet_id}" selected>${row_data.cperson_name}</option>`);
 
                     });
                 }

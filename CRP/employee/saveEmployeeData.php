@@ -108,9 +108,9 @@ else {
             $conn = OpenCon();
             // Save Data in tbl_employeemaster
             $internal_id=ServiceLayer::getMaximumID('tbl_employeemaster',ninternal_id);
-            $sql = "INSERT INTO tbl_employeemaster (ninternal_id,nemployee_unique_id,ninternal_id,cengineer_name,ccity,cstate,ccountry,nkey_ac_manager_id,
+            $sql = "INSERT INTO tbl_employeemaster (ninternal_id,nemployee_unique_id,cengineer_name,ccity,cstate,ccountry,nkey_ac_manager_id,
 			caddress,cmobile_number,calt_mobile_number,cuser_type,cemail_id,isAvailable,isActive,cuser_name,cpassword,dcreated_date) 
-			VALUES ($internal_id,$employeeId,$internal_id,'$name','$city','$state','$country',$keyAcManagerID,
+			VALUES ($internal_id,$employeeId,'$name','$city','$state','$country',$keyAcManagerID,
 			'$address','$mobilenumber','$altmobileNumber',$userType,'$emailId',1,1,'$username','$password',now())";
 
             $result = mysqli_query($conn, $sql);
