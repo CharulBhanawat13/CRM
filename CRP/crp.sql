@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2020 at 12:21 PM
+-- Generation Time: Nov 27, 2020 at 07:43 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -131,7 +131,7 @@ CREATE TABLE `tbl_contactperson` (
 
 INSERT INTO `tbl_contactperson` (`nid`, `ncontact_person_id`, `cperson_name`, `ndept_id`, `cmobile_number`, `cphone_number`, `cemail_id`, `norg_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`, `ninternal_id`) VALUES
 (2, 2, 'B', 1, '234', '432', 'b@123', 2, b'1', b'1', '2020-11-09 17:11:07', '2020-11-09 17:11:07', 2),
-(3, 3, 'A', 1, '345678', '234567', 'a@123', 2, b'1', b'1', '2020-11-09 17:52:18', '2020-11-09 17:52:18', 3),
+(3, 3, 'A', 1, '345678', '234567', 'a@123', 1, b'1', b'1', '2020-11-09 17:52:18', '2020-11-09 17:52:18', 3),
 (4, 973217, 'MR. CHIRAG SALOT', 1, '9427665395', '9427665395', 'chhayaelectric@gmail.com', 2, b'1', b'1', '2020-11-27 15:24:17', '2020-11-27 16:03:34', 4);
 
 -- --------------------------------------------------------
@@ -316,6 +316,35 @@ INSERT INTO `tbl_test` (`nid`, `ninternal_id`, `test_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_tour`
+--
+
+CREATE TABLE `tbl_tour` (
+  `nid` int(10) NOT NULL,
+  `ninternal_id` int(10) NOT NULL,
+  `ntour_id` int(10) NOT NULL,
+  `ddate` date NOT NULL,
+  `norg_id` int(10) NOT NULL,
+  `nperson_to_meet_id` int(10) NOT NULL,
+  `npurpose_id` int(10) NOT NULL,
+  `tbriefTalk` text NOT NULL,
+  `dnext_date` date NOT NULL,
+  `isAvailable` bit(1) NOT NULL,
+  `isActive` bit(1) NOT NULL,
+  `dcreated_date` datetime NOT NULL,
+  `dupdated_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_tour`
+--
+
+INSERT INTO `tbl_tour` (`nid`, `ninternal_id`, `ntour_id`, `ddate`, `norg_id`, `nperson_to_meet_id`, `npurpose_id`, `tbriefTalk`, `dnext_date`, `isAvailable`, `isActive`, `dcreated_date`, `dupdated_date`) VALUES
+(1, 1, 21, '2020-11-30', 1, 3, 1, 'first entry', '2020-12-01', b'1', b'1', '2020-11-27 11:41:23', '2020-11-27 12:07:54');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_visitplan`
 --
 
@@ -398,6 +427,12 @@ ALTER TABLE `tbl_test`
   ADD PRIMARY KEY (`nid`);
 
 --
+-- Indexes for table `tbl_tour`
+--
+ALTER TABLE `tbl_tour`
+  ADD PRIMARY KEY (`nid`);
+
+--
 -- Indexes for table `tbl_visitplan`
 --
 ALTER TABLE `tbl_visitplan`
@@ -454,6 +489,12 @@ ALTER TABLE `tbl_segment`
 --
 ALTER TABLE `tbl_test`
   MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `tbl_tour`
+--
+ALTER TABLE `tbl_tour`
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_visitplan`

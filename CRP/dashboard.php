@@ -20,6 +20,7 @@ if ($_SESSION['username'] == '') {
     <a href="controllers/contactPerson.php">Contact Person</a>
     <a href="controllers/callList.php">Call List</a>
     <a href="controllers/visitPlan.php">Visit Plan</a>
+    <a href="controllers/tour.php">Tour</a>
     <a href="controllers/test.php">Test</a>
 
 </div>
