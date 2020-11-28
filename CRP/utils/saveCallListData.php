@@ -1,13 +1,14 @@
 <?php
 
 include('../db_connection.php');
+require_once('../utils/ServiceLayer.php');
 
 
 
 if (isset($_POST['id_toDelete'])) {
     $conn = OpenCon();
-    $callListId = $_POST['id_toDelete'];
-    $sql = "UPDATE tbl_callList SET isAvailable =0 WHERE ncall_list_id = $callListId";
+    $internal_id = $_POST['id_toDelete'];
+    $sql = "UPDATE tbl_callList SET isAvailable =0 WHERE ninternal_id = $internal_id";
     $result = mysqli_query($conn, $sql);
     CloseCon($conn);
 
@@ -16,12 +17,14 @@ if (isset($_POST['id_toDelete'])) {
 //Call for fetching details of organisation to update
 if (isset($_POST['id_toUpdate'])) {
     $conn = OpenCon();
-    $callLitsID = $_POST['id_toUpdate'];
-    $sql = "Select * from tbl_callList WHERE ncall_list_id = $callLitsID";
+    $internal_id = $_POST['id_toUpdate'];
+    $sql = "Select * from tbl_callList WHERE ninternal_id = $internal_id";
     $result = mysqli_query($conn, $sql);
     $row_data = array();
     while ($row = mysqli_fetch_array($result)) {
         $row_data = array(
+            "nid"=>$row['nid'],
+            "ninternal_id"=>$row['ninternal_id'],
             "ncall_list_id"=>$row['ncall_list_id'],
             "ddate"    => $row['ddate'],
             "cphoneNumber"    => $row['cphoneNumber'],
@@ -51,6 +54,8 @@ if (isset($_POST['submitData'])) {
 
     if ($saveOrUpdate == 2) {
         $conn = OpenCon();
+        $internal_id=(int)$_POST["internal_id"];
+
         $sql_update = "UPDATE tbl_callList SET 
                 ncall_list_id=$callListId,
                 ddate='$date',
@@ -61,15 +66,18 @@ if (isset($_POST['submitData'])) {
                 tbriefTalk='$briefTalk',
                 dnext_date='$nextDate',
                 dupdated_date=now()
-                where ncall_list_id=$callListId ";
+                where ninternal_id=$internal_id ";
 
         $result = mysqli_query($conn, $sql_update);
         header("Location: ../controllers/callList.php");
     } else {
+        $internal_id=ServiceLayer::getMaximumID('tbl_callList','ninternal_id');
+
         $conn = OpenCon();
-        $sql = "INSERT INTO tbl_callList (ncall_list_id,ddate,cphoneNumber,nperson_id,norg_id,npurpose_id,tbriefTalk,dnext_date,isActive,isAvailable,
+
+        $sql = "INSERT INTO tbl_callList (ninternal_id,ncall_list_id,ddate,cphoneNumber,nperson_id,norg_id,npurpose_id,tbriefTalk,dnext_date,isActive,isAvailable,
             dcreated_date,dupdated_date) 
-			VALUES ($callListId,'$date','$phoneNumber',$personId,$organisationId,$purposeId,'$briefTalk','$nextDate',1,1,now(),now())";
+			VALUES ($internal_id,$callListId,'$date','$phoneNumber',$personId,$organisationId,$purposeId,'$briefTalk','$nextDate',1,1,now(),now())";
         $result = mysqli_query($conn, $sql);
         CloseCon($conn);
         header("Location: ../controllers/callList.php");

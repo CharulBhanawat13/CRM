@@ -38,14 +38,14 @@
         }
         $conn = OpenCon();
         $isAvailable = 1;
-        $sql = "(select e.nemployee_unique_id
+        $sql = "(select e.ninternal_id,e.nemployee_unique_id
 ,e.cengineer_name,e.caddress,e.ccity,e.cstate,e.ccountry,e.cmobile_number,e.cemail_id,e.ckey_ac_manager,e.isAvailable
 from tbl_employeemaster AS e where e.nemployee_unique_id=$user_id AND e.isAvailable=$isAvailable) 
-union (select e.nemployee_unique_id
+union (select e.ninternal_id,e.nemployee_unique_id
 ,e.cengineer_name,e.caddress,ccity,e.cstate,e.ccountry,e.cmobile_number,e.cemail_id,e.ckey_ac_manager,e.isAvailable
 from tbl_employeemaster AS e where e.nkey_ac_manager_id=$user_id AND e.isAvailable=$isAvailable) 
 union 
-(select e2.nemployee_unique_id
+(select e2.ninternal_id,e2.nemployee_unique_id
 ,e2.cengineer_name,e2.caddress,e2.ccity,e2.cstate,e2.ccountry,e2.cmobile_number,e2.cemail_id,e2.ckey_ac_manager,e2.isAvailable
 from tbl_employeemaster AS e1 
 JOIN tbl_employeemaster AS e2 
@@ -53,7 +53,7 @@ ON e2.nkey_ac_manager_id=e1.nemployee_unique_id
  
 where e1.nkey_ac_manager_id=$user_id AND e2.isAvailable=$isAvailable) 
 union 
-(select e3.nemployee_unique_id
+(select e3.ninternal_id,e3.nemployee_unique_id
 ,e3.cengineer_name,e3.caddress,e3.ccity,e3.cstate,e3.ccountry,e3.cmobile_number,e3.cemail_id,e3.ckey_ac_manager,e3.isAvailable
 from tbl_employeemaster AS e1 
 JOIN tbl_employeemaster AS e2 
@@ -68,7 +68,9 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
         echo "<table id='employeeTable'  name='employeeTable' >
 <thead> 
 <tr>
-<th style='display:none;'>ID</th>
+<th style='display:none;'>INTERNAL ID</th>
+<th style='display:none;'>EMPLOYEE ID</th>
+
 <th>Update</th>
 <th>Engineer's Name</th>	
 <th>Address</th>
@@ -85,8 +87,8 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
 ";
         while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
             echo "<tr>";
+            echo "<td style='display:none;'>" . $row['ninternal_id'] . "</td>";
             echo "<td style='display:none;'>" . $row['nemployee_unique_id'] . "</td>";
-         //   echo "<td style='display:none;'>" . $row['ninternal_id'] . "</td>";
         //    echo "<td style='display:none;'>" . $row['nid'] . "</td>";
 
             echo "<td ><a  href='#my_modal' data-toggle='modal' class='identifyingClass' data-id='2'><i class='fa fa-edit fa-2x'></i></a></td>";
@@ -211,6 +213,7 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                         cache: false,
                         success: function (row_datas) {
                             $.each(JSON.parse(row_datas), function (idx, row_data) {
+                                $(".modal-body #internal_id").val(row_data.ninternal_id);
                                 $(".modal-body #employeeId").val(row_data.nemployee_unique_id);
                                 $(".modal-body #keyAcManagerId").val(row_data.nkey_ac_manager_id);
                                 $(".modal-body #name").val(row_data.cengineer_name);
@@ -277,10 +280,9 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                             <table>
                                 <input type="hidden" name="saveOrUpdate" id="saveOrUpdate" class="form-control"
                                        maxlength="50" required/>
-                                <input type="hidden" name="internalId" id="internalId" class="form-control"
+                                <input type="hidden" name="internal_id" id="internal_id" class="form-control"
                                        maxlength="50" required/>
-                                <input type="hidden" name="nid" id="nid" class="form-control"
-                                       maxlength="50" required/>
+
                                 <tr>
                                     <td>Employee Code</td>
                                     <td><input type="text" name="employeeId" id="employeeId" class="form-control"

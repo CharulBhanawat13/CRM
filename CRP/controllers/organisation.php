@@ -23,7 +23,7 @@
         include '../db_connection.php';
 
         $conn = OpenCon();
-        $sql = "SELECT o.norg_id,o.corg_name,o.corg_address,o.corg_city,o.corg_state,o.corg_country,o.corg_mobileNumber,o.corg_emailId,o.norg_segment_id,o.isActive,o.isAvailable,s.csegment_name 
+        $sql = "SELECT o.ninternal_id,o.norg_id,o.corg_name,o.corg_address,o.corg_city,o.corg_state,o.corg_country,o.corg_mobileNumber,o.corg_emailId,o.norg_segment_id,o.isActive,o.isAvailable,s.csegment_name 
                     FROM tbl_organisation AS o 
                     INNER JOIN tbl_segment AS s 
                     ON o.norg_segment_id = s.nsegment_id 
@@ -32,7 +32,8 @@
         echo "<table id='organisationTable'  name='organisationTable' >
             <thead> 
             <tr>
-            <th style='display:none;'>ID</th>
+            <th style='display:none;'>INTERNAL ID</th>
+            <th style='display:none;'>ORG ID</th>
             <th>Update</th>
             <th>Organisation Name</th>
             <th>Address</th>
@@ -49,6 +50,7 @@
             ";
         while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
             echo "<tr>";
+            echo "<td style='display:none;'>" . $row['ninternal_id'] . "</td>";
             echo "<td style='display:none;'>" . $row['norg_id'] . "</td>";
             echo "<td ><a  href='#organisation_modal' data-toggle='modal' class='updateClass' data-id='2'><i class='fa fa-edit fa-2x'></i></a></td>";
             echo "<td>" . $row['corg_name'] . "</td>";
@@ -147,7 +149,9 @@
                         cache: false,
                         success: function (row_datas) {
                             $.each(JSON.parse(row_datas), function (idx, row_data) {
-                                $(".modal-body #organisationId").val(row_data.nid);
+                                $(".modal-body #internal_id").val(row_data.ninternal_id);
+
+                                $(".modal-body #organisationId").val(row_data.norg_id);
                                 $(".modal-body #name").val(row_data.corg_name);
                                 $(".modal-body #address").val(row_data.corg_address);
                                 $(".modal-body #city-dropdown").val(row_data.corg_city);
@@ -206,6 +210,9 @@
                                 <input type="hidden" name="saveOrUpdate" id="saveOrUpdate" class="form-control"
                                        maxlength="50" required/>
 
+                                        <input type="hidden" name="internal_id" id="internal_id" class="form-control"
+                                               maxlength="50" required/>
+
                                 <tr>
                                     <td>Organisation Code</td>
                                     <td>
@@ -213,6 +220,7 @@
                                                maxlength="50" required/>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td>Organisation Name</td>
                                     <td>

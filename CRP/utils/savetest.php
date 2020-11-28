@@ -8,12 +8,21 @@ if (isset($_POST['test_submit'])) {
 
     $nid = $_POST['nid'];
 
-    $sql = "CALL GETMAXIMUM('tbl_test','nid',@total)";
+    $sql = "CALL GETMAXIMUM('tbl_test','ninternal_id',@total)";
     $result = mysqli_query($conn, $sql);
     $sql="SELECT @total";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
-       echo $row['@total'];
+    if(is_null($row['@total'])){
+        $row['@total']=0;
+    }else{
+        $row['@total']=$row['@total']+1;
+    }
+    $internalId= $row['@total'];
+    $sql = "INSERT INTO tbl_test (ninternal_id,test_id) 
+			VALUES ($internalId,$test_code)";
+    $result = mysqli_query($conn, $sql);
+
     CloseCon($conn);
 }
 

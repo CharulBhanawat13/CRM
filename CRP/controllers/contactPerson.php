@@ -24,7 +24,7 @@
 include '../db_connection.php';
 
 $conn = OpenCon();
-$sql = $sql = "SELECT c.ncontact_person_id,c.cperson_name,c.ndept_id,c.cmobile_number,c.cphone_number,c.cemail_id,c.isAvailable, o.corg_name,d.cdept_name
+$sql = $sql = "SELECT c.ninternal_id,c.ncontact_person_id,c.cperson_name,c.ndept_id,c.cmobile_number,c.cphone_number,c.cemail_id,c.isAvailable, o.corg_name,d.cdept_name
                     FROM tbl_contactperson AS c 
                     INNER JOIN tbl_organisation AS o 
                     ON c.norg_id = o.norg_id 
@@ -35,7 +35,9 @@ $retval = mysqli_query($conn, $sql);
 echo "<table id='contactPersonTable'  name='contactPersonTable' >
             <thead> 
             <tr>
-            <th style='display:none;'>ID</th>
+            <th style='display:none;'>INTERNAL ID</th>
+            <th style='display:none;'>CONTACT PERSON ID</th>
+
             <th>Update</th>
             <th>Person Name</th>
             <th>Department</th>
@@ -50,6 +52,7 @@ echo "<table id='contactPersonTable'  name='contactPersonTable' >
             ";
 while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
     echo "<tr>";
+    echo "<td style='display:none;'>" . $row['ninternal_id'] . "</td>";
     echo "<td style='display:none;'>" . $row['ncontact_person_id'] . "</td>";
     echo "<td ><a  href='#contactPerson_modal' data-toggle='modal' class='updateClass' data-id='2'><i class='fa fa-edit fa-2x'></i></a></td>";
     echo "<td>" . $row['cperson_name'] . "</td>";
@@ -113,10 +116,12 @@ CloseCon($conn);
                 cache: false,
                 success: function (row_datas) {
                     $.each(JSON.parse(row_datas), function (idx, row_data) {
+
+                        $(".modal-body #internal_id").val(row_data.ninternal_id);
                         $(".modal-body #contactPersonId").val(row_data.ncontact_person_id);
                         $(".modal-body #saveOrUpdate").val(row_data.saveOrUpdate);
                         $(".modal-body #name").val(row_data.cperson_name);
-                        $(".modal-body #dept").val(row_data.cdepartment);
+                        $(".modal-body #department-dropdown").val(row_data.ndept_id);
                         $(".modal-body #mobileNumber").val(row_data.cmobile_number);
                         $(".modal-body #phoneNumber").val(row_data.cphone_number);
                         $(".modal-body #emailId").val(row_data.cemail_id);
@@ -167,7 +172,8 @@ CloseCon($conn);
 
                         <input type="hidden" name="saveOrUpdate" id="saveOrUpdate" class="form-control"
                                maxlength="50" required/>
-
+                        <input type="hidden" name="internal_id" id="internal_id" class="form-control"
+                               maxlength="50" required/>
                         <tr>
                             <td>Person Code</td>
                             <td>
@@ -184,7 +190,7 @@ CloseCon($conn);
                         </tr>
 
                         <tr>
-                            <td>Organisation</td>
+                            <td>Department</td>
                             <td>
                                 <select class="form-control" name="department" id="department-dropdown" required>
                                     <option value="">Select Department</option>

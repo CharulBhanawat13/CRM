@@ -147,3 +147,8 @@ echo "
     ON c.npurpose_id=p.npurpose_id
     where c.isAvailable=1 and 'c.ddate'
                               between '2020-11-29' and '2020-12-01'  ORDER BY 'c.ddate' DESC
+
+
+INSERT INTO `tbl_visitplan`(`nid`, `ninternal_id`, `nvisit_plan_id`, `ddate`, `norg_id`, `ccity`, `nperson_to_meet_id`,
+ `npurpose_id`, `tbriefTalk`, `dnext_date`, `isAvailable`, `isActive`, `dcreated_date`, `dupdated_date`)
+  VALUES (1,1,1,now(),1,'UDAIPUR',1,1,'hey That',now(),1,1,now(),now())
