@@ -61,10 +61,10 @@ echo "
         <td><input type='checkbox' id='nextDateCheckbox' name='nextDateCheckbox' unchecked> <b>Next Date</b></td>
         <td><div class='input-daterange'>
             <div class='col-md-4'>
-                <b>Start Date</b><input type='text' name='start_date' id='start_date' class='form-control' />
+                <b>Start Date</b><input type='date' name='start_date' id='start_date' class='form-control' />
             </div>
             <div class='col-md-4'>
-                <b>End Date</b><input type='text' name='end_date' id='end_date' class='form-control' />
+                <b>End Date</b><input type='date' name='end_date' id='end_date' class='form-control' />
             </div>
         </div></td>
      <td>   <div class='col-md-4'>
@@ -104,13 +104,13 @@ while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
     echo "<td style='display:none;'>" . $row['nvisit_plan_id'] . "</td>";
 
     echo "<td ><a  href='#visit_plan_modal' data-toggle='modal' class='updateClass' data-id='2'><i class='fa fa-edit fa-2x'></i></a></td>";
-    echo "<td>" . $row['ddate'] . "</td>";
+    echo "<td>" . date("d-m-Y", strtotime($row['ddate']) )  . "</td>";
     echo "<td>" . $row['corg_name'] . "</td>";
     echo "<td>" . $row['ccity'] . "</td>";
     echo "<td>" . $row['cperson_name'] . "</td>";
     echo "<td>" . $row['cpurpose_name'] . "</td>";
     echo "<td>" . $row['tbriefTalk'] . "</td>";
-    echo "<td>" . $row['dnext_date'] . "</td>";
+    echo "<td>" . date("d-m-Y", strtotime($row['dnext_date'])) . "</td>";
     echo "<td class='action-delete'><i class='fa fa-trash fa-2x' style='color:#4caf50;'</i></td>";
     echo "</tr>";
 }

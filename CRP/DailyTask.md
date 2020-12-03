@@ -753,6 +753,7 @@ jenkins
  - Clear the database and insert few entries from UI.
 - Test pages and permission role funtionality.
 - Backup Data and commit.
+- Change all date formats to dd-mm-yyyy and check all pages.
 
 
 
