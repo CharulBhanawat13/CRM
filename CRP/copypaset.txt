@@ -1,7 +1,4 @@
 
-
-
-// 200510276698
   -----------------------------------------------------------------------------
 CREATE PROCEDURE `test1`(IN @tab_name VARCHAR(40),IN @col_name VARCHAR(40))
 BEGIN
@@ -24,63 +21,9 @@ BEGIN
  SET total=@c2;
 END$$
 DELIMITER ;
----------------------------------------------------------------------------------------------------------------
-INSERT INTO `tbl_contactperson`(`nid`, `ncontact_person_id`, `cperson_name`, `cdepartment`,
-`cmobile_number`, `cphone_number`, `cemail_id`, `corg_name`, `isActive`, `isAvailable`, `dcreated_date`,
-`dupdated_date`) VALUES (1,1,'A','Cement','98989898','029423456','a@123','OrgA',1,1,now(),now());
-
-GETMAXIMUMID('tbl_test','nid')
----------------------------------------------------------------------------------------------------------------
-
-
-select * from tbl_contactperson where nlogged_in_user_id IN
-(select * FROM
-(
-(select e.nemployee_unique_id
-from tbl_employeemaster AS e where e.nemployee_unique_id=86 AND e.isAvailable=1)
-
-union (select e.nemployee_unique_id
-from tbl_employeemaster AS e where e.nkey_ac_manager_id=86 AND e.isAvailable=1)
-
-union
-(select e2.nemployee_unique_id
-from tbl_employeemaster AS e1
-JOIN tbl_employeemaster AS e2
-ON e2.nkey_ac_manager_id=e1.nemployee_unique_id
-where e1.nkey_ac_manager_id=86 AND e2.isAvailable=1)
-
-union
-(select e3.nemployee_unique_id
-from tbl_employeemaster AS e1
-JOIN tbl_employeemaster AS e2
-ON e2.nkey_ac_manager_id=e1.nemployee_unique_id
-JOIN tbl_employeemaster AS e3
-ON e3.nkey_ac_manager_id=e2.nemployee_unique_id
-where e1.nkey_ac_manager_id=86 AND e3.isAvailable=1)
-) AS q1
-
-----------------------------------------------------------------
---------------------------------------------------------------
-select * from(
-    	(select e.nemployee_unique_id
-        from tbl_employeemaster AS e where e.nemployee_unique_id=86 AND e.isAvailable=1)
-
-        union (select e.nemployee_unique_id
-       	from tbl_employeemaster AS e where e.nkey_ac_manager_id=86 AND e.isAvailable=1)
-
-        union
-        (select e2.nemployee_unique_id
-        from tbl_employeemaster AS e1
-        JOIN tbl_employeemaster AS e2
-        ON e2.nkey_ac_manager_id=e1.nemployee_unique_id
-        where e1.nkey_ac_manager_id=86 AND e2.isAvailable=1)
-
-        union
-        (select e3.nemployee_unique_id
-         from tbl_employeemaster AS e1
-        JOIN tbl_employeemaster AS e2
-        ON e2.nkey_ac_manager_id=e1.nemployee_unique_id
-        JOIN tbl_employeemaster AS e3
-        ON e3.nkey_ac_manager_id=e2.nemployee_unique_id
-        where e1.nkey_ac_manager_id=86 AND e3.isAvailable=1)
-		) AS q1
+-------------------------------------------------------------
+INSERT INTO `tbl_employeemaster`(`nemployee_unique_id`, `cengineer_name`, `ccity`, `cstate`, `ccountry`,
+`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`, `calt_mobile_number`, `cuser_type`,
+`cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`, `nid`,`ninternal_id`)
+VALUES (1,'Admin','UDAIPUR','RAJASTHAN','INDIA',null,null,'Pyrotech Unit 1','987654321','9876543210',
+1,'a@123',1,1,'a@123','a@123',now(),now(),1,1)

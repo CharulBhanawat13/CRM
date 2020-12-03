@@ -139,7 +139,7 @@
       <workItem from="1605672971299" duration="98000" />
       <workItem from="1606901331470" duration="668000" />
       <workItem from="1606969541461" duration="6303000" />
-      <workItem from="1606975954274" duration="1146000" />
+      <workItem from="1606975954274" duration="5061000" />
     </task>
     <servers />
   </component>
@@ -338,6 +338,21 @@
           <url>file://$PROJECT_DIR$/controllers/visitPlan.php</url>
           <line>56</line>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/controllers/employeeDetails.php</url>
+          <line>29</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/controllers/employeeDetails.php</url>
+          <line>30</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/controllers/employeeDetails.php</url>
+          <line>31</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

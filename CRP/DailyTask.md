@@ -656,15 +656,15 @@ Diwali HolidY
 
 18/11/2020
 ---
-Create a checkbox.
-implemented checkbox functionality
-Added a column internal_id in all tables in database
-try adding functionality of duplicacy of employee code but it need stored proc feature first
-Implement visit-plan page with call list table
-Implemented a test page to test stored proc
-working on stored proc returning value
-use dtored proc on page and get result ferom code
-push code
+- Create a checkbox.
+- implemented checkbox functionality
+- Added a column internal_id in all tables in database
+- try adding functionality of duplicacy of employee code but it need stored proc feature first
+- Implement visit-plan page with call list table
+- Implemented a test page to test stored proc
+- working on stored proc returning value
+- use dtored proc on page and get result ferom code
+- push code
 
 19/11/2020 - 26/11/2020
 ---
@@ -672,27 +672,27 @@ on leave
 
 27/11/2020
 ---
-Execute stored proc to insert value in internal id.Make it working
-Change critera for
-Update, delete and add in organisation
-Update, delete and add in contact person
-update delete and add in call list
-update ,delete and add in employeemaster
-Changes in UI for hidden fields
-Created table tbl_visitplan in database
-Pending : search box draw on delete and update
-PHP Storm evaluation will expire
+- Execute stored proc to insert value in internal id.Make it working
+- Change critera for
+- Update, delete and add in organisation
+- Update, delete and add in contact person
+- update delete and add in call list
+- update ,delete and add in employeemaster
+- Changes in UI for hidden fields
+- Created table tbl_visitplan in database
+- Pending : search box draw on delete and update
+- PHP Storm evaluation will expire
 
 28/11/2020
 ---
-Check the visit plan page update delete and add.
-make dropdown in modal for organisation in visit plan and populate data from organisation table.
-make dropdown for person to meet and populate data according to organisation selected
-Created purpose dropdown and populate data from tbl_purpose
-Checked date filters working
-Show name instead if id in datatable
-Fix issue regarding entry in employee page
-Fix few errors in visit plan
+- Check the visit plan page update delete and add.
+- make dropdown in modal for organisation in visit plan and populate data from organisation table.
+- make dropdown for person to meet and populate data according to organisation selected
+- Created purpose dropdown and populate data from tbl_purpose
+- Checked date filters working
+- Show name instead if id in datatable
+- Fix issue regarding entry in employee page
+- Fix few errors in visit plan
 
 Pending: Reset icon functionality
 Removing options of dropdown
@@ -703,53 +703,36 @@ validations
 
 1/12/2020
 ---
-search box column in every field
-reset functionality on every page on update and add
-added column "nlogged_in_user_id" in 4 tables tbl_callList,tbl_visitplan,tbl_tour,tbl_contactperson
- Insert logged in user id in database  internally on all the 4 pages.
-prepare query to fetch result on call list
-Creating a new method in class ServiceLayer to implement common functionalty to fetch query in all 4 pages
+- search box column in every field
+- reset functionality on every page on update and add
+- added column "nlogged_in_user_id" in 4 tables tbl_callList,tbl_visitplan,tbl_tour,tbl_contactperson
+ - Insert logged in user id in database  internally on all the 4 pages.
+- prepare query to fetch result on call list
+- Creating a new method in class ServiceLayer to implement common functionalty to fetch query in all 4 pages
 
  2/12/2020
  --
 
-PHP Storm expires
-Download VS Code but is unsupported
-Try intelliJ but requires Ultimate version
-Look at date formats .....need to insert STR_TO_DATE() before date
-cron_jobs
-jenkins
+- PHP Storm expires
+- Download VS Code but is unsupported
+- Try intelliJ but requires Ultimate version
+- Look at date formats .....need to insert STR_TO_DATE() before date
+- cron_jobs
+- jenkins
 
-3/12/2020
----
-
- - Ask Ravindra Sir for PHPStorm License
- - Try out the free version for 30 day trial again
- - Implemented the permissionRoleQuery on
- 1. Call List Page
-2. Visit Plan Page
-3. Tour Page
-
-
-
-nctionality
-Removing options of dropdown
-Permissions role(add employee_id field in tbl_visitplan first)
-delete stored proc
-UI implementaion
-validations
 
 1/12/2020
 ---
-search box column in every field
-reset functionality on every page on update and add
-added column "nlogged_in_user_id" in 4 tables tbl_callList,tbl_visitplan,tbl_tour,tbl_contactperson
- Insert logged in user id in database  internally on all the 4 pages.
-prepare query to fetch result on call list
-Creating a new method in class ServiceLayer to implement common functionalty to fetch query in all 4 pages
+ - search box column in every field
+- reset functionality on every page on update and add
+- added column "nlogged_in_user_id" in 4 tables tbl_callList,tbl_visitplan,tbl_tour,tbl_contactperson
+-  Insert logged in user id in database  internally on all the 4 pages.
+- prepare query to fetch result on call list
+- Creating a new method in class ServiceLayer to implement common functionalty to fetch query in all 4 pages
 
+:spiral_calendar:
  2/12/2020
- --
+ ---
 
 PHP Storm expires
 Download VS Code but is unsupported
@@ -758,15 +741,19 @@ Look at date formats .....need to insert STR_TO_DATE() before date
 cron_jobs
 jenkins
 
-3/12/2020
----
+:spiral_calendar:	 3/12/2020
+--------------------
 
  - Ask Ravindra Sir for PHPStorm License
  - Try out the free version for 30 day trial again
  - Implemented the permissionRoleQuery on
- 1. Call List Page
-2. Visit Plan Page
-3. Tour Page
+1. ```Call List Page```
+2. ```Visit Plan Page```
+3. ```Tour Page```
+ - Clear the database and insert few entries from UI.
+- Test pages and permission role funtionality.
+- Backup Data and commit.
+
 
 
 
