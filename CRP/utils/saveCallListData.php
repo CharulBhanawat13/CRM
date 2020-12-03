@@ -71,13 +71,17 @@ if (isset($_POST['submitData'])) {
         $result = mysqli_query($conn, $sql_update);
         header("Location: ../controllers/callList.php");
     } else {
+        session_start();
+        if (isset($_SESSION['user_id']) ) {
+            $logged_in_user_id =(int) $_SESSION['user_id'];
+        }
         $internal_id=ServiceLayer::getMaximumID('tbl_callList','ninternal_id');
 
         $conn = OpenCon();
 
-        $sql = "INSERT INTO tbl_callList (ninternal_id,ncall_list_id,ddate,cphoneNumber,nperson_id,norg_id,npurpose_id,tbriefTalk,dnext_date,isActive,isAvailable,
+        $sql = "INSERT INTO tbl_callList (ninternal_id,ncall_list_id,nlogged_in_user_id,ddate,cphoneNumber,nperson_id,norg_id,npurpose_id,tbriefTalk,dnext_date,isActive,isAvailable,
             dcreated_date,dupdated_date) 
-			VALUES ($internal_id,$callListId,'$date','$phoneNumber',$personId,$organisationId,$purposeId,'$briefTalk','$nextDate',1,1,now(),now())";
+			VALUES ($internal_id,$callListId,$logged_in_user_id,'$date','$phoneNumber',$personId,$organisationId,$purposeId,'$briefTalk','$nextDate',1,1,now(),now())";
         $result = mysqli_query($conn, $sql);
         CloseCon($conn);
         header("Location: ../controllers/callList.php");

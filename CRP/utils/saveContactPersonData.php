@@ -69,13 +69,17 @@ if (isset($_POST['submitData'])) {
 
         header("Location: ../controllers/contactPerson.php");
     } else {
+        session_start();
+        if (isset($_SESSION['user_id']) ) {
+            $logged_in_user_id =(int) $_SESSION['user_id'];
+        }
         $internal_id=ServiceLayer::getMaximumID('tbl_contactperson','ninternal_id');
 
         $conn = OpenCon();
         // Save Data in tbl_employeemaster
-        $sql = "INSERT INTO tbl_contactperson (ninternal_id,ncontact_person_id,cperson_name,ndept_id,cmobile_number,cphone_number,cemail_id,norg_id,
+        $sql = "INSERT INTO tbl_contactperson (ninternal_id,ncontact_person_id,nlogged_in_user_id,cperson_name,ndept_id,cmobile_number,cphone_number,cemail_id,norg_id,
             isActive,isAvailable,dcreated_date,dupdated_date) 
-			VALUES ($internal_id,$contactPersonId,'$name',$department_id,'$mobileNumber','$phoneNumber','$emailId',$organisationId,1,1,now(),now())";
+			VALUES ($internal_id,$contactPersonId,$logged_in_user_id,'$name',$department_id,'$mobileNumber','$phoneNumber','$emailId',$organisationId,1,1,now(),now())";
 
         $result = mysqli_query($conn, $sql);
 

@@ -88,11 +88,15 @@ if (isset($_POST['submitData'])) {
         $result = mysqli_query($conn, $sql_update);
         header("Location: ../controllers/visitPlan.php");
     } else {
+        session_start();
+        if (isset($_SESSION['user_id']) ) {
+            $logged_in_user_id =(int) $_SESSION['user_id'];
+        }
         $internal_id=ServiceLayer::getMaximumID('tbl_visitplan','ninternal_id');
         $conn = OpenCon();
-        $sql = "INSERT INTO tbl_visitplan (ninternal_id,nvisit_plan_id,ddate,norg_id,ccity,nperson_to_meet_id,npurpose_id,tbriefTalk,dnext_date,isActive,isAvailable,
+        $sql = "INSERT INTO tbl_visitplan (ninternal_id,nvisit_plan_id,nlogged_in_user_id,ddate,norg_id,ccity,nperson_to_meet_id,npurpose_id,tbriefTalk,dnext_date,isActive,isAvailable,
             dcreated_date,dupdated_date) 
-			VALUES ($internal_id,$visitplan_id,'$date',$organisationId,'$city',$person_to_meet_id,$purposeId,'$briefTalk','$nextDate',1,1,now(),now())";
+			VALUES ($internal_id,$visitplan_id,$logged_in_user_id,'$date',$organisationId,'$city',$person_to_meet_id,$purposeId,'$briefTalk','$nextDate',1,1,now(),now())";
         $result = mysqli_query($conn, $sql);
         CloseCon($conn);
         header("Location: ../controllers/visitPlan.php");

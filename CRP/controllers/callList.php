@@ -23,8 +23,11 @@
 
 <?php
 include '../db_connection.php';
+require_once('../utils/ServiceLayer.php');
+
 
 $conn = OpenCon();
+$permissionRoleQuery=ServiceLayer::preparePermissionRoleQuery();
 
 $sql = "SELECT c.ninternal_id,c.ncall_list_id,c.ddate,c.cphoneNumber,c.norg_id,c.npurpose_id,c.tbriefTalk,c.dnext_date,c.isAvailable,o.corg_name,p.cpurpose_name
  from tbl_callList As c
@@ -32,7 +35,7 @@ JOIN tbl_organisation AS o
 ON c.norg_id=o.norg_id
 JOIN tbl_purpose AS p
 ON c.npurpose_id=p.npurpose_id 
-where c.isAvailable=1";
+where c.isAvailable=1 AND c.nlogged_in_user_id IN (".$permissionRoleQuery.")";
 if (isset($_POST['search'])){
     require_once('../utils/DateFilter.php');
    if(isset($_POST['nextDateCheckbox'])){
@@ -89,10 +92,8 @@ echo "<table id='callListTable'  name='callListTable' >
                    <tbody>
             ";
 while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
-
     echo "<tr>";
     echo "<td style='display:none;'>" . $row['ninternal_id'] . "</td>";
-
     echo "<td style='display:none;'>" . $row['ncall_list_id'] . "</td>";
     echo "<td ><a  href='#call_list_modal' data-toggle='modal' class='updateClass' data-id='2'><i class='fa fa-edit fa-2x'></i></a></td>";
     echo "<td>" . $row['ddate'] . "</td>";
@@ -338,4 +339,5 @@ CloseCon($conn);
         </div>
     </div>
 </form>
+
 </html>

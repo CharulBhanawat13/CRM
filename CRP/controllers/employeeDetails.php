@@ -24,6 +24,8 @@
 
         <?php
         include '../db_connection.php';
+    //    require_once('../utils/ServiceLayer.php');
+
         session_start();
         if (isset($_SESSION['userType']) && ($_SESSION['username'])) {
             $userType = $_SESSION['userType'];
@@ -38,28 +40,30 @@
         }
         $conn = OpenCon();
         $isAvailable = 1;
+    //    $sql=ServiceLayer::preparePermissionRoleQuery();
+
         $sql = "(select e.ninternal_id,e.nemployee_unique_id
 ,e.cengineer_name,e.caddress,e.ccity,e.cstate,e.ccountry,e.cmobile_number,e.cemail_id,e.ckey_ac_manager,e.isAvailable
-from tbl_employeemaster AS e where e.nemployee_unique_id=$user_id AND e.isAvailable=$isAvailable) 
+from tbl_employeemaster AS e where e.nemployee_unique_id=$user_id AND e.isAvailable=$isAvailable)
 union (select e.ninternal_id,e.nemployee_unique_id
 ,e.cengineer_name,e.caddress,ccity,e.cstate,e.ccountry,e.cmobile_number,e.cemail_id,e.ckey_ac_manager,e.isAvailable
-from tbl_employeemaster AS e where e.nkey_ac_manager_id=$user_id AND e.isAvailable=$isAvailable) 
-union 
+from tbl_employeemaster AS e where e.nkey_ac_manager_id=$user_id AND e.isAvailable=$isAvailable)
+union
 (select e2.ninternal_id,e2.nemployee_unique_id
 ,e2.cengineer_name,e2.caddress,e2.ccity,e2.cstate,e2.ccountry,e2.cmobile_number,e2.cemail_id,e2.ckey_ac_manager,e2.isAvailable
-from tbl_employeemaster AS e1 
-JOIN tbl_employeemaster AS e2 
+from tbl_employeemaster AS e1
+JOIN tbl_employeemaster AS e2
 ON e2.nkey_ac_manager_id=e1.nemployee_unique_id
- 
-where e1.nkey_ac_manager_id=$user_id AND e2.isAvailable=$isAvailable) 
-union 
+
+where e1.nkey_ac_manager_id=$user_id AND e2.isAvailable=$isAvailable)
+union
 (select e3.ninternal_id,e3.nemployee_unique_id
 ,e3.cengineer_name,e3.caddress,e3.ccity,e3.cstate,e3.ccountry,e3.cmobile_number,e3.cemail_id,e3.ckey_ac_manager,e3.isAvailable
-from tbl_employeemaster AS e1 
-JOIN tbl_employeemaster AS e2 
+from tbl_employeemaster AS e1
+JOIN tbl_employeemaster AS e2
 ON e2.nkey_ac_manager_id=e1.nemployee_unique_id
- 
-JOIN tbl_employeemaster AS e3 
+
+JOIN tbl_employeemaster AS e3
 ON e3.nkey_ac_manager_id=e2.nemployee_unique_id
 where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
 ";

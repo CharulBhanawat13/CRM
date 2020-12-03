@@ -1,99 +1,7 @@
 
-INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
- `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
-VALUES ('A','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,null,'C1' ,'Pyrotech Unit 2' , '787654321', '65798989' ,4, 'a@gmail' , 1 , 1 ,'a@123'  ,'a@123' ,  now(),now());
 
-
-INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
- `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
-VALUES ('B1','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,86,'A' ,'Pyrotech Unit 2' , '787654321', '65798989' ,3, 'b1@gmail' , 1 , 1 ,'b1@123'  ,'b1@123' ,  now(),now());
-
-INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
- `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
-VALUES ('B2','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,null,'A' ,'Pyrotech Unit 2' , '787654321', '65798989' ,3, 'a@gmail' , 1 , 1 ,'b2@123'  ,'b2@123' ,  now(),now());
-
-INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
- `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
-VALUES ('C1','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,87,'B1' ,'Pyrotech Unit 2' , '787654321', '65798989' ,2, 'c1@gmail' , 1 , 1 ,'c1@123'  ,'c1@123' ,  now(),now());
-
-
-INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
- `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
-VALUES ('C2','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,87,'B1' ,'Pyrotech Unit 2' , '787654321', '65798989' ,2, 'c2@gmail' , 1 , 1 ,'c2@123'  ,'c2@123' ,  now(),now());
-
-
-INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
- `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
-VALUES ('C3','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,88,'B2' ,'Pyrotech Unit 2' , '787654321', '65798989' ,2, 'c3@gmail' , 1 , 1 ,'c3@123'  ,'c3@123' ,  now(),now());
-
-
-INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
- `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
-VALUES ('C4','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,88,'B2' ,'Pyrotech Unit 2' , '787654321', '65798989' ,2, 'c4@gmail' , 1 , 1 ,'c4@123'  ,'c4@123' ,  now(),now());
-
------------------------------------------------------------
-
-INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
- `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
-VALUES ('D1','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,97,'C1' ,'Pyrotech Unit 2' , '787654321', '65798989' ,4, 'd1@gmail' , 1 , 1 ,'d1@123'  ,'d1@123' ,  now(),now());
-
-
-INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
- `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
-VALUES ('D2','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,97,'C1' ,'Pyrotech Unit 2' , '787654321', '65798989' ,4, 'd2@gmail' , 1 , 1 ,'d2@123'  ,'d2@123' ,  now(),now());
-
-
-INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
- `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
-VALUES ('D3','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,98,'C2' ,'Pyrotech Unit 2' , '787654321', '65798989' ,4, 'd3@gmail' , 1 , 1 ,'d3@123'  ,'d3@123' ,  now(),now());
-
-
-INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
- `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
-VALUES ('D4','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,98,'C2' ,'Pyrotech Unit 2' , '787654321', '65798989' ,4, 'd4@gmail' , 1 , 1 ,'d4@123'  ,'d4@123' ,  now(),now());
-
-
-INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
- `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
-VALUES ('D5','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,99,'C3' ,'Pyrotech Unit 2' , '787654321', '65798989' ,4, 'd5@gmail' , 1 , 1 ,'d5@123'  ,'d5@123' ,  now(),now());
-
-
-INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
- `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
-VALUES ('D6','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,99,'C3' ,'Pyrotech Unit 2' , '787654321', '65798989' ,4, 'd6@gmail' , 1 , 1 ,'d6@123'  ,'d6@123' ,  now(),now());
-
-
-INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
- `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
-VALUES ('D7','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,100,'C4' ,'Pyrotech Unit 2' , '787654321', '65798989' ,4, 'd7@gmail' , 1 , 1 ,'d7@123'  ,'d7@123' ,  now(),now());
-
-
-INSERT INTO `tbl_employeemaster`(`cengineer_name`, `ccity`, `cstate`, `ccountry`,`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`,
- `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`)
-VALUES ('D8','JAIPUR' ,'RAJASTHAN' ,'INDIA' ,100,'C4' ,'Pyrotech Unit 2' , '787654321', '65798989' ,4, 'd8@gmail' , 1 , 1 ,'d8@123'  ,'d8@123' ,  now(),now());
-
-
-======================
 
 // 200510276698
-
-INSERT INTO `tbl_organisation`
-(`nid`, `norg_id`, `corg_name`, `corg_address`, `corg_city`, `corg_state`, `corg_country`, `corg_mobileNumber`,
- `corg_emailId`, `norg_segment_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`)
-  VALUES (1,1,'Organisation A','Pyrotech Unit 1','UDAIPUR','RAJASTHAN','INDIA','987654321','orgA@123',
-  1,1,1,now(),now)
-
-  INSERT INTO `tbl_organisation`
-  (`nid`, `norg_id`, `corg_name`, `corg_address`, `corg_city`, `corg_state`, `corg_country`, `corg_mobileNumber`,
-   `corg_emailId`, `norg_segment_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`)
-    VALUES (2,2,'Organisation B','Pyrotech Unit 1','UDAIPUR','RAJASTHAN','INDIA','987654321','orgB@123',
-    2,1,1,now(),now())
-
-    INSERT INTO `tbl_organisation`
-(`nid`, `norg_id`, `corg_name`, `corg_address`, `corg_city`, `corg_state`, `corg_country`, `corg_mobileNumber`,
- `corg_emailId`, `norg_segment_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`)
-  VALUES (2,2,'Organisation C','Pyrotech Unit 1','UDAIPUR','RAJASTHAN','INDIA','987654321','orgC@123',
-  1,1,1,now(),now)
   -----------------------------------------------------------------------------
 CREATE PROCEDURE `test1`(IN @tab_name VARCHAR(40),IN @col_name VARCHAR(40))
 BEGIN
@@ -122,33 +30,57 @@ INSERT INTO `tbl_contactperson`(`nid`, `ncontact_person_id`, `cperson_name`, `cd
 `dupdated_date`) VALUES (1,1,'A','Cement','98989898','029423456','a@123','OrgA',1,1,now(),now());
 
 GETMAXIMUMID('tbl_test','nid')
-echo "
-<form method='post'>
-<div class='row'>
-        <div class='input-daterange'>
-            <div class='col-md-4'>
-                Start Date<input type='text' name='start_date' id='start_date' class='form-control' />
-            </div>
-            <div class='col-md-4'>
-                End Date<input type='text' name='end_date' id='end_date' class='form-control' />
-            </div>
-        </div>
-        <div class='col-md-4'>
-            <input type='submit' name='search' id='search' value='Search' class='btn btn-info' />
-        </div>
-    </div>
-    </form>";
-
-    SELECT c.ncall_list_id,c.ddate,c.cphoneNumber,c.norg_id,c.npurpose_id,c.tbriefTalk,c.dnext_date,c.isAvailable,o.corg_name,p.cpurpose_name
-     from tbl_callList As c
-    JOIN tbl_organisation AS o
-    ON c.norg_id=o.norg_id
-    JOIN tbl_purpose AS p
-    ON c.npurpose_id=p.npurpose_id
-    where c.isAvailable=1 and 'c.ddate'
-                              between '2020-11-29' and '2020-12-01'  ORDER BY 'c.ddate' DESC
+---------------------------------------------------------------------------------------------------------------
 
 
-INSERT INTO `tbl_visitplan`(`nid`, `ninternal_id`, `nvisit_plan_id`, `ddate`, `norg_id`, `ccity`, `nperson_to_meet_id`,
- `npurpose_id`, `tbriefTalk`, `dnext_date`, `isAvailable`, `isActive`, `dcreated_date`, `dupdated_date`)
-  VALUES (1,1,1,now(),1,'UDAIPUR',1,1,'hey That',now(),1,1,now(),now())
+select * from tbl_contactperson where nlogged_in_user_id IN
+(select * FROM
+(
+(select e.nemployee_unique_id
+from tbl_employeemaster AS e where e.nemployee_unique_id=86 AND e.isAvailable=1)
+
+union (select e.nemployee_unique_id
+from tbl_employeemaster AS e where e.nkey_ac_manager_id=86 AND e.isAvailable=1)
+
+union
+(select e2.nemployee_unique_id
+from tbl_employeemaster AS e1
+JOIN tbl_employeemaster AS e2
+ON e2.nkey_ac_manager_id=e1.nemployee_unique_id
+where e1.nkey_ac_manager_id=86 AND e2.isAvailable=1)
+
+union
+(select e3.nemployee_unique_id
+from tbl_employeemaster AS e1
+JOIN tbl_employeemaster AS e2
+ON e2.nkey_ac_manager_id=e1.nemployee_unique_id
+JOIN tbl_employeemaster AS e3
+ON e3.nkey_ac_manager_id=e2.nemployee_unique_id
+where e1.nkey_ac_manager_id=86 AND e3.isAvailable=1)
+) AS q1
+
+----------------------------------------------------------------
+--------------------------------------------------------------
+select * from(
+    	(select e.nemployee_unique_id
+        from tbl_employeemaster AS e where e.nemployee_unique_id=86 AND e.isAvailable=1)
+
+        union (select e.nemployee_unique_id
+       	from tbl_employeemaster AS e where e.nkey_ac_manager_id=86 AND e.isAvailable=1)
+
+        union
+        (select e2.nemployee_unique_id
+        from tbl_employeemaster AS e1
+        JOIN tbl_employeemaster AS e2
+        ON e2.nkey_ac_manager_id=e1.nemployee_unique_id
+        where e1.nkey_ac_manager_id=86 AND e2.isAvailable=1)
+
+        union
+        (select e3.nemployee_unique_id
+         from tbl_employeemaster AS e1
+        JOIN tbl_employeemaster AS e2
+        ON e2.nkey_ac_manager_id=e1.nemployee_unique_id
+        JOIN tbl_employeemaster AS e3
+        ON e3.nkey_ac_manager_id=e2.nemployee_unique_id
+        where e1.nkey_ac_manager_id=86 AND e3.isAvailable=1)
+		) AS q1

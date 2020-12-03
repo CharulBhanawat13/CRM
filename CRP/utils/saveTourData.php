@@ -85,11 +85,15 @@ if (isset($_POST['submitData'])) {
         $result = mysqli_query($conn, $sql_update);
         header("Location: ../controllers/tour.php");
     } else {
+        session_start();
+        if (isset($_SESSION['user_id']) ) {
+            $logged_in_user_id =(int) $_SESSION['user_id'];
+        }
         $internal_id=ServiceLayer::getMaximumID('tbl_tour','ninternal_id');
         $conn = OpenCon();
-        $sql = "INSERT INTO tbl_tour (ninternal_id,ntour_id,ddate,norg_id,nperson_to_meet_id,npurpose_id,tbriefTalk,dnext_date,isActive,isAvailable,
+        $sql = "INSERT INTO tbl_tour (ninternal_id,ntour_id,nlogged_in_user_id,ddate,norg_id,nperson_to_meet_id,npurpose_id,tbriefTalk,dnext_date,isActive,isAvailable,
             dcreated_date,dupdated_date) 
-			VALUES ($internal_id,$tour_id,'$date',$organisationId,$person_to_meet_id,$purposeId,'$briefTalk','$nextDate',1,1,now(),now())";
+			VALUES ($internal_id,$tour_id,$logged_in_user_id,'$date',$organisationId,$person_to_meet_id,$purposeId,'$briefTalk','$nextDate',1,1,now(),now())";
         $result = mysqli_query($conn, $sql);
         CloseCon($conn);
         header("Location: ../controllers/tour.php");

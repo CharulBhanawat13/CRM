@@ -23,8 +23,10 @@
 
 <?php
 include '../db_connection.php';
+require_once('../utils/ServiceLayer.php');
 
 $conn = OpenCon();
+$permissionRoleQuery=ServiceLayer::preparePermissionRoleQuery();
 
 $sql = "SELECT t.ninternal_id,t.ntour_id,t.ddate,t.norg_id,t.nperson_to_meet_id,t.npurpose_id,t.tbriefTalk,
 t.dnext_date,t.isAvailable,
@@ -38,7 +40,7 @@ JOIN tbl_contactperson AS c
 ON t.nperson_to_meet_id=c.ncontact_person_id
 JOIN tbl_organisation AS o 
 ON o.norg_id=t.norg_id
-where t.isAvailable=1";
+where t.isAvailable=1 AND t.nlogged_in_user_id IN (".$permissionRoleQuery.")";
 if (isset($_POST['search'])){
     require_once('../utils/DateFilter.php');
     if(isset($_POST['nextDateCheckbox'])){

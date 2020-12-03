@@ -20,11 +20,13 @@ table {
     border-spacing: 0;
     width: 100%;
     border: 1px solid #ddd;
+
 }
 
 th {
     text-align: left;
     padding: 10px !important;
+    font-family: "Lucida Console", Courier, monospace;
 }
 
 td {
