@@ -774,6 +774,8 @@ PHPStorm through AnyDesk
 - Make changes for calling a PHP method through accordian
 - Test the code
 - Looking for UI of Accordian or popOver
+- Add an notification bell icon
+- improve the UI 
 - 
 
 

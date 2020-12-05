@@ -141,7 +141,7 @@
       <workItem from="1607070810888" duration="11174000" />
       <workItem from="1607083800117" duration="100000" />
       <workItem from="1607083940782" duration="671000" />
-      <workItem from="1607141356976" duration="15067000" />
+      <workItem from="1607141356976" duration="20443000" />
     </task>
     <servers />
   </component>
@@ -334,11 +334,6 @@
           <url>file://$PROJECT_DIR$/utils/ServiceLayer.php</url>
           <line>41</line>
           <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/dashboard.php</url>
-          <line>42</line>
-          <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/utils/ServiceLayer.php</url>

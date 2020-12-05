@@ -32,3 +32,12 @@ Select T2.cperson_name from tbl_callList as T1
         join tbl_contactperson AS T2
         ON T2.ncontact_person_id=T1.nperson_id
         where T1.dnext_date=now() AND T1.nlogged_in_user_id=1
+
+    Popover
+    ---------
+         <button id="call_list_button" name="call_list_button" class="accordion">Call List</button>
+                <div class="panel">
+                    <p><?php
+                        $sql= ServiceLayer::getGridInformation('tbl_callList','nperson_id',$user_id);
+                    echo $sql?></p>
+                </div>
