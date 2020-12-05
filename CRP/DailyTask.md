@@ -755,6 +755,25 @@ jenkins
 - Backup Data and commit.
 - Change all date formats to dd-mm-yyyy and check all pages.
 
+:spiral_calendar:	 4/12/2020
+--------------
+PHPStorm through AnyDesk
+ - Try CSS for accordian
+ - Implemented Accordian
+ - Created a new method for fetching information to be put in details of accordian
+ - Again set the configuration for debug
+ - Trying to fetch the result from db in details.
 
+:spiral_calendar:	 5/12/2020
+----------------------------
+ - Make Query in dashboard for
+1. Visit plan notification
+2. Call List Notification
+3. Tour Notification
+
+- Make changes for calling a PHP method through accordian
+- Test the code
+- Looking for UI of Accordian or popOver
+- 
 
 

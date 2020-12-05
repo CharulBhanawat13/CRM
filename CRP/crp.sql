@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2020 at 09:12 AM
+-- Generation Time: Dec 05, 2020 at 09:49 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -73,7 +73,10 @@ CREATE TABLE `tbl_calllist` (
 --
 
 INSERT INTO `tbl_calllist` (`nid`, `ncall_list_id`, `ddate`, `cphoneNumber`, `nperson_id`, `norg_id`, `npurpose_id`, `tbriefTalk`, `dnext_date`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`, `ninternal_id`, `nlogged_in_user_id`) VALUES
-(10, 1, '2020-12-03', '879789', 1, 1, 1, 'first Entry', '2021-01-09', b'1', b'1', '2020-12-03 13:38:45', '2020-12-03 13:38:45', 1, 4);
+(10, 1, '2020-12-03', '879789', 1, 1, 1, 'first Entry', '2021-01-09', b'1', b'1', '2020-12-03 13:38:45', '2020-12-03 13:38:45', 1, 4),
+(11, 2, '2020-12-03', '89879789', 1, 1, 2, 'date format', '2020-12-03', b'1', b'1', '2020-12-03 14:48:37', '2020-12-03 14:48:37', 2, 1),
+(12, 977234, '2020-12-08', '9352527680', 977234, 977234, 1, 'Discuss about dalmia cement regarding order of 40L', '2020-12-09', b'1', b'1', '2020-12-05 09:52:42', '2020-12-05 09:52:42', 3, 1),
+(13, 967822, '2020-12-05', '91', 967822, 1, 1, 'hello', '2020-12-05', b'1', b'1', '2020-12-05 10:10:54', '2020-12-05 10:10:54', 4, 4802);
 
 -- --------------------------------------------------------
 
@@ -128,7 +131,9 @@ CREATE TABLE `tbl_contactperson` (
 
 INSERT INTO `tbl_contactperson` (`nid`, `ncontact_person_id`, `nlogged_in_user_id`, `cperson_name`, `ndept_id`, `cmobile_number`, `cphone_number`, `cemail_id`, `norg_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`, `ninternal_id`) VALUES
 (6, 1, 1, 'PersonName A', 1, '09809780978', '0809780987', 'pna@123', 3, b'1', b'1', '2020-12-03 12:53:55', '2020-12-03 12:53:55', 1),
-(7, 2, 4, 'CP A', 1, '870989890', '8797897679', 'cpa@123', 1, b'1', b'1', '2020-12-03 13:36:25', '2020-12-03 13:36:25', 2);
+(7, 2, 4, 'CP A', 1, '870989890', '8797897679', 'cpa@123', 1, b'1', b'1', '2020-12-03 13:36:25', '2020-12-03 13:36:25', 2),
+(8, 977234, 1, 'Anand krishna', 1, '9352527680', '9352527680', 'anandk18@gmail.com', 977234, b'1', b'1', '2020-12-05 09:51:42', '2020-12-05 09:51:42', 3),
+(9, 967822, 1, 'Mr Chandresh Chauhan', 1, '8755603838', '91', 'chandresh.chauhan@airliquide.com', 1, b'1', b'1', '2020-12-05 09:57:25', '2020-12-05 09:57:25', 4);
 
 -- --------------------------------------------------------
 
@@ -195,7 +200,10 @@ INSERT INTO `tbl_employeemaster` (`nemployee_unique_id`, `cengineer_name`, `ccit
 (5, 'C2', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 2, 'B1', 'PU2', '9789698', '6798798', '2', 'c2@123', b'1', b'1', 'c2@123', 'c2@123', '2020-12-03 12:46:58', '0000-00-00 00:00:00', 143, 5),
 (6, 'C3', 'JAIPUR', 'RAJASTHAN', 'INDIA', 3, 'B2', 'PU3', '980707099', '7807809780', '2', 'c3@123', b'1', b'1', 'c3@123', 'c3@123', '2020-12-03 12:47:42', '0000-00-00 00:00:00', 144, 6),
 (7, 'C4', 'AHEMDABAD', 'GUJRAT', 'INDIA', 3, 'B2', 'PU4', '8709798', '780780', '2', 'c4@123', b'1', b'1', 'c4@123', 'c4@123', '2020-12-03 12:48:38', '0000-00-00 00:00:00', 145, 7),
-(8, 'D1', 'AHEMDABAD', 'GUJRAT', 'INDIA', 4, 'C!', 'PU1', '7978978', '780890809', '1', 'd1@123', b'1', b'1', 'd1@123', 'd1@123', '2020-12-03 12:49:30', '2020-12-03 12:49:44', 146, 8);
+(8, 'D1', 'AHEMDABAD', 'GUJRAT', 'INDIA', 4, 'C!', 'PU1', '7978978', '780890809', '1', 'd1@123', b'1', b'1', 'd1@123', 'd1@123', '2020-12-03 12:49:30', '2020-12-03 12:49:44', 146, 8),
+(4806, 'Vishnu', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 1, 'Admin', '123. Kanpur , Udaipur ', '9024859461', '9352513959', '3', 'vprajapat@pyrotechlighting.com', b'1', b'1', 'vishnu', 'vishnu', '2020-12-03 14:21:59', '0000-00-00 00:00:00', 147, 9),
+(4871, 'Anand Sinha', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 5, 'C2', 'Udaipur', '8107807072', '9352527680', '1', 'southpyrotech@gmail.com', b'1', b'1', 'anand810', '8107807072', '2020-12-05 09:48:37', '0000-00-00 00:00:00', 148, 10),
+(4802, 'Pradeep Paliwal', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 1, 'Admin', 'Panchwati Mohalla, Tehsil Road, Mavli', '8766036863', '9829114202', '4', 'peplgujarat4@gmail.com', b'1', b'1', 'PP@123', 'PP@123', '2020-12-05 09:50:41', '0000-00-00 00:00:00', 149, 11);
 
 -- --------------------------------------------------------
 
@@ -226,7 +234,9 @@ CREATE TABLE `tbl_organisation` (
 --
 
 INSERT INTO `tbl_organisation` (`nid`, `norg_id`, `corg_name`, `corg_address`, `corg_city`, `corg_state`, `corg_country`, `corg_mobileNumber`, `corg_emailId`, `norg_segment_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`, `ninternal_id`) VALUES
-(8, 1, 'Organisation A', 'Pyrtotech A', 'AHEMDABAD', 'GUJRAT', 'INDIA', '780808709', '78978987', 1, b'1', b'1', '2020-12-03 12:58:32', '2020-12-03 12:58:32', 1);
+(8, 1, 'Organisation A', 'Pyrtotech A', 'AHEMDABAD', 'GUJRAT', 'INDIA', '780808709', '78978987', 1, b'1', b'1', '2020-12-03 12:58:32', '2020-12-03 12:58:32', 1),
+(9, 977234, 'Siri Power System', 'chennai radhakrishna nagar ', 'BANG KHEN', 'BANGKOK', 'THAILAND', '9352527680', 'anandk18@gmail.com', 1, b'1', b'1', '2020-12-05 09:50:56', '2020-12-05 09:50:56', 2),
+(10, 967822, 'AIR LIQUIDE INDIA HOLDING PVT LTD', '38/1, G.I.D.C. Industrial Estate, Jhagadia - 39311', 'AHEMDABAD', 'GUJRAT', 'INDIA', '8755603838', 'chandresh.chauhan@airliquide.com', 1, b'1', b'1', '2020-12-05 09:56:08', '2020-12-05 09:56:08', 3);
 
 -- --------------------------------------------------------
 
@@ -322,6 +332,15 @@ CREATE TABLE `tbl_tour` (
   `dupdated_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tbl_tour`
+--
+
+INSERT INTO `tbl_tour` (`nid`, `ninternal_id`, `ntour_id`, `nlogged_in_user_id`, `ddate`, `norg_id`, `nperson_to_meet_id`, `npurpose_id`, `tbriefTalk`, `dnext_date`, `isAvailable`, `isActive`, `dcreated_date`, `dupdated_date`) VALUES
+(3, 1, 1, 1, '2020-12-03', 1, 2, 1, 'first entry', '2020-12-04', b'1', b'1', '2020-12-03 14:51:52', '2020-12-03 14:51:52'),
+(4, 2, 977234, 1, '2020-12-09', 977234, 977234, 1, 'dalmia offrer discussion', '2020-12-09', b'1', b'1', '2020-12-05 09:53:58', '2020-12-05 09:53:58'),
+(5, 3, 4802, 4802, '2020-12-07', 1, 967822, 1, 'Hello', '2020-12-07', b'1', b'1', '2020-12-05 10:12:24', '2020-12-05 10:12:24');
+
 -- --------------------------------------------------------
 
 --
@@ -351,7 +370,9 @@ CREATE TABLE `tbl_visitplan` (
 --
 
 INSERT INTO `tbl_visitplan` (`nid`, `ninternal_id`, `nvisit_plan_id`, `nlogged_in_user_id`, `ddate`, `norg_id`, `ccity`, `nperson_to_meet_id`, `npurpose_id`, `tbriefTalk`, `dnext_date`, `isAvailable`, `isActive`, `dcreated_date`, `dupdated_date`) VALUES
-(10, 1, 1, 4, '2020-12-02', 1, 'JAIPUR', 2, 1, 'first entry', '2020-12-04', b'1', b'1', '2020-12-03 13:39:31', '2020-12-03 13:39:31');
+(10, 1, 1, 4, '2020-12-02', 1, 'JAIPUR', 2, 1, 'first entry', '2020-12-04', b'1', b'1', '2020-12-03 13:39:31', '2020-12-03 13:39:31'),
+(11, 2, 977234, 1, '2020-12-09', 977234, 'chennai', 977234, 1, 'Dalmai', '2020-12-09', b'1', b'1', '2020-12-05 09:53:20', '2020-12-05 09:53:20'),
+(12, 3, 4802, 4802, '2020-12-07', 1, 'Ahmedabad', 967822, 1, 'Hello', '2020-12-07', b'1', b'1', '2020-12-05 10:11:48', '2020-12-05 10:11:48');
 
 --
 -- Indexes for dumped tables
@@ -425,7 +446,7 @@ ALTER TABLE `tbl_visitplan`
 -- AUTO_INCREMENT for table `tbl_calllist`
 --
 ALTER TABLE `tbl_calllist`
-  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tbl_city_state_country`
@@ -437,19 +458,19 @@ ALTER TABLE `tbl_city_state_country`
 -- AUTO_INCREMENT for table `tbl_contactperson`
 --
 ALTER TABLE `tbl_contactperson`
-  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_employeemaster`
 --
 ALTER TABLE `tbl_employeemaster`
-  MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
+  MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 
 --
 -- AUTO_INCREMENT for table `tbl_organisation`
 --
 ALTER TABLE `tbl_organisation`
-  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_purpose`
@@ -473,13 +494,13 @@ ALTER TABLE `tbl_test`
 -- AUTO_INCREMENT for table `tbl_tour`
 --
 ALTER TABLE `tbl_tour`
-  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_visitplan`
 --
 ALTER TABLE `tbl_visitplan`
-  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

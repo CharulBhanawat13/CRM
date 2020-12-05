@@ -27,3 +27,8 @@ INSERT INTO `tbl_employeemaster`(`nemployee_unique_id`, `cengineer_name`, `ccity
 `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`, `nid`,`ninternal_id`)
 VALUES (1,'Admin','UDAIPUR','RAJASTHAN','INDIA',null,null,'Pyrotech Unit 1','987654321','9876543210',
 1,'a@123',1,1,'a@123','a@123',now(),now(),1,1)
+
+Select T2.cperson_name from tbl_callList as T1
+        join tbl_contactperson AS T2
+        ON T2.ncontact_person_id=T1.nperson_id
+        where T1.dnext_date=now() AND T1.nlogged_in_user_id=1

@@ -19,6 +19,31 @@ class ServiceLayer
         return $internal_id;
     }
 
+    function getGridInformation($table_name,$column_name,$user_id)
+    {
+
+        $conn = OpenCon();
+        $sql = "Select T2.cperson_name from " . $table_name . " as T1 
+        join tbl_contactperson AS T2
+        ON T2.ncontact_person_id=T1." . $column_name . "
+        where T1.dnext_date=now() AND T1.nlogged_in_user_id=$user_id";
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+            $msg="You have a meeting with ";
+            while ($row = mysqli_fetch_array($result)) {
+                $msg=$msg ." ".$row['cperson_name'];
+            }
+        }else{
+            $msg="You have no meetings for today";
+        }
+
+
+        return $msg;
+        CloseCon(conn);
+
+    }
+
 function preparePermissionRoleQuery(){
     session_start();
     if (isset($_SESSION['user_id'])) {
@@ -52,3 +77,4 @@ function preparePermissionRoleQuery(){
     }
 
 }
+?>
