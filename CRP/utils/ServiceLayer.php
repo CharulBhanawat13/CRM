@@ -26,7 +26,7 @@ class ServiceLayer
         $sql = "Select T2.cperson_name from " . $table_name . " as T1 
         join tbl_contactperson AS T2
         ON T2.ncontact_person_id=T1." . $column_name . "
-        where T1.dnext_date=now() AND T1.nlogged_in_user_id=$user_id";
+        where  T1.dnext_date=now() AND T1.nlogged_in_user_id=$user_id";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
@@ -37,8 +37,6 @@ class ServiceLayer
         }else{
             $msg="You have no meetings for today";
         }
-
-
         return $msg;
         CloseCon(conn);
 

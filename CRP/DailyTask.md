@@ -775,7 +775,7 @@ PHPStorm through AnyDesk
 - Test the code
 - Looking for UI of Accordian or popOver
 - Add an notification bell icon
-- improve the UI 
+- improve the UI
 - 
 
 

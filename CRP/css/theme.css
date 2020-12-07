@@ -34,10 +34,10 @@ td {
     padding: 10px !important;
 }
 
-tr:nth-child(even) {
+
+td:nth-child(even) {
     background-color: #f2f2f2;
 }
-
 tfoot {
     display: table-header-group;
 }
