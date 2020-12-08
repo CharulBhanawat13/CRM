@@ -223,6 +223,8 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                                 $(".modal-body #name").val(row_data.cengineer_name);
                                 $(".modal-body #address").val(row_data.caddress);
                                 $(".modal-body #city-dropdown").val(row_data.ccity);
+                                $(".modal-body #division-dropdown").val(row_data.ndivision_id);
+
                                 $(".modal-body #mobileNumber").val(row_data.cmobile_number);
                                 $(".modal-body #altMobileNumber").val(row_data.calt_mobile_number);
                                 $(".modal-body #email").val(row_data.cemail_id);
@@ -385,6 +387,29 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                                         </select>
                                     </td>
                                 </tr>
+
+                                <tr>
+                                    <td>Division</td>
+                                    <td>
+                                        <select class="form-control" name="division" id="division-dropdown" required>
+                                            <option value="">Select Divsion</option>
+                                            <?php
+                                            require_once "../db_connection.php";
+                                            $conn = OpenCon();
+
+                                            $result = mysqli_query($conn, "SELECT * FROM tbl_division");
+                                            while ($row = mysqli_fetch_array($result)) {
+                                                ?>
+                                                <option value="<?php echo $row["ndivision_id"]; ?>"><?php echo $row["cdivision_name"]; ?></option>
+                                                <?php
+                                            }
+                                            CloseCon($conn);
+                                            ?>
+                                        </select>
+
+                                    </td>
+                                </tr>
+
                                 <tr>
                                     <td>Username</td>
                                     <td>

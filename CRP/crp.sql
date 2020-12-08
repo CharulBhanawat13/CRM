@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2020 at 09:49 AM
+-- Generation Time: Dec 08, 2020 at 07:38 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -162,6 +162,32 @@ INSERT INTO `tbl_department` (`nid`, `ndept_id`, `cdept_name`, `isActive`, `isAv
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_division`
+--
+
+CREATE TABLE `tbl_division` (
+  `nid` int(10) NOT NULL,
+  `ninternal_id` int(10) NOT NULL,
+  `ndivision_id` int(10) NOT NULL,
+  `cdivision_name` char(50) NOT NULL,
+  `isActive` bit(1) NOT NULL,
+  `isAvailable` bit(1) NOT NULL,
+  `dcreated_date` datetime NOT NULL,
+  `dupdated_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_division`
+--
+
+INSERT INTO `tbl_division` (`nid`, `ninternal_id`, `ndivision_id`, `cdivision_name`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`) VALUES
+(1, 1, 1, 'LIGHTING', b'1', b'1', '2020-12-08 10:40:31', '2020-12-08 10:40:31'),
+(2, 2, 2, 'DRIVER', b'1', b'1', '2020-12-08 10:40:31', '2020-12-08 10:40:31'),
+(3, 3, 3, 'PEPL', b'1', b'1', '2020-12-08 10:40:31', '2020-12-08 10:40:31');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_employeemaster`
 --
 
@@ -177,6 +203,7 @@ CREATE TABLE `tbl_employeemaster` (
   `cmobile_number` varchar(10) NOT NULL,
   `calt_mobile_number` varchar(10) NOT NULL,
   `cuser_type` varchar(50) NOT NULL,
+  `ndivision_id` int(10) NOT NULL,
   `cemail_id` varchar(50) NOT NULL,
   `isAvailable` bit(1) NOT NULL,
   `isActive` bit(1) NOT NULL,
@@ -192,18 +219,19 @@ CREATE TABLE `tbl_employeemaster` (
 -- Dumping data for table `tbl_employeemaster`
 --
 
-INSERT INTO `tbl_employeemaster` (`nemployee_unique_id`, `cengineer_name`, `ccity`, `cstate`, `ccountry`, `nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`, `calt_mobile_number`, `cuser_type`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`, `nid`, `ninternal_id`) VALUES
-(1, 'Admin', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 0, 'null', 'Pyrotech Unit 1', '987654321', '9876543210', '4', 'a@123', b'1', b'1', 'a@123', 'a@123', '2020-12-03 12:25:46', '2020-12-03 12:25:46', 1, 1),
-(2, 'B1', 'BANG KHEN', 'BANGKOK', 'THAILAND', 1, 'Admin', 'PU1', '987987987', '987987987', '3', 'b1@123', b'1', b'1', 'b1@123', 'b1@123', '2020-12-03 12:34:17', '0000-00-00 00:00:00', 139, 2),
-(3, 'B2', 'JAIPUR', 'RAJASTHAN', 'INDIA', 1, 'Admin', 'PU2', '34343434', '545454545', '3', 'b2@123', b'1', b'1', 'b2@123', 'b2@123', '2020-12-03 12:35:57', '0000-00-00 00:00:00', 140, 3),
-(4, 'C!', 'JAIPUR', 'RAJASTHAN', 'INDIA', 2, 'B1', 'PU!1', '8796979879', '8796979879', '2', 'c1@123', b'1', b'1', 'c1@123', 'c1@123', '2020-12-03 12:44:53', '0000-00-00 00:00:00', 142, 4),
-(5, 'C2', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 2, 'B1', 'PU2', '9789698', '6798798', '2', 'c2@123', b'1', b'1', 'c2@123', 'c2@123', '2020-12-03 12:46:58', '0000-00-00 00:00:00', 143, 5),
-(6, 'C3', 'JAIPUR', 'RAJASTHAN', 'INDIA', 3, 'B2', 'PU3', '980707099', '7807809780', '2', 'c3@123', b'1', b'1', 'c3@123', 'c3@123', '2020-12-03 12:47:42', '0000-00-00 00:00:00', 144, 6),
-(7, 'C4', 'AHEMDABAD', 'GUJRAT', 'INDIA', 3, 'B2', 'PU4', '8709798', '780780', '2', 'c4@123', b'1', b'1', 'c4@123', 'c4@123', '2020-12-03 12:48:38', '0000-00-00 00:00:00', 145, 7),
-(8, 'D1', 'AHEMDABAD', 'GUJRAT', 'INDIA', 4, 'C!', 'PU1', '7978978', '780890809', '1', 'd1@123', b'1', b'1', 'd1@123', 'd1@123', '2020-12-03 12:49:30', '2020-12-03 12:49:44', 146, 8),
-(4806, 'Vishnu', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 1, 'Admin', '123. Kanpur , Udaipur ', '9024859461', '9352513959', '3', 'vprajapat@pyrotechlighting.com', b'1', b'1', 'vishnu', 'vishnu', '2020-12-03 14:21:59', '0000-00-00 00:00:00', 147, 9),
-(4871, 'Anand Sinha', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 5, 'C2', 'Udaipur', '8107807072', '9352527680', '1', 'southpyrotech@gmail.com', b'1', b'1', 'anand810', '8107807072', '2020-12-05 09:48:37', '0000-00-00 00:00:00', 148, 10),
-(4802, 'Pradeep Paliwal', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 1, 'Admin', 'Panchwati Mohalla, Tehsil Road, Mavli', '8766036863', '9829114202', '4', 'peplgujarat4@gmail.com', b'1', b'1', 'PP@123', 'PP@123', '2020-12-05 09:50:41', '0000-00-00 00:00:00', 149, 11);
+INSERT INTO `tbl_employeemaster` (`nemployee_unique_id`, `cengineer_name`, `ccity`, `cstate`, `ccountry`, `nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`, `calt_mobile_number`, `cuser_type`, `ndivision_id`, `cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`, `nid`, `ninternal_id`) VALUES
+(1, 'Admin', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 0, 'null', 'Pyrotech Unit 1', '987654321', '9876543210', '4', 2, 'a@123', b'1', b'1', 'a@123', 'a@123', '2020-12-03 12:25:46', '2020-12-03 12:25:46', 1, 1),
+(2, 'B1', 'BANG KHEN', 'BANGKOK', 'THAILAND', 1, 'Admin', 'PU1', '987987987', '987987987', '3', 1, 'b1@123', b'1', b'1', 'b1@123', 'b1@123', '2020-12-03 12:34:17', '0000-00-00 00:00:00', 139, 2),
+(3, 'B2', 'JAIPUR', 'RAJASTHAN', 'INDIA', 1, 'Admin', 'PU2', '34343434', '545454545', '3', 3, 'b2@123', b'1', b'1', 'b2@123', 'b2@123', '2020-12-03 12:35:57', '0000-00-00 00:00:00', 140, 3),
+(4, 'C!', 'JAIPUR', 'RAJASTHAN', 'INDIA', 2, 'B1', 'PU!1', '8796979879', '8796979879', '2', 2, 'c1@123', b'1', b'1', 'c1@123', 'c1@123', '2020-12-03 12:44:53', '0000-00-00 00:00:00', 142, 4),
+(5, 'C2', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 2, 'B1', 'PU2', '9789698', '6798798', '2', 1, 'c2@123', b'1', b'1', 'c2@123', 'c2@123', '2020-12-03 12:46:58', '0000-00-00 00:00:00', 143, 5),
+(6, 'C3', 'JAIPUR', 'RAJASTHAN', 'INDIA', 3, 'B2', 'PU3', '980707099', '7807809780', '2', 3, 'c3@123', b'1', b'1', 'c3@123', 'c3@123', '2020-12-03 12:47:42', '0000-00-00 00:00:00', 144, 6),
+(7, 'C4', 'AHEMDABAD', 'GUJRAT', 'INDIA', 3, 'B2', 'PU4', '8709798', '780780', '2', 2, 'c4@123', b'1', b'1', 'c4@123', 'c4@123', '2020-12-03 12:48:38', '0000-00-00 00:00:00', 145, 7),
+(8, 'D1', 'AHEMDABAD', 'GUJRAT', 'INDIA', 4, 'C!', 'PU1', '7978978', '780890809', '1', 1, 'd1@123', b'1', b'1', 'd1@123', 'd1@123', '2020-12-03 12:49:30', '2020-12-03 12:49:44', 146, 8),
+(4806, 'Vishnu', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 1, 'Admin', '123. Kanpur , Udaipur ', '9024859461', '9352513959', '3', 3, 'vprajapat@pyrotechlighting.com', b'1', b'1', 'vishnu', 'vishnu', '2020-12-03 14:21:59', '0000-00-00 00:00:00', 147, 9),
+(4871, 'Anand Sinha', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 5, 'C2', 'Udaipur', '8107807072', '9352527680', '1', 2, 'southpyrotech@gmail.com', b'1', b'1', 'anand810', '8107807072', '2020-12-05 09:48:37', '0000-00-00 00:00:00', 148, 10),
+(4802, 'Pradeep Paliwal', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 1, 'Admin', 'Panchwati Mohalla, Tehsil Road, Mavli', '8766036863', '9829114202', '4', 1, 'peplgujarat4@gmail.com', b'1', b'1', 'PP@123', 'PP@123', '2020-12-05 09:50:41', '0000-00-00 00:00:00', 149, 11),
+(123, '123user', 'AHEMDABAD', 'GUJRAT', 'INDIA', 1, 'Admin', 'pu2', '6587568', '678678', '3', 1, '123@123', b'1', b'1', '123@123', '123@123', '2020-12-08 12:02:12', '2020-12-08 12:05:55', 153, 12);
 
 -- --------------------------------------------------------
 
@@ -397,6 +425,12 @@ ALTER TABLE `tbl_contactperson`
   ADD PRIMARY KEY (`nid`);
 
 --
+-- Indexes for table `tbl_division`
+--
+ALTER TABLE `tbl_division`
+  ADD PRIMARY KEY (`nid`);
+
+--
 -- Indexes for table `tbl_employeemaster`
 --
 ALTER TABLE `tbl_employeemaster`
@@ -461,10 +495,16 @@ ALTER TABLE `tbl_contactperson`
   MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `tbl_division`
+--
+ALTER TABLE `tbl_division`
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `tbl_employeemaster`
 --
 ALTER TABLE `tbl_employeemaster`
-  MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+  MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
 
 --
 -- AUTO_INCREMENT for table `tbl_organisation`

@@ -776,6 +776,21 @@ PHPStorm through AnyDesk
 - Looking for UI of Accordian or popOver
 - Add an notification bell icon
 - improve the UI
-- 
+
+:spiral_calendar:	 6/12/2020
+----------------------------
+Sunday
+
+:spiral_calendar:	 7/12/2020
+----------------------------
+ - UI of dashboard
+
+:spiral_calendar:	 8/12/2020
+----------------------------
+ - Created table for Division
+  -  Add 3 entries
+ - added new column in tbl_emplyee_master as ndivision_id
+ - 
+
 
 

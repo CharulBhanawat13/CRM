@@ -34,6 +34,7 @@ if (isset($_POST['id_toUpdate'])) {
             "ckey_ac_manager" => $row['ckey_ac_manager'],
             "nkey_ac_manager_id" => $row['nkey_ac_manager_id'],
             "cuser_type" => $row['cuser_type'],
+            "ndivision_id" =>$row['ndivision_id'],
             "cuser_name" => $row['cuser_name'],
             "cpassword" => $row['cpassword'],
             "saveOrUpdate" => '2'
@@ -73,6 +74,7 @@ else {
         $mobilenumber = $_POST["mobilenumber"];
         $altmobileNumber = $_POST["altmobilenumber"];
         $userType = $_POST["userType"];
+        $divison_id=(int)$_POST["division"];
         $emailId = $_POST["emailId"];
         $keyAcManagerID = (int)$_POST["keyAcManagerIdHidden"];
         $password = $_POST["password"];
@@ -95,6 +97,7 @@ else {
                 cemail_id='$emailId',
                 cuser_name='$username',
                 cpassword='$password',
+                ndivision_id=$divison_id,
                 dupdated_date=now()
                 where ninternal_id=$internal_id ";
 
@@ -109,9 +112,9 @@ else {
             // Save Data in tbl_employeemaster
             $internal_id=ServiceLayer::getMaximumID('tbl_employeemaster',ninternal_id);
             $sql = "INSERT INTO tbl_employeemaster (ninternal_id,nemployee_unique_id,cengineer_name,ccity,cstate,ccountry,nkey_ac_manager_id,
-			caddress,cmobile_number,calt_mobile_number,cuser_type,cemail_id,isAvailable,isActive,cuser_name,cpassword,dcreated_date) 
+			caddress,cmobile_number,calt_mobile_number,cuser_type,cemail_id,ndivision_id,isAvailable,isActive,cuser_name,cpassword,dcreated_date) 
 			VALUES ($internal_id,$employeeId,'$name','$city','$state','$country',$keyAcManagerID,
-			'$address','$mobilenumber','$altmobileNumber',$userType,'$emailId',1,1,'$username','$password',now())";
+			'$address','$mobilenumber','$altmobileNumber',$userType,'$emailId',$divison_id,1,1,'$username','$password',now())";
 
             $result = mysqli_query($conn, $sql);
 

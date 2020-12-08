@@ -51,6 +51,7 @@ if (isset($_POST['submitData'])) {
     $emailId = $_POST["emailId"];
     $segment_id=$_POST["segment"];
 
+
     if ($saveOrUpdate == 2) {
         $conn = OpenCon();
         $internal_id=(int)$_POST["internal_id"];
