@@ -26,9 +26,9 @@ include '../db_connection.php';
 $conn = OpenCon();
 $sql = $sql = "SELECT c.ninternal_id,c.ncontact_person_id,c.cperson_name,c.ndept_id,c.cmobile_number,c.cphone_number,c.cemail_id,c.isAvailable, o.corg_name,d.cdept_name
                     FROM tbl_contactperson AS c 
-                    INNER JOIN tbl_organisation AS o 
+                     JOIN tbl_organisation AS o 
                     ON c.norg_id = o.norg_id 
-                    INNER JOIN tbl_department AS d
+                     JOIN tbl_department AS d
                     ON c.ndept_id= d.ndept_id
                     WHERE c.isAvailable=1";
 $retval = mysqli_query($conn, $sql);

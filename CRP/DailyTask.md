@@ -788,9 +788,16 @@ Sunday
 :spiral_calendar:	 8/12/2020
 ----------------------------
  - Created table for Division
-  -  Add 3 entries
+ -  Add 3 entries
  - added new column in tbl_emplyee_master as ndivision_id
- - 
+ - Implemented changes in query to add it from UI
+ - Implemented changes to show division in modal on Update
+ - Look at the queries asked by Vishnu Sir.
+ - Discuss and resolve their queries
+
+:spiral_calendar:	 9/12/2020
+----------------------------
+
 
 
 

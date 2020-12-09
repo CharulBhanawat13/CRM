@@ -58,13 +58,13 @@ if (isset($_POST['submitData'])) {
         window.location.replace('../controllers/employeeDetails.php');
     </SCRIPT>";
     }
-    if ($isEmployeeCodeAlreadyExists){
+   else if ($isEmployeeCodeAlreadyExists){
         echo "<SCRIPT> //not showing me this
         alert('EmployeeCode already taken');
         window.location.replace('../controllers/employeeDetails.php');
     </SCRIPT>";
     }
-else {
+    else {
 
         $name = $_POST["name"];
         $address = $_POST["address"];
