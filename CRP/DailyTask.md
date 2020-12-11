@@ -789,7 +789,7 @@ Sunday
 ----------------------------
  - Created table for Division
  -  Add 3 entries
- - added new column in tbl_emplyee_master as ndivision_id
+ - added new column in tbl_employee_master as ndivision_id
  - Implemented changes in query to add it from UI
  - Implemented changes to show division in modal on Update
  - Look at the queries asked by Vishnu Sir.
@@ -797,7 +797,26 @@ Sunday
 
 :spiral_calendar:	 9/12/2020
 ----------------------------
+ - Test
+ - Resolve Issue-username and code already taken alert.
+ - Discuss with Swati Mam about Item Master table and item_qty_master.
+ - Sample
+ - Gather requirements
+
+:spiral_calendar:	 10/12/2020
+----------------------------
+ - Access SQL SERVER on this machine
+ - Created a new db as " Created a new db as "CRM".CRM".
+ - Created pages for stock and a button
+ - Create new file as mssql_connection.php and make changes
+ - Googled for the driver and make changes(Added extension) in php.ini file(Browse phpinfo();)
+ - Restart the system
+ - Googled for all the issues (pdo,odbc driver)
+ - try installing odbc driver 17- installed
 
 
-
-
+:spiral_calendar:	 11/12/2020
+-----------------------------
+ - Prepare query
+ - Discuss with Swati mam
+ - Create datatable
