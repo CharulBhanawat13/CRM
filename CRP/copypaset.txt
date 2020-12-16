@@ -1,43 +1,9 @@
-
-  -----------------------------------------------------------------------------
-CREATE PROCEDURE `test1`(IN @tab_name VARCHAR(40),IN @col_name VARCHAR(40))
-BEGIN
-SET @t1 =CONCAT("SELECT MAX("+@col_name+") FROM ",@tab_name);
- PREPARE stmt3 FROM @t1;
- EXECUTE stmt3;
- DEALLOCATE PREPARE stmt3;
-END
-
-----------------------------------------------------------------------------------------------------------------
-
-DELIMITER $$
-CREATE DEFINER=`roo     t`@`localhost` PROCEDURE `GETMAXIMUMID`(IN `tab_name` VARCHAR(64), IN `col_name` VARCHAR(64), OUT total INT)
-BEGIN
- SET @c2 = '';
- SET @t1 =CONCAT('SELECT max(',col_name,') INTO @c2 FROM ',tab_name );
- PREPARE stmt3 FROM @t1;
- EXECUTE stmt3;
- DEALLOCATE PREPARE stmt3;
- SET total=@c2;
-END$$
-DELIMITER ;
--------------------------------------------------------------
-INSERT INTO `tbl_employeemaster`(`nemployee_unique_id`, `cengineer_name`, `ccity`, `cstate`, `ccountry`,
-`nkey_ac_manager_id`, `ckey_ac_manager`, `caddress`, `cmobile_number`, `calt_mobile_number`, `cuser_type`,
-`cemail_id`, `isAvailable`, `isActive`, `cuser_name`, `cpassword`, `dcreated_date`, `dupdated_date`, `nid`,`ninternal_id`)
-VALUES (1,'Admin','UDAIPUR','RAJASTHAN','INDIA',null,null,'Pyrotech Unit 1','987654321','9876543210',
-1,'a@123',1,1,'a@123','a@123',now(),now(),1,1)
-
-Select T2.cperson_name from tbl_callList as T1
-        join tbl_contactperson AS T2
-        ON T2.ncontact_person_id=T1.nperson_id
-        where T1.dnext_date=now() AND T1.nlogged_in_user_id=1
-
-    Popover
-    ---------
-         <button id="call_list_button" name="call_list_button" class="accordion">Call List</button>
-                <div class="panel">
-                    <p><?php
-                        $sql= ServiceLayer::getGridInformation('tbl_callList','nperson_id',$user_id);
-                    echo $sql?></p>
-                </div>
+IF EXISTS (SELECT * FROM tbl_stock WHERE nitem_id=706) 
+             UPDATE tbl_stock 
+            SET ndivision_id=5,citem_name='MODEL NO. : PI-14-D-760W',titem_description='MODEL NO. : PI-14-D-760W',nfactory_quantity=0,
+            calternate_code='340098',dupdated_date=now()
+            WHERE nitem_id=706
+        ELSE
+            INSERT INTO tbl_stock (nitem_id,ninternal_id,ndivision_id,citem_name,titem_description,nfactory_quantity,
+            calternate_code,isActive,isAvailable,dcreated_date,dupdated_date) 
+            VALUES (706,706,5,'MODEL NO. : PI-14-D-760W','MODEL NO. : PI-14-D-760W',0,'340098',1,1,now(),now())

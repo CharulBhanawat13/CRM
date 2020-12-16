@@ -820,3 +820,47 @@ Sunday
  - Prepare query
  - Discuss with Swati mam
  - Create datatable
+
+:spiral_calendar:	 12/12/2020
+-----------------------------
+Leave
+
+:spiral_calendar:	 13/12/2020
+-----------------------------
+Sunday
+
+:spiral_calendar:	 14/12/2020
+-----------------------------
+Created table tbl_stock in mysql.
+transfer pages code
+use button instead of submit
+Change alternate code to char
+Insert data in mysql db
+Execution of queries taking a lot of time (deleting rows from table taking a lot time).
+"Maximum execution time of 30 seconds exceeded in C:\xampp\phpMyAdmin\libraries\classes\Display\Results.php on line 2953"
+
+Pending :  fetch data from download button
+ need a loading icon
+View row
+Update with SELECT EXISTS
+
+:spiral_calendar:	 15/12/2020
+-----------------------------
+Change sequencing
+size of varchar
+fetch data from mysql table and show on page
+
+:spiral_calendar:	 16/12/2020
+-----------------------------
+login credentials.
+prepare query for insert and update
+run queries
+executuion time exceeded 30 sec
+Googled
+change max_execution_time =90
+execution time exceeded to 90 seconds
+google for stored proc (pass table as argument)
+Implement data table
+implement View Icon
+Implemented Modal
+Implemented display of data in modal
