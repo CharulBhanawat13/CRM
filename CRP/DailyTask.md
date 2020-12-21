@@ -852,15 +852,70 @@ fetch data from mysql table and show on page
 
 :spiral_calendar:	 16/12/2020
 -----------------------------
-login credentials.
-prepare query for insert and update
-run queries
-executuion time exceeded 30 sec
-Googled
-change max_execution_time =90
-execution time exceeded to 90 seconds
-google for stored proc (pass table as argument)
-Implement data table
-implement View Icon
-Implemented Modal
-Implemented display of data in modal
+ - prepare query for insert and update
+ - run queries
+ - executuion time exceeded 30 sec
+ - Googled
+ - change max_execution_time =90
+ - execution time exceeded to 90 seconds
+ - google for stored proc (pass table as argument)
+ - Implement data table
+ - implement View Icon
+ - Implemented Modal
+ - Implemented display of data in modal
+ - login credentials.
+
+:spiral_calendar:	 17/12/2020
+-----------------------------
+look at the PHP web hosting
+FTP account?
+Website name
+set max_execution_time=300
+Implemented loading icon on stock page.
+Test update functionality
+Show division name in table
+
+Pending: Float in factory quantity
+------------------------
+:spiral_calendar:	 18/12/2020
+
+ - look at webhosting
+ - Created a subdomain
+ - Discuss with Swati mam on call for internal finished good.Below is the query written for
+ fetching data from sql server database.
+ - look at MSSQl procedures.
+ - Test
+ - Added Back to Dashboard icon.
+
+--
+
+```
+Select nitem_id,s.ndivision_id,cdivision_name,calternate_code,citem_name,nfactory_quantity,s.dupdated_date
+    from tbl_stock  AS s
+    JOIN tbl_division As d 
+    ON s.ndivision_id=d.ndivision_id
+    where s.isAvailable=1 AND s.ndivision_id=$division_of_logged_in_user"
+ ````
+
+:spiral_calendar:	 20/12/2020
+-----------------------------
+
+ - Filter with division of logger in user.
+```
+select * from tbl_ItemSubGroupMaster where cItemSubGroup LIKE '%FINISHED%' ;
+```
+
+
+:spiral_calendar:	 21/12/2020
+-----------------------------
+ - Are you sure you want to delete?
+Implemented this functionality at 6 pages:
+1. EmployeeDetails
+2. organisation
+3. Contact Person
+4. callList
+5. visitPlan
+6. tour
+
+
+

@@ -9,23 +9,41 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <form id="showButton" method="post" action="../utils/fetchStock.php" onsubmit="$('#loading').show();">
-    <div id="loading" style="display:none">Uploading...</div>
     <input class="btn btn-primary" name="fetchStockData" type="submit" value="Fetch Data">
+    <a style="float:right;margin-left: 15px;" href="../dashboard.php"><i class="fa fa-home fa-2x"></i></a>
 
+    <div id="loading" style="display:none">
+    <div class="spinner-grow text-muted"></div>
+    <div class="spinner-grow text-primary"></div>
+    <div class="spinner-grow text-success"></div>
+    <div class="spinner-grow text-info"></div>
+    <div class="spinner-grow text-warning"></div>
+    <div class="spinner-grow text-danger"></div>
+    <div class="spinner-grow text-secondary"></div>
+    <div class="spinner-grow text-dark"></div>
+    <div class="spinner-grow text-light"></div>
+      </div>
 </form>
 <form id="stockForm">
     <?php
     include '../mssql_connection.php';
     include '../db_connection.php';
+    session_start();
+    $division_of_logged_in_user=$_SESSION['divison_id'];
     $conn=OpenCon();
-    $sql="Select nitem_id,ndivision_id,calternate_code,citem_name,nfactory_quantity,dupdated_date
-    from tbl_stock  
-    where isAvailable=1";
+    $sql="Select nitem_id,s.ndivision_id,cdivision_name,calternate_code,citem_name,nfactory_quantity,s.dupdated_date
+    from tbl_stock  AS s
+    JOIN tbl_division As d 
+    ON s.ndivision_id=d.ndivision_id
+    where s.isAvailable=1 AND s.ndivision_id=$division_of_logged_in_user";
     $result=mysqli_query($conn,$sql);
 
 echo "<table id='stockTable'  name='stockTable' >
@@ -46,7 +64,7 @@ echo "<table id='stockTable'  name='stockTable' >
         echo "<td style='display:none;'>" . $row['nitem_id'] . "</td>";
         echo "<td ><a  href='#my_modal' data-toggle='modal' class='identifyingClass'><i class='fa fa-eye fa-2x'></i></a></td>";
 
-        echo "<td>" . $row['ndivision_id'] . "</td>";
+        echo "<td>" . $row['cdivision_name'] . "</td>";
         echo "<td>" . $row['calternate_code'] . "</td>";
         echo "<td>" . $row['citem_name'] . "</td>";
         echo "<td>" . $row['nfactory_quantity'] . "</td>";
@@ -54,10 +72,12 @@ echo "<table id='stockTable'  name='stockTable' >
         echo "</tr>";
     }
     echo "</tbody></table>";
+
     CloseCon($conn);
     ?>
 </form>
 <script>
+
     $(document).ready(function () {
 
         $('#stockTable thead tr').clone(true).appendTo('#stockTable thead');
@@ -112,9 +132,10 @@ echo "<table id='stockTable'  name='stockTable' >
     <div class="modal-dialog" role="dialog">
         <div class="modal-content">
             <div class="modal-header">
+
+                <h4 class="modal-title" id="myModalLabel">STOCK INFORMATION</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">STOCK INFORMATION</h4>
             </div>
             <div class="modal-body">
                <table>

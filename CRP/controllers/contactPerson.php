@@ -37,7 +37,6 @@ echo "<table id='contactPersonTable'  name='contactPersonTable' >
             <tr>
             <th style='display:none;'>INTERNAL ID</th>
             <th style='display:none;'>CONTACT PERSON ID</th>
-
             <th>Update</th>
             <th>Person Name</th>
             <th>Department</th>
@@ -61,16 +60,18 @@ while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
     echo "<td>" . $row['cphone_number'] . "</td>";
     echo "<td>" . $row['cemail_id'] . "</td>";
     echo "<td>" . $row['corg_name'] . "</td>";
-       echo "<td class='action-delete'><i class='fa fa-trash fa-2x' style='color:#4caf50;'</i></td>";
+       echo "<td class='action-delete'><i  class='fa fa-trash fa-2x' style='color:#4caf50;'</i></td>";
     echo "</tr>";
 }
 echo "</tbody></table>";
 CloseCon($conn);
 ?>
+
 <script>
     function reset() {
         document.getElementById("contactPersonForm").reset();
     }
+
     $(document).ready(function () {
 
         $(document).on('click', '#add', function () {
@@ -135,21 +136,25 @@ CloseCon($conn);
         });
 
         $('#contactPersonTable').on('click', '.action-delete', function () {
-            var id_toDelete = table.row($(this).parents('tr').first()).data()[0];
-            alert(id_toDelete);
-            $.ajax({
-                async: true,
-                url: "../utils/saveContactPersonData.php",
-                type: "POST",
+            var result = confirm("Are you sure you want to delete?");
+            if(result){
+                var id_toDelete = table.row($(this).parents('tr').first()).data()[0];
+              //  alert(id_toDelete);
+                $.ajax({
+                    async: true,
+                    url: "../utils/saveContactPersonData.php",
+                    type: "POST",
 
-                data: {
-                    id_toDelete: id_toDelete
-                },
-                cache: false,
-                success: function (result) {
-                    window.location.reload();
-                }
-            });
+                    data: {
+                        id_toDelete: id_toDelete
+                    },
+                    cache: false,
+                    success: function (result) {
+                        window.location.reload();
+                    }
+                });
+            }
+
         });
 
         $('.modal').on('hidden.bs.modal', function(e)

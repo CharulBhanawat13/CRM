@@ -186,21 +186,25 @@ CloseCon($conn);
             });
         });
         $('#callListTable').on('click', '.action-delete', function () {
-            var id_toDelete = table.row($(this).parents('tr').first()).data()[0];
-            alert(id_toDelete);
-            $.ajax({
-                async: true,
-                url: "../utils/saveCallListData.php",
-                type: "POST",
+            var result = confirm("Are you sure you want to delete?");
+            if (result){
+                var id_toDelete = table.row($(this).parents('tr').first()).data()[0];
+                //    alert(id_toDelete);
+                $.ajax({
+                    async: true,
+                    url: "../utils/saveCallListData.php",
+                    type: "POST",
 
-                data: {
-                    id_toDelete: id_toDelete
-                },
-                cache: false,
-                success: function (result) {
-                    window.location.reload();
-                }
-            });
+                    data: {
+                        id_toDelete: id_toDelete
+                    },
+                    cache: false,
+                    success: function (result) {
+                        window.location.reload();
+                    }
+                });
+            }
+
         });
 
         $('.modal').on('hidden.bs.modal', function(e)

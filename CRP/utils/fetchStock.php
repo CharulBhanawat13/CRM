@@ -47,7 +47,9 @@ if (isset($_POST['fetchStockData'])){
              FROM tbl_stock
              WHERE nitem_id=$item_id), 1, 0) AS isPresent";
         $retval_isPresent=mysqli_query($mysql_conn,$isPresentQuery);
+
         $result_isPresent = mysqli_fetch_assoc($retval_isPresent);
+
         if ($result_isPresent['isPresent']=="1"){
             $sql_mysql="UPDATE tbl_stock 
             SET ndivision_id=$division_id,citem_name='$item_name',titem_description='$item_description',nfactory_quantity=$factory_quantity,

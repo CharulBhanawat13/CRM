@@ -249,21 +249,25 @@ where e1.nkey_ac_manager_id=$user_id AND e3.isAvailable=$isAvailable)
                 );
 
                 $('#employeeTable').on('click', '.action-view', function () {
-                    var id_toDelete = table.row($(this).parents('tr').first()).data()[0];
-                    alert(id_toDelete);
-                    $.ajax({
-                        async: true,
-                        url: "../employee/saveEmployeeData.php",
-                        type: "POST",
+                    var result = confirm("Are you sure you want to delete?");
+                    if (result){
+                        var id_toDelete = table.row($(this).parents('tr').first()).data()[0];
+                        // alert(id_toDelete);
+                        $.ajax({
+                            async: true,
+                            url: "../employee/saveEmployeeData.php",
+                            type: "POST",
 
-                        data: {
-                            id_toDelete: id_toDelete
-                        },
-                        cache: false,
-                        success: function (result) {
-                            window.location.reload();
-                        }
-                    });
+                            data: {
+                                id_toDelete: id_toDelete
+                            },
+                            cache: false,
+                            success: function (result) {
+                                window.location.reload();
+                            }
+                        });
+                    }
+
                 });
 
             });

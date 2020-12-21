@@ -45,11 +45,13 @@ include("db_connection.php");
 	$result = mysqli_fetch_assoc($run);
 	$userType = $result['cuser_type'];
 	$user_id=$result['nemployee_unique_id'];
+	$division_id=$result['ndivision_id'];
     if(mysqli_num_rows($run))
     {  
 		$_SESSION['username']=$username;
 		$_SESSION['userType']=$userType;
 		$_SESSION['user_id']=$user_id;
+		$_SESSION['divison_id']=$division_id;
 		echo "<script>window.open('dashboard.php','_self')</script>";  
 	}  
     else  
