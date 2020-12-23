@@ -29,12 +29,15 @@ if ($_SESSION['username'] == '') {
     <img src="assets/CRM1.jpg" alt="CRM" height="15%" width="200px">
     <a class="active" href="dashboard.php">Dashboard</a>
     <a href="controllers/employeeDetails.php">Employee Details</a>
+    <a href="controllers/organisationGroup.php">Organisation Groups </a>
     <a href="controllers/organisation.php">Organisation</a>
     <a href="controllers/contactPerson.php">Contact Person</a>
     <a href="controllers/callList.php">Call List</a>
     <a href="controllers/visitPlan.php">Visit Plan</a>
     <a href="controllers/tour.php">Tour</a>
-      <a href="controllers/stock.php">Stock </a>
+    <a href="controllers/stock.php">Stock </a>
+    <a href="controllers/segment.php">Segment </a>
+
 
 </div>
     <h1 id='bloc1' style="margin-left: 41%;color: #0077c7">PEPL DASHBOARD</h1>

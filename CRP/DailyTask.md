@@ -917,5 +917,37 @@ Implemented this functionality at 6 pages:
 5. visitPlan
 6. tour
 
+Test every page
+Push code to git.
+
+:spiral_calendar:	 22/12/2020
+-----------------------------
+ - Create new file as segment and save segmentData in PHP
+ - Plan  the flow of work
+ - Create tbl_organisation_grp in DB
+ - Implemented UI of Organisation Group Page.
+ 1. add
+ 2. update
+ 3. delete
+
+TCS Monika mam
+Possibly : Leave on 25 and 26
+-----------------------------
+
+:spiral_calendar:	 23/12/2020
+-----------------------------
+ - Added nsegment_id to tbl_organisation_group
+ - Added Segment dropdown in organisation group modal and fetch data from segment table
+ - Added segment in add and update query.
+ - Fix errors in Add and tested Add
+ - Fix errors in Update and tested Update.
+ - Tested delete
+ - Show segment name name in datatable instead od ID.
+
+ Ask:
+need to change the updated date on delete? So that we know when was the item deleted.
+Praveen Sir Query Call on 122
+If someone has joined Zoom then CL need to be 4.5 but its showing 9.
+
 
 
