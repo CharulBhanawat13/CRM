@@ -72,17 +72,19 @@ CloseCon($conn);
         $('#organisationGroupTable thead tr').clone(true).appendTo('#organisationGroupTable thead');
         $('#organisationGroupTable thead tr:eq(1) th').each(function (i) {
             var title = $(this).text();
+            if (i != 5 && i != 2) {
 
                 $(this).html('<input class="form-control" type="text" placeholder="Search ' + title + '" />');
+            }
+                $('input', this).on('keyup change', function () {
+                    if (table.column(i).search() !== this.value) {
+                        table
+                            .column(i)
+                            .search(this.value)
+                            .draw();
+                    }
+                });
 
-            $('input', this).on('keyup change', function () {
-                if (table.column(i).search() !== this.value) {
-                    table
-                        .column(i)
-                        .search(this.value)
-                        .draw();
-                }
-            });
         });
 
         var table = $('#organisationGroupTable').DataTable({

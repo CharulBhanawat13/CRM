@@ -930,9 +930,6 @@ Push code to git.
  2. update
  3. delete
 
-TCS Monika mam
-Possibly : Leave on 25 and 26
------------------------------
 
 :spiral_calendar:	 23/12/2020
 -----------------------------
@@ -942,12 +939,23 @@ Possibly : Leave on 25 and 26
  - Fix errors in Add and tested Add
  - Fix errors in Update and tested Update.
  - Tested delete
- - Show segment name name in datatable instead od ID.
+ - Show segment name  in datatable instead od ID.
+ - Push code and db on git
+ - Corrected search boxes on column.
+
 
  Ask:
-need to change the updated date on delete? So that we know when was the item deleted.
-Praveen Sir Query Call on 122
-If someone has joined Zoom then CL need to be 4.5 but its showing 9.
+ need to change the updated date on delete? So that we know when was the item deleted.
 
+ Praveen Sir Query Call on 122
+ If someone has joined Zoom then CL need to be 4.5 but its showing 9.
 
+:spiral_calendar:	 24/12/2020
+----------------------------
+ - Created the Ist phase of UI of Segment Page
+   with add update and delete query working.
+ - Googled for modal animations
+ - Try different forms
+ - implemented two modals with two different animations on same page.
+- 
 
