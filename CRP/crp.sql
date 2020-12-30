@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2020 at 12:40 PM
+-- Generation Time: Dec 30, 2020 at 08:28 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -294,7 +294,9 @@ CREATE TABLE `tbl_organisation_group` (
 --
 
 INSERT INTO `tbl_organisation_group` (`nid`, `ninternal_id`, `norg_group_id`, `corg_group_name`, `nsegment_id`, `isAvailable`, `isActive`, `dcreated_date`, `dupdated_date`) VALUES
-(1, 1, 1, 'L and J Group', 1, b'1', b'1', '2020-12-23 16:55:39', '2020-12-23 16:55:39');
+(2, 1, 1, 'L and J Group', 2, b'1', b'1', '2020-12-29 16:41:58', '2020-12-29 16:41:58'),
+(3, 2, 2, 'Sangam Group', 2, b'1', b'1', '2020-12-29 16:42:24', '2020-12-29 16:42:24'),
+(4, 3, 3, 'UltraTechCement', 1, b'1', b'1', '2020-12-29 16:42:53', '2020-12-29 16:42:53');
 
 -- --------------------------------------------------------
 
@@ -343,8 +345,9 @@ CREATE TABLE `tbl_segment` (
 --
 
 INSERT INTO `tbl_segment` (`nid`, `nsegment_id`, `csegment_name`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`, `ninternal_id`) VALUES
-(1, 1, 'Segment A', b'1', b'1', '2020-10-31 11:46:14', '2020-10-31 11:46:14', NULL),
-(2, 2, 'Segment-B', b'1', b'1', '2020-10-31 16:42:50', '2020-10-31 16:42:50', NULL);
+(1, 1, 'CEMENT', b'1', b'1', '2020-10-31 11:46:14', '2020-10-31 11:46:14', 1),
+(2, 2, 'TEXTILE', b'1', b'1', '2020-10-31 16:42:50', '2020-10-31 16:42:50', 2),
+(5, 44, 'PHARMACEUTICALS', b'1', b'1', '2020-12-24 17:45:11', '2020-12-24 17:45:20', 3);
 
 -- --------------------------------------------------------
 
@@ -2634,7 +2637,7 @@ ALTER TABLE `tbl_organisation`
 -- AUTO_INCREMENT for table `tbl_organisation_group`
 --
 ALTER TABLE `tbl_organisation_group`
-  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_purpose`
@@ -2646,7 +2649,7 @@ ALTER TABLE `tbl_purpose`
 -- AUTO_INCREMENT for table `tbl_segment`
 --
 ALTER TABLE `tbl_segment`
-  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_stock`

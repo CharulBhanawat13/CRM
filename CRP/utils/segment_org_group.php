@@ -1,7 +1,11 @@
-   $conn = OpenCon();
+<?php
+if(!empty($_GET['id'])){
+    include('../db_connection.php');
+    $segment_id_forOrgGroup=(int)$_GET['id'];
+    $conn = OpenCon();
     $sql = "SELECT *
         FROM tbl_organisation_group 
-       WHERE isAvailable=1 ;";
+       WHERE isAvailable=1 AND nsegment_id=$segment_id_forOrgGroup;";
     $retval = mysqli_query($conn, $sql);
     echo "<table id='organisationGroupTable'  name='organisationGroupTable' >
             <thead> 
@@ -22,3 +26,10 @@
     }
     echo "</tbody></table>";
     CloseCon($conn);
+
+}
+?>
+
+
+
+

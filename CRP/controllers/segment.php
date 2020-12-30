@@ -1,18 +1,16 @@
 <html>
 <head>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/theme.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
 </head>
@@ -24,6 +22,7 @@
 </div>
 
 <?php
+session_start();
 include '../db_connection.php';
 
 $conn = OpenCon();
@@ -36,6 +35,7 @@ echo "<table id='segmentTable'  name='segmentTable' >
             <tr>
             <th style='display:none;'>INTERNAL ID</th>
             <th style='display:none;'>SEGMENT ID</th>
+            <th>VIEW</th>
             <th>Update</th>
             <th>Segment Name</th>
              <th>Delete</th>
@@ -47,6 +47,7 @@ while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
     echo "<tr>";
     echo "<td style='display:none;'>" . $row['ninternal_id'] . "</td>";
     echo "<td style='display:none;'>" . $row['nsegment_id'] . "</td>";
+    echo "<td ><a class='opendetails'><i class='fa fa-eye fa-2x'></i></a></td>";
     echo "<td ><a  href='#segment_modal' data-toggle='modal' class='updateClass' data-id='2'><i class='fa fa-edit fa-2x'></i></a></td>";
     echo "<td class='opendetails'>" . $row['csegment_name'] . "</td>";
     echo "<td class='action-delete'><i class='fa fa-trash fa-2x' style='color:#4caf50;'</i></td>";
@@ -141,8 +142,11 @@ CloseCon($conn);
         });
 
         $('#segmentTable tbody').on('click', '.opendetails', function () {
-            var data = table.row( this ).data();
-            $('#exampleModal').modal();
+            var data = table.row($(this).parents('tr').first()).data()[0];
+            var segment_id_forOrgGroup=data;
+            $('.modal-body').load('../utils/segment_org_group.php?id='+segment_id_forOrgGroup,function(){
+                $('#segment_organisation_group_modal').modal({show:true});
+            });
 
         } );
 
@@ -152,37 +156,31 @@ CloseCon($conn);
             $(this).find('segmentForm').trigger('reset');
         }) ;
 
-        function afterModalTransition(e) {
-            e.setAttribute("style", "display: none !important;");
-        }
-
-        $('#seg_org_group_modal').on('hide.bs.modal', function (e) {
-            setTimeout( () => afterModalTransition(this), 200);
-        })
     });
 
 </script>
-<div class="modal fade zoom-in" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+
+    <div class="modal fade" id="segment_organisation_group_modal" tabindex="-1" role="dialog" aria-labelledby="my_modalLabel">
+        <div class="modal-dialog" role="dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"></h4>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<form id="segmentForm" method="post" action="../utils/saveSegmentData.php" >
+
+
+<form id="segmentForm" method="post" action="../utils/saveSegmentData.php">
     <div class="modal fade" id="segment_modal" tabindex="-1" role="dialog" aria-labelledby="my_modalLabel">
         <div class="modal-dialog" role="dialog">
             <div class="modal-content">
@@ -201,33 +199,20 @@ CloseCon($conn);
                                maxlength="50" required/>
 
                         <tr>
-                            <td>Organisation Code</td>
+                            <td>Segment Code</td>
                             <td>
-                                <input type="text" name="organisationId" id="organisationId" class="form-control"
+                                <input type="text" name="segmentId" id="segmentId" class="form-control"
                                        maxlength="50" required/>
                             </td>
                         </tr>
 
                         <tr>
-                            <td>Organisation Name</td>
+                            <td>Segment Name</td>
                             <td>
-                                <input type="text" name="name" id="name" class="form-control" maxlength="50"
+                                <input type="text" name="segmentName" id="segmentName" class="form-control" maxlength="50"
                                        required/>
                             </td>
                         </tr>
-
-                        <tr>
-                            <td>State</td>
-                            <td>
-                                <select class="form-control" name="state" id="state-dropdown" required>
-
-                                </select>
-                            </td>
-                        </tr>
-
-
-
-
 
                     </table>
                 </div>

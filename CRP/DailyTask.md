@@ -957,5 +957,31 @@ Push code to git.
  - Googled for modal animations
  - Try different forms
  - implemented two modals with two different animations on same page.
+ - Pushed Code.
 - 
 
+:spiral_calendar:	 25/12/2020
+-----------------------------
+Leave
+
+:spiral_calendar:	 26/12/2020
+-----------------------------
+CL Leave
+
+:spiral_calendar:	 27/12/2020
+-----------------------------
+Sunday
+
+:spiral_calendar:	 28/12/2020
+-----------------------------
+Leave
+
+:spiral_calendar:	 29/12/2020
+-----------------------------
+ - Credentials of CPanel not working
+ - passing value for segment_org_modal
+- 
+:spiral_calendar:  30/12/2020
+-----------------------------
+ - PHP Storm Evaluation will expire within 4 days from now.
+- 
