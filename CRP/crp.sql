@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2020 at 08:28 AM
+-- Generation Time: Dec 31, 2020 at 08:23 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -253,7 +253,7 @@ CREATE TABLE `tbl_organisation` (
   `corg_country` varchar(50) NOT NULL,
   `corg_mobileNumber` varchar(10) NOT NULL,
   `corg_emailId` varchar(50) NOT NULL,
-  `norg_segment_id` int(10) NOT NULL,
+  `norg_group_id` int(10) NOT NULL,
   `isActive` bit(1) NOT NULL,
   `isAvailable` bit(1) NOT NULL,
   `dcreated_date` datetime NOT NULL,
@@ -265,7 +265,7 @@ CREATE TABLE `tbl_organisation` (
 -- Dumping data for table `tbl_organisation`
 --
 
-INSERT INTO `tbl_organisation` (`nid`, `norg_id`, `corg_name`, `corg_address`, `corg_city`, `corg_state`, `corg_country`, `corg_mobileNumber`, `corg_emailId`, `norg_segment_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`, `ninternal_id`) VALUES
+INSERT INTO `tbl_organisation` (`nid`, `norg_id`, `corg_name`, `corg_address`, `corg_city`, `corg_state`, `corg_country`, `corg_mobileNumber`, `corg_emailId`, `norg_group_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`, `ninternal_id`) VALUES
 (8, 2, 'Organisation 2', 'Pyrtotech B', 'UDAIPUR', 'RAJASTHAN', 'INDIA', '780808710', '78978978', 2, b'1', b'0', '2020-12-03 12:58:32', '2020-12-08 16:17:08', 1),
 (9, 977234, 'Siri Power System', 'chennai radhakrishna nagar ', 'BANG KHEN', 'BANGKOK', 'THAILAND', '9352527680', 'anandk18@gmail.com', 1, b'1', b'1', '2020-12-05 09:50:56', '2020-12-05 09:50:56', 2),
 (10, 967822, 'AIR LIQUIDE INDIA HOLDING PVT LTD', '38/1, G.I.D.C. Industrial Estate, Jhagadia - 39311', 'AHEMDABAD', 'GUJRAT', 'INDIA', '8755603838', 'chandresh.chauhan@airliquide.com', 1, b'1', b'1', '2020-12-05 09:56:08', '2020-12-05 09:56:08', 3),

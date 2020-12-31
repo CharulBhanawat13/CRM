@@ -31,13 +31,6 @@ if (isset($_POST['id_toUpdate'])) {
     CloseCon($conn);
 }
 
-if(isset($_POST['segment_id_forOrgGroup'])){
-    $segment_id_forOrgGroup=$_POST['segment_id_forOrgGroup'];
-    echo $segment_id_forOrgGroup;
-
-    echo "hello;";
-}
-
 
 if (isset($_POST['submitData'])) {
     $segmentId = (int)$_POST["segmentId"];

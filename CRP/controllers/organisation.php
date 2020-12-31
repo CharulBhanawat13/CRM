@@ -23,10 +23,10 @@
         include '../db_connection.php';
 
         $conn = OpenCon();
-        $sql = "SELECT o.ninternal_id,o.norg_id,o.corg_name,o.corg_address,o.corg_city,o.corg_state,o.corg_country,o.corg_mobileNumber,o.corg_emailId,o.norg_segment_id,o.isActive,o.isAvailable,s.csegment_name 
+        $sql = "SELECT o.ninternal_id,o.norg_id,o.corg_name,o.corg_address,o.corg_city,o.corg_state,o.corg_country,o.corg_mobileNumber,o.corg_emailId,o.norg_group_id,o.isActive,o.isAvailable,og.corg_group_name
                     FROM tbl_organisation AS o 
-                    INNER JOIN tbl_segment AS s 
-                    ON o.norg_segment_id = s.nsegment_id 
+                    INNER JOIN tbl_organisation_group AS og
+                    ON o.norg_group_id = og.ninternal_id 
                     WHERE o.isAvailable=1;";
         $retval = mysqli_query($conn, $sql);
         echo "<table id='organisationTable'  name='organisationTable' >
@@ -42,7 +42,7 @@
             <th>Country</th>
             <th>Mobile Number</th>
             <th>Email Id</th>
-            <th>Segment</th>
+            <th>Organisation Group</th>
              <th>Delete</th>
             </tr>
             </thead>
@@ -60,7 +60,7 @@
             echo "<td>" . $row['corg_country'] . "</td>";
             echo "<td>" . $row['corg_mobileNumber'] . "</td>";
             echo "<td>" . $row['corg_emailId'] . "</td>";
-            echo "<td>" . $row['csegment_name'] . "</td>";
+            echo "<td>" . $row['corg_group_name'] . "</td>";
 
             echo "<td class='action-delete'><i class='fa fa-trash fa-2x' style='color:#4caf50;'</i></td>";
             echo "</tr>";
@@ -294,18 +294,18 @@
                                 </tr>
                                 </tr>
                                 <tr>
-                                    <td>Segment</td>
+                                    <td>Organisation Group</td>
                                     <td>
-                                        <select class="form-control" name="segment" id="segment-dropdown" required>
-                                            <option value="">Select Segment</option>
+                                        <select class="form-control" name="organisationGroup" id="organisationGroup-dropdown" required>
+                                            <option value="">Select Organisation Group</option>
                                             <?php
                                             require_once "../db_connection.php";
                                             $conn = OpenCon();
 
-                                            $result = mysqli_query($conn, "SELECT * FROM tbl_segment");
+                                            $result = mysqli_query($conn, "SELECT * FROM tbl_organisation_group");
                                             while ($row = mysqli_fetch_array($result)) {
                                                 ?>
-                                                <option value="<?php echo $row['nsegment_id']; ?>"><?php echo $row["csegment_name"]; ?></option>
+                                                <option value="<?php echo $row['ninternal_id']; ?>"><?php echo $row["corg_group_name"]; ?></option>
                                                 <?php
                                             }
                                             CloseCon($conn);

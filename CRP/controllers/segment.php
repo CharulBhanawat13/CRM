@@ -73,7 +73,7 @@ CloseCon($conn);
         $('#segmentTable thead tr').clone(true).appendTo('#segmentTable thead');
         $('#segmentTable thead tr:eq(1) th').each(function (i) {
             var title = $(this).text();
-            if (i != 4 && i != 2) {
+            if (i != 5 && i != 2 && i!=3) {
 
                 $(this).html('<input class="form-control" type="text" placeholder="Search ' + title + '" />');
             }
@@ -95,6 +95,7 @@ CloseCon($conn);
 
 
         $('#segmentTable tbody').on('click', '.updateClass', function () {
+
             var saveOrUpdate = $(this).data('id');
             var id_toUpdate = table.row($(this).parents('tr').first()).data()[0];
             $(".modal-body #saveOrUpdate").val(saveOrUpdate);
@@ -144,10 +145,10 @@ CloseCon($conn);
         $('#segmentTable tbody').on('click', '.opendetails', function () {
             var data = table.row($(this).parents('tr').first()).data()[0];
             var segment_id_forOrgGroup=data;
+
             $('.modal-body').load('../utils/segment_org_group.php?id='+segment_id_forOrgGroup,function(){
                 $('#segment_organisation_group_modal').modal({show:true});
             });
-
         } );
 
 
@@ -155,6 +156,9 @@ CloseCon($conn);
         {
             $(this).find('segmentForm').trigger('reset');
         }) ;
+        $('#segment_organisation_group_modal').on('hidden.bs.modal', function () {
+            location.reload();
+        })
 
     });
 

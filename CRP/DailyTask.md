@@ -983,5 +983,23 @@ Leave
 - 
 :spiral_calendar:  30/12/2020
 -----------------------------
- - PHP Storm Evaluation will expire within 4 days from now.
-- 
+- PHP Storm Evaluation will expire within 4 days from now.
+- Change modal animation
+- tried ajax query
+- Use GET method to pass data
+- implemented nested modal
+- implemented datatable inside modal
+- How Organisation group is related to organisation?
+- Reload page on close (tries to clear cache).
+
+ Ask:
+ need to change the updated date on delete? So that we know when was the item deleted.
+
+:spiral_calendar:	 31/12/2020
+-----------------------------
+ - Take printout
+ - Delete PDF
+ - change nsegment_id to norg_group_id in tbl_organisation in database
+ - Show org_group_name instead of segment id in datatable
+ - show org_group in modal dropdown.
+-  Worked on nested modals
