@@ -1,24 +1,29 @@
-   $conn = OpenCon();
-    $sql = "SELECT *
-        FROM tbl_organisation_group 
-       WHERE isAvailable=1 ;";
-    $retval = mysqli_query($conn, $sql);
-    echo "<table id='organisationGroupTable'  name='organisationGroupTable' >
-            <thead> 
-            <tr>
-            <th style='display:none;'>INTERNAL ID</th>
-            <th style='display:none;'>ORG GROUP ID</th>
-            <th>Organisation Group Name</th>
-            </tr>
-            </thead>
-                   <tbody>
-            ";
-    while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
-        echo "<tr>";
-        echo "<td style='display:none;'>" . $row['ninternal_id'] . "</td>";
-        echo "<td style='display:none;'>" . $row['norg_group_id'] . "</td>";
-        echo "<td>" . $row['corg_group_name'] . "</td>";
-        echo "</tr>";
-    }
-    echo "</tbody></table>";
-    CloseCon($conn);
+SELECT o.ninternal_id,o.norg_id,o.corg_name,o.isAvailable,o.norg_group_id,
+    Count(v.norg_id),Count(c.norg_id),Count(t.norg_id)
+        FROM tbl_organisation AS o
+        JOIN tbl_visitplan AS v
+        ON o.norg_id=v.norg_id
+        JOIN tbl_callList AS c
+        ON c.norg_id=o.norg_id
+        JOIN tbl_tour AS t
+        ON t.norg_id=o.norg_id
+       WHERE o.isAvailable=1 AND o.norg_group_id=$org_group_id
+
+
+SELECT corg_name,o.norg_id ,count (v.norg_id) from tbl_organisation AS o
+LEFT dJOIN tbl_visitplan AS v
+on o.norg_id=v.norg_id
+WHERE norg_group_id=2
+GROUP BY corg_name,o.norg_id;
+
+select count('norg_id'),norg_id from tbl_visitplan  where norg_id IN (SELECT norg_id from  tbl_organisation
+
+WHERE norg_group_id=1
+
+)GROUP BY norg_id;
+
+select count('norg_id'),norg_id from tbl_visitplan  v where v.norg_id IN (SELECT norg_id from  tbl_organisation
+
+WHERE norg_group_id=1
+
+)GROUP BY v.norg_id;

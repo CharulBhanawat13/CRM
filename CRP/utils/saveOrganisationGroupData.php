@@ -15,7 +15,7 @@ if (isset($_POST['id_toDelete'])) {
 if (isset($_POST['id_toUpdate'])) {
     $conn = OpenCon();
     $internal_id = $_POST['id_toUpdate'];
-    $sql = "Select * from tbl_organisation_group WHERE ninternal_id = $internal_id";
+    $sql = "Select * from tbl_organisation_group,dupdated_date=now() WHERE ninternal_id = $internal_id";
     $result = mysqli_query($conn, $sql);
     $row_data = array();
     while ($row = mysqli_fetch_array($result)) {

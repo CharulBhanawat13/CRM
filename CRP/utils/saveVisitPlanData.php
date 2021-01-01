@@ -6,7 +6,7 @@ require_once('../utils/ServiceLayer.php');
 if (isset($_POST['id_toDelete'])) {
     $conn = OpenCon();
     $internal_id = $_POST['id_toDelete'];
-    $sql = "UPDATE tbl_visitplan SET isAvailable =0 WHERE ninternal_id = $internal_id";
+    $sql = "UPDATE tbl_visitplan SET isAvailable =0,dupdated_date=now() WHERE ninternal_id = $internal_id";
     $result = mysqli_query($conn, $sql);
     CloseCon($conn);
 

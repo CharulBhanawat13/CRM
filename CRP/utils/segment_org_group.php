@@ -20,7 +20,7 @@ if(!empty($_GET['id'])){
     $segment_id_forOrgGroup=(int)$_GET['id'];
     $conn = OpenCon();
     $sql = "SELECT *
-        FROM tbl_organisation_group 
+        FROM tbl_organisation_group  
        WHERE isAvailable=1 AND nsegment_id=$segment_id_forOrgGroup;";
     $retval = mysqli_query($conn, $sql);
     echo "<table  id='segmentOrganisationGroupTable'  name='segmentOrganisationGroupTable' >
@@ -61,6 +61,9 @@ if(!empty($_GET['org_group_id'])){
             <th style='display:none;'>INTERNAL ID</th>
             <th style='display:none;'>ORG  ID</th>
             <th>Organisation Name</th>
+            <th> Visits</th>
+            <th>Tour</th>
+            <th>Calls</th>
             </tr>
             </thead>
                    <tbody>
@@ -70,6 +73,9 @@ if(!empty($_GET['org_group_id'])){
         echo "<td style='display:none;'>" . $row['ninternal_id'] . "</td>";
         echo "<td style='display:none;'>" . $row['norg_id'] . "</td>";
         echo "<td>" . $row['corg_name'] . "</td>";
+        echo "<td>---</td>";
+        echo "<td>---</td>";
+        echo "<td>---</td>";
         echo "</tr>";
     }
     echo "</tbody></table>";
