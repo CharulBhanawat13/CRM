@@ -1,29 +1,45 @@
-SELECT o.ninternal_id,o.norg_id,o.corg_name,o.isAvailable,o.norg_group_id,
-    Count(v.norg_id),Count(c.norg_id),Count(t.norg_id)
-        FROM tbl_organisation AS o
-        JOIN tbl_visitplan AS v
-        ON o.norg_id=v.norg_id
-        JOIN tbl_callList AS c
-        ON c.norg_id=o.norg_id
-        JOIN tbl_tour AS t
-        ON t.norg_id=o.norg_id
-       WHERE o.isAvailable=1 AND o.norg_group_id=$org_group_id
+
+select norg_id ,count(*)
+from tbl_visitplan
+where norg_id IN (SELECT norg_id
+from tbl_organisation
+WHERE norg_group_id=2)
+ group by norg_id
+
+--------------------------
+
+CREATE TEMPORARY TABLE tbl_visitCount
+select norg_id ,count(*) AS nofVisit
+from tbl_visitplan
+where norg_id IN (
+SELECT norg_id FROM tbl_organisation
+WHERE norg_group_id=2)
+group by norg_id;
 
 
-SELECT corg_name,o.norg_id ,count (v.norg_id) from tbl_organisation AS o
-LEFT dJOIN tbl_visitplan AS v
-on o.norg_id=v.norg_id
-WHERE norg_group_id=2
-GROUP BY corg_name,o.norg_id;
 
-select count('norg_id'),norg_id from tbl_visitplan  where norg_id IN (SELECT norg_id from  tbl_organisation
+CREATE TEMPORARY TABLE tbl_callListCount
+select norg_id ,count(*) AS noOFCallList
+from tbl_callList
+where norg_id IN (
+SELECT norg_id FROM tbl_organisation
+WHERE norg_group_id=2)
+group by norg_id;
 
-WHERE norg_group_id=1
 
-)GROUP BY norg_id;
+CREATE TEMPORARY TABLE tbl_tourCount
+select norg_id ,count(*) AS noOfTour
+from tbl_tour
+where norg_id IN (
+SELECT norg_id FROM tbl_organisation
+WHERE norg_group_id=2)
+group by norg_id;
 
-select count('norg_id'),norg_id from tbl_visitplan  v where v.norg_id IN (SELECT norg_id from  tbl_organisation
-
-WHERE norg_group_id=1
-
-)GROUP BY v.norg_id;
+select o.norg_id ,o.corg_name ,nofVisit,noOFCallList,noOfTour from tbl_organisation AS o
+LEFT JOIN tbl_visitCount AS vc
+ON vc.norg_id=o.norg_id
+LEFT JOIN tbl_callListCount AS CL
+ON CL.norg_id=o.norg_id
+LEFT JOIN tbl_tourCount AS TC
+ON TC.norg_id=o.norg_id
+where o.norg_group_id=2;

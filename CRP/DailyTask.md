@@ -9,9 +9,9 @@
  -  Internet not working for more than  1 hour.
  -  Started working on query for number of VISIT PLAN,tour,callList.
 
-
 :spiral_calendar:	 1/1/2021
 ---------------------------
+
  - Tried query for number of VISIT PLAN,tour,callList
  - change updated date on delete on the following pages:
 1. employee Details
@@ -23,4 +23,11 @@
 7. tour
 8. visitplan
  - 
+
+:spiral_calendar:	 1/1/2021
+---------------------------
+ - Tried query
+ - use datatable
+ - know that on refresh of php myadmin temp table gets deleted.
+
 
