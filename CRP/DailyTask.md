@@ -31,3 +31,18 @@
  - know that on refresh of php myadmin temp table gets deleted.
 
 
+:spiral_calendar:	 2/1/2021
+---------------------------
+ -  prepare query of org_organisation group,visit tour calllist
+ 
+:spiral_calendar:	 3/1/2021
+----------
+ - Sunday
+
+:spiral_calendar:	 4/1/2021
+---------- 
+ - Spend some time with activating Evaluation with Ravindra Sir.
+ - Prepare queries of temp table with user Id's
+ - Code for getting the resultset 
+ - DROP tables after use
+ - Remove errors of PHP Methods.

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2020 at 08:23 AM
+-- Generation Time: Jan 04, 2021 at 07:59 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -76,7 +76,7 @@ INSERT INTO `tbl_calllist` (`nid`, `ncall_list_id`, `ddate`, `cphoneNumber`, `np
 (10, 1, '2020-12-03', '879789', 1, 1, 1, 'first Entry', '2021-01-09', b'1', b'1', '2020-12-03 13:38:45', '2020-12-03 13:38:45', 1, 4),
 (11, 2, '2020-12-03', '89879789', 1, 1, 2, 'date format', '2020-12-03', b'1', b'1', '2020-12-03 14:48:37', '2020-12-03 14:48:37', 2, 1),
 (12, 977234, '2020-12-08', '9352527680', 977234, 977234, 1, 'Discuss about dalmia cement regarding order of 40L', '2020-12-09', b'1', b'1', '2020-12-05 09:52:42', '2020-12-05 09:52:42', 3, 1),
-(13, 967822, '2020-12-05', '91', 967822, 1, 1, 'hello', '2020-12-05', b'1', b'1', '2020-12-05 10:10:54', '2020-12-05 10:10:54', 4, 4802),
+(13, 967822, '2020-12-05', '91', 967822, 977234, 1, 'hello', '2020-12-05', b'1', b'1', '2020-12-05 10:10:54', '2020-12-05 10:10:54', 4, 4802),
 (14, 91, '2020-12-08', '9352325251', 10237, 10237, 1, 'MEETING', '2020-12-12', b'1', b'1', '2020-12-08 16:38:04', '2020-12-08 16:38:04', 5, 1);
 
 -- --------------------------------------------------------
@@ -234,7 +234,7 @@ INSERT INTO `tbl_employeemaster` (`nemployee_unique_id`, `cengineer_name`, `ccit
 (4806, 'Vishnu Shankar Prajapat', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 1, 'Admin', '123. Kanpur ,  Udaipur  Raj.', '9352513959', '9024859461', '4', 5, 'vprajapat@pyrotechlighting.com', b'1', b'1', 'vishnu', 'vishnu', '2020-12-03 14:21:59', '2020-12-08 12:13:59', 147, 9),
 (4871, 'Anand Sinha', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 5, 'C2', 'Udaipur', '8107807072', '9352527680', '1', 4, 'southpyrotech@gmail.com', b'1', b'1', 'anand810', '8107807072', '2020-12-05 09:48:37', '0000-00-00 00:00:00', 148, 10),
 (4802, 'Pradeep Paliwal', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 1, 'Admin', 'Panchwati Mohalla, Tehsil Road, Mavli', '8766036863', '9829114202', '4', 15, 'peplgujarat4@gmail.com', b'1', b'1', 'PP@123', 'PP@123', '2020-12-05 09:50:41', '0000-00-00 00:00:00', 149, 11),
-(123, '123user', 'AHEMDABAD', 'GUJRAT', 'INDIA', 1, '123user', 'pu2', '6587568', '678678', '3', 5, '123@123', b'1', b'1', '123@123', '123@123', '2020-12-08 12:02:12', '2020-12-08 12:05:55', 153, 12),
+(123, '123user', 'AHEMDABAD', 'GUJRAT', 'INDIA', 1, '123user', 'pu2', '6587568', '678678', '3', 5, '123@123', b'0', b'1', '123@123', '123@123', '2020-12-08 12:02:12', '2021-01-01 11:41:09', 153, 12),
 (5163, 'Lavish soni', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 7, 'C4', 'M.I.A. MADRI', '8949285920', '7740967375', '1', 4, 'soni.lavish23@gmail.com', b'0', b'1', 'LAVISH SONI', 'LAVISH@1996', '2020-12-08 16:31:44', '0000-00-00 00:00:00', 154, 13);
 
 -- --------------------------------------------------------
@@ -266,10 +266,11 @@ CREATE TABLE `tbl_organisation` (
 --
 
 INSERT INTO `tbl_organisation` (`nid`, `norg_id`, `corg_name`, `corg_address`, `corg_city`, `corg_state`, `corg_country`, `corg_mobileNumber`, `corg_emailId`, `norg_group_id`, `isActive`, `isAvailable`, `dcreated_date`, `dupdated_date`, `ninternal_id`) VALUES
-(8, 2, 'Organisation 2', 'Pyrtotech B', 'UDAIPUR', 'RAJASTHAN', 'INDIA', '780808710', '78978978', 2, b'1', b'0', '2020-12-03 12:58:32', '2020-12-08 16:17:08', 1),
+(8, 2, 'Organisation 2', 'Pyrtotech B', 'UDAIPUR', 'RAJASTHAN', 'INDIA', '780808710', '78978978', 2, b'1', b'1', '2020-12-03 12:58:32', '2020-12-08 16:17:08', 1),
 (9, 977234, 'Siri Power System', 'chennai radhakrishna nagar ', 'BANG KHEN', 'BANGKOK', 'THAILAND', '9352527680', 'anandk18@gmail.com', 1, b'1', b'1', '2020-12-05 09:50:56', '2020-12-05 09:50:56', 2),
 (10, 967822, 'AIR LIQUIDE INDIA HOLDING PVT LTD', '38/1, G.I.D.C. Industrial Estate, Jhagadia - 39311', 'AHEMDABAD', 'GUJRAT', 'INDIA', '8755603838', 'chandresh.chauhan@airliquide.com', 1, b'1', b'1', '2020-12-05 09:56:08', '2020-12-05 09:56:08', 3),
-(11, 10237, 'PYROTECH ELECTRONICS PVT. LTD. UNIT- II', 'E -329, ROAD NO. 12, MEWAR INDUSTRIAL AREA , MADRI', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 'E -329, RO', 'pyrotech@pyrotechindia.com', 2, b'1', b'1', '2020-12-08 16:35:09', '2020-12-08 16:35:09', 4);
+(11, 10237, 'PYROTECH ELECTRONICS PVT. LTD. UNIT- II', 'E -329, ROAD NO. 12, MEWAR INDUSTRIAL AREA , MADRI', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 'E -329, RO', 'pyrotech@pyrotechindia.com', 2, b'1', b'1', '2020-12-08 16:35:09', '2020-12-08 16:35:09', 4),
+(12, 202388, 'PYROTECH ELECTRONICS PVT. LTD. UNIT- II', 'E -329, ROAD NO. 12, MEWAR INDUSTRIAL AREA , MADRI', 'UDAIPUR', 'RAJASTHAN', 'INDIA', 'E -329, RO', 'pyrotech@pyrotechindia.com', 2, b'1', b'1', '2020-12-08 16:35:09', '2020-12-08 16:35:09', 7);
 
 -- --------------------------------------------------------
 
@@ -2474,9 +2475,9 @@ CREATE TABLE `tbl_tour` (
 --
 
 INSERT INTO `tbl_tour` (`nid`, `ninternal_id`, `ntour_id`, `nlogged_in_user_id`, `ddate`, `norg_id`, `nperson_to_meet_id`, `npurpose_id`, `tbriefTalk`, `dnext_date`, `isAvailable`, `isActive`, `dcreated_date`, `dupdated_date`) VALUES
-(3, 1, 1, 1, '2020-12-03', 1, 2, 1, 'first entry', '2020-12-04', b'1', b'1', '2020-12-03 14:51:52', '2020-12-03 14:51:52'),
+(3, 1, 1, 1, '2020-12-03', 2, 2, 1, 'first entry', '2020-12-04', b'1', b'1', '2020-12-03 14:51:52', '2020-12-03 14:51:52'),
 (4, 2, 977234, 1, '2020-12-09', 977234, 977234, 1, 'dalmia offrer discussion', '2020-12-09', b'1', b'1', '2020-12-05 09:53:58', '2020-12-05 09:53:58'),
-(5, 3, 4802, 4802, '2020-12-07', 1, 967822, 1, 'Hello', '2020-12-07', b'1', b'1', '2020-12-05 10:12:24', '2020-12-05 10:12:24');
+(5, 3, 4802, 4802, '2020-12-07', 2, 967822, 1, 'Hello', '2020-12-07', b'1', b'1', '2020-12-05 10:12:24', '2020-12-05 10:12:24');
 
 -- --------------------------------------------------------
 
@@ -2507,9 +2508,11 @@ CREATE TABLE `tbl_visitplan` (
 --
 
 INSERT INTO `tbl_visitplan` (`nid`, `ninternal_id`, `nvisit_plan_id`, `nlogged_in_user_id`, `ddate`, `norg_id`, `ccity`, `nperson_to_meet_id`, `npurpose_id`, `tbriefTalk`, `dnext_date`, `isAvailable`, `isActive`, `dcreated_date`, `dupdated_date`) VALUES
+(6, 6, 977234, 1, '2020-12-09', 977234, 'chennai', 977234, 1, 'Dalmai', '2020-12-09', b'1', b'1', '2020-12-05 09:53:20', '2020-12-05 09:53:20'),
+(7, 3, 54, 4802, '2020-12-07', 10237, 'Ahmedabad', 967822, 1, 'Hello', '2020-12-07', b'1', b'1', '2020-12-05 10:11:48', '2020-12-05 10:11:48'),
 (10, 1, 1, 4, '2020-12-02', 1, 'JAIPUR', 2, 1, 'first entry', '2020-12-04', b'1', b'1', '2020-12-03 13:39:31', '2020-12-03 13:39:31'),
-(11, 2, 977234, 1, '2020-12-09', 977234, 'chennai', 977234, 1, 'Dalmai', '2020-12-09', b'1', b'1', '2020-12-05 09:53:20', '2020-12-05 09:53:20'),
-(12, 3, 4802, 4802, '2020-12-07', 1, 'Ahmedabad', 967822, 1, 'Hello', '2020-12-07', b'1', b'1', '2020-12-05 10:11:48', '2020-12-05 10:11:48');
+(11, 2, 977234, 1, '2020-12-09', 2, 'chennai', 977234, 1, 'Dalmai', '2020-12-09', b'1', b'1', '2020-12-05 09:53:20', '2020-12-05 09:53:20'),
+(12, 3, 4802, 4802, '2020-12-07', 10237, 'Ahmedabad', 967822, 1, 'Hello', '2020-12-07', b'1', b'1', '2020-12-05 10:11:48', '2020-12-05 10:11:48');
 
 --
 -- Indexes for dumped tables
@@ -2631,7 +2634,7 @@ ALTER TABLE `tbl_employeemaster`
 -- AUTO_INCREMENT for table `tbl_organisation`
 --
 ALTER TABLE `tbl_organisation`
-  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `nid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tbl_organisation_group`

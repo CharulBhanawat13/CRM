@@ -8,6 +8,7 @@ WHERE norg_group_id=2)
 
 --------------------------
 
+
 CREATE TEMPORARY TABLE tbl_visitCount
 select norg_id ,count(*) AS nofVisit
 from tbl_visitplan
@@ -35,7 +36,8 @@ SELECT norg_id FROM tbl_organisation
 WHERE norg_group_id=2)
 group by norg_id;
 
-select o.norg_id ,o.corg_name ,nofVisit,noOFCallList,noOfTour from tbl_organisation AS o
+select o.norg_id ,o.corg_name ,IFNULL(`nofVisit`,0) AS nofVisit,
+IFNULL(`noOFCallList`,0) AS noOFCallList,IFNULL(`noOfTour`,0) AS noOfTour from tbl_organisation AS o
 LEFT JOIN tbl_visitCount AS vc
 ON vc.norg_id=o.norg_id
 LEFT JOIN tbl_callListCount AS CL

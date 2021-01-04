@@ -48,13 +48,56 @@ if(!empty($_GET['id'])){
 }
 
 if(!empty($_GET['org_group_id'])){
+    session_start();
+    $user_id=$_SESSION['user_id'];
     include('../db_connection.php');
     $org_group_id=(int)$_GET['org_group_id'];
     $conn = OpenCon();
-    $sql = "SELECT *
-        FROM tbl_organisation
-       WHERE isAvailable=1 AND norg_group_id=$org_group_id;";
-    $retval = mysqli_query($conn, $sql);
+
+    $sql="
+CREATE TEMPORARY TABLE tbl_visitCount".$user_id."
+select norg_id ,count(*) AS nofVisit
+from tbl_visitplan
+where norg_id IN (
+SELECT norg_id FROM tbl_organisation
+WHERE norg_group_id=$org_group_id)
+group by norg_id;
+
+
+
+CREATE TEMPORARY TABLE tbl_callListCount".$user_id."
+select norg_id ,count(*) AS noOFCallList
+from tbl_callList
+where norg_id IN (
+SELECT norg_id FROM tbl_organisation
+WHERE norg_group_id=$org_group_id)
+group by norg_id;
+
+
+CREATE TEMPORARY TABLE tbl_tourCount".$user_id."
+select norg_id ,count(*) AS noOfTour
+from tbl_tour
+where norg_id IN (
+SELECT norg_id FROM tbl_organisation
+WHERE norg_group_id=$org_group_id)
+group by norg_id;
+
+select o.ninternal_id,o.norg_id ,o.corg_name ,IFNULL(`nofVisit`,0) AS nofVisit,
+IFNULL(`noOFCallList`,0) AS noOFCallList,IFNULL(`noOfTour`,0) AS noOfTour from tbl_organisation AS o
+LEFT JOIN tbl_visitCount".$user_id." AS vc
+ON vc.norg_id=o.norg_id
+LEFT JOIN tbl_callListCount".$user_id." AS CL
+ON CL.norg_id=o.norg_id
+LEFT JOIN tbl_tourCount".$user_id." AS TC
+ON TC.norg_id=o.norg_id
+where o.norg_group_id=$org_group_id;
+
+IF EXISTS DROP TABLE tbl_visitCount".$user_id.";
+IF EXISTS DROP TABLE tbl_callListCount".$user_id.";
+IF EXISTS DROP TABLE tbl_tourCount".$user_id.";
+
+";
+
     echo "<table  id='organisationGroupOrganisationTable'  name='organisationGroupOrganisationTable' >
             <thead>
             <tr>
@@ -68,24 +111,30 @@ if(!empty($_GET['org_group_id'])){
             </thead>
                    <tbody>
             ";
-    while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
-        echo "<tr>";
-        echo "<td style='display:none;'>" . $row['ninternal_id'] . "</td>";
-        echo "<td style='display:none;'>" . $row['norg_id'] . "</td>";
-        echo "<td>" . $row['corg_name'] . "</td>";
-        echo "<td>---</td>";
-        echo "<td>---</td>";
-        echo "<td>---</td>";
-        echo "</tr>";
+    if (mysqli_multi_query($conn,$sql)){
+        do{
+            if ($result=mysqli_store_result($conn)){
+                while ($row=mysqli_fetch_row($result)){
+
+                    echo "<tr>";
+                    echo "<td style='display:none;'>" . $row[0] . "</td>";
+                    echo "<td style='display:none;'>" . $row[1] . "</td>";
+                    echo "<td>" . $row[2] . "</td>";
+                    echo "<td>" . $row[3] . "</td>";
+                    echo "<td>" . $row[4] . "</td>";
+                    echo "<td>" . $row[5] . "</td>";
+                    echo "</tr>";
+                }
+            //    mysqli_free_result($conn);
+            }
+        }while (mysqli_next_result($conn));
     }
-    echo "</tbody></table>";
     CloseCon($conn);
+    echo "</tbody></table>";
 
 }
 
-
 ?>
-
 <script>
     $(document).ready(function () {
         $('#segmentOrganisationGroupTable thead tr').clone(true).appendTo('#segmentOrganisationGroupTable thead');
@@ -125,8 +174,8 @@ if(!empty($_GET['org_group_id'])){
             $(this).html('<input class="form-control" type="text" placeholder="Search ' + title + '" />');
 
             $('input', this).on('keyup change', function () {
-                if (table.column(i).search() !== this.value) {
-                    table
+                if (table2.column(i).search() !== this.value) {
+                    table2
                         .column(i)
                         .search(this.value)
                         .draw();
@@ -139,7 +188,6 @@ if(!empty($_GET['org_group_id'])){
                 "dom": 'lrtip',
             }
         );
-
     });
 </script>
 </html>
