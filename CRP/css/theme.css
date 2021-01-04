@@ -67,6 +67,7 @@ tfoot {
 
 .modal-body {
     font-size: 20px;
+
 }
 
 .a {
@@ -117,8 +118,10 @@ tfoot {
     text-align: left;
 }
 .modal.fade .modal-dialog{
+
     -webkit-transform: translate(0,0);
     transform: translate(0,0);
+
 }
 
 .zoom-in {

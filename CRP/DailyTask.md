@@ -43,6 +43,11 @@
 ---------- 
  - Spend some time with activating Evaluation with Ravindra Sir.
  - Prepare queries of temp table with user Id's
- - Code for getting the resultset 
- - DROP tables after use
- - Remove errors of PHP Methods.
+ - Completed displaying the number of visit,number of callList, number of tor in modal 
+ - DROP all the temporary tables after use with query
+ - Remove few errors of PHP Methods while use.
+ - Worked on showing start date ,end date and next date
+ - Completed the display of next date checkbox,startdate calendar dropdown,next date dropdown.
+ - *Pending*: Need to implement the queries according to date filter 
+ - Make modal large in size as discussed earlier.
+  

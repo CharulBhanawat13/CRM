@@ -1,7 +1,7 @@
 <html>
 <head>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/modal.css">
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
@@ -97,6 +99,34 @@ IF EXISTS DROP TABLE tbl_callListCount".$user_id.";
 IF EXISTS DROP TABLE tbl_tourCount".$user_id.";
 
 ";
+
+    if (isset($_POST['search'])){
+        require_once('../utils/DateFilter.php');
+
+    }
+    echo "
+<form id='dateForm' method='post'>
+<table>
+<tr>
+        <td><input type='checkbox' id='nextDateCheckbox' name='nextDateCheckbox' unchecked> <b>Next Date</b></td>
+        <td><div class='input-daterange'>
+            <div class='col-md-4'>
+                <b>Start Date</b><input type='date' name='start_date' id='start_date' class='form-control' />
+            </div>
+            <div class='col-md-4'>
+                <b>End Date</b><input type='date' name='end_date' id='end_date' class='form-control' />
+            </div>
+        </div></td>
+     <td>   <div class='col-md-4'>
+            <input type='submit' name='search' id='search' value='Search' class='btn btn-info' />
+        </div></td>
+       <td> <div class='col-md-4'>
+            <input type='reset' name='reset' onclick='resetDateForm()' value='Reset' class='btn btn-info' />
+        </div></td>
+        </tr>
+   </table>
+    </form>";
+
 
     echo "<table  id='organisationGroupOrganisationTable'  name='organisationGroupOrganisationTable' >
             <thead>
@@ -188,6 +218,10 @@ IF EXISTS DROP TABLE tbl_tourCount".$user_id.";
                 "dom": 'lrtip',
             }
         );
+        function resetDateForm(){
+            location.reload();
+
+        }
     });
 </script>
 </html>
