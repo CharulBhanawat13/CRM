@@ -51,3 +51,23 @@
  - *Pending*: Need to implement the queries according to date filter 
  - Make modal large in size as discussed earlier.
   
+  :spiral_calendar:	 5/1/2021
+  ---------- 
+ -   ninternal_id on following pages
+  1. ORGANISATION GROUP-segment 
+  2. ORGANISATION- org group
+  3. CONTACT PERSON- organisation
+  4. CALL LIST- organisation,purpose,person_to_meet
+  5. VISIT PLAN - Organisation,person-to-meet,purpose
+  6. TOUR - organisation,person-to-meet,purpose
+  
+  - prepare query for finished good. Need to verify by Sir.
+  - delete all entries from all tables .
+  - Test all pages ADD functionality.
+  - Remove all errors ocurred while testing.
+  
+  Pending: Need to implement the queries according to date filter 
+  Finished Goods.
+  Testing after that
+  City in visitplan page - make it a dropdown
+  need to test update for all pages

@@ -45,3 +45,34 @@ ON CL.norg_id=o.norg_id
 LEFT JOIN tbl_tourCount AS TC
 ON TC.norg_id=o.norg_id
 where o.norg_group_id=2;
+
+-----------------------------------------
+SELECT     dbo.tbl_ItemSubGroupMaster.nID, dbo.tbl_ItemSubGroupMaster.nitemSubGRoup_UniqueID, dbo.tbl_ItemSubGroupMaster.nAccountMasterID_UniqueID,
+                      RIGHT('000000' + CAST(ISNULL(dbo.tbl_AccountMaster.nAccountID, 0) AS VARCHAR(6)), 6) AS nAccountMasterID, ISNULL(dbo.tbl_AccountMaster.cACName, '')
+                      AS cACName, dbo.tbl_ItemGroupMaster.nItemSuperGroupID AS nISuperGID, dbo.tbl_ItemSuperGroup.cItemSGroup, dbo.tbl_ItemSubGroupMaster.nIGID_UniqueID,
+                      dbo.tbl_ItemGroupMaster.nItemGroupID AS nIGID, dbo.tbl_ItemGroupMaster.cItemGroup, dbo.tbl_ItemSubGroupMaster.nISubGroupID,
+                      dbo.tbl_ItemSubGroupMaster.cItemSubGroup, dbo.tbl_ItemSubGroupMaster.cItemSubGroupDesc, dbo.tbl_ItemSubGroupMaster.Is_Active,
+                      dbo.tbl_ItemSubGroupMaster.Is_Lock, dbo.tbl_ItemSubGroupMaster.LockedBy_UserID, dbo.tbl_ItemSubGroupMaster.nCompanyID,
+                      dbo.tbl_ItemSubGroupMaster.nTarrifUniqueId, dbo.tbl_TariffMaster.cTariffHead, dbo.tbl_ItemSubGroupMaster.cAlternateId
+FROM         dbo.tbl_ItemSubGroupMaster INNER JOIN
+                      dbo.tbl_ItemGroupMaster ON dbo.tbl_ItemSubGroupMaster.nIGID_UniqueID = dbo.tbl_ItemGroupMaster.nItemGroupUniqueID AND
+                      dbo.tbl_ItemGroupMaster.Is_Available = 1 AND dbo.tbl_ItemGroupMaster.Is_Active = 1 INNER JOIN
+                      dbo.tbl_ItemSuperGroup ON dbo.tbl_ItemGroupMaster.nItemSuperGroupID = dbo.tbl_ItemSuperGroup.nItemSGroupID AND dbo.tbl_ItemSuperGroup.Is_Active = 1 AND
+                      dbo.tbl_ItemSuperGroup.Is_Available = 1 LEFT OUTER JOIN
+                      dbo.tbl_TariffMaster ON dbo.tbl_ItemSubGroupMaster.nTarrifUniqueId = dbo.tbl_TariffMaster.nUniqueID LEFT OUTER JOIN
+                      dbo.tbl_AccountMaster ON dbo.tbl_ItemSubGroupMaster.nAccountMasterID_UniqueID = dbo.tbl_AccountMaster.nAccount_UniqueID AND
+                      dbo.tbl_AccountMaster.Is_Available = 1 AND dbo.tbl_AccountMaster.Is_Active = 1
+WHERE     (dbo.tbl_ItemSubGroupMaster.Is_Available = 1)
+
+
+SELECT nitemSubGRoup_UniqueID , ISNULL(cAlternateId,'') + ' - ' + ISNULL(cItemSubGroup,'')
+FROM View_GetItemGroup_SubGroup
+Where nID > 0 AND Is_Active = 1 AND nCompanyID = 1 AND cItemSGroup IN ('FINISHED GOODS')
+Order by cAlternateId ,cItemSubGroup
+
+TRUNCATE TABLE tbl_organisation
+TRUNCATE TABLE tbl_organisation_group
+TRUNCATE TABLE tbl_tour
+TRUNCATE TABLE tbl_callList
+TRUNCATE TABLE tbl_visitplan
+TRUNCATE TABLE tbl_contactperson

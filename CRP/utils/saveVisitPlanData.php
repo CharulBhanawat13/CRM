@@ -15,13 +15,13 @@ if (isset($_POST['id_toDelete'])) {
 if (isset($_POST['norg_id'])){
     $conn=OpenCon();
     $organisationId = (int)$_POST["norg_id"];
-    $result = mysqli_query($conn,"SELECT ncontact_person_id,cperson_name FROM tbl_contactperson where norg_id = $organisationId");
+    $result = mysqli_query($conn,"SELECT ninternal_id,ncontact_person_id,cperson_name FROM tbl_contactperson where norg_id = $organisationId");
     ?>
     <option value="">Select Person</option>
     <?php
     while($row = mysqli_fetch_array($result)) {
         ?>
-        <option value="<?php echo $row["ncontact_person_id"];?>" selected><?php echo $row["cperson_name"];?></option>
+        <option value="<?php echo $row["ninternal_id"];?>" selected><?php echo $row["cperson_name"];?></option>
         <?php
     }
     CloseCon($conn);
@@ -35,7 +35,7 @@ if (isset($_POST['id_toUpdate'])) {
         v.tbriefTalk,v.dnext_date,c.ncontact_person_id
         from tbl_visitplan AS v 
         JOIN tbl_contactperson AS c 
-        ON v.nperson_to_meet_id=c.ncontact_person_id
+        ON v.nperson_to_meet_id=c.ninternal_id
         WHERE v.ninternal_id = $internal_id";
     $result = mysqli_query($conn, $sql);
     $row_data = array();

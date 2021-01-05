@@ -35,11 +35,11 @@ p.cpurpose_name,p.npurpose_id ,
 o.corg_name,o.norg_id
 from tbl_visitplan As v
 JOIN tbl_purpose AS p
-ON v.npurpose_id=p.npurpose_id 
+ON v.npurpose_id=p.ninternal_id 
 JOIN tbl_contactperson AS c
-ON v.nperson_to_meet_id=c.ncontact_person_id
+ON v.nperson_to_meet_id=c.ninternal_id
 JOIN tbl_organisation AS o 
-ON o.norg_id=v.norg_id
+ON o.norg_id=v.ninternal_id
 where v.isAvailable=1 AND v.nlogged_in_user_id IN (".$permissionRoleQuery.")";
 if (isset($_POST['search'])){
     require_once('../utils/DateFilter.php');
@@ -287,7 +287,7 @@ CloseCon($conn);
                                     $result = mysqli_query($conn, "SELECT * FROM tbl_organisation");
                                     while ($row = mysqli_fetch_array($result)) {
                                         ?>
-                                        <option value="<?php echo $row['norg_id']; ?>"><?php echo $row["corg_name"]; ?></option>
+                                        <option value="<?php echo $row['ninternal_id']; ?>"><?php echo $row["corg_name"]; ?></option>
                                         <?php
                                     }
                                     CloseCon($conn);
@@ -321,7 +321,7 @@ CloseCon($conn);
                                     $result = mysqli_query($conn, "SELECT * FROM tbl_purpose");
                                     while ($row = mysqli_fetch_array($result)) {
                                         ?>
-                                        <option value="<?php echo $row['npurpose_id']; ?>"><?php echo $row["cpurpose_name"]; ?></option>
+                                        <option value="<?php echo $row['ninternal_id']; ?>"><?php echo $row["cpurpose_name"]; ?></option>
                                         <?php
                                     }
                                     CloseCon($conn);

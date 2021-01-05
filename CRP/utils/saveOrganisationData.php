@@ -49,7 +49,7 @@ if (isset($_POST['submitData'])) {
     $country = $_POST["country"];
     $mobileNumber = $_POST["mobileNumber"];
     $emailId = $_POST["emailId"];
-    $segment_id=$_POST["segment"];
+    $org_groupId=$_POST["organisationGroup"];
 
 
     if ($saveOrUpdate == 2) {
@@ -66,7 +66,7 @@ if (isset($_POST['submitData'])) {
                 corg_address='$address',
                 corg_mobileNumber='$mobileNumber',
                 corg_emailId='$emailId',
-                norg_segment_id='$segment_id',
+                norg_group_id='$org_groupId',
                 dupdated_date=now()
                 where ninternal_id=$internal_id ";
 
@@ -79,9 +79,9 @@ if (isset($_POST['submitData'])) {
         $internal_id=ServiceLayer::getMaximumID('tbl_organisation','ninternal_id');
         $conn = OpenCon();
         // Save Data in tbl_employeemaster
-        $sql = "INSERT INTO tbl_organisation (ninternal_id, norg_id,corg_name,corg_city,corg_state,corg_country,corg_address,corg_mobileNumber,corg_emailId,norg_segment_id,
+        $sql = "INSERT INTO tbl_organisation (ninternal_id, norg_id,corg_name,corg_city,corg_state,corg_country,corg_address,corg_mobileNumber,corg_emailId,norg_group_id,
 isActive,isAvailable,dcreated_date,dupdated_date) 
-			VALUES ($internal_id,$organisationId,'$name','$city','$state','$country','$address','$mobileNumber','$emailId',$segment_id,1,1,now(),now())";
+			VALUES ($internal_id,$organisationId,'$name','$city','$state','$country','$address','$mobileNumber','$emailId',$org_groupId,1,1,now(),now())";
 
         $result = mysqli_query($conn, $sql);
 

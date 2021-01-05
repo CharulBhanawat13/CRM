@@ -26,7 +26,7 @@ $conn = OpenCon();
 $sql = "SELECT og.ninternal_id,og.norg_group_id,og.corg_group_name,s.csegment_name,og.isAvailable 
         FROM tbl_organisation_group As og
         Join tbl_segment AS s
-        ON og.nsegment_id=s.nsegment_id
+        ON og.nsegment_id=s.ninternal_id
         WHERE og.isAvailable=1;";
 $retval = mysqli_query($conn, $sql);
 echo "<table id='organisationGroupTable'  name='organisationGroupTable' >
@@ -194,7 +194,7 @@ CloseCon($conn);
                                     $result = mysqli_query($conn, "SELECT * FROM tbl_segment");
                                     while ($row = mysqli_fetch_array($result)) {
                                         ?>
-                                        <option value="<?php echo $row['nsegment_id']; ?>"><?php echo $row["csegment_name"]; ?></option>
+                                        <option value="<?php echo $row['ninternal_id']; ?>"><?php echo $row["csegment_name"]; ?></option>
                                         <?php
                                     }
                                     CloseCon($conn);

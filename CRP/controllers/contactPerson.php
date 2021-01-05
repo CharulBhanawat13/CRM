@@ -27,7 +27,7 @@ $conn = OpenCon();
 $sql = $sql = "SELECT c.ninternal_id,c.ncontact_person_id,c.cperson_name,c.ndept_id,c.cmobile_number,c.cphone_number,c.cemail_id,c.isAvailable, o.corg_name,d.cdept_name
                     FROM tbl_contactperson AS c 
                      JOIN tbl_organisation AS o 
-                    ON c.norg_id = o.norg_id 
+                    ON c.norg_id = o.ninternal_id 
                      JOIN tbl_department AS d
                     ON c.ndept_id= d.ndept_id
                     WHERE c.isAvailable=1";
@@ -250,7 +250,7 @@ CloseCon($conn);
                                     $result = mysqli_query($conn, "SELECT * FROM tbl_organisation");
                                     while ($row = mysqli_fetch_array($result)) {
                                         ?>
-                                        <option value="<?php echo $row['norg_id']; ?>"><?php echo $row["corg_name"]; ?></option>
+                                        <option value="<?php echo $row['ninternal_id']; ?>"><?php echo $row["corg_name"]; ?></option>
                                         <?php
                                     }
                                     CloseCon($conn);

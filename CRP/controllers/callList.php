@@ -32,9 +32,9 @@ $permissionRoleQuery=ServiceLayer::preparePermissionRoleQuery();
 $sql = "SELECT c.ninternal_id,c.ncall_list_id,c.ddate,c.cphoneNumber,c.norg_id,c.npurpose_id,c.tbriefTalk,c.dnext_date,c.isAvailable,o.corg_name,p.cpurpose_name
  from tbl_callList As c
 JOIN tbl_organisation AS o
-ON c.norg_id=o.norg_id
+ON c.norg_id=o.ninternal_id
 JOIN tbl_purpose AS p
-ON c.npurpose_id=p.npurpose_id 
+ON c.npurpose_id=p.ninternal_id 
 where c.isAvailable=1 AND c.nlogged_in_user_id IN (".$permissionRoleQuery.")";
 if (isset($_POST['search'])){
     require_once('../utils/DateFilter.php');
@@ -268,7 +268,7 @@ CloseCon($conn);
                                     $result = mysqli_query($conn, "SELECT * FROM tbl_contactperson");
                                     while ($row = mysqli_fetch_array($result)) {
                                         ?>
-                                        <option value="<?php echo $row['ncontact_person_id']; ?>"><?php echo $row["cperson_name"]; ?></option>
+                                        <option value="<?php echo $row['ninternal_id']; ?>"><?php echo $row["cperson_name"]; ?></option>
                                         <?php
                                     }
                                     CloseCon($conn);
@@ -288,7 +288,7 @@ CloseCon($conn);
                                     $result = mysqli_query($conn, "SELECT * FROM tbl_organisation");
                                     while ($row = mysqli_fetch_array($result)) {
                                         ?>
-                                        <option value="<?php echo $row['norg_id']; ?>"><?php echo $row["corg_name"]; ?></option>
+                                        <option value="<?php echo $row['ninternal_id']; ?>"><?php echo $row["corg_name"]; ?></option>
                                         <?php
                                     }
                                     CloseCon($conn);
@@ -308,7 +308,7 @@ CloseCon($conn);
                                     $result = mysqli_query($conn, "SELECT * FROM tbl_purpose");
                                     while ($row = mysqli_fetch_array($result)) {
                                         ?>
-                                        <option value="<?php echo $row['npurpose_id']; ?>"><?php echo $row["cpurpose_name"]; ?></option>
+                                        <option value="<?php echo $row['ninternal_id']; ?>"><?php echo $row["cpurpose_name"]; ?></option>
                                         <?php
                                     }
                                     CloseCon($conn);
