@@ -1,0 +1,4 @@
+SELECT Blood_bank,Product_name,date ,SET_high_temp,SET_low_temp,Temperature_status,
+Compressor,Door,Chamber_light,Blower,defrost_status,Alarm,SMS
+ FROM bbr_data where BloodBankID=3
+ GROUP BY ProductID;
