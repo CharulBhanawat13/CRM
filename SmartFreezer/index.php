@@ -47,6 +47,7 @@ if(isset($_POST['login']))
     {
         $_SESSION['username']=$username;
         $_SESSION['bloodBankId']=(int)$result['bloodBankId'];
+        $_SESSION['isAdmin']=(int)$result['isAdmin'];
         echo "<script>window.open('dashboard.php','_self')</script>";
     }
     else

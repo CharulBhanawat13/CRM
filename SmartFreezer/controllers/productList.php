@@ -44,18 +44,23 @@ session_start();
     }else{
         $username = $_SESSION['username'];
         $bloodBankId=$_SESSION['bloodBankId'];
-
+        $isAdmin=Convert2Bool($_SESSION['isAdmin']);
     }
 
 include '../db_connection.php';
 
 $conn = OpenCon();
-$sql = "SELECT ProductID,Blood_bank,Product_name,MAX(date) as date,SET_high_temp,SET_low_temp,Temperature_status,
+if($isAdmin){
+    $sql = "SELECT ProductID,BloodBankId,Blood_bank,Product_name,MAX(date) as date,SET_high_temp,SET_low_temp,Temperature_status,
+Compressor,Door,Chamber_light,Blower,defrost_status,Alarm,SMS
+ FROM bbr_data GROUP BY ProductID;";
+}else{
+    $sql = "SELECT ProductID,BloodBankId,Blood_bank,Product_name,MAX(date) as date,SET_high_temp,SET_low_temp,Temperature_status,
 Compressor,Door,Chamber_light,Blower,defrost_status,Alarm,SMS
  FROM bbr_data where BloodBankID=$bloodBankId
- GROUP BY ProductID;
+ GROUP BY ProductID;";
+}
 
-";
 $count=1;
 $retval = mysqli_query($conn, $sql);
 echo "<table  style='background-color: white;width: 80%;' id='bbrTable'  name='bbrTable' >
@@ -64,7 +69,9 @@ echo "<table  style='background-color: white;width: 80%;' id='bbrTable'  name='b
             <th style='display: none'>PRODUCT ID</th>
             <th>VIEW</th>
             <th>SN</th>
+            <th>BB ID</th>  
             <th>Blood Bank</th>
+            <th>Prod ID</th>  
             <th>Product Name</th>
             <th>Time</th>
             <th>Max Temp</th>
@@ -86,8 +93,13 @@ while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
     echo "<td style='display: none'>".$row['ProductID']."</td>";
     echo "<td ><a class='opendetails'><i class='fa fa-eye fa-2x'></i></a></td>";
     echo "<td>" . $count++ . "</td>";
+    echo "<td>" . $row['BloodBankId'] . "</td>";
+
     echo "<td>" . $row['Blood_bank'] . "</td>";
+    echo "<td>" . $row['ProductID'] . "</td>";
+
     echo "<td>" . $row['Product_name'] . "</td>";
+
     echo "<td>" . date('Y-m-d',strtotime($row['date'])) . "</td>";
     echo "<td>" . $row['SET_high_temp'] . "</td>";
     echo "<td>" . $row['SET_low_temp'] . "</td>";
@@ -123,10 +135,11 @@ function Convert2Bool($value){
         $('#bbrTable tbody').on('click', '.opendetails', function () {
             var data = table.row($(this).parents('tr').first()).data()[0];
             var product_id=data;
+            window.open('../bbrdata.php?product_id='+product_id);
 
-            $('.modal-body').load('../bbrdata.php?product_id='+product_id,function(){
-                $('#productDetails_modal').modal({show:true});
-            });
+            // $('.modal-body').load('../bbrdata.php?product_id='+product_id,function(){
+            //     $('#productDetails_modal').modal({show:true});
+            // });
         } );
     });
 
