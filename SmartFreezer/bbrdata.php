@@ -17,12 +17,10 @@
             <td> <div class='col-md-4'>
                     <input type='reset' name='reset' onclick='resetDateForm()' value='Reset' class='btn btn-info' />
                 </div></td>
-            <td> <div class='col-md-4'>
-                    <input type='button' name='Export'  value='Export' class='btn btn-info' />
-                </div></td>
+
         </tr>
     </table>
-</form>";
+</form>
 
 <?php
 if(!empty($_GET['product_id'])){
@@ -103,6 +101,9 @@ CloseCon($conn);
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/theme.css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
@@ -113,11 +114,36 @@ CloseCon($conn);
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/theme.css">
     <link rel="stylesheet" href="../css/sidebar.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
 </head>
 <script>
     $(document).ready(function () {
         var table = $('#productTable').DataTable({
-                "dom": 'lrtip',
+            dom: 'Bfrtip',
+            buttons: [{
+                extend: 'pdf',
+                title: 'ProductDetails',
+                filename: 'ProductDetails',
+                orientation: 'landscape'
+            },  {
+                extend: 'csv',
+                title: 'ProductDetails',
+                filename: 'ProductDetails'
+            }, {
+                extend: 'copy'
+            } ,{
+                extend: 'print',
+                filename: 'ProductDetails'
+            }
+            ],
                 "ordering": false
             }
         );
@@ -136,8 +162,7 @@ CloseCon($conn);
                 }
             });
         });
-
-    });
+         });
 </script>
 </body>
 </html>
