@@ -13,15 +13,12 @@ session_start();//session starts here
 <div class="container-small">
     <form method="post" action="">
         <h1>Sign Up</h1>
-
         <label>Username</label>
         <input type="text" id="loginuser" class="form-control" placeholder="Username" name="username" autofocus>
 
         <label>Password</label>
         <input type="password" id="loginpass" class="form-control" placeholder="Password" name="pass" value="">
 
-<!--        <label>Blood Bank Id</label>-->
-<!--        <input type="password" id="bloodBankId"class="form-control" placeholder="Blood Bank Id" name="bloodBankId" value="">-->
       <input type="submit" class="btn btn-success" value="login" name="login">
 
     </form>

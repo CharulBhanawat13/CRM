@@ -1,9 +1,11 @@
 
 .sidebar {
+    width: fit-content;
     position: fixed;
     height: 100%;
     overflow: auto;
     background-color: black;
+    z-index: 1;
 
 }
 
@@ -23,6 +25,7 @@
 .sidebar a.active {
     background-color: #4CAF50;
     color: white;
+    z-index: 1;
 }
 
 /* Links on mouse-over */

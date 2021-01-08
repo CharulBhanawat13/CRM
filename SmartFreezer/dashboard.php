@@ -12,6 +12,8 @@ if ($_SESSION['username'] == '') {
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="css/theme.css">
+
     <link rel="stylesheet" href="css/sidebar.css">
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -24,15 +26,16 @@ if ($_SESSION['username'] == '') {
 
 </head>
 <body style="background-color:  #eee">
-<!---->
-<!--<div class="sidebar">-->
-<!--    <a href="dashboard.php"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a>-->
-<!--    <a href="controllers/productList.php"><i class="fa fa-list fa-lg" aria-hidden="true"></i></a>-->
-<!---->
-<!--</div>-->
-<div id="nav-placeholder">
 
-<script>
+    <div id="header">
+        <img style="margin-left: 8%" src="assests/pepl.jpg" width="100px" height="50px" >
+        <span id='servertime'  class="label label-default" id="servertime">Servertime: <?php echo date('d-m-Y H:i:s'); ?></span>
+
+    </div>
+
+    <div id="nav-placeholder">
+
+    <script>
     $(function(){
         $("#nav-placeholder").load("nav.html");
     });

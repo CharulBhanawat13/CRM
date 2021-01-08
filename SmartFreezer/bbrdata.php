@@ -1,14 +1,43 @@
 <html>
+
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/theme.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+</head>
 <body>
 <form id='dateForm' method='post'>
+    <div style="margin-top: 2%;margin-left: 2%;margin-right: 2%">
     <table>
         <tr>
             <td><div class='input-daterange'>
                     <div  style="width: fit-content" class='col-md-4'>
-                        <b>Start Date</b><input type='date' name='start_date' id='start_date' class='form-control' />
+                        <b>Start Date</b><input type='datetime-local' name='start_date' id='start_date' class='form-control' />
                     </div>
                     <div style="width: fit-content"  class='col-md-4'>
-                        <b>End Date</b><input type='date' name='end_date' id='end_date' class='form-control' />
+                        <b>End Date</b><input type='datetime-local' name='end_date' id='end_date' class='form-control' />
                     </div>
                 </div></td>
             <td>   <div class='col-md-4'>
@@ -17,9 +46,11 @@
             <td> <div class='col-md-4'>
                     <input type='reset' name='reset' onclick='resetDateForm()' value='Reset' class='btn btn-info' />
                 </div></td>
+        <tr><td><br></td></tr>
 
         </tr>
     </table>
+
 </form>
 
 <?php
@@ -40,13 +71,14 @@ FROM bbr_data
 WHERE ProductID=$product_id";
     if (isset($_POST['search'])){
         require_once('utils/DateFilter.php');
+
             $sql=DateFilter::prepareQuery('date',$sql);
     }
 
 
 $retval = mysqli_query($conn, $sql);
 echo "<table  id='productTable'  name='productTable' >
-     <thead> 
+     <thead style='background-color: #967adc;color: white'> 
             <tr>
             <th style='display: none'>PRODUCT ID</th>
             <th>SN</th>
@@ -78,7 +110,7 @@ $count=1;
         echo "<td>" . $row['Blood_bank'] . "</td>";
         echo "<td>" . $row['ProductID'] . "</td>";
         echo "<td>" . $row['Product_name'] . "</td>";
-        echo "<td>" . date('Y-m-d',strtotime($row['date'])) . "</td>";
+        echo "<td>" . $row['date']. "</td>";
         echo "<td>" . $row['SET_high_temp'] . "</td>";
         echo "<td>" . $row['SET_low_temp'] . "</td>";
         echo "<td>" . Convert2Bool($row['Temperature_status']) . "</td>";
@@ -97,33 +129,6 @@ CloseCon($conn);
 ?>
 
 
-<head>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <link rel="stylesheet" href="../css/theme.css">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
-
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../css/theme.css">
-    <link rel="stylesheet" href="../css/sidebar.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.css"/>
-    <script type="text/javascript" src="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-
-</head>
 <script>
     $(document).ready(function () {
         var table = $('#productTable').DataTable({
@@ -162,7 +167,9 @@ CloseCon($conn);
                 }
             });
         });
+
          });
 </script>
+</div>
 </body>
 </html>
