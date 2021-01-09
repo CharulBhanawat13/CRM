@@ -1,3 +1,14 @@
+<?php
+session_start();
+if ($_SESSION['username'] == '') {
+    header("location: index.php");
+}else{
+    $username = $_SESSION['username'];
+    $bloodBankId=$_SESSION['bloodBankId'];
+    $isAdmin=$_SESSION['isAdmin'];
+}
+
+?>
 <html>
 <head>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -16,6 +27,7 @@
     <script src="https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js"></script>
 
 </head>
+
 <body style="background-color: #eeeeee">
 
 <div id="header" ;>
@@ -38,14 +50,6 @@
 
     <?php
 
-    session_start();
-        if ($_SESSION['username'] == '') {
-            header("location: index.php");
-        }else{
-            $username = $_SESSION['username'];
-            $bloodBankId=$_SESSION['bloodBankId'];
-            $isAdmin=Convert2Bool($_SESSION['isAdmin']);
-        }
 
     include '../db_connection.php';
 
