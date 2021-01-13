@@ -14,8 +14,8 @@ if (isset($_POST['id_toDelete'])) {
 //Call for fetching details of organisation to update
 if (isset($_POST['id_toUpdate'])) {
     $conn = OpenCon();
-    $internal_id = $_POST['id_toUpdate'];
-    $sql = "Select * from tbl_organisation_group,dupdated_date=now() WHERE ninternal_id = $internal_id";
+    $internal_id = (int)$_POST['id_toUpdate'];
+    $sql = "Select * from tbl_organisation_group  WHERE ninternal_id = $internal_id";
     $result = mysqli_query($conn, $sql);
     $row_data = array();
     while ($row = mysqli_fetch_array($result)) {
@@ -61,12 +61,9 @@ if (isset($_POST['submitData'])) {
 			VALUES ($internal_id,$organisationGroupId,'$organisationGroupName',$segmentId,1,1,now(),now())";
 
         $result = mysqli_query($conn, $sql);
-
-
         CloseCon($conn);
         header("Location: ../controllers/organisationGroup.php");
     }
-
 
 }
 

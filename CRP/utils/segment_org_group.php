@@ -65,8 +65,6 @@ SELECT norg_id FROM tbl_organisation
 WHERE norg_group_id=$org_group_id)
 group by norg_id;
 
-
-
 CREATE TEMPORARY TABLE tbl_callListCount".$user_id."
 select norg_id ,count(*) AS noOFCallList
 from tbl_callList
@@ -74,7 +72,6 @@ where norg_id IN (
 SELECT norg_id FROM tbl_organisation
 WHERE norg_group_id=$org_group_id)
 group by norg_id;
-
 
 CREATE TEMPORARY TABLE tbl_tourCount".$user_id."
 select norg_id ,count(*) AS noOfTour

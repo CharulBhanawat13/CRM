@@ -76,7 +76,7 @@ CloseCon($conn);
 
                 $(this).html('<input class="form-control" type="text" placeholder="Search ' + title + '" />');
             }
-                $('input', this).on('keyup change', function () {
+                $('input', this).on('keyup chdasange', function () {
                     if (table.column(i).search() !== this.value) {
                         table
                             .column(i)

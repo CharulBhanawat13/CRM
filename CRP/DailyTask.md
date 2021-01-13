@@ -63,7 +63,7 @@
   
   - prepare query for finished good. Need to verify by Sir.
   - delete all entries from all tables .
-  - Test all pages ADD functionality.
+  - vTest all pages ADD functionality.
   - Remove all errors ocurred while testing.
   
   Pending: Need to implement the queries according to date filter 
@@ -71,3 +71,49 @@
   Testing after that
   City in visitplan page - make it a dropdown
   need to test update for all pages
+  
+:spiral_calendar:	 6/1/2021
+---------- 
+ - Worked on BBR(Show table)
+ 
+:spiral_calendar:	 7/1/2021
+ ----------
+ - Worked on BBR 
+ (PDF,CSV)
+ 
+  :spiral_calendar:	 8/1/2021
+  ----------
+  
+  -Worked on BBR
+  -UI and changes as suggested
+   
+:spiral_calendar:	 9/1/2021
+ ---------- 
+ - Worked on BBR deployment
+ 
+ 
+ :spiral_calendar:	 10/1/2021
+  ---------- 
+  Sunday
+  
+  :spiral_calendar:	 11/1/2021
+   ---------- 
+ - BBR and CRM
+ - remove the search bar in bbr add sorting in productTable and 
+   sort with max date in productTable
+ 
+:spiral_calendar:	 12/1/2021
+----------
+  About BBR
+- make a user as user
+- remove convertToBool
+- view 
+- change all to int
+- remove search bar
+- implement sorting
+- set max date at first
+
+- About CRM
+ - check all update
+ - change input type text to dropdown
+ -  

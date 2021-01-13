@@ -31,7 +31,13 @@ if (isset($_POST['fetchStockData'])){
         from tbl_ItemMaster as im
         LEFT OUTER JOIN tbl_Item_Qty_Balance as iqb
         on im.nUniqueID=iqb.nItemMasterUniqueID AND iqb.Is_Available=1 AND iqb.cSession='2021'
-        where (im.Is_Available=1 AND im.cSession='2021' )";
+        join tbl_ItemSubGroupMaster as iSubGM
+        ON iSubGM.nitemSubGRoup_UniqueID=im.nItemSubGroupID_UniqueID
+        JOIN tbl_ItemGroupMaster as iGM 
+        on iSubGM.nIGID_UniqueID=iGM.nItemGroupUniqueID 
+        join tbl_ItemSuperGroup as iSuperG
+        on iSuperG.nItemSGroupID =iGM.nItemSuperGroupID
+        where (im.Is_Available=1 And iSuperG.cItemSGroup LIKE ('INTERNAL FINISHED GOODS') )";
 
     $result=sqlsrv_query($conn,$sql);
     $mysql_conn=OpenCon();

@@ -30,7 +30,6 @@ if (isset($_POST['id_toUpdate'])) {
             "corg_address" => $row['corg_address'],
             "corg_mobileNumber" => $row['corg_mobileNumber'],
             "corg_emailId" => $row['corg_emailId'],
-            "norg_segment_id" => $row['norg_segment_id'],
             "saveOrUpdate" => '2'
         );
         $row_datas[] = $row_data;
@@ -82,15 +81,10 @@ if (isset($_POST['submitData'])) {
         $sql = "INSERT INTO tbl_organisation (ninternal_id, norg_id,corg_name,corg_city,corg_state,corg_country,corg_address,corg_mobileNumber,corg_emailId,norg_group_id,
 isActive,isAvailable,dcreated_date,dupdated_date) 
 			VALUES ($internal_id,$organisationId,'$name','$city','$state','$country','$address','$mobileNumber','$emailId',$org_groupId,1,1,now(),now())";
-
         $result = mysqli_query($conn, $sql);
-
-
         CloseCon($conn);
         header("Location: ../controllers/organisation.php");
     }
-
-
 }
 
 

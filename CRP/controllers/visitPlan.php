@@ -139,7 +139,7 @@ CloseCon($conn);
         });
         // Setup - add a text input to each footer cell
         $('#visitPlanTable thead tr').clone(true).appendTo('#visitPlanTable thead');
-        $('#visitPlanTable thead tr:eq(1) th').each(function (i) {
+        $('#visitPlanTable thead tr:eq(1) th ').each(function (i) {
             var title = $(this).text();
             if (i != 10 && i != 2) {
                 $(this).html('<input class="form-control" type="text" placeholder="Search ' + title + '" />');
@@ -298,8 +298,21 @@ CloseCon($conn);
                         <tr>
                             <td>City</td>
                             <td>
-                                <input type="text" name="city" id="city-dropdown" class="form-control"
-                                       maxlength="50" required/>
+                                <select class="form-control" name="purpose" id="city-dropdown" required>
+                                    <option value="">Select City</option>
+                                    <?php
+                                    require_once "../db_connection.php";
+                                    $conn = OpenCon();
+
+                                    $result = mysqli_query($conn, "SELECT * FROM tbl_city_state_country");
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        ?>
+                                        <option value="<?php echo $row['ccity']; ?>"><?php echo $row["ccity"]; ?></option>
+                                        <?php
+                                    }
+                                    CloseCon($conn);
+                                    ?>
+                                </select>
                             </td>
                         </tr>
                         <tr>

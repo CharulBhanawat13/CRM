@@ -124,6 +124,10 @@ tfoot {
 
 }
 
+table.dataTable thead .sorting {
+    background-color: #5bc0de;
+    color: white;
+}
 .zoom-in {
     transform: scale(0)!important;
     opacity: 0;
