@@ -12,7 +12,7 @@ session_start();//session starts here
 	<body>  
 	<div class="container-small">
        <form method="post" action="">  
-	   <h1>Sign Up</h1>
+	   <h1>Sign In</h1>
 	   
 			<img src="assets/img_avatar2.png" alt="Avatar" >
 			<br>

@@ -23,26 +23,38 @@ if ($_SESSION['username'] == '') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css";
 
+
 </head>
 <body style="background-color:  #eee;height: 100%">
 <div>
 <div class="sidebar">
     <img src="assets/pepl.jpg" alt="CRM" height="15%" width="200px">
-    <a class="active" href="dashboard.php">Dashboard</a>
-    <a href="controllers/employeeDetails.php">Employee Details</a>
-    <a href="controllers/segment.php">Segment </a>
-    <a href="controllers/organisationGroup.php">Organisation Groups </a>
-    <a href="controllers/organisation.php">Organisation</a>
-    <a href="controllers/contactPerson.php">Contact Person</a>
-    <a href="controllers/callList.php">Call List</a>
-    <a href="controllers/visitPlan.php">Visit Plan</a>
-    <a href="controllers/tour.php">Tour</a>
-    <a href="controllers/stock.php">Stock </a>
-</div>
-<h4 id='bloc2'  style='float:right;'><a href="logout.php"><i class="fa fa-sign-out" ></i>Logout</a></h4>
+    <a class="active" href="dashboard.php"><i class="fa fa-tachometer" style="font-size: large; width: 20% " ></i>Dashboard</a>
+    <a href="controllers/employeeDetails.php"><i class="fa fa-users" style="font-size: large; width: 20% " ></i>Employee Details</a>
+    <a href="controllers/segment.php"><i class="fa fa-car" style="font-size: large; width: 20% " ></i>Segment </a>
+    <a href="controllers/organisationGroup.php"><i class="fa fa-building-o" style="font-size: large; width: 20% " ></i>Organisation Groups </a>
+    <a href="controllers/organisation.php"><i class="fa fa-building-o" style="font-size: large; width: 20% " ></i>Organisation</a>
+    <a href="controllers/contactPerson.php"><i class="fa fa-address-book" style="font-size: large; width: 20% " ></i>Contact Person</a>
+    <a href="controllers/callList.php"><i class="fa fa-phone" style="font-size: large; width: 20% " ></i>Call List</a>
+    <a href="controllers/visitPlan.php"><i class="fa fa-car" style="font-size: large; width: 20% " ></i>Visit Plan</a>
+    <a href="controllers/tour.php"><i class="fa fa-globe" style="font-size: large; width: 20% " ></i>Tour</a>
+    <a href="controllers/stock.php"><i class="fa fa-houzz" style="font-size: x-large;width: 20% " ></i>
+        Stock </a>
+    <a href="controllers/facilities.php"><i class="fa fa-globe" style="font-size: large; width: 20% " ></i>Facilities</a>
 
-<h2  style='float:right'><?php echo "Welcome " . $_SESSION["username"] . "  ."; ?></h2>
-<h5><b>CUSTOMER RELATIONSHIP MANAGEMENT</b></h5>
+</div>
+
+
+    <h5>
+        <div style="background-color: white;width: 100%;height: 40px;font-size: large;padding-top:0.5%">
+            <b>
+                𝐂𝐔𝐒𝐓𝐎𝐌𝐄𝐑 𝐑𝐄𝐋𝐀𝐓𝐈𝐎𝐍𝐒𝐇𝐈𝐏 𝐌𝐀𝐍𝐀𝐆𝐄𝐌𝐄𝐍𝐓
+
+            </b>
+            <a style="float:right;" href="logout.php"><i class="fa fa-sign-out" ></i>Logout</a>
+            <div style="float: right"> <?php echo "𝐖𝐞𝐥𝐜𝐨𝐦𝐞 " . $_SESSION["username"] . "  ."; ?></div>
+        </div>
+    </h5>
 
 
     <div id="gridLayout">

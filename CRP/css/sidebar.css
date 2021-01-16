@@ -3,7 +3,9 @@ h1 {
 
 }
 h5 {
-    text-align: center;
+    text-align: -webkit-center;
+    margin: 0px !important;
+    font-size: large;
 }
 #bloc1,bloc2{
     display: inline-block;

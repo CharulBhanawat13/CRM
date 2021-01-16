@@ -116,4 +116,26 @@
 - About CRM
  - check all update
  - change input type text to dropdown
- -  
+ 
+  
+:spiral_calendar:	 13/1/2021
+---------- 
+- bbr acc. to serial no.
+- created user and db on server
+- Chat box UI
+ 
+
+:spiral_calendar:	 14/1/2021
+----------
+ - Deploy database
+ - Hosted crm.pyrotechlighting.com
+ - Implemented icons in sidebar
+ - UI of dashboard
+ - Changes in smart freezer (data)
+ - Changes in bbr regarding center alignment push the code
+ - Dropdown changes.
+ 
+ :spiral_calendar:	 15/1/2021
+ ---------- 
+ - 
+ 
