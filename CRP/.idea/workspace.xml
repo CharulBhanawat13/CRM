@@ -227,7 +227,7 @@
       <workItem from="1610627104153" duration="256000" />
       <workItem from="1610684069417" duration="23612000" />
       <workItem from="1610769910602" duration="20279000" />
-      <workItem from="1610943999258" duration="6646000" />
+      <workItem from="1610943999258" duration="8674000" />
     </task>
     <servers />
   </component>
@@ -479,26 +479,6 @@
           <url>file://$PROJECT_DIR$/utils/saveOrganisationData.php</url>
           <line>20</line>
           <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/utils/saveFacilitiesData.php</url>
-          <line>38</line>
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/utils/saveFacilitiesData.php</url>
-          <line>56</line>
-          <option name="timeStamp" value="58" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/utils/saveFacilitiesData.php</url>
-          <line>54</line>
-          <option name="timeStamp" value="59" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/utils/saveFacilitiesData.php</url>
-          <line>40</line>
-          <option name="timeStamp" value="60" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

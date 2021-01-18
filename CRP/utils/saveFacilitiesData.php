@@ -1,7 +1,7 @@
 <?php
 include ('../db_connection.php');
 
-$sql1="CREATE TEMPORARY TABLE tbl_visitCount
+$sql="CREATE TEMPORARY TABLE tbl_visitCount
 SELECT COUNT( DISTINCT norg_id) as nofVisit,norg_id FROM tbl_visitplan;
 
 CREATE TEMPORARY TABLE tbl_callListCount
@@ -24,20 +24,48 @@ DROP TABLE IF EXISTS tbl_callListCount;
 DROP TABLE IF EXISTS tbl_tourCount;
 DROP TABLE IF EXISTS tbl_facility;
 ";
+$conn = OpenCon();
 
 
 if (isset($_POST['segmentId']) && !(empty($_POST['segmentId']))) {
-    $conn = OpenCon();
     $segmentId = (int)$_POST['segmentId'];
 
-    $sql="CREATE TEMPORARY TABLE tbl_facility
+    $sql = "CREATE TEMPORARY TABLE tbl_facility
 Select s.csegment_name,og.corg_group_name,o.corg_name,o.norg_id from tbl_segment AS s
 JOIN tbl_organisation_group AS og
 ON og.nsegment_id=s.ninternal_id
 JOIN tbl_organisation AS o
 ON o.norg_group_id=og.ninternal_id
-where s.ninternal_id=$segmentId;".$sql1;
+where s.ninternal_id=$segmentId;" . $sql;
+    printTable($conn,$sql);
+}
+else if(isset($_POST['org_group_id']) && !(empty($_POST['org_group_id']))){
+    $segmentId = (int)$_POST['org_group_id'];
+    $sql="CREATE TEMPORARY TABLE tbl_facility
+Select s.csegment_name,og.corg_group_name,o.corg_name,o.norg_id from tbl_organisation_group AS og
+JOIN tbl_segment AS s
+ON og.nsegment_id=s.ninternal_id
+JOIN tbl_organisation AS o
+ON o.norg_group_id=og.ninternal_id
+where og.ninternal_id=$segmentId;" . $sql;
+    printTable($conn,$sql);
 
+}
+else if(isset($_POST['organisationId']) && !(empty($_POST['organisationId']))){
+    $organisationId = (int)$_POST['organisationId'];
+    $sql="CREATE TEMPORARY TABLE tbl_facility
+Select s.csegment_name,og.corg_group_name,o.corg_name,o.norg_id from tbl_organisation AS o
+JOIN tbl_organisation_group AS og
+ON o.norg_group_id=og.ninternal_id
+JOIN tbl_segment AS s
+ON og.nsegment_id=s.ninternal_id 
+where o.ninternal_id=$organisationId;" . $sql;
+    printTable($conn,$sql);
+
+}
+
+
+function printTable($conn,$sql){
     echo "<table id='facilityTable'  name='facilityTable'>
 <thead> 
     <tr>
@@ -72,10 +100,12 @@ where s.ninternal_id=$segmentId;".$sql1;
             }
         }while (mysqli_next_result($conn));
     }
-
     echo "</tbody></table>";
-    CloseCon($conn);
 }
+
+CloseCon($conn);
+
+
 
 
 

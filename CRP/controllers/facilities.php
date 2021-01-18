@@ -105,6 +105,40 @@
             });
         }).trigger('change');
 
+        $('#organisationGroup-dropdown').bind('change', function() {
+            var org_group_id = $(this).val();
+            $.ajax({
+                async: true,
+                url: "../utils/saveFacilitiesData.php",
+                type: "POST",
+                data: {
+                    org_group_id: org_group_id
+                },
+                cache: false,
+                success: function (result) {
+                    $("#facilityTable").html(result);
+
+                }
+            });
+        }).trigger('change');
+
+        $('#organisation-dropdown').bind('change', function() {
+            var organisationId = $(this).val();
+            $.ajax({
+                async: true,
+                url: "../utils/saveFacilitiesData.php",
+                type: "POST",
+                data: {
+                    organisationId: organisationId
+                },
+                cache: false,
+                success: function (result) {
+                    $("#facilityTable").html(result);
+
+                }
+            });
+        }).trigger('change');
+
     });
 </script>
 </body>
