@@ -1,5 +1,31 @@
 <?php
 include ('../db_connection.php');
+
+$sql1="CREATE TEMPORARY TABLE tbl_visitCount
+SELECT COUNT( DISTINCT norg_id) as nofVisit,norg_id FROM tbl_visitplan;
+
+CREATE TEMPORARY TABLE tbl_callListCount
+SELECT COUNT( DISTINCT norg_id) as noofCallList,norg_id FROM tbl_calllist;
+
+CREATE TEMPORARY TABLE tbl_tourCount
+SELECT COUNT( DISTINCT norg_id) as noofTour,norg_id FROM tbl_tour;
+
+select f.csegment_name ,f.corg_group_name ,f.corg_name,IFNULL(`nofVisit`,0) AS nofVisit,IFNULL(`noofCallList`,0) AS noofCallList,IFNULL(`noofTour`,0) AS noofTour
+ from tbl_facility AS f
+LEFT JOIN tbl_visitCount AS vc
+ON vc.norg_id=f.norg_id
+LEFT JOIN tbl_callListCount AS cc
+ON cc.norg_id=f.norg_id
+LEFT JOIN tbl_tourCount AS tc
+ON tc.norg_id=f.norg_id;
+
+DROP TABLE IF EXISTS tbl_visitCount;
+DROP TABLE IF EXISTS tbl_callListCount;
+DROP TABLE IF EXISTS tbl_tourCount;
+DROP TABLE IF EXISTS tbl_facility;
+";
+
+
 if (isset($_POST['segmentId']) && !(empty($_POST['segmentId']))) {
     $conn = OpenCon();
     $segmentId = (int)$_POST['segmentId'];
@@ -10,31 +36,9 @@ JOIN tbl_organisation_group AS og
 ON og.nsegment_id=s.ninternal_id
 JOIN tbl_organisation AS o
 ON o.norg_group_id=og.ninternal_id
-where s.ninternal_id=$segmentId;
+where s.ninternal_id=$segmentId;".$sql1;
 
-CREATE TEMPORARY TABLE tbl_visitCount
-select norg_id ,count(*) AS nofVisit
-from tbl_visitplan;
-
-CREATE TEMPORARY TABLE tbl_callListCount
-select norg_id ,count(*) AS noofCallList
-from tbl_callList;
-
-CREATE TEMPORARY TABLE tbl_tourCount
-select norg_id ,count(*) AS noofTour
-from tbl_tour;
-
-select f.csegment_name ,f.corg_group_name ,f.corg_name,IFNULL(`nofVisit`,0) AS nofVisit,IFNULL(`noofCallList`,0) AS noofCallList,IFNULL(`noofTour`,0) AS noofTour
- from tbl_facility AS f
-LEFT JOIN tbl_visitCount AS vc
-ON vc.norg_id=f.norg_id
-LEFT JOIN tbl_callListCount AS cc
-ON cc.norg_id=f.norg_id
-LEFT JOIN tbl_tourCount AS tc
-ON tc.norg_id=f.norg_id;
-";
-
-    echo "<table id='facilityTable'  name='facilityTable' >
+    echo "<table id='facilityTable'  name='facilityTable'>
 <thead> 
     <tr>
     <th>Segment</th>
@@ -69,8 +73,10 @@ ON tc.norg_id=f.norg_id;
         }while (mysqli_next_result($conn));
     }
 
-   echo "</tbody></table>";
+    echo "</tbody></table>";
     CloseCon($conn);
 }
+
+
 
 ?>
