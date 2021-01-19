@@ -20,7 +20,10 @@
     }
     ?>
 </select>
-
+<form>
+<input type="date" name="start_date" id="start_date">
+<input type="date" name="end_date" id="end_date">
+</form>
 <div class="container">
     <div class="Segment">
         <select class="form-control" name="segment" id="segment-dropdown" required>
@@ -93,9 +96,11 @@
     </div>
 
 </div>
+
 <div>
     <table id="facilityTable"></table>
 </div>
+
 <script>
     $(document).ready(function() {
         $('#dd1-dropdown').bind('change', function() {
@@ -108,11 +113,16 @@
 
         $('#segment-dropdown').bind('change', function() {
             var segmentId = $(this).val();
+            var start_date=$("#start_date").val();
+            var end_date=$("#end_date").val()
+
             $.ajax({
                 async: true,
                 url: "../utils/saveFacilitiesData.php",
                 type: "POST",
                 data: {
+                    start_date:start_date,
+                    end_date:end_date,
                     segmentId: segmentId
                 },
                 cache: false,
@@ -125,12 +135,16 @@
 
         $('#organisationGroup-dropdown').bind('change', function() {
             var org_group_id = $(this).val();
+            var start_date=$("#start_date").val();
+            var end_date=$("#end_date").val()
             $.ajax({
                 async: true,
                 url: "../utils/saveFacilitiesData.php",
                 type: "POST",
                 data: {
-                    org_group_id: org_group_id
+                    org_group_id: org_group_id,
+                    start_date:start_date,
+                    end_date:end_date,
                 },
                 cache: false,
                 success: function (result) {
@@ -142,12 +156,16 @@
 
         $('#organisation-dropdown').bind('change', function() {
             var organisationId = $(this).val();
+            var start_date=$("#start_date").val();
+            var end_date=$("#end_date").val()
             $.ajax({
                 async: true,
                 url: "../utils/saveFacilitiesData.php",
                 type: "POST",
                 data: {
-                    organisationId: organisationId
+                    organisationId: organisationId,
+                    start_date:start_date,
+                    end_date:end_date,
                 },
                 cache: false,
                 success: function (result) {
@@ -159,12 +177,16 @@
 
         $('#RE-dropdown').bind('change', function() {
             var employee_id = $(this).val();
+            var start_date=$("#start_date").val();
+            var end_date=$("#end_date").val()
             $.ajax({
                 async: true,
                 url: "../utils/saveFacilitiesData.php",
                 type: "POST",
                 data: {
-                    employee_id: employee_id
+                    employee_id: employee_id,
+                    start_date:start_date,
+                    end_date:end_date,
                 },
                 cache: false,
                 success: function (result) {
