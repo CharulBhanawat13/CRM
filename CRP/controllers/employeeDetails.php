@@ -19,7 +19,6 @@
             <a style="float:right;margin-left: 15px;" href="../dashboard.php"><i class="fa fa-home fa-2x"></i></a>
             <a style="float:right" href="#my_modal" data-toggle="modal" id='add' data-id="1"><i class="fa fa-plus fa-2x"
                                                                                                 aria-hidden="true"></i></a>
-
         </div>
 
         <?php

@@ -11,7 +11,7 @@ $result = mysqli_query($conn,"SELECT  nemployee_unique_id,cengineer_name FROM tb
 <?php
 while($row = mysqli_fetch_array($result)) {
 ?>
-<option value="<?php echo $row["nemployee_unique_id"];?>"><?php echo $row["cengineer_name"];?></option>
+<option value="<?php echo $row["ninternal_id"];?>"><?php echo $row["cengineer_name"];?></option>
 <?php
 }
 CloseCon($conn);

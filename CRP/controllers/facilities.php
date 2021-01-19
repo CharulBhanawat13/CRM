@@ -13,7 +13,7 @@
     <option value="">Choose one</option>
     <?php
     // A sample user type array
-    $type = array('Segment' => 'Segment', 'OrganisationGroups' => 'Organisation Groups', 'Organisation' => 'Organisation');
+    $type = array('Segment' => 'Segment', 'OrganisationGroups' => 'Organisation Groups', 'Organisation' => 'Organisation','RE' => 'RE');
     // Iterating through the product array
     foreach ($type as $item => $value) {
         echo "<option value='$item'>$value</option>";
@@ -67,6 +67,24 @@
             while ($row = mysqli_fetch_array($result)) {
                 ?>
                 <option value="<?php echo $row['ninternal_id']; ?>"><?php echo $row["corg_name"]; ?></option>
+                <?php
+            }
+            CloseCon($conn);
+            ?>
+        </select>
+    </div>
+
+    <div class="RE">
+        <select class="form-control" name="RE" id="RE-dropdown" required>
+            <option value="">Select RE</option>
+            <?php
+            require_once "../db_connection.php";
+            $conn = OpenCon();
+
+            $result = mysqli_query($conn, "SELECT * FROM tbl_employeemaster");
+            while ($row = mysqli_fetch_array($result)) {
+                ?>
+                <option value="<?php echo $row['ninternal_id']; ?>"><?php echo $row["cengineer_name"]; ?></option>
                 <?php
             }
             CloseCon($conn);
@@ -130,6 +148,23 @@
                 type: "POST",
                 data: {
                     organisationId: organisationId
+                },
+                cache: false,
+                success: function (result) {
+                    $("#facilityTable").html(result);
+
+                }
+            });
+        }).trigger('change');
+
+        $('#RE-dropdown').bind('change', function() {
+            var employee_id = $(this).val();
+            $.ajax({
+                async: true,
+                url: "../utils/saveFacilitiesData.php",
+                type: "POST",
+                data: {
+                    employee_id: employee_id
                 },
                 cache: false,
                 success: function (result) {

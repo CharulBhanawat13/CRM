@@ -47,7 +47,7 @@ if (isset($_POST['submitData'])) {
                 corg_group_name='$organisationGroupName',
                 nsegment_id=$segmentId,
                 dupdated_date=now()
-                where ninternal_id=$internal_id ";
+                where ninternal_id=$internal_id";
 
         $result = mysqli_query($conn, $sql_update);
         CloseCon($conn);
