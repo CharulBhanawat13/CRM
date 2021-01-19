@@ -1,32 +1,43 @@
 <html>
-
 <head>
+    <link rel="stylesheet" href="../css/styles.css" />
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
 
 </head>
 <body>
+<table id="facilityFiltersTable">
+    <tr>
 
-
-<select class="form-control" name="dp1" id="dd1-dropdown" required>
-    <option value="">Choose one</option>
-    <?php
-    // A sample user type array
-    $type = array('Segment' => 'Segment', 'OrganisationGroups' => 'Organisation Groups', 'Organisation' => 'Organisation','RE' => 'RE');
-    // Iterating through the product array
-    foreach ($type as $item => $value) {
-        echo "<option value='$item'>$value</option>";
-    }
-    ?>
-</select>
+        <td><label>Choose Option</label> </td>
+        <td><select class="form-control" name="dp1" id="dd1-dropdown" required>
+                <option value="">Choose one</option>
+                <?php
+                // A sample user type array
+                $type = array('Segment' => 'Segment', 'OrganisationGroups' => 'Organisation Groups', 'Organisation' => 'Organisation','RE' => 'RE');
+                // Iterating through the product array
+                foreach ($type as $item => $value) {
+                    echo "<option value='$item'>$value</option>";
+                }
+                ?>
+            </select>
+        </td>
 <form>
-<input type="date" name="start_date" id="start_date">
-<input type="date" name="end_date" id="end_date">
+
+            <td>Start Date</td>
+            <td><input class="form-control" style="width: fit-content" type="date" name="start_date" id="start_date"></td>
+            <td>End Date</td>
+            <td><input class="form-control" style="width: fit-content" type="date" name="end_date" id="end_date"></td>
+        </tr>
+    </table>
 </form>
 <div class="container">
     <div class="Segment">
-        <select class="form-control" name="segment" id="segment-dropdown" required>
+       <select class="form-control" name="segment" id="segment-dropdown" required>
             <option value="">Select Segment</option>
             <?php
             require_once "../db_connection.php";
@@ -109,6 +120,14 @@
             if (value.length) { // if somethings' selected
                 elements.filter('.' + value).show(); // show the ones we want
             }
+        }).trigger('change');
+
+        $('#start_date').bind('change', function() {
+            $('#segment-dropdown').val('');
+            $('#organisationGroup-dropdown').val('');
+            $('#organisation-dropdown').val('');
+            $('#RE-dropdown').val('');
+
         }).trigger('change');
 
         $('#segment-dropdown').bind('change', function() {

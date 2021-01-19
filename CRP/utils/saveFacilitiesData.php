@@ -47,7 +47,6 @@ ON og.nsegment_id=s.ninternal_id
 JOIN tbl_organisation AS o
 ON o.norg_group_id=og.ninternal_id
 where s.ninternal_id=$segmentId;" . $sql;
-
     printTable($conn,$final_sql);
 }
 
