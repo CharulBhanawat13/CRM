@@ -2,7 +2,7 @@
 <html>
 <body style="background-color: #f1f1f1">
 <head>
-    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/theme.css">c
     <link rel="stylesheet" href="css/sidebar.css">
 
 </head>
@@ -14,7 +14,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#">About</a>
     <a href="controllers/services.php">Services</a>
-    <a href="#">Clients</a>
+    <a href="controllers/customer.php">Customer</a>
     <a href="#">Contact</a>
 </div>
 <div>
