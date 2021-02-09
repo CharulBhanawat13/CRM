@@ -85,7 +85,7 @@ where ac.Is_Available=1 and ac.nACTypeID=18 and ad.cGSTNo<>'' and ad.cPanNo<>''
    - the GST number may be same in two rows
    - figure out the problem why 3152 rows in sql and 2440 in mysql.
     
-   :spiral_calendar: 5/ 01/ 2021
+   :spiral_calendar: 6/ 01/ 2021
    -----------   
     Aria engine is not enabled or did not start. 
     The Aria engine must be enabled to continue as mysqld was configured with --with-aria-tmp-tables 2021-02-06 11:21:21 7860 [ERROR] Aborting
@@ -93,7 +93,29 @@ where ac.Is_Available=1 and ac.nACTypeID=18 and ad.cGSTNo<>'' and ad.cPanNo<>''
   - To fix this error remove  the file aria_log.00000001 from location C:\xampp\mysql\data\
   - Create Service Layer class and method getMaximunId for ninternal_id from database for tbl_customer 
   - Add a column as ninternal_id in DB
-  - Create dropdown and usename password textbox on customer page
+  - Create dropdown and username password textbox on customer page
   - Write down code for inserting ninternal id as well on inserting customers data
+  - Export database
+  - Push to Git all the three projects
   - 
                              
+ // take internal id from MSSQL table 
+ ASSign
+ address city for concatenation
+ 
+  :spiral_calendar: 7/ 01/ 2021
+  -----------  
+  - Sunday
+  
+  :spiral_calendar: 8/ 01/ 2021
+  -----------  
+  - Take nAccount_uniqueId from MSSQL table and map it to ninternal_id in mysql db 
+  - concatenation of address and cust_name done
+  - create two fields in tbl_customer as cusername and cpassword
+  - Create a button assign and implement onClick
+  - map username and password with customer internal_id
+  
+  :spiral_calendar: 9/ 01/ 2021
+  -----------
+  - Insert entry on tbl_login when assigning username and password to customer,
+  - 

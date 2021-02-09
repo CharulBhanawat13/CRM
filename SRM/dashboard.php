@@ -2,7 +2,7 @@
 <html>
 <body style="background-color: #f1f1f1">
 <head>
-    <link rel="stylesheet" href="css/theme.css">c
+    <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/sidebar.css">
 
 </head>

@@ -21,10 +21,8 @@ session_start();
         <br>
         <label>Username</label>
         <input type="text" id="loginuser" class="form-control" placeholder="Username" name="username" autofocus>
-
         <label>Password</label>
         <input type="password" id="loginpass"class="form-control" placeholder="Password" name="pass" value="">
-
         <input type="submit" class="btn btn-success" value="Login" name="login">
 
     </form>
@@ -48,14 +46,15 @@ if(isset($_POST['login']))
 
     $result = mysqli_fetch_assoc($run);
     $user_id=$result['nuserId'];
-
+    $ntype=$result['ntype'];
     define("USERNAME",$username);
+    define("ntype",$ntype);
 
     if(mysqli_num_rows($run))
     {
         $_SESSION['username']=$username;
         $_SESSION['user_id']=$user_id;
-
+        $_SESSION['ntype']=$ntype;
 
         echo "<script>window.open('dashboard.php','_self')</script>";
     }
