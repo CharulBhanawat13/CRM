@@ -119,3 +119,65 @@ where ac.Is_Available=1 and ac.nACTypeID=18 and ad.cGSTNo<>'' and ad.cPanNo<>''
   -----------
   - Insert entry on tbl_login when assigning username and password to customer,
   - 
+  :spiral_calendar: 10/ 01/ 2021
+   -----------
+   - Implemented view icon
+   - implemented navigation to complain tab on click
+   - 
+   :spiral_calendar: 11/ 01/ 2021
+   -----------
+   - Half day
+   
+   :spiral_calendar: 12/ 01/ 2021
+   ----------- 
+   Leave
+   
+   :spiral_calendar: 13/ 01/ 2021
+   ----------- 
+   Leave
+   
+   :spiral_calendar: 14/ 01/ 2021
+   ----------- 
+   Sunday
+   
+   :spiral_calendar: 15/ 01/ 2021
+   ----------- 
+   - Issue resloved for Ganshyam Sir
+   - Redirect to services page on submit
+   - save snapshot in db
+   - Add remarks tab field to same service
+   - According to user
+   - align text to cennter
+   - Increase the width of grid 
+    
+   :spiral_calendar: 16/ 01/ 2021
+   ----------- 
+   - generate ticket number randomly
+   - MAKE FIELD ticket no READONLY
+   - hide is avaialable
+   - show address of customer
+   - show tool tip on hover
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+          

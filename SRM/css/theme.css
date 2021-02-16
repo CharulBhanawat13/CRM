@@ -26,12 +26,15 @@ img {
     margin-top: 2%;
   }
 .grid{
-    width: 25%;
+    width: 30%;
     float: left;
     margin: 1%;
     color: white;
     background-color: #5bc0de;
     border-radius: 5%;
+    text-align: center;
+    border: solid gray;
+
 }
 table {
     border-collapse: collapse;

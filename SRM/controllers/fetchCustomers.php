@@ -20,11 +20,8 @@ if (isset($_POST['setUserPass'])){
     $result = mysqli_query($conn,$sql );
     $row=mysqli_fetch_assoc($result);
     CloseCon($conn);
-
     $conn = OpenCon();
-
     $customer_name=$row['ccustName'];
-    $internal_id=ServiceLayer::getMaximumID('tbl_login','nuserId');
     $sql_login_insert="INSERT INTO tbl_login(nuserId,cusername,cpassword,ntype,cname,isAvailable)
                         VALUES($internal_id,'$username','$password',3,'$customer_name',1)";
     $result = mysqli_query($conn,$sql_login_insert );
@@ -77,4 +74,14 @@ where ac.Is_Available=1 and ac.nACTypeID=18 and ad.cGSTNo<>'' and ad.cPanNo<>'' 
     CloseMSSQLCon($conn);
     header("Location: ../controllers/customer.php");
 }
+
+if (isset($_POST['submit'])){
+
+
+}
+
+
+
+
+
 ?>

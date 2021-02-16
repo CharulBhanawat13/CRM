@@ -1,9 +1,31 @@
 <?php
 session_start();
 $ntype = (int)$_SESSION['ntype'];
+$userId=(int)$_SESSION['user_id'];
 $showDivInCaseCustomer=false;
 if($ntype==3){
     $showDiv=true;
+}
+function generateRandomString($length = 12) {
+    $characters = '0123456789';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+
+function  getCustomerAddress($user_id){
+    $conn = OpenCon();
+    $sql = "Select ccustAddress from tbl_customer where ninternal_id=$user_id";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_row($result);
+    $custAddress = $row[0];
+    CloseCon($conn);
+    return $custAddress;
+
 }
 
 ?>
@@ -17,6 +39,7 @@ if($ntype==3){
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/theme.css">
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
 
@@ -28,19 +51,20 @@ if($ntype==3){
 <button class="tablink" onclick="openPage('result', this, 'green')">Result</button>
 <button class="tablink" onclick="openPage('remarks', this, 'green')">Remarks</button>
 <div style="display: none" id="getUserType" value="<?php echo "$showDiv"?>"></div>
-<form method="post" action="saveServiceData.php">
+<form method="post" action="saveServiceData.php" enctype="multipart/form-data">
     <div id="myComplains" class="container-large">
         <?php
         include('../db_connection.php');
         $conn = OpenCon();
 
-        $sql = "Select * from tbl_service ";
+        $sql = "Select * from tbl_service where nuserId=$userId ";
 
 
         $result = mysqli_query($conn, $sql);
-        echo "<table id='serviceTable'  name='serviceTable' >
+        echo "<table id='serviceTable'  name='serviceTable'>
             <thead> 
             <tr>
+            <th>VIEW</th>
             <th >SERVICE ID</th>
             <th >User Id</th>
             <th>Ticket Number</th>
@@ -60,6 +84,7 @@ if($ntype==3){
             ";
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             echo "<tr>";
+            echo "<td class='opendetails'><i  class='fa fa-eye fa-2x' style='color:#4caf50;'</i></td>";
             echo "<td >" . $row['nserviceId'] . "</td>";
             echo "<td >" . $row['nuserId'] . "</td>";
             echo "<td >" . $row['nticketNo'] . "</td>";
@@ -83,58 +108,57 @@ if($ntype==3){
     </div>
 
 
-    <div id='complain' class="container-large"
-    >
+    <div id='complain' class="container-large">
         <div class="grid">
-            <label>Service Id</label> <input type="text" name="serviceId" class="form-control">
+            <label>Service Id</label> <input type="text" name="serviceId" id="serviceId" class="form-control">
         </div>
         <div class="grid">
-            <label>User Id</label> <input type="text" name="userId" class="form-control">
+            <label>User Id</label> <input type="text" name="userId" id="userId" class="form-control">
         </div>
         <div class="grid">
-            <label>Ticket Number</label> <input type="text" name="ticketNo" class="form-control">
+            <label>Ticket Number</label> <input type="text" name="ticketNo" id="ticketNo" value="<?php echo generateRandomString($lenght=12)?>" class="form-control">
         </div>
         <div class="grid">
-            <label>Company Name</label> <input type="text" name="companyName" class="form-control">
+            <label>Company Name</label> <input type="text" name="companyName" id="companyName" class="form-control">
         </div>
         <div class="grid">
-            <label>Concern Person</label><input type="text" name="concernPerson" class="form-control">
+            <label>Concern Person</label><input type="text" name="concernPerson" id="concernPerson" class="form-control">
         </div>
         <div class="grid">
-            <label>Contact Number</label><input type="text" name="contactNumber" class="form-control">
+            <label>Contact Number</label><input type="text" name="contactNumber" id="contactNumber" class="form-control">
         </div>
         <div class="grid">
-            <label>Address</label> <textarea name="address" class="form-control"></textarea>
+
+
+            <label>Address</label> <input title="<?php echo getCustomerAddress($userId=$userId)?>" type="text" name="address"  id="address" value="<?php echo getCustomerAddress($userId=$userId)?>" class="form-control">
 
         </div>
+
         <div class="grid">
-            <label>PO Number</label> <input type="text" name="ponumber" class="form-control">
+            <label>PO Number</label> <input type="text" name="ponumber" id="ponumber" class="form-control">
         </div>
         <div class="grid">
             <label>Entry Date</label> <input type="date" id="entryDate" name="entryDate" class="form-control">
         </div>
         <div class="grid">
-            <label>E-mailId</label> <input type="text" name="emailId" class="form-control">
+            <label>E-mailId</label> <input type="text" name="emailId" id="emailId" class="form-control">
         </div>
         <div class="grid">
-            <label>Remark</label> <input type="text" name="remark" class="form-control">
+            <label>Remark</label> <input type="text" name="remark" id="remark" class="form-control">
         </div>
         <div class="grid">
-            <label>Snapshot</label> <input type="file" id="snapshot" name="snapshot">
+            <label>Snapshot</label> <input type="file" id="snapshot"  name="snapshot">
             <div id='filesizealert' style="color: red;display: none">File size must be under 500 kb</div>
 
         </div>
-        <div class="grid">
-            <label>Is Available</label> <input type="text" name="isAvailable" class="form-control">
+               <div class="grid">
+            <label>Product Name</label> <input type="text" name="productName" id="productName" class="form-control">
         </div>
         <div class="grid">
-            <label>Product Name</label> <input type="text" name="productName" class="form-control">
+            <label>Quantity</label> <input type="text" name="quantity" id="quantity" class="form-control">
         </div>
         <div class="grid">
-            <label>Quantity</label> <input type="text" name="quantity" class="form-control">
-        </div>
-        <div class="grid">
-            <label>Service Type</label> <input type="text" name="serviceType" class="form-control">
+            <label>Service Type</label> <input type="text" name="serviceType" id="serviceType" class="form-control">
         </div>
         <div class="grid">
             <label>Warranty Type</label> <select class="form-control" name="warranty1" id="warranty1">
@@ -236,14 +260,14 @@ if($ntype==3){
     </div>
     <div id="remarks" class="container-large" >
         <div class="grid">
-            <label>Rating</label><input type="text" class="form-control">
+            <label>Rating</label><input type="text" id="rating" name="rating" class="form-control">
         </div>
         <div class="grid">
-            <label>Remark By Customer</label><input type="text" class="form-control">
+            <label>Remark By Customer</label><input type="text" id="remarkByCustomer" name="remarkByCustomer" class="form-control">
         </div>
     </div>
 
-    <input type="submit" name="submit" value="Submit">
+    <input type="submit" class="btn btn-primary" name="submit" value="Save">
 
 
 </form>
@@ -310,6 +334,12 @@ if($ntype==3){
     var date = new Date();
     document.getElementById('entryDate').value = date.yyyymmdd();
     document.getElementById("entryDate").readOnly = true;
+    document.getElementById("ticketNo").readOnly = true;
+
+    document.getElementById("address").readOnly = true;
+
+
+
 
     var uploadField = document.getElementById("snapshot");
 
@@ -326,6 +356,9 @@ if($ntype==3){
     };
 
     $(document).ready(function () {
+
+
+
 
         var table = $('#serviceTable').DataTable({
                 orderCellsTop: true,
@@ -354,6 +387,61 @@ if($ntype==3){
         $("#Remove").on("click", function () {
             $("#textboxDiv").children().last().remove();
         });
+
+        $('#serviceTable tbody').on('click', '.opendetails', function () {
+            var data = table.row($(this).parents('tr').first()).data()[1];
+            var service_id=data;
+            var ntype=<?php echo json_encode($ntype); ?>;
+
+            $.ajax({
+                url:'../controllers/saveServiceData.php',    //the page containing php script
+                type: "post",    //request type,
+                dataType: 'json',
+                data: {service_id: service_id},
+                success:function(row_datas){
+
+                    document.getElementById("serviceId").value = row_datas[0].nserviceId;
+                    document.getElementById("userId").value = row_datas[0].nuserId;
+                    document.getElementById("ticketNo").value = row_datas[0].nticketNo;
+                    document.getElementById("companyName").value = row_datas[0].ccompanyName;
+                    document.getElementById("concernPerson").value = row_datas[0].cconcernPerson;
+                    document.getElementById("contactNumber").value = row_datas[0].ccontactNo;
+                    document.getElementById("address").value = row_datas[0].caddress;
+                    document.getElementById("ponumber").value = row_datas[0].cPONo;
+                    document.getElementById("entryDate").value = row_datas[0].dentryDate;
+                    document.getElementById("emailId").value = row_datas[0].cmailId;
+                    document.getElementById("remark").value = row_datas[0].cremark2;
+                    document.getElementById("snapshot").value = row_datas[0].csnapshot;
+                    document.getElementById("productName").value = row_datas[0].cproductName;
+                    document.getElementById("quantity").value = row_datas[0].nqty;
+                    document.getElementById("serviceType").value = row_datas[0].nserviceType1;
+                    document.getElementById("warranty1").value = row_datas[0].nwarrantyType1;
+
+                    document.getElementById("rating").value = row_datas[0].nrating;
+                    document.getElementById("remarkByCustomer").value = row_datas[0].cremarkByCust;
+
+                    document.getElementById("serviceId").value = row_datas[0].nserviceId;
+                    document.getElementById("serviceId").value = row_datas[0].nserviceId;
+                    document.getElementById("serviceId").value = row_datas[0].nserviceId;
+                    document.getElementById("serviceId").value = row_datas[0].nserviceId;
+                    document.getElementById("serviceId").value = row_datas[0].nserviceId;
+                    document.getElementById("serviceId").value = row_datas[0].nserviceId;
+                    document.getElementById("serviceId").value = row_datas[0].nserviceId;
+
+
+
+
+                    openPage('complain',this,'green',ntype);
+
+                                 }
+            });
+
+
+
+
+
+        } );
+
     });
 </script>
 </html>
