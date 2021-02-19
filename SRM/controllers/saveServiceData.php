@@ -25,8 +25,8 @@ if (isset($_POST['submit'])){
     $targetFilePath = $targetDir . $fileName;
     $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
 
-    $snapshot=$_POST['snapshot'];
-    if ($serviceId!="" && (!(is_null($rating)) || !(is_null($remarkByCustomer))) ){
+ //   $snapshot=$_POST['snapshot'];
+    if ($serviceId!="" && (!(empty($rating)) || !(empty($remarkByCustomer))) ){
 
         $sql="UPDATE tbl_service 
             SET nrating =$rating ,cremarkByCust='$remarkByCustomer'

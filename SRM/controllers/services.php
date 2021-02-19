@@ -7,7 +7,7 @@ if($ntype==3){
     $showDiv=true;
 }
 function generateRandomString($length = 12) {
-    $characters = '0123456789';
+    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     $charactersLength = strlen($characters);
     $randomString = '';
     for ($i = 0; $i < $length; $i++) {
@@ -51,13 +51,24 @@ function  getCustomerAddress($user_id){
 <button class="tablink" onclick="openPage('result', this, 'green')">Result</button>
 <button class="tablink" onclick="openPage('remarks', this, 'green')">Remarks</button>
 <div style="display: none" id="getUserType" value="<?php echo "$showDiv"?>"></div>
+
 <form method="post" action="saveServiceData.php" enctype="multipart/form-data">
+    <a style="float:right;margin-right: 8%;" href="../dashboard.php"><i class="fa fa-home fa-2x"></i></a>
+
+    <a style="float:right;margin-right: 15px;font-size: large; href="../logout.php"><i class="fa fa-sign-out" ></i>Logout</a>
+
     <div id="myComplains" class="container-large">
         <?php
         include('../db_connection.php');
         $conn = OpenCon();
+        if ($ntype==3){ // in case customer
+            $sql = "Select * from tbl_service where nuserId=$userId ";
 
-        $sql = "Select * from tbl_service where nuserId=$userId ";
+        }
+        else { // in case employe and admin
+            $sql = "Select * from tbl_service";
+
+        }
 
 
         $result = mysqli_query($conn, $sql);
@@ -112,8 +123,8 @@ function  getCustomerAddress($user_id){
         <div class="grid">
             <label>Service Id</label> <input type="text" name="serviceId" id="serviceId" class="form-control">
         </div>
-        <div class="grid">
-            <label>User Id</label> <input type="text" name="userId" id="userId" class="form-control">
+        <div  style="display: none" class="grid">
+            <label>User Id</label> <input type="text" name="userId" id="userId" value="<?php echo $userId ?>" class="form-control">
         </div>
         <div class="grid">
             <label>Ticket Number</label> <input type="text" name="ticketNo" id="ticketNo" value="<?php echo generateRandomString($lenght=12)?>" class="form-control">
@@ -222,7 +233,7 @@ function  getCustomerAddress($user_id){
     </div>
     <div id="result" class="container-large" >
         <div class="grid">
-            <label>Employee Id</label> <input type="text" class="form-control">
+            <label>Employee Id</label> <input id="empId" name="empId" type="text" class="form-control">
         </div>
         <div class="grid">
             <label>Ticket Number</label> <input type="text" class="form-control">
@@ -420,6 +431,9 @@ function  getCustomerAddress($user_id){
                     document.getElementById("rating").value = row_datas[0].nrating;
                     document.getElementById("remarkByCustomer").value = row_datas[0].cremarkByCust;
 
+                    if(ntype==2){
+                        document.getElementById("empId").value = <?php echo json_encode($userId); ?>;
+                    }
                     document.getElementById("serviceId").value = row_datas[0].nserviceId;
                     document.getElementById("serviceId").value = row_datas[0].nserviceId;
                     document.getElementById("serviceId").value = row_datas[0].nserviceId;
@@ -427,7 +441,6 @@ function  getCustomerAddress($user_id){
                     document.getElementById("serviceId").value = row_datas[0].nserviceId;
                     document.getElementById("serviceId").value = row_datas[0].nserviceId;
                     document.getElementById("serviceId").value = row_datas[0].nserviceId;
-
 
 
 

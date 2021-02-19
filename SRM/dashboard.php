@@ -4,10 +4,13 @@
 <head>
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <div id="top">
     <label style="margin-left: 35%;font-size: x-large;margin-top: 10px"><b>Service Relationship Model</b></label>
+    <a style="float:right;margin-right: 10px" href="logout.php"><i class="fa fa-sign-out" ></i>Logout</a>
+
 </div>
 
 <div id="mySidenav" class="sidenav">
@@ -17,6 +20,7 @@
     <a href="controllers/customer.php">Customer</a>
     <a href="#">Contact</a>
 </div>
+
 <div>
     <span style="font-size:25px;z-index:2;position: relative" onclick="openNav()">&#9776; </span>
 

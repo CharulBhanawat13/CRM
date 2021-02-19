@@ -157,13 +157,42 @@ where ac.Is_Available=1 and ac.nACTypeID=18 and ad.cGSTNo<>'' and ad.cPanNo<>''
    - hide is avaialable
    - show address of customer
    - show tool tip on hover
+   - export database
+   - Push code to Git with database.
    
+   :spiral_calendar: 17/ 01/ 2021
+   -----------    
+   - Change randomString to alphanumeric
+   - Hide div user Id
+   - Save userid in service table in backend
+   - Insert appropriate entries in table
+   - Along with Ravindra Sir,change the key and extend validity of IDE 
+   - Case if employee is logged in show all complains and if customer is logged in show only his complains.
    
+   Pending: 
+   -  Logout
+   -  action then customer remarks.
+   - 
+   Action-Work Plan
+   result- Status
+   Test
+   Insert entries from UI
+   Order sort
+   Snapshot
    
-   
-   
-   
-   
+  :spiral_calendar: 18/ 01/ 2021
+  -----------  
+  - Leave
+  
+  :spiral_calendar: 18/ 01/ 2021
+  -----------   
+  - Implemented logout functionality
+  - Implemented logout icon on page services
+  - Implemented home icon on services page
+  - Implemented logout on dashboard
+  - map customers and make service entry and check the permission roles.
+  - Query : Which Employee is taking action on customer must be known? There are two employee Id's for Action and result     
+  - Vishnu Sir Issue resolved in CRP 
    
    
    
