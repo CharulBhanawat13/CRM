@@ -45,12 +45,11 @@ function  getCustomerAddress($user_id){
 
 </head>
 <body style="background-color: rgb(238, 238, 238)">
-<button    class="tablink" onclick="openPage('myComplains', this, 'green')" id="defaultOpen">My Complains</button>
-<button class="tablink" onclick="openPage('complain', this, 'green')">Complain</button>
-<button class="tablink" onclick="openPage('action', this, 'green')">Action</button>
-<button class="tablink" onclick="openPage('result', this, 'green')">Result</button>
-<button class="tablink" onclick="openPage('remarks', this, 'green')">Remarks</button>
-<div style="display: none" id="getUserType" value="<?php echo "$showDiv"?>"></div>
+<button    class="tablink" onclick="openPage('myComplains', this, 'green',false)" id="defaultOpen">My Complains</button>
+<button class="tablink" onclick="openPage('complain', this, 'green',false)">Complain</button>
+<button class="tablink" onclick="openPage('action', this, 'green',false)">Action</button>
+<button class="tablink" onclick="openPage('result', this, 'green',false)">Result</button>
+<button class="tablink" onclick="openPage('remarks', this, 'green',false)">Remarks</button>
 
 <form method="post" action="saveServiceData.php" enctype="multipart/form-data">
     <a style="float:right;margin-right: 8%;" href="../dashboard.php"><i class="fa fa-home fa-2x"></i></a>
@@ -88,7 +87,6 @@ function  getCustomerAddress($user_id){
             <th>Quantity</th>
             <th>Service Type</th>
             <th>Warranty Type</th>
-            <th>Snapshot</th>
             </tr>
             </thead>
             <tbody>
@@ -98,7 +96,7 @@ function  getCustomerAddress($user_id){
             echo "<td class='opendetails'><i  class='fa fa-eye fa-2x' style='color:#4caf50;'</i></td>";
             echo "<td >" . $row['nserviceId'] . "</td>";
             echo "<td >" . $row['nuserId'] . "</td>";
-            echo "<td >" . $row['nticketNo'] . "</td>";
+            echo "<td >" . $row['cticketNo'] . "</td>";
             echo "<td>" . $row['ccompanyName'] . "</td>";
             echo "<td>" . $row['cconcernPerson'] . "</td>";
             echo "<td>" . $row['ccontactNo'] . "</td>";
@@ -106,9 +104,8 @@ function  getCustomerAddress($user_id){
             echo "<td>" . $row['cremark2'] . "</td>";
             echo "<td>" . $row['cproductName'] . "</td>";
             echo "<td>" . $row['nqty'] . "</td>";
-            echo "<td>" . $row['nserviceType1'] . "</td>";
+            echo "<td>" . $row['cserviceType1'] . "</td>";
             echo "<td>" . $row['nwarrantyType1'] . "</td>";
-            echo "<td>" . $row['csnapshot'] . "</td>";
 
             echo "</tr>";
         }
@@ -185,10 +182,7 @@ function  getCustomerAddress($user_id){
     </div>
     <div id='action' class="container-large">
         <div class="grid">
-            <label>Employee Id</label> <input type="text" class="form-control">
-        </div>
-        <div class="grid">
-            <label>Ticket Number</label> <input type="text" class="form-control">
+            <label>Employee Id</label> <input id="empId" name="empId" type="text" class="form-control">
         </div>
         <div class="grid">
             <label>Record Manager</label><input type="text" class="form-control">
@@ -233,10 +227,7 @@ function  getCustomerAddress($user_id){
     </div>
     <div id="result" class="container-large" >
         <div class="grid">
-            <label>Employee Id</label> <input id="empId" name="empId" type="text" class="form-control">
-        </div>
-        <div class="grid">
-            <label>Ticket Number</label> <input type="text" class="form-control">
+            <label>Employee Id</label> <input id="empId2" name="empId2" type="text" class="form-control">
         </div>
         <div class="grid">
             <label>Material Received</label><input type="text" class="form-control">
@@ -278,7 +269,7 @@ function  getCustomerAddress($user_id){
         </div>
     </div>
 
-    <input type="submit" class="btn btn-primary" name="submit" value="Save">
+    <input type="submit" class="btn btn-primary" name="submit" id="submit" value="Save">
 
 
 </form>
@@ -287,52 +278,16 @@ function  getCustomerAddress($user_id){
 <!--<div id="textboxDiv"></div>-->
 </body>
 <script>
-    var $showDivInCaseCustomer = <?php echo json_encode($showDivInCaseCustomer); ?>;
-    function openPage(pageName, elmnt, color,ntype) {
-        var ntype=<?php echo json_encode($ntype); ?>;
 
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("container-large");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
+    function hideSaveButton(pageName){
+        if (pageName=='myComplains'){
+            document.getElementById('submit').style.display = "none";
+        }else {
+            document.getElementById('submit').style.display = "block";
         }
-        tablinks = document.getElementsByClassName("tablink");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].style.backgroundColor = "";
-        }
-        document.getElementById(pageName).style.display = "block";
-
-
-
-        if ((pageName=='complain' && ntype=='3') || (pageName=='remarks' && ntype=='3' ) || pageName=='myComplains'){
-            document.getElementById(pageName).style.display = "block";
-            document.getElementById('action').style.pointerEvents='none';
-            document.getElementById('result').style.pointerEvents='none';
-            document.getElementById('complain').style.pointerEvents='auto';
-            document.getElementById('remarks').style.pointerEvents='auto';
-        }
-        else if((pageName=='complain' && ntype=='2') || (pageName=='remarks' && ntype=='2') ){
-            document.getElementById(pageName).style.display = "block";
-            document.getElementById('complain').style.pointerEvents='none';
-            document.getElementById('remarks').style.pointerEvents='none';
-            document.getElementById('action').style.pointerEvents='auto';
-            document.getElementById('result').style.pointerEvents='auto';
-        }
-        else if((pageName=='action' && ntype=='3') || (pageName=='result' && ntype=='3')){
-            document.getElementById(pageName).style.display = "block";
-            document.getElementById('action').style.pointerEvents='none';
-            document.getElementById('result').style.pointerEvents='none';
-            document.getElementById('complain').style.pointerEvents='auto';
-            document.getElementById('remarks').style.pointerEvents='auto';
-        }else if((pageName=='action' && ntype=='2') || (pageName=='result' && ntype=='2')){
-            document.getElementById(pageName).style.display = "block";
-            document.getElementById('complain').style.pointerEvents='none';
-            document.getElementById('remarks').style.pointerEvents='none';
-            document.getElementById('action').style.pointerEvents='auto';
-            document.getElementById('result').style.pointerEvents='auto';
-        }
-        elmnt.style.backgroundColor = color;
     }
+
+
 
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
@@ -366,12 +321,80 @@ function  getCustomerAddress($user_id){
 
     };
 
+    function openPage(pageName, elmnt, color,varActionTaken) {
+        var ntype=<?php echo json_encode($ntype); ?>;
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("container-large");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+        }
+        document.getElementById(pageName).style.display = "block";
+        hideSaveButton(pageName);
+
+
+        if ((pageName=='complain' && ntype=='3') || (pageName=='remarks' && ntype=='3' ) || pageName=='myComplains'){
+            document.getElementById(pageName).style.display = "block";
+            document.getElementById('action').style.pointerEvents='none';
+            document.getElementById('result').style.pointerEvents='none';
+            document.getElementById('complain').style.pointerEvents='auto';
+            document.getElementById('remarks').style.pointerEvents='auto';
+        }
+        else if((pageName=='complain' && ntype=='2') || (pageName=='remarks' && ntype=='2') ){
+            document.getElementById(pageName).style.display = "block";
+            document.getElementById('complain').style.pointerEvents='none';
+            document.getElementById('remarks').style.pointerEvents='none';
+            document.getElementById('action').style.pointerEvents='auto';
+            document.getElementById('result').style.pointerEvents='auto';
+        }
+        else if(((pageName=='action' && ntype=='3') || (pageName=='result' && ntype=='3'))  ){
+            document.getElementById(pageName).style.display = "block";
+            document.getElementById('action').style.pointerEvents='none';
+            document.getElementById('result').style.pointerEvents='none';
+            document.getElementById('complain').style.pointerEvents='auto';
+            document.getElementById('remarks').style.pointerEvents='auto';
+        }else if((pageName=='action' && ntype=='2') || (pageName=='result' && ntype=='2')){
+            document.getElementById(pageName).style.display = "block";
+            document.getElementById('complain').style.pointerEvents='none';
+            document.getElementById('remarks').style.pointerEvents='none';
+            document.getElementById('action').style.pointerEvents='auto';
+            document.getElementById('result').style.pointerEvents='auto';
+        }
+
+        if(pageName=='remarks' && ntype=='3' && varActionTaken==false){
+            alert("Action Required");
+            document.getElementById(pageName).style.pointerEvents='none';
+
+        }
+     //   elmnt.style.backgroundColor = color;
+    }
+
+    function actionTaken(action_taken_serviceId){
+        var answer=false;
+        $.ajax({
+            url:'../controllers/saveServiceData.php',    //the page containing php script
+            type: "post",    //request type,
+            dataType: 'json',
+            async: false,
+            data: {action_taken_serviceId: action_taken_serviceId},
+            success:function(result){
+                answer=result
+                return answer;
+            },
+            error: function() {
+                alert('Error occured');
+            }
+
+        });
+        return answer;
+
+    }
+
     $(document).ready(function () {
-
-
-
-
-        var table = $('#serviceTable').DataTable({
+    var table = $('#serviceTable').DataTable({
                 orderCellsTop: true,
                 "dom": 'lrtip'
             }
@@ -391,14 +414,6 @@ function  getCustomerAddress($user_id){
             });
         });
 
-
-        $("#Add").on("click", function () {
-            $("#textboxDiv").append("<div><br><input type='text' /><br></div>");
-        });
-        $("#Remove").on("click", function () {
-            $("#textboxDiv").children().last().remove();
-        });
-
         $('#serviceTable tbody').on('click', '.opendetails', function () {
             var data = table.row($(this).parents('tr').first()).data()[1];
             var service_id=data;
@@ -410,50 +425,42 @@ function  getCustomerAddress($user_id){
                 dataType: 'json',
                 data: {service_id: service_id},
                 success:function(row_datas){
-
-                    document.getElementById("serviceId").value = row_datas[0].nserviceId;
-                    document.getElementById("userId").value = row_datas[0].nuserId;
-                    document.getElementById("ticketNo").value = row_datas[0].nticketNo;
-                    document.getElementById("companyName").value = row_datas[0].ccompanyName;
-                    document.getElementById("concernPerson").value = row_datas[0].cconcernPerson;
-                    document.getElementById("contactNumber").value = row_datas[0].ccontactNo;
-                    document.getElementById("address").value = row_datas[0].caddress;
-                    document.getElementById("ponumber").value = row_datas[0].cPONo;
-                    document.getElementById("entryDate").value = row_datas[0].dentryDate;
-                    document.getElementById("emailId").value = row_datas[0].cmailId;
-                    document.getElementById("remark").value = row_datas[0].cremark2;
-                    document.getElementById("snapshot").value = row_datas[0].csnapshot;
-                    document.getElementById("productName").value = row_datas[0].cproductName;
-                    document.getElementById("quantity").value = row_datas[0].nqty;
-                    document.getElementById("serviceType").value = row_datas[0].nserviceType1;
-                    document.getElementById("warranty1").value = row_datas[0].nwarrantyType1;
-
-                    document.getElementById("rating").value = row_datas[0].nrating;
-                    document.getElementById("remarkByCustomer").value = row_datas[0].cremarkByCust;
-
+                    fillInputFields(row_datas);
                     if(ntype==2){
                         document.getElementById("empId").value = <?php echo json_encode($userId); ?>;
                     }
-                    document.getElementById("serviceId").value = row_datas[0].nserviceId;
-                    document.getElementById("serviceId").value = row_datas[0].nserviceId;
-                    document.getElementById("serviceId").value = row_datas[0].nserviceId;
-                    document.getElementById("serviceId").value = row_datas[0].nserviceId;
-                    document.getElementById("serviceId").value = row_datas[0].nserviceId;
-                    document.getElementById("serviceId").value = row_datas[0].nserviceId;
-                    document.getElementById("serviceId").value = row_datas[0].nserviceId;
+                   var varActionTaken=actionTaken(service_id);
 
+                    openPage('complain',this,'green',varActionTaken);
 
-
-                    openPage('complain',this,'green',ntype);
-
-                                 }
+                }
             });
-
-
-
-
-
         } );
+
+
+        function fillInputFields(row_datas){
+            document.getElementById("serviceId").value = row_datas[0].nserviceId;
+            document.getElementById("userId").value = row_datas[0].nuserId;
+            document.getElementById("ticketNo").value = row_datas[0].nticketNo;
+            document.getElementById("companyName").value = row_datas[0].ccompanyName;
+            document.getElementById("concernPerson").value = row_datas[0].cconcernPerson;
+            document.getElementById("contactNumber").value = row_datas[0].ccontactNo;
+            document.getElementById("address").value = row_datas[0].caddress;
+            document.getElementById("ponumber").value = row_datas[0].cPONo;
+            document.getElementById("entryDate").value = row_datas[0].dentryDate;
+            document.getElementById("emailId").value = row_datas[0].cmailId;
+            document.getElementById("remark").value = row_datas[0].cremark2;
+            //     document.getElementById("snapshot").value = row_datas[0].csnapshot;
+            document.getElementById("productName").value = row_datas[0].cproductName;
+            document.getElementById("quantity").value = row_datas[0].nqty;
+            document.getElementById("serviceType").value = row_datas[0].nserviceType1;
+            document.getElementById("warranty1").value = row_datas[0].nwarrantyType1;
+
+            document.getElementById("rating").value = row_datas[0].nrating;
+            document.getElementById("remarkByCustomer").value = row_datas[0].cremarkByCust;
+
+        }
+
 
     });
 </script>

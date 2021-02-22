@@ -4,7 +4,7 @@ if (isset($_POST['submit'])){
    $conn=OpenCon();
     $serviceId=(int)$_POST['serviceId'];
     $userId=(int)$_POST['userId'];
-    $ticketNo=(int)$_POST['ticketNo'];
+    $ticketNo=$_POST['ticketNo'];
     $companyName=$_POST['companyName'];
     $concernPerson=$_POST['concernPerson'];
     $contactNumber=$_POST['contactNumber'];
@@ -15,7 +15,7 @@ if (isset($_POST['submit'])){
     $remark=$_POST['remark'];
     $productName=$_POST['productName'];
     $quantity=(int)$_POST['quantity'];
-    $serviceType=(int)$_POST['serviceType'];
+    $serviceType=$_POST['serviceType'];
     $warranty1=(int)$_POST['warranty1'];
 
     $rating=$_POST['rating'];
@@ -33,10 +33,10 @@ if (isset($_POST['submit'])){
             where nserviceId=$serviceId";
 
     }else{
-        $sql = "INSERT INTO tbl_service (nserviceId,nuserId,nticketNo,ccompanyName,cconcernPerson,caddress,ccontactNo,cPONo,
-                dentryDate,cmailId,cremark2,cproductName,nqty,nserviceType1,nwarrantyType1,csnapshot) 
-			                VALUES ($serviceId,$userId,$ticketNo,'$companyName','$concernPerson','$address','$contactNumber','$ponumber',
-			'$entryDate','$email_id','$remark','$productName',$quantity,$serviceType,$warranty1,'$fileName')";
+        $sql = "INSERT INTO tbl_service (nserviceId,nuserId,cticketNo,ccompanyName,cconcernPerson,caddress,ccontactNo,cPONo,
+                dentryDate,cmailId,cremark2,cproductName,nqty,cserviceType1,nwarrantyType1,csnapshot) 
+			                VALUES ($serviceId,$userId,'$ticketNo','$companyName','$concernPerson','$address','$contactNumber','$ponumber',
+			'$entryDate','$email_id','$remark','$productName',$quantity,'$serviceType',$warranty1,'$fileName')";
     }
 
     $result = mysqli_query($conn, $sql);
@@ -103,6 +103,22 @@ if (isset($_POST['service_id'])){
     echo json_encode($row_datas);
     CloseCon($conn);
 
+}
+
+if (isset($_POST['action_taken_serviceId'])){
+    include ('../db_connection.php');
+    $conn=OpenCon();
+    $serviceId=(int)$_POST['action_taken_serviceId'];
+    $sql="Select nempId from tbl_service where nserviceId=$serviceId";
+    $result=mysqli_query($conn,$sql);
+    $row=mysqli_fetch_row($result);
+    if ($row[0]=="0"){
+        $result=false;
+    } else{
+        $result=true;
+    }
+echo json_encode($result);
+    CloseCon($conn);
 }
 
 ?>

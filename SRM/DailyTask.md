@@ -33,7 +33,7 @@
     -----------
     Sunday
     
-  :spiral_calendar: 1/ 01/ 2021
+  :spiral_calendar: 1/ 02/ 2021
   -----------
    - Auto fill currrent date
    - Remove Page Id
@@ -41,7 +41,7 @@
    - Change all warranty type to dropdown(ask vishnu sir about options)
    -Discussion with Vishnu Sir.
    
-   :spiral_calendar: 2/ 01/ 2021
+   :spiral_calendar: 2/ 02/ 2021
    -----------
    - Completed table in database
    - Implemented query to put values in database.
@@ -56,7 +56,7 @@ left outer join tbl_ACDetail_Address ad on ad.nACMasterID_UniqueID=ac.nAccount_U
 left outer join tbl_ACMasterDetailContactDetails details on details.nACDetailID=ad.nACDetailID and details.Is_Available=1
 where ac.Is_Available=1
 
-  :spiral_calendar: 3/ 01/ 2021
+  :spiral_calendar: 3/ 02/ 2021
    -----------
    - make date field read only.
    - Snapshot file size alert
@@ -64,7 +64,7 @@ where ac.Is_Available=1
    - Change names of tabs
    - Implemented Datatable
    
-   :spiral_calendar: 4/ 01/ 2021
+   :spiral_calendar: 4/ 02/ 2021
    -----------
    - pyrotechlighting.com table issue with ganshyam sir
    - Prepare query 
@@ -77,7 +77,7 @@ left outer join tbl_ACDetail_Address ad on ad.nACMasterID_UniqueID=ac.nAccount_U
 left outer join tbl_ACMasterDetailContactDetails details on details.nACDetailID=ad.nACDetailID and details.nACContactUniqueID=ac.nAccount_UniqueID and details.Is_Available=1
 where ac.Is_Available=1 and ac.nACTypeID=18 and ad.cGSTNo<>'' and ad.cPanNo<>'' 
   
-   :spiral_calendar: 5/ 01/ 2021
+   :spiral_calendar: 5/ 02/ 2021
    -----------      
    - Created tbl_customer in database.
    - Write down code for duplicacy checking
@@ -85,7 +85,7 @@ where ac.Is_Available=1 and ac.nACTypeID=18 and ad.cGSTNo<>'' and ad.cPanNo<>''
    - the GST number may be same in two rows
    - figure out the problem why 3152 rows in sql and 2440 in mysql.
     
-   :spiral_calendar: 6/ 01/ 2021
+   :spiral_calendar: 6/ 02/ 2021
    -----------   
     Aria engine is not enabled or did not start. 
     The Aria engine must be enabled to continue as mysqld was configured with --with-aria-tmp-tables 2021-02-06 11:21:21 7860 [ERROR] Aborting
@@ -103,11 +103,11 @@ where ac.Is_Available=1 and ac.nACTypeID=18 and ad.cGSTNo<>'' and ad.cPanNo<>''
  ASSign
  address city for concatenation
  
-  :spiral_calendar: 7/ 01/ 2021
+  :spiral_calendar: 7/ 02/ 2021
   -----------  
   - Sunday
   
-  :spiral_calendar: 8/ 01/ 2021
+  :spiral_calendar: 8/ 02/ 2021
   -----------  
   - Take nAccount_uniqueId from MSSQL table and map it to ninternal_id in mysql db 
   - concatenation of address and cust_name done
@@ -115,32 +115,32 @@ where ac.Is_Available=1 and ac.nACTypeID=18 and ad.cGSTNo<>'' and ad.cPanNo<>''
   - Create a button assign and implement onClick
   - map username and password with customer internal_id
   
-  :spiral_calendar: 9/ 01/ 2021
+  :spiral_calendar: 9/ 02/ 2021
   -----------
   - Insert entry on tbl_login when assigning username and password to customer,
   - 
-  :spiral_calendar: 10/ 01/ 2021
+  :spiral_calendar: 10/ 02/ 2021
    -----------
    - Implemented view icon
    - implemented navigation to complain tab on click
    - 
-   :spiral_calendar: 11/ 01/ 2021
+   :spiral_calendar: 11/ 02/ 2021
    -----------
    - Half day
    
-   :spiral_calendar: 12/ 01/ 2021
+   :spiral_calendar: 12/ 02/ 2021
    ----------- 
    Leave
    
-   :spiral_calendar: 13/ 01/ 2021
+   :spiral_calendar: 13/ 02/ 2021
    ----------- 
    Leave
    
-   :spiral_calendar: 14/ 01/ 2021
+   :spiral_calendar: 14/ 02/ 2021
    ----------- 
    Sunday
    
-   :spiral_calendar: 15/ 01/ 2021
+   :spiral_calendar: 15/ 02/ 2021
    ----------- 
    - Issue resloved for Ganshyam Sir
    - Redirect to services page on submit
@@ -150,7 +150,7 @@ where ac.Is_Available=1 and ac.nACTypeID=18 and ad.cGSTNo<>'' and ad.cPanNo<>''
    - align text to cennter
    - Increase the width of grid 
     
-   :spiral_calendar: 16/ 01/ 2021
+   :spiral_calendar: 16/ 02/ 2021
    ----------- 
    - generate ticket number randomly
    - MAKE FIELD ticket no READONLY
@@ -160,7 +160,7 @@ where ac.Is_Available=1 and ac.nACTypeID=18 and ad.cGSTNo<>'' and ad.cPanNo<>''
    - export database
    - Push code to Git with database.
    
-   :spiral_calendar: 17/ 01/ 2021
+   :spiral_calendar: 17/ 02/ 2021
    -----------    
    - Change randomString to alphanumeric
    - Hide div user Id
@@ -180,11 +180,11 @@ where ac.Is_Available=1 and ac.nACTypeID=18 and ad.cGSTNo<>'' and ad.cPanNo<>''
    Order sort
    Snapshot
    
-  :spiral_calendar: 18/ 01/ 2021
+  :spiral_calendar: 18/ 02/ 2021
   -----------  
   - Leave
   
-  :spiral_calendar: 18/ 01/ 2021
+  :spiral_calendar: 19/ 02/ 2021
   -----------   
   - Implemented logout functionality
   - Implemented logout icon on page services
@@ -193,12 +193,42 @@ where ac.Is_Available=1 and ac.nACTypeID=18 and ad.cGSTNo<>'' and ad.cPanNo<>''
   - map customers and make service entry and check the permission roles.
   - Query : Which Employee is taking action on customer must be known? There are two employee Id's for Action and result     
   - Vishnu Sir Issue resolved in CRP 
+  - Push code to git
+  
+   There can be two employee ids
+   name instead of id
+   CRM push to server
    
+  :spiral_calendar: 20/ 02/ 2021
+  -----------     
+ - Added a column nemp2 to tbl_service
+ - Customer page UI
+ - Implemented "Go Back to Dashboard"
+ -   Ticket number in Action ? ------------- Delete
+ - Failed to set the 'value' property on 'HTMLInputElement': This input element accepts a filename, which may only be programmatically set to the empty string.
+       at Object.success (http://localhost:8080/SRM/controllers/services.php:356:63)
+  - Ticket Number setting to 0
+  - Service Type saving to 0
+  - Remove Save icon from MyComplains page
+  - ask ravindra sir and vishnu sir about peplelectronics credentials
+  - customer is not able to click View( tabs not switching)
+  - remove search icon from view
+  
+  Optimizations in code
    
-   
-   
-   
-   
+  :spiral_calendar: 21/ 02/ 2021
+ -----------       
+  - Sunday
+  
+  :spiral_calendar: 22/ 02/ 2021  
+  ----
+  - Remove ticket number from action and result
+  - Hide save button from myComplains page.
+  - Alert Action required on clicking remarks
+  - cticketNumber showing 
+  - cserviceType1 showing
+  - 
+  
    
    
    

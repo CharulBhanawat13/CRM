@@ -1,5 +1,12 @@
 
+
+
 <html>
+<!--<body style="background-image: url('assests/1_o-2GzWThE0LHTC1QykYD7Q.png') ;-->
+<!--  -webkit-background-size: cover;-->
+<!--  -moz-background-size: cover;-->
+<!--  -o-background-size: cover;-->
+<!--  background-size: cover;opacity: ">-->
 <body style="background-color: #f1f1f1">
 <head>
     <link rel="stylesheet" href="css/theme.css">

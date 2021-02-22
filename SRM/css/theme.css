@@ -74,6 +74,18 @@ tfoot {
     margin-bottom: 20px;
 }
 
+
+#customerUser {
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+
+#customerPassword {
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
 .modal-dialog {
     width: 60%;
     height: 60%;
