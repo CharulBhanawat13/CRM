@@ -227,10 +227,13 @@ where ac.Is_Available=1 and ac.nACTypeID=18 and ad.cGSTNo<>'' and ad.cPanNo<>''
   - Alert Action required on clicking remarks
   - cticketNumber showing 
   - cserviceType1 showing
-  - 
-  
+  - Internet connectivity issue from 3:21
+  - Alert on click on ACtion without selecting service in case employee       
    
-   
+  :spiral_calendar: 23/ 02/ 2021  
+  ---- 
+  -  Save action by employee
+  -  
    
    
    

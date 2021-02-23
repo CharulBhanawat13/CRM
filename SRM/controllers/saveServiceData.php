@@ -18,6 +18,11 @@ if (isset($_POST['submit'])){
     $serviceType=$_POST['serviceType'];
     $warranty1=(int)$_POST['warranty1'];
 
+
+    $empId=(int)$_POST['empId'];
+
+
+
     $rating=$_POST['rating'];
     $remarkByCustomer=$_POST['remarkByCustomer'];
     $targetDir = "uploads/";
@@ -26,13 +31,33 @@ if (isset($_POST['submit'])){
     $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
 
  //   $snapshot=$_POST['snapshot'];
-    if ($serviceId!="" && (!(empty($rating)) || !(empty($remarkByCustomer))) ){
+    if ($serviceId!="" && (!(empty($rating)) || !(empty($remarkByCustomer)))  ){
 
         $sql="UPDATE tbl_service 
             SET nrating =$rating ,cremarkByCust='$remarkByCustomer'
             where nserviceId=$serviceId";
 
-    }else{
+    }else if($serviceId!="" &&  (!(empty($empId)))){
+        $empId=(int)$_POST['empId'];
+        $recordManager=$_POST['recordManager'];
+        $serviceType2=(int)$_POST['serviceType2'];
+        $expiryDate=$_POST['expiryDate'];
+        $paymentMode=(int)$_POST['paymentMode'];
+        $remark2=$_POST['remark2'];
+        $expPrice=(int)$_POST['expPrice'];
+        $warranty2=(int)$_POST['warranty2'];
+        $materialRecDate=$_POST['materialRecDate'];
+        $attendantBy=$_POST['attendantBy'];
+        $siteAttendDate=$_POST['siteAttendDate'];
+        $complainStatus=(int)$_POST['complainStatus'];
+        $sql="UPDATE tbl_service 
+            SET nempId=$empId ,crecordManager='$recordManager' ,nserviceType2=$serviceType2 ,dexpDate='$expiryDate', npaymentMode=$paymentMode , 
+            cremark2='$remark2' ,nexpPrice=$expPrice ,nwarrantyType2=$warranty2 ,dmaterialRecDate ='$materialRecDate', cattendBy ='$attendantBy',
+             dsiteAttendDate='$siteAttendDate' , nComplainStatus = $complainStatus
+            where nserviceId=$serviceId";
+    }
+
+    else{
         $sql = "INSERT INTO tbl_service (nserviceId,nuserId,cticketNo,ccompanyName,cconcernPerson,caddress,ccontactNo,cPONo,
                 dentryDate,cmailId,cremark2,cproductName,nqty,cserviceType1,nwarrantyType1,csnapshot) 
 			                VALUES ($serviceId,$userId,'$ticketNo','$companyName','$concernPerson','$address','$contactNumber','$ponumber',
@@ -60,7 +85,7 @@ if (isset($_POST['service_id'])){
             "nserviceId"=>$row['nserviceId'],
             "nuserId"=>$row['nuserId'],
             "nempId"    => $row['nempId'],
-            "nticketNo"    => $row['nticketNo'],
+            "cticketNo"    => $row['cticketNo'],
             "ccompanyName"   => $row['ccompanyName'],
             "cconcernPerson" => $row['cconcernPerson'],
             "caddress" => $row['caddress'],
@@ -69,7 +94,7 @@ if (isset($_POST['service_id'])){
             "cmailId"      => $row['cmailId'],
             "cproductName"      => $row['cproductName'],
             "nqty"      => $row['nqty'],
-            "nserviceType1"      => $row['nserviceType1'],
+            "cserviceType1"      => $row['cserviceType1'],
             "nwarrantyType1"      => $row['nwarrantyType1'],
             "dentryDate"      => $row['dentryDate'],
             "csnapshot"      => $row['csnapshot'],

@@ -27,7 +27,6 @@ function  getCustomerAddress($user_id){
     return $custAddress;
 
 }
-
 ?>
 
 <html>
@@ -185,22 +184,22 @@ function  getCustomerAddress($user_id){
             <label>Employee Id</label> <input id="empId" name="empId" type="text" class="form-control">
         </div>
         <div class="grid">
-            <label>Record Manager</label><input type="text" class="form-control">
+            <label>Record Manager</label><input type="text" id="recordManager" name="recordManager" class="form-control">
         </div>
         <div class="grid">
-            <label>Service Type 2</label><input type="text" class="form-control">
+            <label>Service Type 2</label><input type="text" id="serviceType2" name="serviceType2" class="form-control">
         </div>
         <div class="grid">
-            <label>Expiry Date</label> <input type="date" class="form-control">
+            <label>Expiry Date</label> <input type="date" id="expiryDate"  name="expiryDate" class="form-control">
         </div>
         <div class="grid">
-            <label>Payment Mode</label> <input type="text" class="form-control">
+            <label>Payment Mode</label> <input type="text" id="paymentMode" name="paymentMode" class="form-control">
         </div>
         <div class="grid">
-            <label>Remark 2</label> <input type="text" class="form-control">
+            <label>Remark 2</label> <input type="text"  id="remark2" name="remark2" class="form-control">
         </div>
         <div class="grid">
-            <label>Exp Price</label> <input type="text" class="form-control">
+            <label>Exp Price</label> <input type="text" id="expPrice" name="expPrice" class="form-control">
         </div>
         <div class="grid">
             <label>Warranty Type 2</label> <select class="form-control" name="warranty2" id="warranty2">
@@ -213,16 +212,16 @@ function  getCustomerAddress($user_id){
             </select>
         </div>
         <div class="grid">
-            <label>Material Rec Date</label><input type="date" class="form-control">
+            <label>Material Rec Date</label><input type="date" id="materialRecDate" name="materialRecDate" class="form-control">
         </div>
         <div class="grid">
-            <label>Attendant By</label> <input type="text" class="form-control">
+            <label>Attendant By</label> <input type="text" id="attendantBy" name="attendantBy" class="form-control">
         </div>
         <div class="grid">
-            <label>Site Attend Date</label> <input type="date" class="form-control">
+            <label>Site Attend Date</label> <input type="date"  id="siteAttendDate" name="siteAttendDate" class="form-control">
         </div>
         <div class="grid">
-            <label>Complain Status</label> <input type="text" class="form-control">
+            <label>Complain Status</label> <input type="text" id="complainStatus" name="complainStatus" class="form-control">
         </div>
     </div>
     <div id="result" class="container-large" >
@@ -321,7 +320,7 @@ function  getCustomerAddress($user_id){
 
     };
 
-    function openPage(pageName, elmnt, color,varActionTaken) {
+    function openPage(pageName, elmnt, color,varActionTaken,service_id) {
         var ntype=<?php echo json_encode($ntype); ?>;
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("container-large");
@@ -364,8 +363,12 @@ function  getCustomerAddress($user_id){
             document.getElementById('result').style.pointerEvents='auto';
         }
 
-        if(pageName=='remarks' && ntype=='3' && varActionTaken==false){
+        if(pageName=='remarks' && ntype=='3' && varActionTaken==false){  //For Cust
             alert("Action Required");
+            document.getElementById(pageName).style.pointerEvents='none';
+        }
+        if(pageName=='action' && ntype=='2' && varActionTaken==false && document.getElementById('serviceId')==""){ //For Emp
+            alert("Click on View to select a Service");
             document.getElementById(pageName).style.pointerEvents='none';
 
         }
@@ -415,6 +418,8 @@ function  getCustomerAddress($user_id){
         });
 
         $('#serviceTable tbody').on('click', '.opendetails', function () {
+
+
             var data = table.row($(this).parents('tr').first()).data()[1];
             var service_id=data;
             var ntype=<?php echo json_encode($ntype); ?>;
@@ -431,7 +436,7 @@ function  getCustomerAddress($user_id){
                     }
                    var varActionTaken=actionTaken(service_id);
 
-                    openPage('complain',this,'green',varActionTaken);
+                    openPage('complain',this,'green',varActionTaken,service_id);
 
                 }
             });
@@ -441,7 +446,7 @@ function  getCustomerAddress($user_id){
         function fillInputFields(row_datas){
             document.getElementById("serviceId").value = row_datas[0].nserviceId;
             document.getElementById("userId").value = row_datas[0].nuserId;
-            document.getElementById("ticketNo").value = row_datas[0].nticketNo;
+            document.getElementById("ticketNo").value = row_datas[0].cticketNo;
             document.getElementById("companyName").value = row_datas[0].ccompanyName;
             document.getElementById("concernPerson").value = row_datas[0].cconcernPerson;
             document.getElementById("contactNumber").value = row_datas[0].ccontactNo;
@@ -455,6 +460,19 @@ function  getCustomerAddress($user_id){
             document.getElementById("quantity").value = row_datas[0].nqty;
             document.getElementById("serviceType").value = row_datas[0].nserviceType1;
             document.getElementById("warranty1").value = row_datas[0].nwarrantyType1;
+
+            document.getElementById("recordManager").value = row_datas[0].cproductName;
+            document.getElementById("serviceType2").value = row_datas[0].nqty;
+            document.getElementById("serviceType").value = row_datas[0].nserviceType1;
+            document.getElementById("expiryDate").value = row_datas[0].nwarrantyType1;
+            document.getElementById("paymentMode").value = row_datas[0].cproductName;
+            document.getElementById("remark2").value = row_datas[0].nqty;
+            document.getElementById("expPrice").value = row_datas[0].nserviceType1;
+            document.getElementById("warranty2").value = row_datas[0].nwarrantyType1;
+            document.getElementById("materialRecDate").value = row_datas[0].cproductName;
+            document.getElementById("attendantBy").value = row_datas[0].nqty;
+            document.getElementById("siteAttendDate").value = row_datas[0].nserviceType1;
+            document.getElementById("complainStatus").value = row_datas[0].nwarrantyType1;
 
             document.getElementById("rating").value = row_datas[0].nrating;
             document.getElementById("remarkByCustomer").value = row_datas[0].cremarkByCust;
