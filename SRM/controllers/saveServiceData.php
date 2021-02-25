@@ -2,8 +2,9 @@
 if (isset($_POST['submit'])){
    include ('../db_connection.php');
    $conn=OpenCon();
-    $serviceId=(int)$_POST['serviceId'];
+
     $userId=(int)$_POST['userId'];
+    $serviceId=(int)$_POST['serviceId'];
     $ticketNo=$_POST['ticketNo'];
     $companyName=$_POST['companyName'];
     $concernPerson=$_POST['concernPerson'];
@@ -13,6 +14,10 @@ if (isset($_POST['submit'])){
     $entryDate=$_POST['entryDate'];
     $email_id=$_POST['emailId'];
     $remark1=$_POST['remark1'];
+        $targetDir = "uploads/";
+        $fileName = basename($_FILES["snapshot"]["name"]);
+        $targetFilePath = $targetDir . $fileName;
+        $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
     $productName=$_POST['productName'];
     $quantity=(int)$_POST['quantity'];
     $serviceType=$_POST['serviceType'];
@@ -20,25 +25,7 @@ if (isset($_POST['submit'])){
 
 
     $empId=(int)$_POST['empId'];
-
-
-
-    $rating=$_POST['rating'];
-    $remarkByCustomer=$_POST['remarkByCustomer'];
-    $targetDir = "uploads/";
-    $fileName = basename($_FILES["snapshot"]["name"]);
-    $targetFilePath = $targetDir . $fileName;
-    $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
-
- //   $snapshot=$_POST['snapshot'];
-    if ($serviceId!="" && (!(empty($rating)) || !(empty($remarkByCustomer)))  ){
-
-        $sql="UPDATE tbl_service 
-            SET nrating =$rating ,cremarkByCust='$remarkByCustomer'
-            where nserviceId=$serviceId";
-
-    }else if($serviceId!="" &&  (!(empty($empId)))){
-        $empId=(int)$_POST['empId'];
+    if($serviceId!="" &&  $empId!="0"){
         $recordManager=$_POST['recordManager'];
         $serviceType2=(int)$_POST['serviceType2'];
         $expiryDate=$_POST['expiryDate'];
@@ -55,6 +42,38 @@ if (isset($_POST['submit'])){
             cremark2='$remark2' ,nexpPrice=$expPrice ,nwarrantyType2=$warranty2 ,dmaterialRecDate ='$materialRecDate', cattendBy ='$attendantBy',
              dsiteAttendDate='$siteAttendDate' , nComplainStatus = $complainStatus
             where nserviceId=$serviceId";
+    }
+    $empId2=(int)$_POST['empId2'];
+    if ($serviceId!="" && $empId2!="0"){
+        $materialReceived=$_POST['materialReceived'];
+        $receiveQuantity=$_POST['receiveQuantity'];
+        $warranty3=$_POST['warranty3'];
+        $faultDescription=$_POST['faultDescription'];
+        $completionDate=$_POST['completionDate'];
+        $remark3=$_POST['remark3'];
+        $billingAmount=$_POST['billingAmount'];
+        $sql="UPDATE tbl_service 
+            SET nempId2=$empId ,cmaterialReceived='$materialReceived' ,nrecieveQty=$receiveQuantity ,nwarrantyType3=$warranty3, cfaultDesc='$faultDescription' , 
+            dcompletionDate='$completionDate' ,cremark3='$remark3' ,nbillingAmount=$billingAmount 
+            where nserviceId=$serviceId";
+    }
+
+
+
+
+    $rating=$_POST['rating'];
+    $remarkByCustomer=$_POST['remarkByCustomer'];
+
+
+    if ($serviceId!="" && (!(empty($rating)) || !(empty($remarkByCustomer)))  ){
+
+        $sql="UPDATE tbl_service 
+            SET nrating =$rating ,cremarkByCust='$remarkByCustomer'
+            where nserviceId=$serviceId";
+
+    }else if($serviceId!="" &&  (!(empty($empId)))){
+        $empId=(int)$_POST['empId'];
+
     }
 
     else{

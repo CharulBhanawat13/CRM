@@ -251,9 +251,11 @@ where ac.Is_Available=1 and ac.nACTypeID=18 and ad.cGSTNo<>'' and ad.cPanNo<>''
  ----
  - result not taken alert on click of remarks in case customer
  - hide other tabs on adding a complain 
+ - Push code to git
+ - Change all fields to varchar
+ 
  
  pending company name autofill
- create new mail
  REMARK
    
    
