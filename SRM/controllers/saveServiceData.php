@@ -12,7 +12,7 @@ if (isset($_POST['submit'])){
     $ponumber=$_POST['ponumber'];
     $entryDate=$_POST['entryDate'];
     $email_id=$_POST['emailId'];
-    $remark=$_POST['remark'];
+    $remark1=$_POST['remark1'];
     $productName=$_POST['productName'];
     $quantity=(int)$_POST['quantity'];
     $serviceType=$_POST['serviceType'];
@@ -59,9 +59,9 @@ if (isset($_POST['submit'])){
 
     else{
         $sql = "INSERT INTO tbl_service (nserviceId,nuserId,cticketNo,ccompanyName,cconcernPerson,caddress,ccontactNo,cPONo,
-                dentryDate,cmailId,cremark2,cproductName,nqty,cserviceType1,nwarrantyType1,csnapshot) 
+                dentryDate,cmailId,cremark1,cproductName,nqty,cserviceType1,nwarrantyType1,csnapshot) 
 			                VALUES ($serviceId,$userId,'$ticketNo','$companyName','$concernPerson','$address','$contactNumber','$ponumber',
-			'$entryDate','$email_id','$remark','$productName',$quantity,'$serviceType',$warranty1,'$fileName')";
+			'$entryDate','$email_id','$remark1','$productName',$quantity,'$serviceType',$warranty1,'$fileName')";
     }
 
     $result = mysqli_query($conn, $sql);
@@ -82,43 +82,47 @@ if (isset($_POST['service_id'])){
     while ($row = mysqli_fetch_array($result)) {
         $row_data = array(
             "nid" => $row['nid'],
-            "nserviceId"=>$row['nserviceId'],
             "nuserId"=>$row['nuserId'],
-            "nempId"    => $row['nempId'],
+        // page complain
+            "nserviceId"=>$row['nserviceId'],
             "cticketNo"    => $row['cticketNo'],
             "ccompanyName"   => $row['ccompanyName'],
             "cconcernPerson" => $row['cconcernPerson'],
-            "caddress" => $row['caddress'],
             "ccontactNo"      => $row['ccontactNo'],
+            "caddress" => $row['caddress'],
             "cPONo"      => $row['cPONo'],
+            "dentryDate"      => $row['dentryDate'],
             "cmailId"      => $row['cmailId'],
+            "remark1"       =>$row['cremark1'],
+            "csnapshot"      => $row['csnapshot'],
             "cproductName"      => $row['cproductName'],
             "nqty"      => $row['nqty'],
             "cserviceType1"      => $row['cserviceType1'],
             "nwarrantyType1"      => $row['nwarrantyType1'],
-            "dentryDate"      => $row['dentryDate'],
-            "csnapshot"      => $row['csnapshot'],
+
+        //page action
+            "nempId"    => $row['nempId'],
             "crecordManager"      => $row['crecordManager'],
             "nserviceType2"      => $row['nserviceType2'],
             "dexpDate"      => $row['dexpDate'],
             "npaymentMode"      => $row['npaymentMode'],
-
             "cremark2"      => $row['cremark2'],
             "nexpPrice"      => $row['nexpPrice'],
             "nwarrantyType2"      => $row['nwarrantyType2'],
             "dmaterialRecDate"      => $row['dmaterialRecDate'],
             "cattendBy"      => $row['cattendBy'],
             "dsiteAttendDate"      => $row['dsiteAttendDate'],
-
             "nComplainStatus"      => $row['nComplainStatus'],
+// page result
+            "nempId2" => $row['nempId2'],
             "cmaterialReceived"      => $row['cmaterialReceived'],
             "nrecieveQty"      => $row['nrecieveQty'],
             "nwarrantyType3"      => $row['nwarrantyType3'],
             "cfaultDesc"      => $row['cfaultDesc'],
             "dcompletionDate"      => $row['dcompletionDate'],
-
             "cremark3"      => $row['cremark3'],
             "nbillingAmount"      => $row['nbillingAmount'],
+ //page remarks
             "nrating"      => $row['nrating'],
             "cremarkByCust"      => $row['cremarkByCust'],
             "isAvailable"      => $row['isAvailable'],
@@ -145,5 +149,25 @@ if (isset($_POST['action_taken_serviceId'])){
 echo json_encode($result);
     CloseCon($conn);
 }
+
+
+if (isset($_POST['result_taken_service_id'])){
+    include ('../db_connection.php');
+    $conn=OpenCon();
+    $serviceId=(int)$_POST['result_taken_service_id'];
+    $sql="Select nempId2 from tbl_service where nserviceId=$serviceId";
+    $result=mysqli_query($conn,$sql);
+    $row=mysqli_fetch_row($result);
+    if ($row[0]=="0"){
+        $result=false;
+    } else{
+        $result=true;
+    }
+    echo json_encode($result);
+    CloseCon($conn);
+}
+
+
+
 
 ?>

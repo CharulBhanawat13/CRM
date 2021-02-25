@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2021 at 10:13 AM
+-- Generation Time: Feb 25, 2021 at 08:00 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -2580,8 +2580,9 @@ CREATE TABLE `tbl_service` (
   `cmailId` varchar(50) NOT NULL,
   `cproductName` varchar(50) NOT NULL,
   `nqty` int(10) NOT NULL,
-  `cserviceType1` int(10) NOT NULL,
+  `cserviceType1` varchar(50) NOT NULL,
   `nwarrantyType1` int(10) NOT NULL,
+  `cremark1` varchar(256) NOT NULL,
   `dentryDate` date NOT NULL,
   `csnapshot` blob NOT NULL,
   `crecordManager` varchar(50) NOT NULL,
@@ -2612,8 +2613,9 @@ CREATE TABLE `tbl_service` (
 -- Dumping data for table `tbl_service`
 --
 
-INSERT INTO `tbl_service` (`nid`, `nserviceId`, `nuserId`, `nempId`, `cticketNo`, `ccompanyName`, `cconcernPerson`, `caddress`, `ccontactNo`, `cPONo`, `cmailId`, `cproductName`, `nqty`, `cserviceType1`, `nwarrantyType1`, `dentryDate`, `csnapshot`, `crecordManager`, `nserviceType2`, `dexpDate`, `npaymentMode`, `cremark2`, `nexpPrice`, `nwarrantyType2`, `dmaterialRecDate`, `cattendBy`, `dsiteAttendDate`, `nComplainStatus`, `cmaterialReceived`, `nrecieveQty`, `nwarrantyType3`, `cfaultDesc`, `dcompletionDate`, `cremark3`, `nbillingAmount`, `nrating`, `cremarkByCust`, `nempId2`, `isAvailable`) VALUES
-(1, 132, 2106, 0, 'Fzbw7Z8tZ41k', '111', '1', '605, SKYLARK BUILDING NO 60 NEHRU PLACE NEW DELHI 110019', '1', '1', '1', '1', 1, 109, 1, '2021-02-22', '', '', 0, '0000-00-00', 0, '1', 0, 0, '0000-00-00', '', '0000-00-00', 0, '', 0, 0, '', '0000-00-00', '', 0, 0, '', 0, b'0');
+INSERT INTO `tbl_service` (`nid`, `nserviceId`, `nuserId`, `nempId`, `cticketNo`, `ccompanyName`, `cconcernPerson`, `caddress`, `ccontactNo`, `cPONo`, `cmailId`, `cproductName`, `nqty`, `cserviceType1`, `nwarrantyType1`, `cremark1`, `dentryDate`, `csnapshot`, `crecordManager`, `nserviceType2`, `dexpDate`, `npaymentMode`, `cremark2`, `nexpPrice`, `nwarrantyType2`, `dmaterialRecDate`, `cattendBy`, `dsiteAttendDate`, `nComplainStatus`, `cmaterialReceived`, `nrecieveQty`, `nwarrantyType3`, `cfaultDesc`, `dcompletionDate`, `cremark3`, `nbillingAmount`, `nrating`, `cremarkByCust`, `nempId2`, `isAvailable`) VALUES
+(1, 101, 2106, 0, 'g7GUCamiEgow', 'PYROTECH', 'PRAVEEN RAKESH', '605, SKYLARK BUILDING NO 60 NEHRU PLACE NEW DELHI 110019', '8797979898', '707', 'PYROTECH@123', 'LED LIGHTS', 5, 'REAPAIR', 2, 'GREAT', '0000-00-00', '', '', 0, '0000-00-00', 0, '', 0, 0, '0000-00-00', '', '0000-00-00', 0, '', 0, 0, '', '0000-00-00', '', 0, 0, '', 0, b'0'),
+(2, 909, 2106, 0, 'pxMFpbGEvHjl', 'tempson', 'nena mam', '605, SKYLARK BUILDING NO 60 NEHRU PLACE NEW DELHI 110019', '654', '34', 'neena@123', 'transistor', 6, 'mainatin', 1, 'loud', '0000-00-00', '', '', 0, '0000-00-00', 0, '', 0, 0, '0000-00-00', '', '0000-00-00', 0, '', 0, 0, '', '0000-00-00', '', 0, 0, '', 0, b'0');
 
 --
 -- Indexes for dumped tables
@@ -2657,7 +2659,7 @@ ALTER TABLE `tbl_login`
 -- AUTO_INCREMENT for table `tbl_service`
 --
 ALTER TABLE `tbl_service`
-  MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

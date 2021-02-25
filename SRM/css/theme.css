@@ -24,6 +24,7 @@ img {
     border: rebeccapurple;
     padding: 2%;
     margin-top: 2%;
+    height: 100%;
   }
 .grid{
     width: 30%;

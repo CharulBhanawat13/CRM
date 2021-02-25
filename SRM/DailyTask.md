@@ -233,13 +233,28 @@ where ac.Is_Available=1 and ac.nACTypeID=18 and ad.cGSTNo<>'' and ad.cPanNo<>''
   :spiral_calendar: 23/ 02/ 2021  
   ---- 
   -  Save action by employee
-  -  
+  - Add new Complain 
+  - user permissions on add new customer.
+  
+  :spiral_calendar: 24/ 02/ 2021  
+  ----    
+  - result page getelementbyid
+  - result fetch data
+  hide tabbs on mycomplain page
+  servicetype undefined
+  arrangement according to ui
    
    
+   company name
    
-   
-   
-   
+:spiral_calendar: 24/ 02/ 2021  
+ ----
+ - result not taken alert on click of remarks in case customer
+ - hide other tabs on adding a complain 
+ 
+ pending company name autofill
+ create new mail
+ REMARK
    
    
           
