@@ -22,6 +22,17 @@ function  getCustomerAddress($user_id){
     return $custAddress;
 
 }
+function  getCompanyName($user_id){
+    $conn = OpenCon();
+    $sql = "Select ccustName from tbl_customer where ninternal_id=$user_id";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_row($result);
+    $custName = $row[0];
+    CloseCon($conn);
+    return $custName;
+
+}
+
 ?>
 
 <html>
@@ -46,9 +57,7 @@ function  getCustomerAddress($user_id){
 <button class="tablink" onclick="openPage1('remarks',globalServiceId)" id="remarksButton">Remarks</button>
 
 <form method="post" id="serviceForm" action="saveServiceData.php" enctype="multipart/form-data">
-    <div>
-        <label id="service">No service selected</label>
-    </div>
+
 
     <a style="float:right;margin-right: 8%;" href="../dashboard.php"><i class="fa fa-home fa-2x"></i></a>
 
@@ -127,7 +136,7 @@ function  getCustomerAddress($user_id){
             <label>Ticket Number</label> <input type="text" name="ticketNo" id="ticketNo" value="<?php echo generateRandomString($lenght=12)?>" class="form-control">
         </div>
         <div class="grid">
-            <label>Company Name</label> <input type="text" name="companyName" id="companyName" class="form-control">
+            <label>Company Name</label> <input type="text" title="<?php echo getCompanyName($userId) ?>" value="<?php echo getCompanyName($userId) ?>" name="companyName" id="companyName" class="form-control">
         </div>
         <div class="grid">
             <label>Concern Person</label><input type="text" name="concernPerson" id="concernPerson" class="form-control">
@@ -373,6 +382,10 @@ function  getCustomerAddress($user_id){
             openPageForCust(pageName,serviceId);
         }
 
+        isComplainSubmitted(serviceId);
+        isActionTaken(serviceId);
+
+
     }
 
     function openPageForCust(pageName,service_id){
@@ -383,6 +396,7 @@ function  getCustomerAddress($user_id){
             document.getElementById('complain').style.pointerEvents='auto';
             document.getElementById('remarks').style.pointerEvents='auto';
             globalServiceId=service_id;
+
 
 
         }
@@ -397,17 +411,22 @@ function  getCustomerAddress($user_id){
         if(pageName=='remarks'){
             isResultTaken(globalServiceId);
         }
+
+
     }
 
 
 
     function openPageForEmp(pageName,service_id) {
+        var userId=<?php echo json_encode($userId); ?>;
+
         if (pageName == 'complain' || pageName == 'remarks') {
             document.getElementById(pageName).style.display = "block";
             document.getElementById('complain').style.pointerEvents = 'none';
             document.getElementById('remarks').style.pointerEvents = 'none';
             document.getElementById('action').style.pointerEvents = 'auto';
             document.getElementById('result').style.pointerEvents = 'auto';
+            globalServiceId=service_id;
         }
         if((pageName=='action' && ntype=='2') || (pageName=='result' && ntype=='2')){
             document.getElementById(pageName).style.display = "block";
@@ -415,6 +434,22 @@ function  getCustomerAddress($user_id){
             document.getElementById('remarks').style.pointerEvents='none';
             document.getElementById('action').style.pointerEvents='auto';
             document.getElementById('result').style.pointerEvents='auto';
+        }
+        if (pageName=='action'){
+            document.getElementById('empId').value = userId;
+            document.getElementById('empId').style.pointerEvents='none';
+            document.getElementById('empId2').value= '';
+
+
+        }if(pageName=='result'){
+
+            document.getElementById('empId2').value= userId;
+            document.getElementById('empId2').style.pointerEvents='none';
+            document.getElementById('empId').value= '';
+
+            isActionTaken(globalServiceId);
+
+
         }
 
     }
@@ -438,6 +473,56 @@ function  getCustomerAddress($user_id){
         });
 
     }
+
+    function isComplainSubmitted(complain_service_id){
+        var complain_service_id=complain_service_id;
+        $.ajax({
+            url:"../controllers/saveServiceData.php",    //the page containing php script
+            type: "post",
+            async:false,
+            //request type,
+            dataType: 'json',
+            data: {complain_service_id: complain_service_id},
+            success:function(result){
+                if (result==false){
+                   console.log(false);
+                   return false;
+
+                }else {
+                    console.log(true);
+                    document.getElementById('complain').style.pointerEvents='none';
+
+                    return true;
+
+                }
+            }
+        });
+
+    }
+
+
+    function isActionTaken(service_id){
+        var action_taken_service_id=service_id;
+        $.ajax({
+            url:"../controllers/saveServiceData.php",    //the page containing php script
+            type: "post",    //request type,
+            dataType: 'json',
+            data: {action_taken_service_id: action_taken_service_id},
+            success:function(result){
+                if (result==false){
+                    alert('Action not taken');
+                    document.getElementById('result').style.pointerEvents='none';
+
+                }else {
+                    document.getElementById('result').style.pointerEvents='block';
+                    document.getElementById('action').style.pointerEvents='none';
+
+                }
+            }
+        });
+
+    }
+
 
     $(document).ready(function () {
     var table = $('#serviceTable').DataTable({
@@ -464,7 +549,7 @@ function  getCustomerAddress($user_id){
             var data = table.row($(this).parents('tr').first()).data()[1];
             var service_id=data;
             openPage1('complain',service_id);
-            document.getElementById('service').value=service_id;
+            // document.getElementById('service').value=service_id;
 
             $.ajax({
                 url:'../controllers/saveServiceData.php',    //the page containing php script

@@ -25,7 +25,10 @@ if (isset($_POST['submit'])){
 
 
     $empId=(int)$_POST['empId'];
-    if($serviceId!="" &&  $empId!="0"){
+    $empId2=(int)$_POST['empId2'];
+    $rating=$_POST['rating'];
+    $remarkByCustomer=$_POST['remarkByCustomer'];
+    if($serviceId!="" &&  $empId!="0" && $empId2=="0"){
         $recordManager=$_POST['recordManager'];
         $serviceType2=(int)$_POST['serviceType2'];
         $expiryDate=$_POST['expiryDate'];
@@ -43,8 +46,7 @@ if (isset($_POST['submit'])){
              dsiteAttendDate='$siteAttendDate' , nComplainStatus = $complainStatus
             where nserviceId=$serviceId";
     }
-    $empId2=(int)$_POST['empId2'];
-    if ($serviceId!="" && $empId2!="0"){
+    else if ($serviceId!="" && $empId2!="0" &&  ((empty($rating)) || (empty($remarkByCustomer)))){
         $materialReceived=$_POST['materialReceived'];
         $receiveQuantity=$_POST['receiveQuantity'];
         $warranty3=$_POST['warranty3'];
@@ -53,26 +55,16 @@ if (isset($_POST['submit'])){
         $remark3=$_POST['remark3'];
         $billingAmount=$_POST['billingAmount'];
         $sql="UPDATE tbl_service 
-            SET nempId2=$empId ,cmaterialReceived='$materialReceived' ,nrecieveQty=$receiveQuantity ,nwarrantyType3=$warranty3, cfaultDesc='$faultDescription' , 
+            SET nempId2=$empId2 ,cmaterialReceived='$materialReceived' ,nrecieveQty=$receiveQuantity ,nwarrantyType3=$warranty3, cfaultDesc='$faultDescription' , 
             dcompletionDate='$completionDate' ,cremark3='$remark3' ,nbillingAmount=$billingAmount 
             where nserviceId=$serviceId";
     }
 
-
-
-
-    $rating=$_POST['rating'];
-    $remarkByCustomer=$_POST['remarkByCustomer'];
-
-
-    if ($serviceId!="" && (!(empty($rating)) || !(empty($remarkByCustomer)))  ){
+   else if ($serviceId!="" && (!(empty($rating)) || !(empty($remarkByCustomer)))  ){
 
         $sql="UPDATE tbl_service 
             SET nrating =$rating ,cremarkByCust='$remarkByCustomer'
             where nserviceId=$serviceId";
-
-    }else if($serviceId!="" &&  (!(empty($empId)))){
-        $empId=(int)$_POST['empId'];
 
     }
 
@@ -153,10 +145,26 @@ if (isset($_POST['service_id'])){
 
 }
 
-if (isset($_POST['action_taken_serviceId'])){
+if (isset($_POST['complain_service_id'])){
     include ('../db_connection.php');
     $conn=OpenCon();
-    $serviceId=(int)$_POST['action_taken_serviceId'];
+    $serviceId=(int)$_POST['complain_service_id'];
+    $sql="Select nid from tbl_service where nserviceId=$serviceId";
+    $result=mysqli_query($conn,$sql);
+    $row=mysqli_fetch_row($result);
+    if ($row[0]){
+        $result=true;
+    } else{
+        $result=false;
+    }
+echo json_encode($result);
+    CloseCon($conn);
+}
+
+if (isset($_POST['action_taken_service_id'])){
+    include ('../db_connection.php');
+    $conn=OpenCon();
+    $serviceId=(int)$_POST['action_taken_service_id'];
     $sql="Select nempId from tbl_service where nserviceId=$serviceId";
     $result=mysqli_query($conn,$sql);
     $row=mysqli_fetch_row($result);
@@ -165,7 +173,7 @@ if (isset($_POST['action_taken_serviceId'])){
     } else{
         $result=true;
     }
-echo json_encode($result);
+    echo json_encode($result);
     CloseCon($conn);
 }
 
