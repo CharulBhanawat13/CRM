@@ -14,10 +14,8 @@ if (isset($_POST['submit'])){
     $entryDate=$_POST['entryDate'];
     $email_id=$_POST['emailId'];
     $remark1=$_POST['remark1'];
-        $targetDir = "uploads/";
-        $fileName = basename($_FILES["snapshot"]["name"]);
-        $targetFilePath = $targetDir . $fileName;
-        $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
+    $imgData = addslashes(file_get_contents($_FILES['snapshot']['tmp_name']));
+
     $productName=$_POST['productName'];
     $quantity=(int)$_POST['quantity'];
     $serviceType=$_POST['serviceType'];
@@ -72,7 +70,7 @@ if (isset($_POST['submit'])){
         $sql = "INSERT INTO tbl_service (nserviceId,nuserId,cticketNo,ccompanyName,cconcernPerson,caddress,ccontactNo,cPONo,
                 dentryDate,cmailId,cremark1,cproductName,nqty,cserviceType1,nwarrantyType1,csnapshot) 
 			                VALUES ($serviceId,$userId,'$ticketNo','$companyName','$concernPerson','$address','$contactNumber','$ponumber',
-			'$entryDate','$email_id','$remark1','$productName',$quantity,'$serviceType',$warranty1,'$fileName')";
+			'$entryDate','$email_id','$remark1','$productName',$quantity,'$serviceType',$warranty1,'$imgData')";
     }
 
     $result = mysqli_query($conn, $sql);
@@ -91,6 +89,7 @@ if (isset($_POST['service_id'])){
 
     $row_data = array();
     while ($row = mysqli_fetch_array($result)) {
+
         $row_data = array(
             "nid" => $row['nid'],
             "nuserId"=>$row['nuserId'],
@@ -105,7 +104,7 @@ if (isset($_POST['service_id'])){
             "dentryDate"      => $row['dentryDate'],
             "cmailId"      => $row['cmailId'],
             "remark1"       =>$row['cremark1'],
-            "csnapshot"      => $row['csnapshot'],
+            "csnapshot"      =>base64_encode($row['csnapshot']),
             "cproductName"      => $row['cproductName'],
             "nqty"      => $row['nqty'],
             "cserviceType1"      => $row['cserviceType1'],

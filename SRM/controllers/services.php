@@ -164,11 +164,13 @@ function  getCompanyName($user_id){
             <label>Remark</label> <input type="text" name="remark1" id="remark1" class="form-control">
         </div>
         <div class="grid">
+            <div id="imageappend" name="imageappend">
             <label>Snapshot</label> <input type="file" id="snapshot"  name="snapshot">
-            <div id='filesizealert' style="color: red;display: none">File size must be under 500 kb</div>
-
+                <div id='filesizealert' style="color: red;display: none">File size must be under 500 kb</div>
+            </div>
         </div>
-               <div class="grid">
+
+        <div class="grid">
             <label>Product Name</label> <input type="text" name="productName" id="productName" class="form-control">
         </div>
         <div class="grid">
@@ -383,7 +385,6 @@ function  getCompanyName($user_id){
         }
 
         isComplainSubmitted(serviceId);
-        isActionTaken(serviceId);
 
 
     }
@@ -406,6 +407,10 @@ function  getCompanyName($user_id){
             document.getElementById('result').style.pointerEvents = 'none';
             document.getElementById('complain').style.pointerEvents = 'auto';
             document.getElementById('remarks').style.pointerEvents = 'auto';
+        }
+        if(pageName=='result'){
+            isActionTaken(serviceId);
+
         }
 
         if(pageName=='remarks'){
@@ -580,7 +585,11 @@ function  getCompanyName($user_id){
             document.getElementById("entryDate").value = row_datas[0].dentryDate;
             document.getElementById("emailId").value = row_datas[0].cmailId;
             document.getElementById("remark1").value = row_datas[0].cremark1;
-            //     document.getElementById("snapshot").value = row_datas[0].csnapshot;
+       //     document.getElementById("snapshot").value = row_datas[0].csnapshot;
+            var elem = document.createElement("img");
+
+            document.getElementById("imageappend").appendChild(elem);
+            elem.setAttribute("src", 'data:image/png;base64,'+row_datas[0].csnapshot);
             document.getElementById("productName").value = row_datas[0].cproductName;
             document.getElementById("quantity").value = row_datas[0].nqty;
             document.getElementById("serviceType").value = row_datas[0].cserviceType1;
