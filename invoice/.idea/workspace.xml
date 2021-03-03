@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c116a56c-3f81-4cc4-b57b-9966298b037e" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="PhpServers">
+    <servers>
+      <server host="localhost:8080" id="b1309c42-ba06-42c9-a067-79bc740bb418" name="invoice" />
+    </servers>
+  </component>
+  <component name="ProjectId" id="1pEUHlEZbA3NHKhvGKxEclNBT97" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\invoice" />
+      <recent name="C:\xampp\htdocs\invoice\css" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\invoice\controllers" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="invoice" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" browser="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" server_name="invoice" start_url="/invoice">
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c116a56c-3f81-4cc4-b57b-9966298b037e" name="Default Changelist" comment="" />
+      <created>1614747658502</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1614747658502</updated>
+      <workItem from="1614747659743" duration="9231000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="263" y="24" key="#Servers" timestamp="1614766420165">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="263" y="24" key="#Servers/0.0.1366.728@0.0.1366.728" timestamp="1614766420165" />
+    <state x="137" y="12" width="1092" height="716" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1614767083876">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="12" width="1092" height="716" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1614767083876" />
+    <state x="438" y="66" key="#xdebugger.evaluate" timestamp="1614768411228">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="438" y="66" key="#xdebugger.evaluate/0.0.1366.728@0.0.1366.728" timestamp="1614768411228" />
+    <state width="389" height="466" key="DebuggerActiveHint" timestamp="1614768324914">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="389" height="466" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1614768324914" />
+    <state width="1322" height="164" key="GridCell.Tab.0.bottom" timestamp="1614768454268">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="164" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1614768454268" />
+    <state width="1322" height="164" key="GridCell.Tab.0.center" timestamp="1614768454268">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="164" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1614768454268" />
+    <state width="1322" height="164" key="GridCell.Tab.0.left" timestamp="1614768454268">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="164" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1614768454268" />
+    <state width="1322" height="164" key="GridCell.Tab.0.right" timestamp="1614768454268">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="164" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1614768454268" />
+    <state width="1322" height="164" key="GridCell.Tab.1.bottom" timestamp="1614768453924">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="164" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1614768453924" />
+    <state width="1322" height="164" key="GridCell.Tab.1.center" timestamp="1614768453924">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="164" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1614768453924" />
+    <state width="1322" height="164" key="GridCell.Tab.1.left" timestamp="1614768453924">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="164" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1614768453924" />
+    <state width="1322" height="164" key="GridCell.Tab.1.right" timestamp="1614768453924">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="164" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1614768453924" />
+    <state width="1322" height="164" key="GridCell.Tab.2.bottom" timestamp="1614768453925">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="164" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1614768453925" />
+    <state width="1322" height="164" key="GridCell.Tab.2.center" timestamp="1614768453925">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="164" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1614768453925" />
+    <state width="1322" height="164" key="GridCell.Tab.2.left" timestamp="1614768453925">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="164" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1614768453925" />
+    <state width="1322" height="164" key="GridCell.Tab.2.right" timestamp="1614768453925">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="164" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1614768453925" />
+    <state x="518" y="286" key="NewPhpFileDialog" timestamp="1614765557344">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="518" y="286" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1614765557344" />
+    <state width="691" height="372" key="XDebugger.FullValuePopup" timestamp="1614768411098">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="691" height="372" key="XDebugger.FullValuePopup/0.0.1366.728@0.0.1366.728" timestamp="1614768411098" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/controllers/invoiceData.php</url>
+          <line>5</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/controllers/invoiceData.php</url>
+          <line>39</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
