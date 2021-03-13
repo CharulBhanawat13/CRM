@@ -1,15 +1,24 @@
+
+
+<html>
+<head>
+
+    <link rel="stylesheet" href="../css/styles.css">
+
+</head>
+
 <?php
 include('../mssql_connection.php');
-
+$json='';
 if (isset($_POST['submit'])) {
 
     $invoiceNumber = $_POST['invoiceNum'];
     $conn = OpenMSSQLCon();
-    $sql = " SELECT distinct  'GST','B2B','INV',View_InvoiceMaster.cINVOICENO, View_InvoiceMaster.dINVOICEENTRYDATE,
+    $sql = "SELECT distinct  'GST','B2B','INV',View_InvoiceMaster.cINVOICENO, View_InvoiceMaster.dINVOICEENTRYDATE,
 
  tbl_CompanyMaster.nGSTno as CompanyGSTNo,tbl_CompanyMaster.cCompanyName, tbl_CompanyMaster.cAddress,right(tbl_CompanyMaster.cAddress,8) pinno,tbl_CompanyMaster.cPhoneNo,tbl_CompanyMaster.cEmailAddress, AddressDtl.cCityName,AddressDtl.nStateID,AddressDtl.nGSTStateCode,
 
-     View_InvoiceMaster.cBillGSTNo, View_InvoiceMaster.cBillToCustName,View_InvoiceMaster.nBilltoGSTStateCode,View_InvoiceMaster.cBillAddress,View_InvoiceMaster.nBillToZipCode,View_InvoiceMaster.nBilltoGSTStateCode,cBillToContactNo,cBillToEmailID,
+     View_InvoiceMaster.cBillGSTNo, View_InvoiceMaster.cBillToCustName, View_InvoiceMaster.cDespCustCityName,View_InvoiceMaster.cBillToCityName,View_InvoiceMaster.nBilltoGSTStateCode,View_InvoiceMaster.cBillAddress,View_InvoiceMaster.nBillToZipCode,View_InvoiceMaster.nBilltoGSTStateCode,cBillToContactNo,cBillToEmailID,
 
  tbl_CompanyMaster.cCompanyName,tbl_CompanyMaster.cAddress,right(tbl_CompanyMaster.cAddress,8) pinno,
  
@@ -59,17 +68,20 @@ GROUP BY nENTRYTAKENFROM_UNIQUEID) AS vpr_1 ON vpr_1.nINVOICEUNIQUEID = View_Inv
 WHERE     (View_InvoiceMaster.IS_ACTIVE = 1) AND (View_InvoiceMaster.IS_CANCELLED = 0) and View_InvoiceMaster.cINVOICENO  NOT LIKE '%9999' and View_InvoiceMaster.cINVOICENO='$invoiceNumber'" ;
 
     $result = sqlsrv_query($conn, $sql);
+    $prettyjson='';
     try {
+        $count=0;
         while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-            // $prettyjson= json_encode($row,JSON_PRETTY_PRINT);
+             $prettyjson= json_encode($row,JSON_PRETTY_PRINT);
             $json = $row;
 
             echo '<script type="text/javascript">',
             'setItemDetails();',
             '</script>'
             ;
-            echo '<h3>Item Details</h3>
-                <div class="grid"><label>SINo </label><input type="text" value='.$json['cItemSrNo'].'></div>
+
+            echo  '<h3>Item Details</h3>
+                <div class="grid"><label>SINo </label><input type="text" value='.++$count.'></div>
                 <div class="grid"><label>IsServ</label><input type="text" value=' .   getService($json['cTARIFFHEAD']) . '></div>
                 <div class="grid"><label>HSN Cd</label><input type="text" value='. $json['cTARIFFHEAD'] .' ></div>
                 <div class="grid"><label>Unit Price</label><input type="text" value='. $json['nRATE'] .' ></div>
@@ -84,6 +96,8 @@ WHERE     (View_InvoiceMaster.IS_ACTIVE = 1) AND (View_InvoiceMaster.IS_CANCELLE
                 <div class="grid"><label>InvNo</label><input type="text" value='. $json['cINVOICENO'] .' ></div>
                 <div class="grid"><label>InvDt</label><input type="text" value='. $json['dINVOICEENTRYDATE']->format('Y-m-d H:i:s').'></div>
                 <div class="grid"><label>Distance</label><input type="text" value="0" ></div> ';
+    //        echo '<script>setItemDetails($html)</script>';
+
 
 
 
@@ -96,6 +110,8 @@ WHERE     (View_InvoiceMaster.IS_ACTIVE = 1) AND (View_InvoiceMaster.IS_CANCELLE
     }
 
     CloseMSSQLCon($conn);
+    prepareJson($json);
+
 }
 
 function getService($hsncode){
@@ -107,16 +123,64 @@ function getService($hsncode){
         return 'N';
     }
 }
+function prepareJson($json){
+    $finalJson=$json;
+    $finalObject = new stdClass();
+    $finalObject->Version="1.1";
+
+
+    $finalObject->TranDtls=new stdClass();
+    $finalObject->TranDtls->TaxSch="GST";
+    $finalObject->TranDtls->SupTyp="B2B";
+
+    $finalObject->DocDtls=new stdClass();
+    $finalObject->DocDtls->Typ="INV";
+    $finalObject->DocDtls->No=$finalJson['cINVOICENO'];
+    $finalObject->DocDtls->Dt=date_format($finalJson['dINVOICEENTRYDATE'], 'd/m/Y');;
+
+    $finalObject->SellerDtls=new stdClass();
+    $finalObject->SellerDtls->Gstin=$finalJson['CompanyGSTNo'];
+    $finalObject->SellerDtls->LglNm=$finalJson['cCompanyName'];
+    $finalObject->SellerDtls->Addr1=$finalJson['cAddress'];
+    $finalObject->SellerDtls->Loc=$finalJson['cCityName'];
+    $finalObject->SellerDtls->Pin=$finalJson['pinno'];
+    $finalObject->SellerDtls->StCd=$finalJson['nGSTStateCode'];
+
+    $finalObject->BuyerDtls=new stdClass();
+    $finalObject->BuyerDtls->Gstin=$finalJson['cBillGSTNo'];
+    $finalObject->BuyerDtls->LglNm=$finalJson['cBillToCustName'];
+    $finalObject->BuyerDtls->Pos='';
+    $finalObject->BuyerDtls->Addr1=$finalJson['cBillAddress'];
+    $finalObject->BuyerDtls->Pin=$finalJson['nBillToZipCode'];
+    $finalObject->BuyerDtls->StCd=$finalJson['nBilltoGSTStateCode'];
+
+    $finalObject->DispDtls=new stdClass();
+    $finalObject->DispDtls->Nm=$finalJson['cCompanyName'];
+    $finalObject->DispDtls->Addr1=$finalJson['cDespAddress'];
+    $finalObject->DispDtls->Loc=$finalJson['cDespCustCityName'];
+    $finalObject->DispDtls->Pin=$finalJson['nDespToZIpCode'];
+    $finalObject->DispDtls->Pin=$finalJson['nDesptoGSTStateCode'];
+
+    $finalObject->ShipDtls=new stdClass();
+    $finalObject->ShipDtls->LglNm=$finalJson['cDespCustName'];
+    $finalObject->ShipDtls->Addr1=$finalJson['cDespAddress'];
+    $finalObject->ShipDtls->Loc=$finalJson[''];
+    $finalObject->ShipDtls->Pin=$finalJson[''];
+    $finalObject->ShipDtls->Stcd=$finalJson[''];
+
+
+
+
+    echo '<pre>';
+    echo json_encode($finalObject,JSON_PRETTY_PRINT);
+    echo '</pre>';
+
+
+
+}
+
 
 ?>
-
-<html>
-<head>
-
-    <link rel="stylesheet" href="../css/styles.css">
-
-</head>
-
 <body>
 <h3>Document Details</h3>
 <div class="grid"><label>Tax Sch</label><input type="text" value="GST"></div>
@@ -125,63 +189,68 @@ function getService($hsncode){
 <div class="grid"><label>No</label><input value="<?php echo $json['cINVOICENO'] ?>" type="text"></div>
 <div class="grid"><label>Dr</label><input type="text" value="<?php echo $json['dINVOICEENTRYDATE']->format('Y-m-d H:i:s') ?>" ></div>
 
-    <h3>Seller Details</h3>
-    <div class="grid"><label>Gst In</label><input type="text" value="<?php echo $json['CompanyGSTNo'] ?>"></div>
-    <div class="grid"><label>LglNm</label><input type="text" value="<?php echo $json['cCompanyName'] ?>"></div>
-    <div class="grid"><label>Addr1</label><input type="text" value="<?php echo $json['cAddress'] ?>"></div>
-    <div class="grid"><label>Loc</label><input type="text" value="<?php echo $json['cCityName'] ?>"></div>
-    <div class="grid"><label>Pin</label><input type="text" value="<?php echo $json['pinno'] ?>"></div>
-    <div class="grid"><label>StCd</label><input type="text" value="<?php echo $json['nGSTStateCode'] ?>"></div>
+<h3>Seller Details</h3>
+<div class="grid"><label>Gst In</label><input type="text" value="<?php echo $json['CompanyGSTNo'] ?>"></div>
+<div class="grid"><label>LglNm</label><input type="text" value="<?php echo $json['cCompanyName'] ?>"></div>
+<div class="grid"><label>Addr1</label><input type="text" value="<?php echo $json['cAddress'] ?>"></div>
+<div class="grid"><label>Loc</label><input type="text" value="<?php echo $json['cCityName'] ?>"></div>
+<div class="grid"><label>Pin</label><input type="text" value="<?php echo $json['pinno'] ?>"></div>
+<div class="grid"><label>StCd</label><input type="text" value="<?php echo $json['nGSTStateCode'] ?>"></div>
 
-    <h3>Buyer Details</h3>
-    <div class="grid"><label>GSTIn</label><input type="text" value="<?php echo $json['cBillGSTNo'] ?>"></div>
-    <div class="grid"><label>LglNm</label><input type="text" value="<?php echo $json['cBillToCustName'] ?>"></div>
-    <div class="grid"><label>Pos</label><input type="text"></div>
-    <div class="grid"><label>Addr1</label><input type="text" value="<?php echo $json['cBillAddress'] ?>"></div>
-    <div class="grid"><label>Loc</label><input type="text"></div>
-    <div class="grid"><label>Pin</label><input type="text" value="<?php echo $json['nBillToZipCode'] ?>"></div>
-    <div class="grid"><label>StCd</label><input type="text" value="<?php echo $json['nBilltoGSTStateCode'] ?>"></div>
+<h3>Buyer Details</h3>
+<div class="grid"><label>GSTIn</label><input type="text" value="<?php echo $json['cBillGSTNo'] ?>"></div>
+<div class="grid"><label>LglNm</label><input type="text" value="<?php echo $json['cBillToCustName'] ?>"></div>
+<div class="grid"><label>Pos</label><input type="text" ></div>
+<div class="grid"><label>Addr1</label><input type="text" value="<?php echo $json['cBillAddress'] ?>"></div>
+<div class="grid"><label>Loc</label><input type="text" value="<?php echo $json['cBillToCustName'] ?>"></div>
+<div class="grid"><label>Pin</label><input type="text" value="<?php echo $json['nBillToZipCode'] ?>"></div>
+<div class="grid"><label>StCd</label><input type="text" value="<?php echo $json['nBilltoGSTStateCode'] ?>"></div>
 
-    <h3>Dispatch From Details</h3>
-    <div class="grid"><label>Nm</label><input type="text"></div>
-    <div class="grid"><label>Addr1</label><input type="text" value="<?php echo $json['cDespAddress'] ?>"></div>
-    <div class="grid"><label>Loc</label><input type="text"></div>
-    <div class="grid"><label>Pin</label><input type="text" value="<?php echo $json['nDespToZIpCode'] ?>"></div>
-    <div class="grid"><label>Stcd</label><input type="text" value="<?php echo $json['nDesptoGSTStateCode'] ?>"></div>
+<h3>Dispatch From Details</h3>
+<div class="grid"><label>Nm</label><input type="text" value="<?php echo $json['cCompanyName'] ?>"></div>
+<div class="grid"><label>Addr1</label><input type="text" value="<?php echo $json['cDespAddress'] ?>"></div>
+<div class="grid"><label>Loc</label><input type="text" value="<?php echo $json['cDespCustCityName'] ?>"></div>
+<div class="grid"><label>Pin</label><input type="text" value="<?php echo $json['nDespToZIpCode'] ?>"></div>
+<div class="grid"><label>Stcd</label><input type="text" value="<?php echo $json['nDesptoGSTStateCode'] ?>"></div>
 
-    <h3>Ship To Details</h3>
-    <div class="grid"><label>LglNm</label><input type="text" value="<?php echo $json['cDespCustName'] ?>"></div>
-    <div class="grid"><label>Addr1</label><input type="text" value="<?php echo $json['cDespAddress'] ?>"></div>
-    <div class="grid"><label>Loc</label><input type="text" ></div>
-    <div class="grid"><label>Pin</label><input type="text" value="<?php echo $json['cDespAddress'] ?>"></div>
-    <div class="grid"><label>Stcd</label><input type="text" value="<?php echo $json['cDespAddress'] ?>"></div>
+<h3>Ship To Details</h3>
+<div class="grid"><label>LglNm</label><input type="text" value="<?php echo $json['cDespCustName'] ?>"></div>
+<div class="grid"><label>Addr1</label><input type="text" value="<?php echo $json['cDespAddress'] ?>"></div>
+<div class="grid"><label>Loc</label><input type="text" ></div>
+<div class="grid"><label>Pin</label><input type="text" value="<?php echo $json['cDespAddress'] ?>"></div>
+<div class="grid"><label>Stcd</label><input type="text" value="<?php echo $json['cDespAddress'] ?>"></div>
 
-    <div id="itemDetails">
+<div id="itemDetails" name="itemDetails">
 
-    </div>
+</div>
 
-    <input type="button" value="OK">
-    <input type="button" value="Cancel">
+<input type="button" value="OK">
+<input type="button" value="Cancel">
 
-    <h3>Mandatory Field for eInvoice Please Check before Submitting eInvoice</h3>
-    <div class="grid"><label>IRN No</label><input type="text"></div>
-    <div class="grid"><label>IRN Date</label><input type="text"></div>
-    <div class="grid"><label>Document</label><input type="text"></div>
-    <div class="grid"><label>Govt Response</label><input type="text"></div>
-    <div class="grid"><label>Ack. No</label><input type="text"></div>
-    <div class="grid"><label>Ack Date</label><input type="text"></div>
-    <div class="grid"><label>Signed Invoice</label><input type="text"></div>
-    <div class="grid"><label>Signed QR</label><input type="text"></div>
-    <div class="grid"><label>eWayBill No</label><input type="text"></div>
-    <div class="grid"><label>eWay BillDt</label><input type="text"></div>
-    <div class="grid"><label>Valid Dt</label><input type="text"></div>
+<h3>Mandatory Field for eInvoice Please Check before Submitting eInvoice</h3>
+<div class="grid"><label>IRN No</label><input type="text"></div>
+<div class="grid"><label>IRN Date</label><input type="text"></div>
+<div class="grid"><label>Document</label><input type="text"></div>
+<div class="grid"><label>Govt Response</label><input type="text"></div>
+<div class="grid"><label>Ack. No</label><input type="text"></div>
+<div class="grid"><label>Ack Date</label><input type="text"></div>
+<div class="grid"><label>Signed Invoice</label><input type="text"></div>
+<div class="grid"><label>Signed QR</label><input type="text"></div>
+<div class="grid"><label>eWayBill No</label><input type="text"></div>
+<div class="grid"><label>eWay BillDt</label><input type="text"></div>
+<div class="grid"><label>Valid Dt</label><input type="text"></div>
 
 
 </body>
 <script>
-    function setItemDetails(){
-
+    function setItemDetails(item){
+        var node = document.createElement("LI");                 // Create a <li> node
+        var textnode = document.createTextNode("Water");         // Create a text node
+        node.appendChild(textnode);                              // Append the text to <li>
+        document.getElementById("itemDetails").appendChild(node);
     }
 
 </script>
 </html>
+
+
