@@ -33,7 +33,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CRP" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -69,7 +69,10 @@
       <workItem from="1615438680948" duration="6123000" />
       <workItem from="1615446063063" duration="4423000" />
       <workItem from="1615525611742" duration="7559000" />
-      <workItem from="1615611102850" duration="15705000" />
+      <workItem from="1615611102850" duration="18808000" />
+      <workItem from="1615784375759" duration="17489000" />
+      <workItem from="1615810676050" duration="1166000" />
+      <workItem from="1615870965830" duration="9083000" />
     </task>
     <servers />
   </component>
@@ -161,31 +164,12 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="157" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1615617789551" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1615292160023">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1615810771351">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1615292160023" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1615810771351" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/controllers/fetchInvoiceData.php</url>
-          <line>131</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/controllers/fetchInvoiceData.php</url>
-          <line>129</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/controllers/fetchInvoiceData.php</url>
-          <line>133</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="PhpWebAppRunConfigurationType">
         <watch expression="$row['dINVOICEENTRYDATE']" language="PHP" />

@@ -1,5 +1,3 @@
-
-
 <html>
 <head>
 
@@ -9,7 +7,7 @@
 
 <?php
 include('../mssql_connection.php');
-$json='';
+$json = '';
 if (isset($_POST['submit'])) {
 
     $invoiceNumber = $_POST['invoiceNum'];
@@ -65,40 +63,37 @@ FROM         View_InvoiceMaster LEFT OUTER JOIN
 LEFT OUTER JOIN (SELECT nENTRYTAKENFROM_UNIQUEID AS nINVOICEUNIQUEID, ISNULL(SUM(nRECEIVEDAMOUNT), 0) AS nRECEIVEDAMOUNT FROM tbl_VOUCHER_PAYMENT_RECV AS vpr WHERE      (IS_ACTIVE = 1) AND (IS_AVAILABLE = 1) AND (cTAKINGFROMTABLE = 1) 
 GROUP BY nENTRYTAKENFROM_UNIQUEID) AS vpr_1 ON vpr_1.nINVOICEUNIQUEID = View_InvoiceMaster.nINVOICEUNIQUEID                      
                       
-WHERE     (View_InvoiceMaster.IS_ACTIVE = 1) AND (View_InvoiceMaster.IS_CANCELLED = 0) and View_InvoiceMaster.cINVOICENO  NOT LIKE '%9999' and View_InvoiceMaster.cINVOICENO='$invoiceNumber'" ;
+WHERE     (View_InvoiceMaster.IS_ACTIVE = 1) AND (View_InvoiceMaster.IS_CANCELLED = 0) and View_InvoiceMaster.cINVOICENO  NOT LIKE '%9999' and View_InvoiceMaster.cINVOICENO='$invoiceNumber'";
 
     $result = sqlsrv_query($conn, $sql);
-    $prettyjson='';
+    $prettyjson = '';
     try {
-        $count=0;
+        $count = 0;
         while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-             $prettyjson= json_encode($row,JSON_PRETTY_PRINT);
+            $prettyjson = json_encode($row, JSON_PRETTY_PRINT);
             $json = $row;
 
             echo '<script type="text/javascript">',
             'setItemDetails();',
-            '</script>'
-            ;
+            '</script>';
 
-            echo  '<h3>Item Details</h3>
-                <div class="grid"><label>SINo </label><input type="text" value='.++$count.'></div>
-                <div class="grid"><label>IsServ</label><input type="text" value=' .   getService($json['cTARIFFHEAD']) . '></div>
-                <div class="grid"><label>HSN Cd</label><input type="text" value='. $json['cTARIFFHEAD'] .' ></div>
-                <div class="grid"><label>Unit Price</label><input type="text" value='. $json['nRATE'] .' ></div>
-                <div class="grid"><label>TotalAmt</label><input type="text" value='. $json['gross'] .' ></div>
-                <div class="grid"><label>AssAmt </label><input type="text" value='. $json['Assamount'].' ></div>
-                <div class="grid"><label>Gst Rt</label><input type="text" value='. $json['gst'] .' ></div>
-                <div class="grid"><label>Total Item Val</label><input type="text" value='. $json['TotItemVal'] .' ></div>
-                <div class="grid"><label>Ass Val</label><input type="text" value='. $json['Assamount'] .' ></div>
-                <div class="grid"><label>TotInv VI</label><input type="text" value='. $json['nNetAmount'] .' ></div>
-                <div class="grid"><label>InvStDt </label><input type="text" value='.  date("Y-m-d H:i:s").' ></div>
-                <div class="grid"><label>InvEndDt</label><input type="text" value='.  date("Y-m-d H:i:s").' ></div>
-                <div class="grid"><label>InvNo</label><input type="text" value='. $json['cINVOICENO'] .' ></div>
-                <div class="grid"><label>InvDt</label><input type="text" value='. $json['dINVOICEENTRYDATE']->format('Y-m-d H:i:s').'></div>
+            echo '<h3>Item Details</h3>
+                <div class="grid"><label>SINo </label><input type="text" value=' . ++$count . '></div>
+                <div class="grid"><label>IsServ</label><input type="text" value=' . getService($json['cTARIFFHEAD']) . '></div>
+                <div class="grid"><label>HSN Cd</label><input type="text" value=' . $json['cTARIFFHEAD'] . ' ></div>
+                <div class="grid"><label>Unit Price</label><input type="text" value=' . $json['nRATE'] . ' ></div>
+                <div class="grid"><label>TotalAmt</label><input type="text" value=' . $json['gross'] . ' ></div>
+                <div class="grid"><label>AssAmt </label><input type="text" value=' . $json['Assamount'] . ' ></div>
+                <div class="grid"><label>Gst Rt</label><input type="text" value=' . $json['gst'] . ' ></div>
+                <div class="grid"><label>Total Item Val</label><input type="text" value=' . $json['TotItemVal'] . ' ></div>
+                <div class="grid"><label>Ass Val</label><input type="text" value=' . $json['Assamount'] . ' ></div>
+                <div class="grid"><label>TotInv VI</label><input type="text" value=' . $json['nNetAmount'] . ' ></div>
+                <div class="grid"><label>InvStDt </label><input type="text" value=' . date("Y-m-d H:i:s") . ' ></div>
+                <div class="grid"><label>InvEndDt</label><input type="text" value=' . date("Y-m-d H:i:s") . ' ></div>
+                <div class="grid"><label>InvNo</label><input type="text" value=' . $json['cINVOICENO'] . ' ></div>
+                <div class="grid"><label>InvDt</label><input type="text" value=' . $json['dINVOICEENTRYDATE']->format('Y-m-d H:i:s') . '></div>
                 <div class="grid"><label>Distance</label><input type="text" value="0" ></div> ';
-    //        echo '<script>setItemDetails($html)</script>';
-
-
+            //        echo '<script>setItemDetails($html)</script>';
 
 
 //            echo '<pre>';
@@ -114,68 +109,167 @@ WHERE     (View_InvoiceMaster.IS_ACTIVE = 1) AND (View_InvoiceMaster.IS_CANCELLE
 
 }
 
-function getService($hsncode){
+function getService($hsncode)
+{
     $firsttwocharacter = substr($hsncode, 0, 2);
-    if($firsttwocharacter=='99'){
+    if ($firsttwocharacter == '99') {
         return 'Y';
 
-    }else{
+    } else {
         return 'N';
     }
 }
-function prepareJson($json){
-    $finalJson=$json;
+
+function prepareJson($json)
+{
+    $finalJson = $json;
     $finalObject = new stdClass();
-    $finalObject->Version="1.1";
+    $finalObject->Version = "1.1";
 
 
-    $finalObject->TranDtls=new stdClass();
-    $finalObject->TranDtls->TaxSch="GST";
-    $finalObject->TranDtls->SupTyp="B2B";
+    $finalObject->TranDtls = new stdClass();
+    $finalObject->TranDtls->TaxSch = "GST";
+    $finalObject->TranDtls->SupTyp = "B2B";
+    $finalObject->TranDtls->RegRev = "";
+    $finalObject->TranDtls->EcmGstin = null;
+    $finalObject->TranDtls->IgstOnIntra = "";
 
-    $finalObject->DocDtls=new stdClass();
-    $finalObject->DocDtls->Typ="INV";
-    $finalObject->DocDtls->No=$finalJson['cINVOICENO'];
-    $finalObject->DocDtls->Dt=date_format($finalJson['dINVOICEENTRYDATE'], 'd/m/Y');;
+    $finalObject->DocDtls = new stdClass();
+    $finalObject->DocDtls->Typ = "INV";
+    $finalObject->DocDtls->No = $finalJson['cINVOICENO'];
+    $finalObject->DocDtls->Dt = date_format($finalJson['dINVOICEENTRYDATE'], 'd/m/Y');;
 
-    $finalObject->SellerDtls=new stdClass();
-    $finalObject->SellerDtls->Gstin=$finalJson['CompanyGSTNo'];
-    $finalObject->SellerDtls->LglNm=$finalJson['cCompanyName'];
-    $finalObject->SellerDtls->Addr1=$finalJson['cAddress'];
-    $finalObject->SellerDtls->Loc=$finalJson['cCityName'];
-    $finalObject->SellerDtls->Pin=$finalJson['pinno'];
-    $finalObject->SellerDtls->StCd=$finalJson['nGSTStateCode'];
-
-    $finalObject->BuyerDtls=new stdClass();
-    $finalObject->BuyerDtls->Gstin=$finalJson['cBillGSTNo'];
-    $finalObject->BuyerDtls->LglNm=$finalJson['cBillToCustName'];
-    $finalObject->BuyerDtls->Pos='';
-    $finalObject->BuyerDtls->Addr1=$finalJson['cBillAddress'];
-    $finalObject->BuyerDtls->Pin=$finalJson['nBillToZipCode'];
-    $finalObject->BuyerDtls->StCd=$finalJson['nBilltoGSTStateCode'];
-
-    $finalObject->DispDtls=new stdClass();
-    $finalObject->DispDtls->Nm=$finalJson['cCompanyName'];
-    $finalObject->DispDtls->Addr1=$finalJson['cDespAddress'];
-    $finalObject->DispDtls->Loc=$finalJson['cDespCustCityName'];
-    $finalObject->DispDtls->Pin=$finalJson['nDespToZIpCode'];
-    $finalObject->DispDtls->Pin=$finalJson['nDesptoGSTStateCode'];
-
-    $finalObject->ShipDtls=new stdClass();
-    $finalObject->ShipDtls->LglNm=$finalJson['cDespCustName'];
-    $finalObject->ShipDtls->Addr1=$finalJson['cDespAddress'];
-    $finalObject->ShipDtls->Loc=$finalJson[''];
-    $finalObject->ShipDtls->Pin=$finalJson[''];
-    $finalObject->ShipDtls->Stcd=$finalJson[''];
+    $finalObject->SellerDtls = new stdClass();
+    $finalObject->SellerDtls->Gstin = $finalJson['CompanyGSTNo'];
+    $finalObject->SellerDtls->LglNm = $finalJson['cCompanyName'];
+    $finalObject->SellerDtls->TrdNm = $finalJson['cCompanyName'];
+    $finalObject->SellerDtls->Addr1 = $finalJson['cAddress'];
+    $finalObject->SellerDtls->Addr2 = $finalJson['cAddress'];
+    $finalObject->SellerDtls->Loc = $finalJson['cCityName'];
+    $finalObject->SellerDtls->Pin = $finalJson['pinno'];
+    $finalObject->SellerDtls->StCd = $finalJson['nGSTStateCode'];
+    // $finalObject->SellerDtls->Ph=;
+    // $finalObject->SellerDtls->Em=;
 
 
+    $finalObject->BuyerDtls = new stdClass();
+    $finalObject->BuyerDtls->Gstin = $finalJson['cBillGSTNo'];
+    $finalObject->BuyerDtls->LglNm = $finalJson['cBillToCustName'];
+    $finalObject->BuyerDtls->TrdNm = $finalJson['cBillToCustName'];
+    // $finalObject->BuyerDtls->Pos='';
+    $finalObject->BuyerDtls->Addr1 = $finalJson['cBillAddress'];
+    $finalObject->BuyerDtls->Addr2 = $finalJson['cBillAddress'];
+    //  $finalObject->BuyerDtls->Loc=;
+    $finalObject->BuyerDtls->Pin = $finalJson['nBillToZipCode'];
+    $finalObject->BuyerDtls->StCd = $finalJson['nBilltoGSTStateCode'];
+//    $finalObject->BuyerDtls->Ph=;
+    // $finalObject->BuyerDtls->Em=;
 
+    $finalObject->DispDtls = new stdClass();
+    $finalObject->DispDtls->Nm = $finalJson['cCompanyName'];
+    $finalObject->DispDtls->Addr1 = $finalJson['cDespAddress'];
+    $finalObject->DispDtls->Addr2=$finalJson['cDespAddress'];
+    $finalObject->DispDtls->Loc = $finalJson['cDespCustCityName'];
+    $finalObject->DispDtls->Pin = $finalJson['nDespToZIpCode'];
+    $finalObject->DispDtls->Stcd = $finalJson['nDesptoGSTStateCode'];
+
+    $finalObject->ShipDtls = new stdClass();
+    $finalObject->ShipDtls->Gstin = $finalJson['cBillGSTNo'];
+    $finalObject->ShipDtls->LglNm = $finalJson['cBillToCustName'];
+    $finalObject->ShipDtls->TrdNm=$finalJson['cBillToCustName'];
+    $finalObject->ShipDtls->Addr1 = $finalJson['cBillAddress'];
+    $finalObject->ShipDtls->Addr2=$finalJson['cBillAddress'];
+    $finalObject->ShipDtls->Loc = $finalJson[''];
+    $finalObject->ShipDtls->Pin = $finalJson['nBillToZipCode'];
+    $finalObject->ShipDtls->Stcd = $finalJson['nBilltoGSTStateCode'];
+
+    $finalObject->ValDtls = new stdClass();
+    $finalObject->ValDtls->AssVal = $finalJson[''];
+    $finalObject->ValDtls->CgstVal = $finalJson[''];
+    $finalObject->ValDtls->SgstVal = $finalJson[''];
+    $finalObject->ValDtls->IgstVal = $finalJson[''];
+    $finalObject->ValDtls->CesVal = $finalJson[''];
+    $finalObject->ValDtls->StCesVal = $finalJson[''];
+    $finalObject->ValDtls->Discount = $finalJson[''];
+    $finalObject->ValDtls->OthChrg = $finalJson[''];
+    $finalObject->ValDtls->RndOffAmt = $finalJson[''];
+    $finalObject->ValDtls->TotInvVal = $finalJson[''];
+    $finalObject->ValDtls->TotInvValFc = $finalJson[''];
+
+    $finalObject->PayDtls = new stdClass();
+    $finalObject->PayDtls->Nm = $finalJson[''];
+    $finalObject->PayDtls->AccDet = $finalJson[''];
+    $finalObject->PayDtls->Mode = $finalJson[''];
+    $finalObject->PayDtls->FinInsBr = $finalJson[''];
+    $finalObject->PayDtls->PayTerm = $finalJson[''];
+    $finalObject->PayDtls->PayInstr = $finalJson[''];
+    $finalObject->PayDtls->CrTrn = $finalJson[''];
+    $finalObject->PayDtls->DirDr = $finalJson[''];
+    $finalObject->PayDtls->DirDr = $finalJson[''];
+    $finalObject->PayDtls->PaidAmt = $finalJson[''];
+    $finalObject->PayDtls->PaymtDue = $finalJson[''];
+
+    $finalObject->RefDtls = new stdClass();
+    $finalObject->RefDtls->InvRm = null;
+    $arr= array(
+        "InvStDt" => "",
+        "InvEndDt" => "",
+
+    );
+    $finalObject->RefDtls->DocPerdDtls=$arr;
+    $arr = array(
+        array(
+            "InvNo" => "",
+            "InvDt" => "",
+            "OthRefNo" => ""
+        )
+    );
+    $finalObject->RefDtls->PrecDocDtls =$arr;
+
+
+
+    $arr = array(
+        array(
+            "RecAdvRef" => "",
+            "RecAdvDt" => "",
+            "TendRefr" => "",
+            "ContrRefr" => "",
+            "ExtRefr" => "",
+            "ProjRefr" => "",
+            "PORefr" => "",
+            "PORefDt" => "",
+        )
+    );
+    $finalObject->RefDtls->ContrDtls = $arr;
+    $arr= array(
+        array(
+        "Url" => "",
+        "Docs" => "",
+        "Info" => "",
+        )
+    );
+    $finalObject->AddlDocDtls=$arr;
+    $finalObject->ExpDtls=new stdClass();
+    $finalObject->ExpDtls->ShipBNo = $finalJson[''];
+    $finalObject->ExpDtls->ShipBDt = $finalJson[''];
+    $finalObject->ExpDtls->Port = $finalJson[''];
+    $finalObject->ExpDtls->RefClm = $finalJson[''];
+    $finalObject->ExpDtls->ForCur = $finalJson[''];
+    $finalObject->ExpDtls->CntCode = $finalJson[''];
+
+    $finalObject->EwbDtls=new stdClass();
+    $finalObject->EwbDtls->TransId = $finalJson[''];
+    $finalObject->EwbDtls->TransName = $finalJson[''];
+    $finalObject->EwbDtls->Distance = $finalJson[''];
+    $finalObject->EwbDtls->TransDocNo = $finalJson[''];
+    $finalObject->EwbDtls->TransDocDt = $finalJson[''];
+    $finalObject->EwbDtls->VehNo = $finalJson[''];
+    $finalObject->EwbDtls->VehType = "R";
+    $finalObject->EwbDtls->TransMode = "1";
 
     echo '<pre>';
-    echo json_encode($finalObject,JSON_PRETTY_PRINT);
+    echo json_encode($finalObject, JSON_PRETTY_PRINT);
     echo '</pre>';
-
-
 
 }
 
@@ -187,7 +281,8 @@ function prepareJson($json){
 <div class="grid"><label>Sub Typ</label><input value="B2B" type="text"></div>
 <div class="grid"><label>Typ</label><input VALUE="Inv" type="text"></div>
 <div class="grid"><label>No</label><input value="<?php echo $json['cINVOICENO'] ?>" type="text"></div>
-<div class="grid"><label>Dr</label><input type="text" value="<?php echo $json['dINVOICEENTRYDATE']->format('Y-m-d H:i:s') ?>" ></div>
+<div class="grid"><label>Dr</label><input type="text"
+                                          value="<?php echo $json['dINVOICEENTRYDATE']->format('Y-m-d H:i:s') ?>"></div>
 
 <h3>Seller Details</h3>
 <div class="grid"><label>Gst In</label><input type="text" value="<?php echo $json['CompanyGSTNo'] ?>"></div>
@@ -200,7 +295,7 @@ function prepareJson($json){
 <h3>Buyer Details</h3>
 <div class="grid"><label>GSTIn</label><input type="text" value="<?php echo $json['cBillGSTNo'] ?>"></div>
 <div class="grid"><label>LglNm</label><input type="text" value="<?php echo $json['cBillToCustName'] ?>"></div>
-<div class="grid"><label>Pos</label><input type="text" ></div>
+<div class="grid"><label>Pos</label><input type="text"></div>
 <div class="grid"><label>Addr1</label><input type="text" value="<?php echo $json['cBillAddress'] ?>"></div>
 <div class="grid"><label>Loc</label><input type="text" value="<?php echo $json['cBillToCustName'] ?>"></div>
 <div class="grid"><label>Pin</label><input type="text" value="<?php echo $json['nBillToZipCode'] ?>"></div>
@@ -216,7 +311,7 @@ function prepareJson($json){
 <h3>Ship To Details</h3>
 <div class="grid"><label>LglNm</label><input type="text" value="<?php echo $json['cDespCustName'] ?>"></div>
 <div class="grid"><label>Addr1</label><input type="text" value="<?php echo $json['cDespAddress'] ?>"></div>
-<div class="grid"><label>Loc</label><input type="text" ></div>
+<div class="grid"><label>Loc</label><input type="text"></div>
 <div class="grid"><label>Pin</label><input type="text" value="<?php echo $json['cDespAddress'] ?>"></div>
 <div class="grid"><label>Stcd</label><input type="text" value="<?php echo $json['cDespAddress'] ?>"></div>
 
@@ -243,7 +338,7 @@ function prepareJson($json){
 
 </body>
 <script>
-    function setItemDetails(item){
+    function setItemDetails(item) {
         var node = document.createElement("LI");                 // Create a <li> node
         var textnode = document.createTextNode("Water");         // Create a text node
         node.appendChild(textnode);                              // Append the text to <li>

@@ -85,3 +85,27 @@ have alook at irn.txt
 
   :spiral_calendar: 13/ 03/ 2021
   -----------
+  prepare json(on notice period)
+  
+  :spiral_calendar: 14/ 03/ 2021
+  -----------
+  - Sunday
+  
+  :spiral_calendar: 15/ 03/ 2021
+  -----------
+  - all fields
+  - fill other extra fields to null or empty string
+  - nested json
+  - change to e-invoice
+  
+  (service type, email)
+  
+  
+  null in string
+  0 in no
+  
+  :spiral_calendar: 16/ 03/ 2021
+  -----------
+  - prepare whole json
+  - look for array within array and structure
+  

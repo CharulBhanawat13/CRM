@@ -15,7 +15,7 @@
 
 </head>
 <div id="top">
-    <label style="margin-left: 35%;font-size: x-large;margin-top: 10px"><b>Invoice</b></label>
+    <label style="margin-left: 35%;font-size: x-large;margin-top: 10px"><b>e-Invoice</b></label>
 
 </div>
 
