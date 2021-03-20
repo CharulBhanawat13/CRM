@@ -109,3 +109,23 @@ have alook at irn.txt
   - prepare whole json
   - look for array within array and structure
   
+  
+  Pending
+   gst not more than 15 characters 
+   post man
+   send box
+   
+  :spiral_calendar: 17/ 03/ 2021
+  -----------
+  download postman
+  
+  :spiral_calendar: 20/ 03/ 2021
+  -----------
+ - new php storm
+ - configure email on postman
+ - import settings for storm
+ - Prepare json for Item val
+ - cross check fields
+- Push code to git
+
+    

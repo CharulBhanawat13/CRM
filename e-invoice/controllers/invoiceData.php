@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
 
     $invoiceNumber = $_POST['invoiceNum'];
     $conn = OpenMSSQLCon();
-    $sql = "SELECT distinct  'GST','B2B','INV',View_InvoiceMaster.cINVOICENO, View_InvoiceMaster.dINVOICEENTRYDATE,
+    $sql = "SELECT distinct  'GST','B2B','INV',View_InvoiceMaster.cINVOICENO, View_InvoiceMaster.dINVOICEENTRYDATE,View_InvoiceMaster.nTCSAmount,View_InvoiceMaster.nTCSRate,
 
  tbl_CompanyMaster.nGSTno as CompanyGSTNo,tbl_CompanyMaster.cCompanyName, tbl_CompanyMaster.cAddress,right(tbl_CompanyMaster.cAddress,8) pinno,tbl_CompanyMaster.cPhoneNo,tbl_CompanyMaster.cEmailAddress, AddressDtl.cCityName,AddressDtl.nStateID,AddressDtl.nGSTStateCode,
 
@@ -24,13 +24,13 @@ if (isset($_POST['submit'])) {
      View_InvoiceMaster.cDespGSTNo,View_InvoiceMaster.cDespCustName, View_InvoiceMaster.cDespAddress,View_InvoiceMaster.nDespToZIpCode,View_InvoiceMaster.nDesptoGSTStateCode,View_InvoiceMaster.cDespContactNo,View_InvoiceMaster.cDespEmailID,
      
   --itemdetails
-  View_ITEMTRANSCATION_INV.cItemSrNo,View_ITEMTRANSCATION_INV.nITEMUNIQUEID ,View_ITEMTRANSCATION_INV.cITEMNAME,'Y', View_ITEMTRANSCATION_INV.cTARIFFHEAD,View_ITEMTRANSCATION_INV.nINVOICEQTY,View_ITEMTRANSCATION_INV.cITEMUNIT,View_ITEMTRANSCATION_INV.nRATE,(View_ITEMTRANSCATION_INV.nINVOICEQTY*View_ITEMTRANSCATION_INV.nRATE) gross,View_ITEMTRANSCATION_INV.nDISCOUNT AS nItemDISCOUNT,(View_ITEMTRANSCATION_INV.nAMOUNT+View_ITEMTRANSCATION_INV.nAEDED+View_ITEMTRANSCATION_INV.nFREIGHT+ View_ITEMTRANSCATION_INV.nINSURANCE+View_ITEMTRANSCATION_INV.nPNFCHARGE) Assamount,(View_ITEMTRANSCATION_INV.nTariffDuty1) gst,View_ITEMTRANSCATION_INV.nIGST AS TRN_IGST,View_ITEMTRANSCATION_INV.nCGST AS TRN_CGST, View_ITEMTRANSCATION_INV.nSGST AS TRN_SGST,(View_ITEMTRANSCATION_INV.nIGST+View_ITEMTRANSCATION_INV.nCGST+View_ITEMTRANSCATION_INV.nSGST) TotItemVal,
+  View_ITEMTRANSCATION_INV.cItemSrNo,View_ITEMTRANSCATION_INV.nITEMUNIQUEID ,View_ITEMTRANSCATION_INV.cITEMNAME,(case when SUBSTRING(View_InvoiceMaster.cOrderNature,0,2)='S' then 'Y' else 'N' end) Is_Servicing, View_ITEMTRANSCATION_INV.cTARIFFHEAD,View_ITEMTRANSCATION_INV.cITEMUNIT,View_ITEMTRANSCATION_INV.nRATE,(View_ITEMTRANSCATION_INV.nINVOICEQTY*View_ITEMTRANSCATION_INV.nRATE) gross,View_ITEMTRANSCATION_INV.nDISCOUNT AS nItemDISCOUNT,(View_ITEMTRANSCATION_INV.nAMOUNT+View_ITEMTRANSCATION_INV.nAEDED+View_ITEMTRANSCATION_INV.nFREIGHT+ View_ITEMTRANSCATION_INV.nINSURANCE+View_ITEMTRANSCATION_INV.nPNFCHARGE) Assamount,(View_ITEMTRANSCATION_INV.nTariffDuty1) gst,View_ITEMTRANSCATION_INV.nIGST AS TRN_IGST,View_ITEMTRANSCATION_INV.nCGST AS TRN_CGST, View_ITEMTRANSCATION_INV.nSGST AS TRN_SGST,(View_ITEMTRANSCATION_INV.nIGST+View_ITEMTRANSCATION_INV.nCGST+View_ITEMTRANSCATION_INV.nSGST) TotItemVal,
 
   --valuedetails
   (View_ITEMTRANSCATION_INV.nAMOUNT+View_ITEMTRANSCATION_INV.nAEDED+View_ITEMTRANSCATION_INV.nFREIGHT+ View_ITEMTRANSCATION_INV.nINSURANCE+View_ITEMTRANSCATION_INV.nPNFCHARGE) Assamount,View_InvoiceMaster.nNetAmount,
   
  --valdtls
- (View_ITEMTRANSCATION_INV.nINVOICEQTY*View_ITEMTRANSCATION_INV.nRATE) gross,View_ITEMTRANSCATION_INV.nIGST AS TRN_IGST,View_ITEMTRANSCATION_INV.nCGST AS TRN_CGST, View_ITEMTRANSCATION_INV.nSGST AS TRN_SGST,View_InvoiceMaster.nCESS, View_ITEMTRANSCATION_INV.nDISCOUNT AS nItemDISCOUNT,View_ITEMTRANSCATION_INV.nAMOUNT,View_InvoiceMaster.nNetAmount AS TotalAmt_After_Tax,
+ (View_ITEMTRANSCATION_INV.nINVOICEQTY*View_ITEMTRANSCATION_INV.nRATE) gross,View_ITEMTRANSCATION_INV.nIGST AS TRN_IGST,View_ITEMTRANSCATION_INV.nCGST AS TRN_CGST, View_ITEMTRANSCATION_INV.nSGST AS TRN_SGST,View_InvoiceMaster.nCESS, View_ITEMTRANSCATION_INV.nDISCOUNT AS nItemDISCOUNT,View_ITEMTRANSCATION_INV.nAMOUNT,View_InvoiceMaster.nNetAmount AS TotalAmt_After_Tax, 
 
  --documentperioddetails
  
@@ -40,12 +40,24 @@ if (isset($_POST['submit'])) {
  
  View_InvoiceMaster.cINVOICENO,View_InvoiceMaster.dINVOICEENTRYDATE,
  
-View_InvoiceMaster.cCustPONo,View_InvoiceMaster.cCustPODate ,
+View_InvoiceMaster.cCustPODate ,
  
 
  --ewbdtls
-View_InvoiceMaster.cTransporterName,View_InvoiceMaster.cVehicleNo
- 
+View_InvoiceMaster.cTransporterName,View_InvoiceMaster.cVehicleNo,
+
+--sellerdtls
+case when View_InvoiceMaster.nCompanyDivisionID=4 then 'lighting@peplelectronics.com' else case when View_InvoiceMaster.nCompanyDivisionID=5 then 'leddriver@peplelectronics.com' else 'pyrotech@peplelectronics.com' end end Emailid,tbl_CompanyMaster.cCompanyName SellerTrdName,tbl_CompanyMaster.cPhoneNo,tbl_CompanyMaster.cAddress,
+
+--buyerdtls
+
+View_InvoiceMaster.cBillToCustName BuyerTradeName,View_InvoiceMaster.cBillAddress,View_InvoiceMaster.cBillToCityName,AddressDtl.cContactNo,AddressDtl.cEmailID,
+
+--itemdtls
+View_ITEMTRANSCATION_INV.nINVOICEQTY,case when View_InvoiceMaster.nTaxUniqueId='221' then (((View_ITEMTRANSCATION_INV.nTariffDuty1)))/2 else  case when (View_InvoiceMaster.nTaxUniqueId='222') then str(View_ITEMTRANSCATION_INV.nTariffDuty1)  end end GSTRt,
+
+ --ewbdtls
+  View_InvoiceMaster.cTransporterName,View_InvoiceMaster.cVehicleNo,View_InvoiceMaster.nTransporterCode,View_InvoiceMaster.cCustPONo OrdLineRef,08 POS
 
 FROM         View_InvoiceMaster LEFT OUTER JOIN
                           (SELECT     ada.nACDetailID, am.nAccount_UniqueID, am.nAccountID, ada.nACMasterID_UniqueID, ada.cECCNo, ada.cLSTNo, ada.cCSTNo, ada.cTinNO, ada.cPanNo,ada.cGSTNo, 
@@ -79,7 +91,7 @@ WHERE     (View_InvoiceMaster.IS_ACTIVE = 1) AND (View_InvoiceMaster.IS_CANCELLE
 
             echo '<h3>Item Details</h3>
                 <div class="grid"><label>SINo </label><input type="text" value=' . ++$count . '></div>
-                <div class="grid"><label>IsServ</label><input type="text" value=' . getService($json['cTARIFFHEAD']) . '></div>
+                <div class="grid"><label>IsServ</label><input type="text" value=' . $json['Is_Servicing'] . '></div>
                 <div class="grid"><label>HSN Cd</label><input type="text" value=' . $json['cTARIFFHEAD'] . ' ></div>
                 <div class="grid"><label>Unit Price</label><input type="text" value=' . $json['nRATE'] . ' ></div>
                 <div class="grid"><label>TotalAmt</label><input type="text" value=' . $json['gross'] . ' ></div>
@@ -130,40 +142,41 @@ function prepareJson($json)
     $finalObject->TranDtls = new stdClass();
     $finalObject->TranDtls->TaxSch = "GST";
     $finalObject->TranDtls->SupTyp = "B2B";
-    $finalObject->TranDtls->RegRev = "";
-    $finalObject->TranDtls->EcmGstin = null;
-    $finalObject->TranDtls->IgstOnIntra = "";
+    $finalObject->TranDtls->RegRev = null;
+    $finalObject->TranDtls->EcmGstin = "0";
+    $finalObject->TranDtls->IgstOnIntra = null;
 
     $finalObject->DocDtls = new stdClass();
     $finalObject->DocDtls->Typ = "INV";
     $finalObject->DocDtls->No = $finalJson['cINVOICENO'];
-    $finalObject->DocDtls->Dt = date_format($finalJson['dINVOICEENTRYDATE'], 'd/m/Y');;
+    $date=date_format($finalJson['dINVOICEENTRYDATE'],'d/m/y');
+    $finalObject->DocDtls->Dt =  $date ;
 
     $finalObject->SellerDtls = new stdClass();
     $finalObject->SellerDtls->Gstin = $finalJson['CompanyGSTNo'];
     $finalObject->SellerDtls->LglNm = $finalJson['cCompanyName'];
-    $finalObject->SellerDtls->TrdNm = $finalJson['cCompanyName'];
+    $finalObject->SellerDtls->TrdNm = $finalJson['SellerTrdName'];
     $finalObject->SellerDtls->Addr1 = $finalJson['cAddress'];
     $finalObject->SellerDtls->Addr2 = $finalJson['cAddress'];
     $finalObject->SellerDtls->Loc = $finalJson['cCityName'];
     $finalObject->SellerDtls->Pin = $finalJson['pinno'];
     $finalObject->SellerDtls->StCd = $finalJson['nGSTStateCode'];
-    // $finalObject->SellerDtls->Ph=;
-    // $finalObject->SellerDtls->Em=;
+     $finalObject->SellerDtls->Ph=$finalJson['cPhoneNo'];
+     $finalObject->SellerDtls->Em=$finalJson['cEmailAddress'];
 
 
     $finalObject->BuyerDtls = new stdClass();
     $finalObject->BuyerDtls->Gstin = $finalJson['cBillGSTNo'];
     $finalObject->BuyerDtls->LglNm = $finalJson['cBillToCustName'];
     $finalObject->BuyerDtls->TrdNm = $finalJson['cBillToCustName'];
-    // $finalObject->BuyerDtls->Pos='';
+    $finalObject->BuyerDtls->Pos=$finalJson['POS'];
     $finalObject->BuyerDtls->Addr1 = $finalJson['cBillAddress'];
     $finalObject->BuyerDtls->Addr2 = $finalJson['cBillAddress'];
-    //  $finalObject->BuyerDtls->Loc=;
+    $finalObject->BuyerDtls->Loc=$finalJson['cBillToCityName'];
     $finalObject->BuyerDtls->Pin = $finalJson['nBillToZipCode'];
     $finalObject->BuyerDtls->StCd = $finalJson['nBilltoGSTStateCode'];
-//    $finalObject->BuyerDtls->Ph=;
-    // $finalObject->BuyerDtls->Em=;
+    $finalObject->BuyerDtls->Ph=$finalJson['cBillToContactNo'];
+    $finalObject->BuyerDtls->Em=$finalJson['cBillToEmailID'];
 
     $finalObject->DispDtls = new stdClass();
     $finalObject->DispDtls->Nm = $finalJson['cCompanyName'];
@@ -179,49 +192,103 @@ function prepareJson($json)
     $finalObject->ShipDtls->TrdNm=$finalJson['cBillToCustName'];
     $finalObject->ShipDtls->Addr1 = $finalJson['cBillAddress'];
     $finalObject->ShipDtls->Addr2=$finalJson['cBillAddress'];
-    $finalObject->ShipDtls->Loc = $finalJson[''];
+    $finalObject->ShipDtls->Loc = $finalJson['cBillToCityName'];
     $finalObject->ShipDtls->Pin = $finalJson['nBillToZipCode'];
     $finalObject->ShipDtls->Stcd = $finalJson['nBilltoGSTStateCode'];
 
+    $finalObject->ItemList = new stdClass();
+    $finalObject->ItemList->BchDtls=new stdClass();
+    $arr = array(
+        array(
+            "SlNo" =>"0",
+            "PrdDesc" => $finalJson['cITEMNAME'],
+            "IsServc" => $finalJson['Is_Servicing'],
+            "HsnCd" => $finalJson['cTARIFFHEAD'],
+            "Barcde" => null,
+            "Qty" => $finalJson['nINVOICEQTY'],
+            "FreeQty" => "0",
+            "Unit" => $finalJson['cITEMUNIT'],
+            "UnitPrice" => $finalJson['nRATE'],
+            "TotAmt" => $finalJson['nAMOUNT'],
+            "Discount" => $finalJson['nItemDISCOUNT'],
+            "PreTaxVal" => $finalJson['gross'],
+            "AssAmt" => $finalJson['Assamount'],
+            "GstRt" => $finalJson['GSTRt'],
+            "IgstAmt" => $finalJson['TRN_IGST'],
+            "CgstAmt" => $finalJson['TRN_CGST'],
+            "SgstAmt" =>$finalJson['TRN_SGST'],
+            "CesRt" => $finalJson['nCESS'],
+            "CesAmt" => "0",
+            "CesNonAdvlAmt" => "0",
+            "StateCesRt"=>"0",
+            "StateCesAmt"=>"0",
+            "StateCesNonAdvlAmt"=>"0",
+            "OthChrg" => $finalJson['nTCSAmount'],
+            "TotItemVal" =>  $finalJson['TotItemVal'],
+            "OrdLineRef" =>  $finalJson['OrdLineRef'],
+            "OrgCntry" =>  null,
+            "PrdSlNo" =>  null,
+            "BchDtls" => array(
+                "Nm" => null,
+                "ExpDt" => null ,
+                "WrDt" => null ,
+            ),
+            "AttribDtls" =>
+                array(
+                    array(
+                        "Nm" => $finalJson['cITEMNAME'],
+                        "Val" => null
+                    )
+                )
+
+
+        )
+
+    );
+
+    $finalObject->ItemList=$arr;
+
+
     $finalObject->ValDtls = new stdClass();
     $finalObject->ValDtls->AssVal = $finalJson[''];
-    $finalObject->ValDtls->CgstVal = $finalJson[''];
-    $finalObject->ValDtls->SgstVal = $finalJson[''];
-    $finalObject->ValDtls->IgstVal = $finalJson[''];
-    $finalObject->ValDtls->CesVal = $finalJson[''];
-    $finalObject->ValDtls->StCesVal = $finalJson[''];
-    $finalObject->ValDtls->Discount = $finalJson[''];
-    $finalObject->ValDtls->OthChrg = $finalJson[''];
-    $finalObject->ValDtls->RndOffAmt = $finalJson[''];
-    $finalObject->ValDtls->TotInvVal = $finalJson[''];
-    $finalObject->ValDtls->TotInvValFc = $finalJson[''];
+    $finalObject->ValDtls->CgstVal = $finalJson['TRN_CGST'];
+    $finalObject->ValDtls->SgstVal = $finalJson['TRN_SGST'];
+    $finalObject->ValDtls->IgstVal = $finalJson['TRN_IGST'];
+    $finalObject->ValDtls->CesVal = $finalJson['nCESS'];
+    $finalObject->ValDtls->StCesVal = null;
+    $finalObject->ValDtls->Discount = null;
+    $finalObject->ValDtls->OthChrg =null;
+    $finalObject->ValDtls->RndOffAmt =null;
+    $finalObject->ValDtls->TotInvVal = null;
+    $finalObject->ValDtls->TotInvValFc = null;
+
 
     $finalObject->PayDtls = new stdClass();
-    $finalObject->PayDtls->Nm = $finalJson[''];
-    $finalObject->PayDtls->AccDet = $finalJson[''];
-    $finalObject->PayDtls->Mode = $finalJson[''];
-    $finalObject->PayDtls->FinInsBr = $finalJson[''];
-    $finalObject->PayDtls->PayTerm = $finalJson[''];
-    $finalObject->PayDtls->PayInstr = $finalJson[''];
-    $finalObject->PayDtls->CrTrn = $finalJson[''];
-    $finalObject->PayDtls->DirDr = $finalJson[''];
-    $finalObject->PayDtls->DirDr = $finalJson[''];
-    $finalObject->PayDtls->PaidAmt = $finalJson[''];
-    $finalObject->PayDtls->PaymtDue = $finalJson[''];
+    $finalObject->PayDtls->Nm = null;
+    $finalObject->PayDtls->AccDet = null;
+    $finalObject->PayDtls->Mode = null;
+    $finalObject->PayDtls->FinInsBr = null;
+    $finalObject->PayDtls->PayTerm = null;
+    $finalObject->PayDtls->PayInstr = null;
+    $finalObject->PayDtls->CrTrn = null;
+    $finalObject->PayDtls->DirDr = null;
+    $finalObject->PayDtls->CrDay =null;
+    $finalObject->PayDtls->PaidAmt = null;
+    $finalObject->PayDtls->PaymtDue = null;
 
     $finalObject->RefDtls = new stdClass();
     $finalObject->RefDtls->InvRm = null;
     $arr= array(
-        "InvStDt" => "",
-        "InvEndDt" => "",
+        "InvStDt" => date('dd/md/yy'),
+        "InvEndDt" => date('dd/mm/yy'),
 
     );
     $finalObject->RefDtls->DocPerdDtls=$arr;
     $arr = array(
         array(
-            "InvNo" => "",
-            "InvDt" => "",
-            "OthRefNo" => ""
+            "InvNo" => $finalJson['cINVOICENO'],
+            "InvDt" => $date,
+            "OthRefNo" => null
         )
     );
     $finalObject->RefDtls->PrecDocDtls =$arr;
@@ -230,40 +297,40 @@ function prepareJson($json)
 
     $arr = array(
         array(
-            "RecAdvRef" => "",
-            "RecAdvDt" => "",
-            "TendRefr" => "",
-            "ContrRefr" => "",
-            "ExtRefr" => "",
-            "ProjRefr" => "",
-            "PORefr" => "",
-            "PORefDt" => "",
+            "RecAdvRef" =>null,
+            "RecAdvDt" => null,
+            "TendRefr" => null,
+            "ContrRefr" =>null,
+            "ExtRefr" => null,
+            "ProjRefr" => null,
+            "PORefr" => null,
+            "PORefDt" => null,
         )
     );
     $finalObject->RefDtls->ContrDtls = $arr;
     $arr= array(
         array(
-        "Url" => "",
-        "Docs" => "",
-        "Info" => "",
+        "Url" => null,
+        "Docs" => null,
+        "Info" => null,
         )
     );
     $finalObject->AddlDocDtls=$arr;
     $finalObject->ExpDtls=new stdClass();
-    $finalObject->ExpDtls->ShipBNo = $finalJson[''];
-    $finalObject->ExpDtls->ShipBDt = $finalJson[''];
-    $finalObject->ExpDtls->Port = $finalJson[''];
-    $finalObject->ExpDtls->RefClm = $finalJson[''];
-    $finalObject->ExpDtls->ForCur = $finalJson[''];
-    $finalObject->ExpDtls->CntCode = $finalJson[''];
+    $finalObject->ExpDtls->ShipBNo = null;
+    $finalObject->ExpDtls->ShipBDt =null;
+    $finalObject->ExpDtls->Port = null;
+    $finalObject->ExpDtls->RefClm = null;
+    $finalObject->ExpDtls->ForCur =null;
+    $finalObject->ExpDtls->CntCode =null;
 
     $finalObject->EwbDtls=new stdClass();
-    $finalObject->EwbDtls->TransId = $finalJson[''];
-    $finalObject->EwbDtls->TransName = $finalJson[''];
-    $finalObject->EwbDtls->Distance = $finalJson[''];
-    $finalObject->EwbDtls->TransDocNo = $finalJson[''];
-    $finalObject->EwbDtls->TransDocDt = $finalJson[''];
-    $finalObject->EwbDtls->VehNo = $finalJson[''];
+    $finalObject->EwbDtls->TransId = $finalJson['nTransporterCode'];
+    $finalObject->EwbDtls->TransName = $finalJson['cTransporterName'];
+    $finalObject->EwbDtls->Distance ="0";
+    $finalObject->EwbDtls->TransDocNo = "0";
+    $finalObject->EwbDtls->TransDocDt = null;
+    $finalObject->EwbDtls->VehNo = $finalJson['cVehicleNo'];
     $finalObject->EwbDtls->VehType = "R";
     $finalObject->EwbDtls->TransMode = "1";
 
