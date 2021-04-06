@@ -26,20 +26,20 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GETMAXIMUM` (IN `tab_name` VARCHAR(64), IN `col_name` VARCHAR(64), OUT `total` INT)  BEGIN
- SET @c2 = '';
- SET @t1 =CONCAT('SELECT max(',col_name,') INTO @c2 FROM ',tab_name );
- PREPARE stmt3 FROM @t1;
- EXECUTE stmt3;
- DEALLOCATE PREPARE stmt3;
- SET total=@c2;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GETMAXIMUM` (IN `tab_name` VARCHAR(64), IN `col_name` VARCHAR(64), OUT `total` INT)  BEGIN
+ SET @c2 = '';
+ SET @t1 =CONCAT('SELECT max(',col_name,') INTO @c2 FROM ',tab_name );
+ PREPARE stmt3 FROM @t1;
+ EXECUTE stmt3;
+ DEALLOCATE PREPARE stmt3;
+ SET total=@c2;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `GETMAXIMUMID` (IN `tab_name` VARCHAR(64), IN `col_name` VARCHAR(64))  BEGIN
- SET @t1 =CONCAT('SELECT max(',col_name,') FROM ',tab_name);
- PREPARE stmt3 FROM @t1;
- EXECUTE stmt3;
- DEALLOCATE PREPARE stmt3;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GETMAXIMUMID` (IN `tab_name` VARCHAR(64), IN `col_name` VARCHAR(64))  BEGIN
+ SET @t1 =CONCAT('SELECT max(',col_name,') FROM ',tab_name);
+ PREPARE stmt3 FROM @t1;
+ EXECUTE stmt3;
+ DEALLOCATE PREPARE stmt3;
 END$$
 
 DELIMITER ;

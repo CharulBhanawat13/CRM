@@ -1,17 +1,17 @@
-table#facilityFiltersTable{
-    margin-top: 2%;
-    margin-left: auto;
-    margin-right: auto;
-}
-td{
-    padding: 10px !important;
-}
-th{
-    padding: 10px !important;
-}
-table#facilityTable{
-    margin-top: 2%;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #f2f2f2;
+table#facilityFiltersTable{
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+}
+td{
+    padding: 10px !important;
+}
+th{
+    padding: 10px !important;
+    background-color: #5bc0de;
+}
+table#facilityTable{
+    margin-top: 2%;
+    width: 100%;
+    background-color: #f2f2f2;
 }
